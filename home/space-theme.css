@@ -1,0 +1,183 @@
+/* ============================================================
+   STARNAUTS — Dark space theme overlay
+   Loaded AFTER home.css. Converts the light page into a
+   full-bleed dark "broadcasting from space" experience.
+   ============================================================ */
+
+:root{
+  --space-0:#05080F;
+  --space-1:#0A1019;
+  --glass:rgba(17,24,37,.55);
+  --glass-line:rgba(127,169,224,.16);
+  --tx:#C6CEDC;
+  --tx-mut:#8A93A6;
+}
+
+body{background:var(--space-0);color:var(--tx)}
+
+/* ---- fixed space background ---- */
+#space-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;
+  background:
+    radial-gradient(58% 42% at 80% 8%, rgba(46,111,201,.20), transparent 60%),
+    radial-gradient(50% 45% at 8% 32%, rgba(46,111,201,.13), transparent 60%),
+    radial-gradient(60% 50% at 50% 100%, rgba(46,111,201,.10), transparent 60%),
+    linear-gradient(180deg,#070B14 0%, #0A0F1A 40%, #070A12 100%);
+}
+#space-stars{position:absolute;inset:0}
+#space-stars span{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite}
+.shoot{position:absolute;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.95));
+  filter:drop-shadow(0 0 6px rgba(180,210,255,.8));pointer-events:none}
+@keyframes tw{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* ---- header: dark glass ---- */
+.site-header{background:rgba(8,12,20,.72);backdrop-filter:saturate(150%) blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.07)}
+.brand .wm-main{color:#fff}
+.brand .mark circle[fill="#141414"]{fill:#fff}
+.nav a{color:#C6CEDC}
+.nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+.link-login{color:#C6CEDC}
+.burger span,.burger span::before,.burger span::after{background:#fff}
+
+/* ---- sections become transparent over space ---- */
+.section{background:transparent}
+.section--gray{background:transparent}
+.section--gray::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:rgba(10,15,26,.45);backdrop-filter:blur(2px)}
+.section--gray{position:relative}
+.section-title{color:#fff}
+.section-sub{color:var(--tx)}
+.eyebrow{color:var(--blue-300)}
+
+/* ============ HERO (Earth-centered) ============ */
+.hero{background:transparent}
+.hero--earth .hero-inner{grid-template-columns:1fr;justify-items:center;text-align:center;
+  padding:60px 0 88px;position:relative;z-index:2}
+.earth{width:230px;height:230px;border-radius:50%;position:relative;margin-bottom:30px;overflow:hidden;
+  background:radial-gradient(circle at 34% 30%, #59afef 0%, #2c82cf 30%, #14589c 58%, #0a3a6c 80%, #06243f 100%);
+  box-shadow:0 0 46px rgba(70,160,235,.4), 0 0 90px rgba(46,111,201,.28);}
+.earth-map{position:absolute;inset:0;border-radius:50%;
+  background:url(../assets/earth-map.png);background-size:auto 100%;background-repeat:repeat-x;
+  animation:earthspin 40s linear infinite;}
+.earth-shade{position:absolute;inset:0;border-radius:50%;
+  box-shadow:inset -18px -16px 46px rgba(0,8,24,.75);
+  background:radial-gradient(circle at 33% 28%, rgba(255,255,255,.35), transparent 40%),
+             radial-gradient(circle at 80% 82%, rgba(0,6,20,.55), transparent 52%);}
+@keyframes earthspin{to{background-position-x:-460px}}
+.earth-glow{position:absolute;inset:-8px;border-radius:50%;pointer-events:none;
+  box-shadow:0 0 0 1px rgba(120,180,250,.18), inset 0 0 22px rgba(120,190,255,.35)}
+
+.hero--earth .dotcom{font-size:clamp(40px,6vw,72px);font-weight:900;letter-spacing:-.01em;color:#fff;line-height:1}
+.hero--earth .dotcom .tld{color:#fff;font-weight:500;font-size:0.85em}
+.hero--earth .hero-tag{margin-top:12px;font-size:13.5px;font-weight:800;letter-spacing:.22em;color:var(--blue-300)}
+.hero--earth .hero-lead-title{margin:26px auto 0;max-width:34ch;font-size:clamp(22px,2.8vw,32px);font-weight:800;color:#fff;line-height:1.42;letter-spacing:-.01em;text-wrap:normal}
+.hero--earth .hero-lead-title .em{color:var(--blue-300)}
+.hero--earth .lead{margin:18px auto 0;max-width:46em;color:var(--tx)}
+.hero--earth .hero-actions{justify-content:center}
+.hero--earth .hero-stats{justify-content:center}
+.hero--earth .hero-badge{margin-bottom:30px}
+
+/* ============ JOURNEY ============ */
+.journey .jstep .node{background:rgba(20,27,40,.7);border-color:var(--glass-line);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.journey .jstep:hover .node{border-color:var(--blue);background:rgba(24,33,50,.85)}
+.journey .jstep h3{color:#fff}
+.journey .jstep p{color:var(--tx-mut)}
+.journey .jstep .node svg[style*="--muted"]{color:#9AA6BC !important}
+.journey-line{background:repeating-linear-gradient(90deg,rgba(127,169,224,.3) 0 8px,transparent 8px 16px)}
+.jstep--final .node{background:var(--blue);border-color:var(--blue)}
+.jstep--final .node svg{color:#fff}
+
+/* ============ COURSES / CARDS ============ */
+.course{background:var(--glass);border-color:var(--glass-line);backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.course:hover{box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.course h3{color:#fff}
+.course-meta .tname{color:var(--tx)}
+.course-meta .rate{color:#fff}
+.course-foot{border-top-color:rgba(255,255,255,.1)}
+.course-price{color:#fff}
+.course-thumb .lvl{background:rgba(8,12,20,.78);color:#fff}
+.tab{background:rgba(20,27,40,.6);border-color:var(--glass-line);color:var(--tx)}
+.tab:hover{border-color:var(--blue-300);color:#fff}
+.tab.is-active{background:#fff;color:var(--space-0);border-color:#fff}
+.courses-head .btn--ghost{background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.22)}
+.courses-head .btn--ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+
+/* HOT badge on thumbnails (mockup) */
+.course-thumb .hot{position:absolute;top:12px;right:12px;z-index:2;height:24px;padding:0 10px;border-radius:7px;
+  background:var(--live);color:#fff;font-size:11px;font-weight:900;letter-spacing:.06em;display:inline-flex;align-items:center}
+
+/* stat strip under courses */
+.statline{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:20px;align-items:center;
+  margin-top:30px;padding:22px 26px;border-radius:var(--r-lg);
+  background:rgba(0,0,0,.8);border:1px solid var(--glass-line);backdrop-filter:blur(6px)}
+.statline .s .n{font-size:24px;font-weight:900;color:#fff}
+.statline .s .l{font-size:12.5px;color:var(--tx-mut);margin-top:2px}
+@media(max-width:680px){.statline{grid-template-columns:1fr 1fr;gap:16px}.statline .btn{grid-column:1/-1}}
+
+/* ============ TOOL ============ */
+.suno{background:rgba(0,0,0,.8);border-color:var(--glass-line);backdrop-filter:blur(8px)}
+.suno-bar{background:rgba(255,255,255,.04);border-bottom-color:rgba(255,255,255,.08)}
+.suno-bar .ttl{color:var(--tx-mut)}
+.suno-bar .dots i{background:rgba(255,255,255,.2)}
+.suno-field label{color:var(--tx-mut)}
+.chip{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:var(--tx)}
+.chip:hover{border-color:var(--blue-300);color:#fff}
+.suno-field input[type=text]{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14);color:#fff}
+.suno-field input[type=text]::placeholder{color:#6f7a8e}
+.tool-copy .feat li{color:var(--tx)}
+
+/* ============ STREAMERS (already dark) ============ */
+.streamers{background:transparent}
+.streamers::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(8,12,20,.5)}
+.streamers{position:relative}
+
+/* ============ TESTIMONIALS (black 80% box) ============ */
+.tcard{background:rgba(0,0,0,.8);border-color:var(--glass-line);box-shadow:0 18px 50px rgba(0,0,0,.5);backdrop-filter:blur(6px)}
+.tcard blockquote{color:#fff}
+.tcard blockquote .mk{color:var(--blue-300)}
+.tcard .tperson .nm{color:#fff}
+.tcard .tperson .role{color:var(--tx-mut)}
+
+/* ============ FOOTER: moon scene + overlapping compact bar ============ */
+.bootcamp{background:rgba(0,0,0,.8)}
+.bootcamp .tag{white-space:nowrap}
+.bootcamp-feat .it b{white-space:nowrap}
+.footer{background:transparent;padding:0;position:relative}
+.moon-scene{width:100%;line-height:0}
+.moon-scene .moon-img{display:block;width:100%;height:auto}
+.footer-bar{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  background:rgba(0,0,0,.9);
+  border-top:1px solid rgba(255,255,255,.07)}
+.fbar{display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap;padding:150px 0 14px}
+.fbar-brand{display:flex;align-items:center;gap:10px}
+.fbar-brand img{width:36px;height:36px}
+.fbar-brand b{display:block;font-size:14px;font-weight:900;color:#fff;letter-spacing:.02em;line-height:1}
+.fbar-brand i{display:block;font-style:normal;font-size:9px;font-weight:500;color:#9aa6bc;letter-spacing:.1em;margin-top:3px}
+.fbar-nav{display:flex;gap:16px;flex-wrap:wrap}
+.fbar-nav a{font-size:13px;color:#C6CEDC;transition:color .15s}
+.fbar-nav a:hover{color:#fff}
+.fbar-soc{display:flex;gap:8px;margin-left:auto}
+.fbar-soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;color:#C6CEDC;transition:.15s}
+.fbar-soc a:hover{background:var(--blue);color:#fff}
+.fbar-soc svg{width:17px;height:17px}
+.fbar-copy{flex:1 1 100%;margin:0;font-size:11.5px;color:#7c8699}
+
+/* agency card social row */
+.scard-soc{display:flex;gap:8px;margin-bottom:12px}
+.scard-soc a{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;color:#C6CEDC;transition:.15s}
+.scard-soc a:hover{background:var(--blue);color:#fff}
+.scard-soc svg{width:16px;height:16px}
+
+@media(max-width:680px){
+  .fbar{padding:12px 0 10px}
+  .fbar-soc{margin-left:0}
+}
+
+/* mobile hero earth */
+@media(max-width:680px){
+  .earth{width:160px;height:160px;margin-bottom:22px}
+  .hero--earth .hero-inner{padding:40px 0 64px}
+}

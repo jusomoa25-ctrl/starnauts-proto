@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARNAUTS — TOOL 도구</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+</head>
+<body>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5M21 7h-5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="14" height="11" rx="2.5"/><path d="M16.5 10l5-2.5v9L16.5 14"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16.5h.01M12 16.5h.01M16 16.5h.01"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="#">뉴스</a><a href="#">블로그</a><a href="#">문의하기</a><a href="#">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="#">무료로 시작</a>
+      <a class="power" href="#" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HEAD + SUNO ===== -->
+  <section class="section" id="tool" style="padding-top:72px">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="sec-en">TOOL</h2><p class="sec-ko">도구</p></div>
+      <p class="sec-lead">스타너츠가 직접 만든 다양한 실전 도구<br>방송 준비부터 운영까지 — <b>모든 도구는 회원 누구나 무료</b></p>
+
+      <!-- ===== 도구 라인업 ===== -->
+      <div class="sec-head" style="margin-top:40px"><h2 class="sec-en" style="font-size:30px">LINE-UP</h2><p class="sec-ko">도구 라인업</p></div>
+      <p class="sec-lead">지금 쓸 수 있는 도구부터 준비 중인 도구까지<br>스타너츠 도구는 계속 추가됩니다</p>
+
+      <div class="course-grid three">
+        <article class="course">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#3A5C8F,#141A24)"><span class="hot">출시</span><svg class="glyph"><use href="#i-music"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">AI·음원</span>
+            <h3>AI 음원 프롬프트 생성기</h3>
+            <div class="course-meta"><span class="tname">장르·무드·BPM 조합으로 방송 BGM 프롬프트 완성</span></div>
+            <div class="course-foot"><span class="course-price"><span class="free">무료</span></span><span class="enroll">바로 쓰기 ↑</span></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#16385F)"><span class="hot">베타</span><svg class="glyph"><use href="#i-trend"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">운영</span>
+            <h3>주간 콘텐츠 트렌드 리포트</h3>
+            <div class="course-meta"><span class="tname">매주 월요일, 플랫폼별 떠오르는 키워드·포맷 정리</span></div>
+            <div class="course-foot"><span class="course-price"><span class="free">무료</span></span><span class="enroll">받아보기 →</span></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><span class="hot">베타</span><svg class="glyph"><use href="#i-eye"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">운영</span>
+            <h3>썸네일·제목 추천기</h3>
+            <div class="course-meta"><span class="tname">영상 주제를 넣으면 클릭률 높은 제목·썸네일 문구 제안</span></div>
+            <div class="course-foot"><span class="course-price"><span class="free">무료</span></span><span class="enroll">써보기 →</span></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#33547E,#142238)"><span class="lvl">준비 중</span><svg class="glyph"><use href="#i-cam"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">방송 준비</span>
+            <h3>방송 체크리스트 생성기</h3>
+            <div class="course-meta"><span class="tname">장비·장면·고지 사항까지, 내 방송 유형별 점검 리스트</span></div>
+            <div class="course-foot"><span class="course-price" style="color:var(--muted-2)">출시 예정</span><span class="enroll">알림 신청 →</span></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2A3F61,#10161F)"><span class="lvl">준비 중</span><svg class="glyph"><use href="#i-chat"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">운영</span>
+            <h3>채팅 명령어 빌더</h3>
+            <div class="course-meta"><span class="tname">자주 쓰는 안내·이벤트 명령어를 코드 없이 구성</span></div>
+            <div class="course-foot"><span class="course-price" style="color:var(--muted-2)">출시 예정</span><span class="enroll">알림 신청 →</span></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#37475E,#121821)"><span class="lvl">준비 중</span><svg class="glyph"><use href="#i-calc"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">방송 준비</span>
+            <h3>장비 견적 플래너</h3>
+            <div class="course-meta"><span class="tname">예산 입력 → 쿠팡 실시간 가격 기반 장비 추천 조합 (제휴 링크 연동)</span></div>
+            <div class="course-foot"><span class="course-price" style="color:var(--muted-2)">출시 예정</span><span class="enroll">알림 신청 →</span></div>
+          </div>
+        </article>
+      </div>
+
+
+      <!-- 도구 미리보기: AI 음원 프롬프트 생성기 -->
+      <div class="sec-head" style="margin-top:64px"><h2 class="sec-en" style="font-size:30px">PREVIEW</h2><p class="sec-ko">도구 미리보기 — AI 음원 프롬프트 생성기</p></div>
+      <div class="tool-panel">
+      <div class="tool-grid">
+        <div class="tool-copy">
+          <h3 class="section-title" style="font-size:26px">AI 음원 프롬프트 생성기</h3>
+          <p class="section-sub">장르·무드·BPM·키워드만 고르면 Suno에 바로 붙여넣을 수 있는 프롬프트가 완성됩니다. 저작권 걱정 없는 나만의 방송 BGM을 만들어보세요.</p>
+          <ul class="feat">
+            <li><span class="ic"><svg><use href="#i-check"/></svg></span>방송용으로 최적화된 프롬프트 구조 (loopable·no vocals)</li>
+            <li><span class="ic"><svg><use href="#i-check"/></svg></span>장르 5종 × 무드 4종 + 자유 키워드 조합</li>
+            <li><span class="ic"><svg><use href="#i-check"/></svg></span>복사 한 번으로 Suno에 바로 사용</li>
+          </ul>
+          <a class="btn btn--primary btn--lg" href="#">스타너츠 가입하고 모든 도구 쓰기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+        </div>
+        <div class="suno">
+          <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">prompt-generator</span><span class="live-tool">● 실시간 미리보기</span></div>
+          <div class="suno-body">
+            <div class="suno-field"><label>장르</label>
+              <div class="chiprow" data-group="genre">
+                <button class="chip on" data-val="Lo-fi">Lo-fi</button>
+                <button class="chip" data-val="K-Pop">K-Pop</button>
+                <button class="chip" data-val="EDM">EDM</button>
+                <button class="chip" data-val="City Pop">City Pop</button>
+                <button class="chip" data-val="Hip-hop">Hip-hop</button>
+              </div>
+            </div>
+            <div class="suno-field"><label>무드</label>
+              <div class="chiprow" data-group="mood">
+                <button class="chip on" data-val="dreamy">몽환적인</button>
+                <button class="chip" data-val="energetic">신나는</button>
+                <button class="chip" data-val="calm">차분한</button>
+                <button class="chip" data-val="epic">웅장한</button>
+              </div>
+            </div>
+            <div class="suno-field"><label>BPM · <span id="bpmVal" style="color:var(--blue)">90</span></label>
+              <input type="range" id="bpm" min="60" max="160" value="90" step="5" style="width:100%;accent-color:var(--blue)"></div>
+            <div class="suno-field" style="margin-bottom:18px"><label>방송 분위기 키워드 (선택)</label>
+              <input type="text" id="kw" placeholder="예: 새벽 감성, 게임 인트로, 따뜻한 토크"></div>
+            <div class="suno-out"><span class="olabel">Generated prompt</span><button class="copy" id="copyBtn">복사</button><div class="otext" id="promptOut"></div></div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+      <!-- REBIRTH STATION 큐브 리스트 시너지 -->
+      <div class="tool-panel" style="margin-top:40px">
+        <div class="tool-grid">
+          <div class="tool-copy">
+            <span class="tag" style="display:inline-block;margin-bottom:12px;color:var(--blue-300);font-weight:700;font-size:13px">PARTNER · REBIRTH STATION</span>
+            <h3 class="section-title" style="font-size:26px">방송 데스크를 바꾸는 큐브 리스트</h3>
+            <p class="section-sub">리버스 스테이션의 큐브 리스트는 자주 쓰는 기능을 큐브(버튼)로 만들어 리스트로 정리해 실행하는 도구입니다. 방송 시작 루틴, 장면 전환, 링크 모음까지 — 클릭 한 번으로.</p>
+            <ul class="feat">
+              <li><span class="ic"><svg><use href="#i-check"/></svg></span>방송 루틴 큐브 — 송출 전 체크·장면·BGM을 한 줄로 실행</li>
+              <li><span class="ic"><svg><use href="#i-check"/></svg></span>PC·모바일에서 동일하게 작동하는 리스트</li>
+              <li><span class="ic"><svg><use href="#i-check"/></svg></span>스타너츠 수강생 전용 "방송 큐브팩" 준비 중</li>
+            </ul>
+            <a class="btn btn--ghost" href="#">큐브 리스트 자세히 보기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+          </div>
+          <div class="bootcamp-r" style="display:flex;align-items:center;justify-content:center">
+            <div class="bc-badge">
+              <span class="bc-k">REBIRTH STATION</span>
+              <span class="bc-d">큐브</span>
+              <span class="bc-s">리스트로 방송 제어</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="center-cta"><a class="btn btn--ghost" href="#">도구 추가 소식 받기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top:72px">
+    <div class="footer-bar" style="position:static">
+      <div class="wrap fbar">
+        <div class="fbar-main">
+          <div class="fbar-brand-col">
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
+            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <div class="fbar-soc">
+              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+            </div>
+          </div>
+          <nav class="fbar-cols">
+            <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
+            <div class="fcolx"><h5>회사</h5><a href="#">소개</a><a href="#">채용</a><a href="#">파트너십</a><a href="#">블로그</a></div>
+            <div class="fcolx"><h5>지원</h5><a href="#">고객센터</a><a href="#">자주 묻는 질문</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a></div>
+          </nav>
+        </div>
+        <p class="fbar-copy">© 2026 STARNAUTS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
+<script src="../home/home.js"></script>
+</body>
+</html>

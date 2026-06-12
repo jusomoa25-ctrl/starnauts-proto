@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARNAUTS — CONTENT 콘텐츠</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+</head>
+<body>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 19 12 7 19.5z" fill="currentColor"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="14" height="11" rx="2.5"/><path d="M16.5 10l5-2.5v9L16.5 14"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5M21 7h-5"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="content.html" class="active"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="#">뉴스</a><a href="#">블로그</a><a href="#">문의하기</a><a href="#">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html">TOOL<span class="tko">도구</span></a>
+      <a href="content.html" class="active">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="#">무료로 시작</a>
+      <a class="power" href="#" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HEAD ===== -->
+  <section class="section" id="content" style="padding-top:72px">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="sec-en">CONTENT</h2><p class="sec-ko">콘텐츠</p></div>
+      <p class="sec-lead">소속 강사 · 에이전시 스트리머 · 교육받은 스트리머를 알리는 공간<br>강의에서 시작된 성장 스토리를 만나보세요</p>
+      <p style="text-align:center;font-size:13px;color:#9aa6bc;margin:-6px 0 8px">콘텐츠는 각자 <b style="color:#C6CEDC">본인 계정 대시보드</b>에서 등록·관리하며, 설정 그대로 노출됩니다</p>
+
+      <div class="tabs center" id="courseTabs" role="tablist">
+        <button class="tab is-active" data-cat="all">전체</button>
+        <button class="tab" data-cat="tutor">소속 강사</button>
+        <button class="tab" data-cat="streamer">소속 스트리머</button>
+        <button class="tab" data-cat="grad">교육생·수료생</button>
+      </div>
+
+      <div class="course-grid three" id="courseGrid">
+        <article class="course" data-cat="grad">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#16385F)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-play"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">수료생 스토리</span>
+            <h3>데뷔 첫 방송 비하인드 — 레오의 송출 도전기</h3>
+            <div class="course-meta"><span class="tname">조회수 12,400</span><span class="rate" style="color:var(--muted-2);font-weight:600">3일 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="grad">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-mic"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">수료생 스토리</span>
+            <h3>보컬 트레이닝 3개월, 목소리 변화 모음</h3>
+            <div class="course-meta"><span class="tname">조회수 8,920</span><span class="rate" style="color:var(--muted-2);font-weight:600">1주 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="streamer">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#3A5C8F,#141A24)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-music"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소속 스트리머</span>
+            <h3>Suno로 만든 채널 시그니처 BGM 모음</h3>
+            <div class="course-meta"><span class="tname">조회수 21,300</span><span class="rate" style="color:var(--muted-2);font-weight:600">2주 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="tutor">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#33547E,#142238)"><svg class="glyph"><use href="#i-cam"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소속 강사</span>
+            <h3>장비 0원으로 시작하는 폰 방송 가이드</h3>
+            <div class="course-meta"><span class="tname">조회수 15,800</span><span class="rate" style="color:var(--muted-2);font-weight:600">5일 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="grad">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#245AA8,#141A24)"><svg class="glyph"><use href="#i-bolt"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">수료생 스토리</span>
+            <h3>부트캠프 8기 데뷔 방송 하이라이트</h3>
+            <div class="course-meta"><span class="tname">조회수 9,340</span><span class="rate" style="color:var(--muted-2);font-weight:600">4일 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="tutor">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#3E6FAE,#1B3555)"><svg class="glyph"><use href="#i-play"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소속 강사</span>
+            <h3>세아의 보컬 레슨 준비 브이로그</h3>
+            <div class="course-meta"><span class="tname">조회수 6,210</span><span class="rate" style="color:var(--muted-2);font-weight:600">1주 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="streamer">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2F4F7E,#10141B)"><svg class="glyph"><use href="#i-music"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소속 스트리머</span>
+            <h3>집중 작업용 Lo-fi 스트리밍 BGM 60분</h3>
+            <div class="course-meta"><span class="tname">조회수 18,700</span><span class="rate" style="color:var(--muted-2);font-weight:600">3주 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="tutor">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-trend"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소속 강사</span>
+            <h3>유튜브 쇼츠 알고리즘, 강사가 직접 실험해봤다</h3>
+            <div class="course-meta"><span class="tname">조회수 24,100</span><span class="rate" style="color:var(--muted-2);font-weight:600">1주 전</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="streamer">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#5B7BB0,#245AA8)"><svg class="glyph"><use href="#i-bolt"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소속 스트리머</span>
+            <h3>하늘 × 도윤 콜라보 댄스 라이브 풀버전</h3>
+            <div class="course-meta"><span class="tname">조회수 11,500</span><span class="rate" style="color:var(--muted-2);font-weight:600">2주 전</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="center-cta"><a class="btn btn--ghost" href="#">더 많은 콘텐츠 보기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top:72px">
+    <div class="footer-bar" style="position:static">
+      <div class="wrap fbar">
+        <div class="fbar-main">
+          <div class="fbar-brand-col">
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
+            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <div class="fbar-soc">
+              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+            </div>
+          </div>
+          <nav class="fbar-cols">
+            <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
+            <div class="fcolx"><h5>회사</h5><a href="#">소개</a><a href="#">채용</a><a href="#">파트너십</a><a href="#">블로그</a></div>
+            <div class="fcolx"><h5>지원</h5><a href="#">고객센터</a><a href="#">자주 묻는 질문</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a></div>
+          </nav>
+        </div>
+        <p class="fbar-copy">© 2026 STARNAUTS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
+<script src="../home/home.js"></script>
+</body>
+</html>

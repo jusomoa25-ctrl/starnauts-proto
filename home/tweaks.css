@@ -1,0 +1,63 @@
+/* ============================================================
+   STARNAUTS — iteration tweaks (loaded last, wins cascade)
+   ============================================================ */
+
+/* 1) unify all buttons to blue */
+.btn--ghost, .btn--ghost-dark{background:var(--blue);color:#fff;border:1.5px solid var(--blue);box-shadow:var(--sh-blue)}
+.btn--ghost:hover, .btn--ghost-dark:hover{background:var(--blue-700);border-color:var(--blue-700);color:#fff}
+.courses-head .btn--ghost{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* 2) star pricing */
+.star-note{text-align:center;color:var(--tx-mut);font-size:13px;margin:-12px auto 26px;max-width:46em;line-height:1.6}
+.star-note b{color:var(--blue-300);font-weight:700}
+.course-price .pstar{color:var(--blue);margin-right:4px}
+.course-price .punit{font-size:13px;font-weight:700;color:var(--tx-mut);margin-left:1px}
+.course-price s{color:var(--muted-2);font-size:13px;font-weight:600;margin-right:7px}
+
+/* 3) section panels (TOOL + REVIEW get a black 80% box) */
+.tool-panel,.review-panel{background:rgba(0,0,0,.8);border:1px solid var(--glass-line);
+  border-radius:var(--r-lg);padding:46px 40px}
+.tool-panel .tool-grid{margin-top:6px}
+/* suno sits on the black panel — make it a lighter glass card so it stands out */
+.tool-panel .suno{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.13)}
+.tool-panel .suno-bar{background:rgba(255,255,255,.05)}
+.tool-panel .chip{background:rgba(255,255,255,.07)}
+
+/* 4) REVIEW: white quote card on the black panel (revert dark card) */
+.tcard{background:#fff;border-color:var(--line)}
+.tcard blockquote{color:var(--ink)}
+.tcard blockquote .mk{color:var(--blue)}
+.tcard .tperson .nm{color:var(--ink)}
+.tcard .tperson .role{color:var(--muted)}
+
+/* 5) bootcamp recruitment badge (replaces the helmet circle) */
+.bootcamp-r .bc-badge{width:200px;height:200px;border-radius:50%;border:3px solid var(--blue);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:radial-gradient(circle at 50% 36%, rgba(46,111,201,.30), rgba(0,0,0,.45));
+  box-shadow:0 0 42px rgba(46,111,201,.45), inset 0 0 32px rgba(46,111,201,.22)}
+.bc-badge .bc-k{font-size:13px;font-weight:700;color:var(--blue-300);letter-spacing:.04em}
+.bc-badge .bc-d{font-size:46px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em}
+.bc-badge .bc-s{font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,.14);
+  padding:4px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.2)}
+
+/* 6) footer — fill the taller (3x) black bar with a full layout */
+.fbar{flex-direction:column;align-items:stretch;gap:22px;padding:48px 0 16px}
+.fbar-main{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.fbar-brand-col{max-width:330px}
+.fbar-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.fbar-brand img{width:40px;height:40px}
+.fbar-brand b{display:block;font-size:15px;font-weight:900;color:#fff;letter-spacing:.02em;line-height:1}
+.fbar-brand i{display:block;font-style:normal;font-size:9px;font-weight:500;color:#9aa6bc;letter-spacing:.1em;margin-top:3px}
+.fbar-desc{font-size:13px;color:#9aa6bc;line-height:1.7;margin:0 0 16px}
+.fbar-cols{display:flex;gap:48px;flex-wrap:wrap}
+.fcolx h5{font-size:12.5px;font-weight:800;color:#fff;margin:0 0 12px;letter-spacing:.04em}
+.fcolx a{display:block;font-size:13px;color:#9aa6bc;padding:5px 0;transition:color .15s}
+.fcolx a:hover{color:#fff}
+.fbar-copy{margin:0;font-size:11.5px;color:#7c8699;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+
+@media (max-width:680px){
+  .tool-panel,.review-panel{padding:30px 18px}
+  .fbar{padding:32px 0 14px}
+  .fbar-main{gap:26px}
+  .fbar-cols{gap:30px}
+}
