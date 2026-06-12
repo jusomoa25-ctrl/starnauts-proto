@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARNAUTS — 강사 대시보드 (시안)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+.db-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.db-grid{grid-template-columns:1fr}}
+.db-stat{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;background:rgba(255,255,255,.03)}
+.db-stat b{display:block;font-size:28px;font-weight:900;color:#fff}
+.db-stat span{font-size:12.5px;color:#9aa6bc}
+.db-2col{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-top:22px}
+@media(max-width:900px){.db-2col{grid-template-columns:1fr}}
+.db-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px}
+.db-row:last-child{border-bottom:none}
+.db-field{margin-bottom:14px}
+.db-field label{display:block;font-size:12px;color:#9aa6bc;margin-bottom:6px;font-weight:700}
+.db-field input,.db-field select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13.5px;font-family:inherit}
+.db-pill{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:700;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html" class="active"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="#">뉴스</a><a href="#">블로그</a><a href="#">문의하기</a><a href="#">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html" class="active">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="#">무료로 시작</a>
+      <a class="power" href="#" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:72px">
+    <div class="wrap">
+      <a href="agency.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:20px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 에이전시로 돌아가기</a>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <h1 style="font-size:28px;font-weight:900">강사 대시보드</h1>
+        <span style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(240,160,32,.2);color:#F0C36A;font-weight:800">시안 — 화면 설계 미리보기</span>
+      </div>
+      <p style="margin-top:6px;color:#9aa6bc;font-size:13.5px">여기서 설정한 프로필 · 강의 · 일정이 그대로 공개 페이지에 노출됩니다.</p>
+
+      <!-- 수익 요약 -->
+      <div class="db-grid" style="margin-top:22px">
+        <div class="db-stat"><b>★ 1,284</b><span>이번 달 판매 (정산 예정 ★ 898 = 70%)</span></div>
+        <div class="db-stat"><b>★ 3,420</b><span>환전 가능 잔액 — PayPal · Binance Pay</span></div>
+        <div class="db-stat"><b>147명</b><span>이번 달 신규 수강생 (구독 갱신 포함)</span></div>
+      </div>
+
+      <div class="db-2col">
+        <!-- 내 강의 -->
+        <div class="suno">
+          <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">my-classes</span><span class="live-tool">내 강의 3개</span></div>
+          <div class="suno-body">
+            <div class="db-row"><span style="flex:1">처음부터 끝까지: 첫 송출 완벽 가이드</span><span style="color:#9aa6bc">무료</span><span class="db-pill" style="background:rgba(46,158,91,.18);color:#5BC98A">게시 중</span></div>
+            <div class="db-row"><span style="flex:1">구독자 0 → 1,000 채널 성장 로드맵</span><span style="color:#fff;font-weight:700">★99</span><span class="db-pill" style="background:rgba(46,158,91,.18);color:#5BC98A">게시 중</span></div>
+            <div class="db-row"><span style="flex:1">토크가 끊기지 않는 라이브 진행의 기술</span><span style="color:#fff;font-weight:700">★79</span><span class="db-pill" style="background:rgba(255,255,255,.1);color:#9aa6bc">심사 중</span></div>
+
+            <div style="border-top:1px dashed rgba(255,255,255,.15);margin:16px 0 14px"></div>
+            <p style="font-size:13px;font-weight:800;color:#fff;margin-bottom:12px">새 강의 등록</p>
+            <div class="db-field"><label>유튜브 비공개(unlisted) 링크</label><input type="text" placeholder="https://youtu.be/..."></div>
+            <div class="db-field"><label>판매 유형 · 가격 (스타, $1 = 1스타)</label>
+              <div style="display:flex;gap:8px">
+                <select style="flex:1"><option>강의 구매 (영구 시청)</option><option>콘텐츠 구독 (업데이트 포함)</option></select>
+                <input type="number" placeholder="99" style="width:90px">
+              </div>
+            </div>
+            <div class="db-field"><label>카테고리</label><select><option>스트리밍</option><option>편집</option><option>보컬·댄스</option><option>음원 제작</option><option>콘텐츠 스킬</option><option>지식·재능</option></select></div>
+            <a class="btn btn--primary" href="#" style="width:100%;justify-content:center;display:flex">등록 신청 (심사 후 게시)</a>
+            <p style="font-size:11.5px;color:#9aa6bc;margin-top:8px">심사는 부적절 콘텐츠 여부만 확인합니다. 가격·구성은 강사가 결정합니다.</p>
+          </div>
+        </div>
+
+        <!-- 정산/프로필/일정 -->
+        <div>
+          <div class="suno">
+            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">payout</span><span class="live-tool">정산 · 환전</span></div>
+            <div class="suno-body">
+              <div class="db-row"><span style="flex:1">6/10 — 성장 로드맵 × 12건</span><span style="color:#5BC98A;font-weight:700">+ ★ 831</span></div>
+              <div class="db-row"><span style="flex:1">6/8 — 라이브 진행의 기술 × 4건</span><span style="color:#5BC98A;font-weight:700">+ ★ 221</span></div>
+              <div class="db-row"><span style="flex:1">6/2 — 환전 (PayPal)</span><span style="color:#9aa6bc;font-weight:700">- ★ 1,500</span></div>
+              <div style="display:flex;gap:8px;margin-top:14px">
+                <a class="btn btn--primary" href="#" style="flex:1;justify-content:center;display:flex">PayPal 환전</a>
+                <a class="btn btn--ghost" href="#" style="flex:1;justify-content:center;display:flex">Binance Pay 환전</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="suno" style="margin-top:16px">
+            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">profile</span><span class="live-tool">저장 = 즉시 공개 반영</span></div>
+            <div class="suno-body">
+              <div class="db-field"><label>표시 이름 · 한 줄 소개</label><input type="text" value="레오 — 첫 송출부터 채널 성장까지, 직접 겪은 만큼만 가르칩니다."></div>
+              <div class="db-field"><label>국적 · 방송 플랫폼 · SNS</label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <select style="flex:0 0 80px"><option>KR</option><option>JP</option><option>TH</option><option>VN</option><option>US</option></select>
+                  <input type="text" value="치지직, YouTube" style="flex:1;min-width:140px">
+                </div>
+              </div>
+              <div class="db-field"><label>이벤트 · 일정 추가</label>
+                <div style="display:flex;gap:8px">
+                  <input type="text" placeholder="7/26 (토) 13:00 — 오프라인 팬미팅·장비 클리닉" style="flex:1">
+                  <a class="btn btn--ghost" href="#" style="white-space:nowrap">추가</a>
+                </div>
+              </div>
+              <a class="btn btn--primary" href="streamer-leo.html" style="width:100%;justify-content:center;display:flex">저장하고 내 공개 페이지 확인 <svg width="15" height="15" style="margin-left:4px"><use href="#i-chev-r"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top:72px">
+    <div class="footer-bar" style="position:static">
+      <div class="wrap fbar">
+        <p class="fbar-copy" style="border-top:none;padding-top:0">© 2026 STARNAUTS. All rights reserved. — 강사 대시보드 시안</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
+</body>
+</html>
