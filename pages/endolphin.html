@@ -94,6 +94,10 @@
 .num-wrap{display:flex;flex-direction:column;justify-content:flex-start;height:100%;gap:18px;min-height:104px;padding-top:11px}
 .stat-big{font-size:14px;font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
 .stat-cap{font-size:11.5px;color:#9aa6bc;margin-top:4px}
+.cc-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+.cc-tag{font-size:11.5px;color:#C6CEDC;font-weight:600;line-height:1.35;min-width:0}
+.cc-price{font-size:12px;font-weight:800;color:#fff;background:rgba(46,111,201,.92);padding:4px 10px;border-radius:7px;white-space:nowrap;flex-shrink:0}
+.cc-thin{background:linear-gradient(transparent 55%,rgba(8,11,16,.82))!important}
 </style>
 </head>
 <body>
@@ -146,7 +150,7 @@
     </div>
   </header>
 
-  <section class="section" style="padding-top:28px">
+  <section class="section" style="padding-top:72px">
     <div class="wrap">
       <a href="agency.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:22px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 에이전시로 돌아가기</a>
 
@@ -221,26 +225,26 @@
       <div class="class-grid">
         <a class="class-card" href="endolphin/soop-setup.html" style="background:url('../assets/class/c1.webp') center/cover">
           <span class="cc-lvl">입문</span><span class="cc-hot">FREE</span>
-          <div class="cc-overlay">
-            <p class="cc-desc">무료 공개 · 첫 송출까지</p>
+          <div class="cc-overlay cc-thin">
+            <div class="cc-foot"><span class="cc-tag">첫 송출까지</span><span class="cc-price">무료</span></div>
           </div>
         </a>
         <a class="class-card" href="endolphin/encademy-bootcamp.html" style="background:url('../assets/class/c2.webp') center/cover">
           <span class="cc-lvl">4주 과정</span><span class="cc-hot">HOT</span>
-          <div class="cc-overlay">
-            <p class="cc-desc">4주 집중 · ★500</p>
+          <div class="cc-overlay cc-thin">
+            <div class="cc-foot"><span class="cc-tag">4주 집중</span><span class="cc-price">★500</span></div>
           </div>
         </a>
         <a class="class-card" href="endolphin/youtube-editing.html" style="background:url('../assets/class/c3.webp') center/cover">
           <span class="cc-lvl">입문</span>
-          <div class="cc-overlay">
-            <p class="cc-desc">컷편집·썸네일 · ★100</p>
+          <div class="cc-overlay cc-thin">
+            <div class="cc-foot"><span class="cc-tag">컷편집·썸네일</span><span class="cc-price">★100</span></div>
           </div>
         </a>
         <a class="class-card" href="endolphin/bora-knowhow.html" style="background:url('../assets/class/c4.webp') center/cover">
           <span class="cc-lvl">중급</span>
-          <div class="cc-overlay">
-            <p class="cc-desc">여캠 운영 노하우 · ★100</p>
+          <div class="cc-overlay cc-thin">
+            <div class="cc-foot"><span class="cc-tag">여캠 운영 노하우</span><span class="cc-price">★100</span></div>
           </div>
         </a>
       </div>
