@@ -194,6 +194,19 @@
                   <a class="btn btn--ghost" href="#" onclick="addNews();return false" style="white-space:nowrap">추가</a>
                 </div>
               </div>
+              <div class="db-field"><label>성과 지표 · 인포그래픽 <span style="color:#7c8699;font-weight:400">— 주제·항목·값을 자유롭게 넣고 빼세요</span></label>
+                <div id="statList">
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">팬덤·후원</span><span class="pl-url">애청자 · 57,166명</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">방송 활동</span><span class="pl-url">총 방송 시간 · 13,294h</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">성장 지표</span><span class="pl-url">누적 방문 · 678만회</span><button onclick="this.parentNode.remove()">×</button></div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+                  <input id="statGroup" type="text" placeholder="주제(박스)" style="flex:1 1 84px;min-width:0">
+                  <input id="statKey" type="text" placeholder="항목" style="flex:1 1 70px;min-width:0">
+                  <input id="statVal" type="text" placeholder="값" style="flex:1 1 70px;min-width:0">
+                  <a class="btn btn--ghost" href="#" onclick="addStat();return false" style="white-space:nowrap">추가</a>
+                </div>
+              </div>
               <a class="btn btn--primary" href="streamer-leo.html" style="width:100%;justify-content:center;display:flex">저장하고 내 공개 페이지 확인 <svg width="15" height="15" style="margin-left:4px"><use href="#i-chev-r"/></svg></a>
             </div>
           </div>
@@ -232,6 +245,16 @@ function addNews(){
   item.innerHTML='<span class="drag">⠿</span><span class="pl-nm" style="width:auto;color:var(--blue-300)">'+src+'</span><span class="pl-url">'+title+'</span><button onclick="this.parentNode.remove()">×</button>';
   document.getElementById('newsList').appendChild(item);
   document.getElementById('newsSrc').value='';document.getElementById('newsTitle').value='';
+}
+function addStat(){
+  var g=(document.getElementById('statGroup').value||'').trim()||'주제';
+  var k=(document.getElementById('statKey').value||'').trim()||'항목';
+  var v=(document.getElementById('statVal').value||'').trim()||'-';
+  var item=document.createElement('div');
+  item.className='pl-item';
+  item.innerHTML='<span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">'+g+'</span><span class="pl-url">'+k+' · '+v+'</span><button onclick="this.parentNode.remove()">×</button>';
+  document.getElementById('statList').appendChild(item);
+  document.getElementById('statGroup').value='';document.getElementById('statKey').value='';document.getElementById('statVal').value='';
 }
 </script>
 </body>
