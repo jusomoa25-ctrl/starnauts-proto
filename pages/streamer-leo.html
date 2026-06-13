@@ -76,6 +76,21 @@
 .stat-row:last-child{border-bottom:none}
 .stat-row .k{font-size:12.5px;color:#9aa6bc}
 .stat-row .v{font-size:16px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+.donut-wrap{display:flex;align-items:center;gap:16px}
+.donut{width:88px;height:88px;flex-shrink:0;transform:rotate(-90deg)}
+.donut-leg{flex:1;font-size:12px;min-width:0}
+.donut-leg .lg{display:flex;align-items:center;gap:7px;padding:4px 0}
+.donut-leg .dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.donut-leg .lk{color:#9aa6bc}
+.donut-leg .lv{margin-left:auto;color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.bar-row{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:12px}
+.bar-row .bk{width:62px;color:#9aa6bc;flex-shrink:0}
+.bar-row .bar{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar-row .bar i{display:block;height:100%;background:linear-gradient(90deg,#2E6FC9,#5B7BB0);border-radius:4px}
+.bar-row .bv{width:58px;text-align:right;color:#fff;font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums}
+.stat-big{font-size:30px;font-weight:900;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.stat-cap{font-size:12px;color:#9aa6bc;margin-top:5px}
+.stat-mid{margin-top:16px}
 </style>
 </head>
 <body>
@@ -169,29 +184,31 @@
       <div class="info-grid" style="margin-top:14px">
         <div class="info-card"><div class="ic-label">협업 분야</div><div class="ic-val">행사 진행 · 온라인 1:1 코칭 · 브랜드 콜라보 · 광고 등</div></div>
         <div class="info-card"><div class="ic-label">활동 분야</div><div class="ic-val">보라 · 여캠 · 게임 · 여행 · 버츄얼</div></div>
-        <div class="info-card"><div class="ic-label">강사 경력</div><div class="ic-val">엔카데미 운영 · 다수 스트리머 양성 · 방송 트레이닝 전문</div></div>
-        <div class="info-card"><div class="ic-label">대표 실적</div><div class="ic-val">2022 아프리카TV BJ대상 · 현 SOOP 최단기 보라 파트너</div></div>
+        <div class="info-card"><div class="ic-label">활동 경력</div><div class="ic-val">SOOP 보라 BJ · 2014년부터 활동 · 신규 스트리머 양성 경험</div></div>
+        <div class="info-card"><div class="ic-label">강점</div><div class="ic-val">보라 · 여캠 · 게임 · 여행 · 버츄얼 등 다양한 콘텐츠 운영 및 신규 스트리머 육성 콘텐츠 경험</div></div>
       </div>
 
       <!-- 성과 인포그래픽 (대시보드 연동) -->
       <div class="stat-grid">
       <div class="stat-box">
-        <div class="st-h">팬덤 · 후원</div>
-        <div class="stat-row"><span class="k">애청자</span><span class="v">57,166명</span></div>
-        <div class="stat-row"><span class="k">팬클럽</span><span class="v">35,230명</span></div>
-        <div class="stat-row"><span class="k">서포터</span><span class="v">272명</span></div>
+        <div class="st-h">SOOP 팬덤 · 후원</div>
+        <div class="donut-wrap">
+          <svg class="donut" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="4"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#2E6FC9" stroke-width="4" stroke-dasharray="61.7 38.3" stroke-dashoffset="0.0"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#5BC98A" stroke-width="4" stroke-dasharray="38.0 62.0" stroke-dashoffset="-61.7"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#F0C36A" stroke-width="4" stroke-dasharray="0.3 99.7" stroke-dashoffset="-99.7"/></svg>
+          <div class="donut-leg"><div class="lg"><span class="dot" style="background:#2E6FC9"></span><span class="lk">애청자</span><span class="lv">57,166</span></div><div class="lg"><span class="dot" style="background:#5BC98A"></span><span class="lk">팬클럽</span><span class="lv">35,230</span></div><div class="lg"><span class="dot" style="background:#F0C36A"></span><span class="lk">서포터</span><span class="lv">272</span></div></div>
+        </div>
       </div>
       <div class="stat-box">
-        <div class="st-h">방송 활동</div>
-        <div class="stat-row"><span class="k">총 방송 시간</span><span class="v">13,294h</span></div>
-        <div class="stat-row"><span class="k">방송국 개설</span><span class="v">2014년</span></div>
-        <div class="stat-row"><span class="k">누적 유저</span><span class="v">1,807만명</span></div>
+        <div class="st-h">SOOP 누적 성과</div>
+<div style="margin-top:4px">
+        <div class="bar-row"><span class="bk">누적 유저</span><span class="bar"><i style="width:100%"></i></span><span class="bv">1,807만</span></div>
+        <div class="bar-row"><span class="bk">누적 방문</span><span class="bar"><i style="width:38%"></i></span><span class="bv">678만</span></div>
+        <div class="bar-row"><span class="bk">누적 UP</span><span class="bar"><i style="width:8%"></i></span><span class="bv">45만</span></div>
+      </div>
       </div>
       <div class="stat-box">
-        <div class="st-h">성장 지표</div>
-        <div class="stat-row"><span class="k">누적 방문</span><span class="v">678만회</span></div>
-        <div class="stat-row"><span class="k">누적 UP</span><span class="v">45만</span></div>
-        <div class="stat-row"><span class="k">최근 방송</span><span class="v">2025.11</span></div>
+        <div class="st-h">SOOP 방송 활동</div>
+        <div><div class="stat-big">13,294h</div><div class="stat-cap">총 누적 방송 시간</div></div>
+        <div class="stat-mid"><div class="stat-big">11년차</div><div class="stat-cap">2014년 방송국 개설 이후</div></div>
       </div>
       </div>
 
@@ -199,8 +216,7 @@
       <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 클래스</p></div>
       <p style="color:#9aa6bc;font-size:13px;margin:-8px 0 18px">각 클래스를 누르면 무료 미리보기 영상 1편과 전체 커리큘럼을 볼 수 있습니다.</p>
       <div class="class-grid">
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#2B6E8F,#0F2530)">
-          <svg class="cc-glyph"><use href="#i-cam"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c1.png') center/cover">
           <span class="cc-lvl">입문</span><span class="cc-hot">FREE</span>
           <div class="cc-overlay">
             <span class="cc-cat">스트리밍</span>
@@ -208,8 +224,7 @@
             <p class="cc-desc">무료 공개 · 첫 송출까지</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#5E4B8B,#1E1633)">
-          <svg class="cc-glyph"><use href="#i-bolt"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c2.png') center/cover">
           <span class="cc-lvl">4주 과정</span><span class="cc-hot">HOT</span>
           <div class="cc-overlay">
             <span class="cc-cat">부트캠프</span>
@@ -217,8 +232,7 @@
             <p class="cc-desc">4주 집중 · ★500</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#2A3342,#0E1116)">
-          <svg class="cc-glyph"><use href="#i-video"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c3.png') center/cover">
           <span class="cc-lvl">입문</span>
           <div class="cc-overlay">
             <span class="cc-cat">편집</span>
@@ -226,8 +240,7 @@
             <p class="cc-desc">컷편집·썸네일 · ★100</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#4C86D8,#1C4B86)">
-          <svg class="cc-glyph"><use href="#i-cam"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c4.png') center/cover">
           <span class="cc-lvl">중급</span>
           <div class="cc-overlay">
             <span class="cc-cat">보라·여캠</span>

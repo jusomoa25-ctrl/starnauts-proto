@@ -76,6 +76,21 @@
 .stat-row:last-child{border-bottom:none}
 .stat-row .k{font-size:12.5px;color:#9aa6bc}
 .stat-row .v{font-size:16px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+.donut-wrap{display:flex;align-items:center;gap:16px}
+.donut{width:88px;height:88px;flex-shrink:0;transform:rotate(-90deg)}
+.donut-leg{flex:1;font-size:12px;min-width:0}
+.donut-leg .lg{display:flex;align-items:center;gap:7px;padding:4px 0}
+.donut-leg .dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.donut-leg .lk{color:#9aa6bc}
+.donut-leg .lv{margin-left:auto;color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.bar-row{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:12px}
+.bar-row .bk{width:62px;color:#9aa6bc;flex-shrink:0}
+.bar-row .bar{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar-row .bar i{display:block;height:100%;background:linear-gradient(90deg,#2E6FC9,#5B7BB0);border-radius:4px}
+.bar-row .bv{width:58px;text-align:right;color:#fff;font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums}
+.stat-big{font-size:30px;font-weight:900;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.stat-cap{font-size:12px;color:#9aa6bc;margin-top:5px}
+.stat-mid{margin-top:16px}
 </style>
 </head>
 <body>
@@ -165,29 +180,31 @@
       <div class="info-grid" style="margin-top:14px">
         <div class="info-card"><div class="ic-label">협업 분야</div><div class="ic-val">행사 진행 · 오프라인 보컬 레슨 · 온라인 1:1 코칭 · 브랜드 콜라보 · 광고 등</div></div>
         <div class="info-card"><div class="ic-label">활동 분야</div><div class="ic-val">보컬 · 음원 제작 · 명리(사주)</div></div>
-        <div class="info-card"><div class="ic-label">강사 경력</div><div class="ic-val">보컬 트레이너 · 음원 프로듀서 · 다수 수강생 배출</div></div>
-        <div class="info-card"><div class="ic-label">대표 실적</div><div class="ic-val">태국 가수 신곡 프로듀싱 · AI 음원 강의 화제</div></div>
+        <div class="info-card"><div class="ic-label">활동 경력</div><div class="ic-val">SOOP 보컬 트레이너 · 음원 프로듀서 · 다수 수강생 배출</div></div>
+        <div class="info-card"><div class="ic-label">강점</div><div class="ic-val">보컬·음원·사주 등 다분야 강의 + 태국 가수 신곡 프로듀싱 경험</div></div>
       </div>
 
       <!-- 성과 인포그래픽 (대시보드 연동) -->
       <div class="stat-grid">
       <div class="stat-box">
-        <div class="st-h">팬덤 · 후원</div>
-        <div class="stat-row"><span class="k">애청자</span><span class="v">—</span></div>
-        <div class="stat-row"><span class="k">팬클럽</span><span class="v">—</span></div>
-        <div class="stat-row"><span class="k">서포터</span><span class="v">—</span></div>
-      </div>
-      <div class="stat-box">
-        <div class="st-h">방송 활동</div>
-        <div class="stat-row"><span class="k">총 방송 시간</span><span class="v">—</span></div>
-        <div class="stat-row"><span class="k">방송국 개설</span><span class="v">—</span></div>
-        <div class="stat-row"><span class="k">누적 유저</span><span class="v">—</span></div>
+        <div class="st-h">SOOP 팬덤 · 후원</div>
+        <div class="donut-wrap">
+          <svg class="donut" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="4"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#2E6FC9" stroke-width="4" stroke-dasharray="60.0 40.0" stroke-dashoffset="0.0"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#5BC98A" stroke-width="4" stroke-dasharray="40.0 60.0" stroke-dashoffset="-60.0"/></svg>
+          <div class="donut-leg"><div class="lg"><span class="dot" style="background:#2E6FC9"></span><span class="lk">애청자</span><span class="lv">—</span></div><div class="lg"><span class="dot" style="background:#5BC98A"></span><span class="lk">팬클럽</span><span class="lv">—</span></div></div>
+        </div>
       </div>
       <div class="stat-box">
         <div class="st-h">강의 성과</div>
-        <div class="stat-row"><span class="k">누적 수강생</span><span class="v">1,640명</span></div>
-        <div class="stat-row"><span class="k">평균 평점</span><span class="v">4.8</span></div>
-        <div class="stat-row"><span class="k">진행 클래스</span><span class="v">4개</span></div>
+<div style="margin-top:4px">
+        <div class="bar-row"><span class="bk">누적 수강생</span><span class="bar"><i style="width:100%"></i></span><span class="bv">1,640명</span></div>
+        <div class="bar-row"><span class="bk">진행 클래스</span><span class="bar"><i style="width:30%"></i></span><span class="bv">4개</span></div>
+        <div class="bar-row"><span class="bk">평균 평점</span><span class="bar"><i style="width:96%"></i></span><span class="bv">4.8</span></div>
+      </div>
+      </div>
+      <div class="stat-box">
+        <div class="st-h">활동 요약</div>
+        <div><div class="stat-big">3개</div><div class="stat-cap">전문 분야 (보컬·음원·사주)</div></div>
+        <div class="stat-mid"><div class="stat-big">한·영</div><div class="stat-cap">방송 가능 언어</div></div>
       </div>
       </div>
 
@@ -195,8 +212,7 @@
       <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 클래스</p></div>
       <p style="color:#9aa6bc;font-size:13px;margin:-8px 0 18px">각 클래스를 누르면 무료 미리보기 영상 1편과 전체 커리큘럼을 볼 수 있습니다.</p>
       <div class="class-grid">
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#4C86D8,#1C4B86)">
-          <svg class="cc-glyph"><use href="#i-mic"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/s1.png') center/cover">
           <span class="cc-lvl">입문</span><span class="cc-hot">HOT</span>
           <div class="cc-overlay">
             <span class="cc-cat">보컬·댄스</span>
@@ -204,8 +220,7 @@
             <p class="cc-desc">8회차 · 수강생 176 · ★99</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#3A5C8F,#141A24)">
-          <svg class="cc-glyph"><use href="#i-music"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/s2.png') center/cover">
           <span class="cc-lvl">중급</span>
           <div class="cc-overlay">
             <span class="cc-cat">음원 제작</span>
@@ -213,8 +228,7 @@
             <p class="cc-desc">10회차 · 수강생 112 · ★129</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#5E4B8B,#1E1633)">
-          <svg class="cc-glyph"><use href="#i-bolt"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/s3.png') center/cover">
           <span class="cc-lvl">입문</span><span class="cc-hot">NEW</span>
           <div class="cc-overlay">
             <span class="cc-cat">지식·재능</span>
@@ -222,8 +236,7 @@
             <p class="cc-desc">6회차 · 신규 모집 · ★100</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#2F4F7E,#10141B)">
-          <svg class="cc-glyph"><use href="#i-music"/></svg>
+        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/s4.png') center/cover">
           <span class="cc-lvl">입문</span>
           <div class="cc-overlay">
             <span class="cc-cat">음원 제작</span>
