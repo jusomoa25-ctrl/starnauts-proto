@@ -51,6 +51,21 @@
 .news-src{font-size:11px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.15);padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0}
 .news-title{flex:1;min-width:0;color:#fff;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .news-date{font-size:12px;color:#9aa6bc;white-space:nowrap;flex-shrink:0}
+.sb-badges{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:11px}
+.sb-badges .sb-badge{margin-bottom:0}
+.sb-lang{background:rgba(255,255,255,.1);color:#C6CEDC;border-color:rgba(255,255,255,.2)}
+.class-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+@media(max-width:1100px){.class-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.class-grid{grid-template-columns:1fr}}
+.class-card{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;text-decoration:none;display:block;border:1px solid rgba(255,255,255,.08);transition:transform .15s}
+.class-card:hover{transform:translateY(-3px)}
+.class-card .cc-glyph{position:absolute;top:32%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;color:rgba(255,255,255,.16)}
+.class-card .cc-lvl{position:absolute;top:11px;left:11px;font-size:10px;font-weight:800;color:#fff;background:rgba(0,0,0,.42);padding:3px 9px;border-radius:6px;z-index:2}
+.class-card .cc-hot{position:absolute;top:11px;right:11px;font-size:10px;font-weight:800;color:#fff;background:var(--blue);padding:3px 9px;border-radius:6px;z-index:2}
+.class-card .cc-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:15px;background:linear-gradient(transparent 34%,rgba(8,11,16,.93))}
+.class-card .cc-cat{font-size:11px;font-weight:800;color:var(--blue-300);letter-spacing:.02em}
+.class-card h3{font-size:15px;color:#fff;margin:6px 0 5px;line-height:1.3;font-weight:800}
+.class-card .cc-desc{font-size:12px;color:#C6CEDC}
 </style>
 </head>
 <body>
@@ -112,7 +127,7 @@
         <img class="sb-hero-img" src="../assets/banner-endorphin.webp" alt="엔돌핀">
         <div class="sb-hero-grad"></div>
         <div class="sb-hero-body">
-          <span class="sb-badge">버츄얼 스트리머 · 강사</span>
+          <div class="sb-badges"><span class="sb-badge">버츄얼 스트리머 · 강사</span><span class="sb-badge sb-lang">한국어</span><span class="sb-badge sb-lang">English</span></div>
           <h1 class="sb-name">엔돌핀</h1>
           <p class="sb-rec">2022 아프리카TV BJ대상 · great 500위 최근 1위 · 보라 파트너 BJ</p>
           <p class="sb-intro">게임 · 노래 · 버츄얼 · 여행 등 다양한 콘텐츠 진행 — 엔돌핀과 함께하는 1:1 스트리머 콘텐츠</p>
@@ -140,9 +155,8 @@
         <span style="color:var(--blue);font-weight:800;font-size:13px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px">자세히 <svg width="14" height="14"><use href="#i-chev-r"/></svg></span>
       </a>
 
-      <!-- 업무 안내 -->
-      <div class="sec-head" style="margin-top:48px"><h2 class="sec-en" style="font-size:30px">INFO</h2><p class="sec-ko">업무 안내</p></div>
-      <div class="info-grid">
+      <!-- 업무 안내 박스 -->
+      <div class="info-grid" style="margin-top:26px">
         <div class="info-card"><div class="ic-label">섭외 가능</div><div class="ic-val">행사 진행 · 1:1 코칭 · 브랜드 콜라보 · 광고</div></div>
         <div class="info-card"><div class="ic-label">활동 분야</div><div class="ic-val">게임 · 노래 · 버츄얼 · 여행 콘텐츠</div></div>
         <div class="info-card"><div class="ic-label">구사 언어</div><div class="ic-val">한국어 · English</div></div>
@@ -152,43 +166,43 @@
       <!-- 진행 중인 클래스 -->
       <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 클래스</p></div>
       <p style="color:#9aa6bc;font-size:13px;margin:-8px 0 18px">각 클래스를 누르면 무료 미리보기 영상 1편과 전체 커리큘럼을 볼 수 있습니다.</p>
-      <div class="course-grid four">
-        <article class="course" onclick="location.href='course-detail.html'">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#2B6E8F,#0F2530)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">입문</span></div>
-          <div class="course-body">
-            <span class="course-cat">스트리밍</span>
+      <div class="class-grid">
+        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#2B6E8F,#0F2530)">
+          <svg class="cc-glyph"><use href="#i-cam"/></svg>
+          <span class="cc-lvl">입문</span><span class="cc-hot">HOT</span>
+          <div class="cc-overlay">
+            <span class="cc-cat">스트리밍</span>
             <h3>버튜버 데뷔 셋팅 A to Z</h3>
-            <div class="course-meta"><span class="tname">8회차 · 수강생 412</span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>100 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
+            <p class="cc-desc">8회차 · 수강생 412 · ★100</p>
           </div>
-        </article>
-        <article class="course" onclick="location.href='course-detail.html'">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><svg class="glyph"><use href="#i-mic"/></svg><span class="lvl">입문</span></div>
-          <div class="course-body">
-            <span class="course-cat">보컬·댄스</span>
+        </a>
+        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#4C86D8,#1C4B86)">
+          <svg class="cc-glyph"><use href="#i-mic"/></svg>
+          <span class="cc-lvl">입문</span>
+          <div class="cc-overlay">
+            <span class="cc-cat">보컬·댄스</span>
             <h3>라이브 노래방송 보컬 트레이닝</h3>
-            <div class="course-meta"><span class="tname">6회차 · 수강생 287</span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>89 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
+            <p class="cc-desc">6회차 · 수강생 287 · ★89</p>
           </div>
-        </article>
-        <article class="course" onclick="location.href='course-detail.html'">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#2A3F61,#10161F)"><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">중급</span></div>
-          <div class="course-body">
-            <span class="course-cat">스트리밍</span>
+        </a>
+        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#2A3F61,#10161F)">
+          <svg class="cc-glyph"><use href="#i-cam"/></svg>
+          <span class="cc-lvl">중급</span>
+          <div class="cc-overlay">
+            <span class="cc-cat">스트리밍</span>
             <h3>끊기지 않는 게임 토크 진행법</h3>
-            <div class="course-meta"><span class="tname">5회차 · 수강생 196</span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>79 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
+            <p class="cc-desc">5회차 · 수강생 196 · ★79</p>
           </div>
-        </article>
-        <article class="course" onclick="location.href='course-detail.html'">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><svg class="glyph"><use href="#i-trend"/></svg><span class="lvl">중급</span></div>
-          <div class="course-body">
-            <span class="course-cat">콘텐츠 스킬</span>
+        </a>
+        <a class="class-card" href="course-detail.html" style="background:linear-gradient(160deg,#1C4B86,#0E1116)">
+          <svg class="cc-glyph"><use href="#i-trend"/></svg>
+          <span class="cc-lvl">중급</span>
+          <div class="cc-overlay">
+            <span class="cc-cat">콘텐츠 스킬</span>
             <h3>구독자 0 → 1,000 성장 로드맵</h3>
-            <div class="course-meta"><span class="tname">8회차 · 수강생 1,034</span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>99 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
+            <p class="cc-desc">8회차 · 수강생 1,034 · ★99</p>
           </div>
-        </article>
+        </a>
       </div>
 
       <!-- 이벤트 · 일정 -->
