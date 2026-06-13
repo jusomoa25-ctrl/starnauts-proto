@@ -3,47 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>STARNAUTS — 마이페이지</title>
+<title>STARNAUTS — 강의 시청</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
 <link rel="stylesheet" href="../home/shell.css?v=19">
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
 <style>
-.prog{height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:9px}
-.prog>i{display:block;height:100%;background:var(--blue);border-radius:3px}
-.jcol{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
-@media(max-width:880px){.jcol{grid-template-columns:1fr}}
-.scol{display:grid;grid-template-columns:230px 1fr;gap:26px;align-items:start}
-@media(max-width:780px){.scol{grid-template-columns:1fr}}
-.steps{display:flex;gap:8px;max-width:480px;margin:0 auto 30px}
-.step{flex:1;text-align:center;font-size:12px;color:#9aa6bc}
-.step .dot{width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 7px;font-weight:700}
-.step.on{color:#fff;font-weight:700}
-.step.on .dot{border-color:var(--blue);background:var(--blue);color:#fff}
-.jfld{margin-bottom:14px}
-.jfld label{display:block;font-size:12.5px;color:#9aa6bc;margin-bottom:6px;font-weight:700}
-.jfld input,.jfld select,.jfld textarea{width:100%;padding:11px 13px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:14px;font-family:inherit;box-sizing:border-box}
-.star-pack{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
-.pack{border:1.5px solid rgba(255,255,255,.14);border-radius:13px;padding:16px;text-align:center;cursor:pointer;background:rgba(255,255,255,.02)}
-.pack.on{border-color:var(--blue);background:rgba(46,111,201,.12)}
-.pack b{display:block;font-size:20px;font-weight:900;color:#fff}
-.pack span{font-size:12px;color:#9aa6bc}
-.pay-opt{display:flex;gap:10px;margin-bottom:18px}
-.pay{flex:1;border:1.5px solid rgba(255,255,255,.14);border-radius:11px;padding:13px;text-align:center;cursor:pointer;font-size:13px;font-weight:700;color:#C6CEDC}
-.pay.on{border-color:var(--blue);background:rgba(46,111,201,.12);color:#fff}
-.filt{margin-bottom:20px}
-.filt h5{font-size:13px;color:#fff;margin:0 0 8px;font-weight:800}
-.filt label{display:flex;gap:8px;align-items:center;font-size:13px;color:#9aa6bc;padding:4px 0;cursor:pointer}
-.art{max-width:740px;margin:0 auto}
-.art h2{font-size:22px;font-weight:800;color:#fff;margin:30px 0 12px}
-.art p{font-size:15px;color:#C6CEDC;line-height:1.85;margin-bottom:16px}
-.art blockquote{border-left:3px solid var(--blue);padding:4px 0 4px 18px;margin:20px 0;color:#fff;font-size:16px;font-style:italic}
-.art .imgph{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,#1C4B86,#0E1116);display:flex;align-items:center;justify-content:center;color:#5a6b85;font-size:13px;margin:22px 0;border:1px solid rgba(255,255,255,.07)}
-.jrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px}
-.jrow:last-child{border-bottom:none}
-.search-bar{display:flex;gap:10px;margin-bottom:26px}
-.search-bar input{flex:1;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:15px;font-family:inherit}
+.watch-col{display:grid;grid-template-columns:1fr 372px;gap:24px;align-items:start}
+@media(max-width:920px){.watch-col{grid-template-columns:1fr}}
+.player{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#16385F,#0B0E13);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.09)}
+.player .pbtn{width:74px;height:74px;border-radius:50%;background:rgba(46,111,201,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s}
+.player .pbtn:hover{transform:scale(1.06);background:var(--blue)}
+.player .pbtn svg{width:30px;height:30px;color:#fff;margin-left:4px}
+.player .plabel{position:absolute;left:16px;bottom:14px;font-size:12px;color:#9aa6bc}
+.player .live-now{position:absolute;left:14px;top:14px;font-size:11px;font-weight:800;color:#fff;background:rgba(217,76,71,.9);padding:4px 10px;border-radius:7px;display:none;align-items:center;gap:6px}
+.player.is-live .live-now{display:inline-flex}
+.player.is-live .pbtn{display:none}
+.sched{position:sticky;top:80px}
+.sched-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.ep{display:flex;gap:11px;align-items:center;padding:11px 12px;border-radius:11px;cursor:pointer;border:1px solid transparent;transition:.12s}
+.ep:hover{background:rgba(255,255,255,.04)}
+.ep.playing{background:rgba(46,111,201,.14);border-color:rgba(46,111,201,.4)}
+.ep-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ep-ico svg{width:15px;height:15px}
+.ep-done .ep-ico{background:rgba(46,158,91,.2);color:#5BC98A}
+.ep-todo .ep-ico{background:rgba(255,255,255,.08);color:#9aa6bc}
+.ep-live .ep-ico{background:rgba(240,160,32,.2);color:#F0C36A}
+.ep-main{flex:1;min-width:0}
+.ep-t{font-size:13px;color:#fff;font-weight:600;line-height:1.35}
+.ep-m{font-size:11.5px;color:#9aa6bc;margin-top:2px}
+.ep-badge{font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.bg-done{background:rgba(46,158,91,.18);color:#5BC98A}
+.bg-todo{background:rgba(255,255,255,.1);color:#9aa6bc}
+.bg-live{background:rgba(240,160,32,.18);color:#F0C36A}
+.prog{height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:10px}
+.prog>i{display:block;height:100%;background:var(--blue);border-radius:3px;transition:width .3s}
 </style></head>
 <body>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
@@ -80,7 +75,7 @@
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
   <nav class="side-nav">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
-    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="class.html" class="active"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
     <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
@@ -97,7 +92,7 @@
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
     <nav class="topnav">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
-      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="class.html" class="active">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
       <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
       <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
@@ -110,52 +105,100 @@
 
   <section class="section" style="padding-top:72px">
     <div class="wrap">
-      <!-- 프로필 헤더 -->
-      <div class="tool-panel">
-        <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
-          <span style="width:84px;height:84px;border-radius:26px;background:#3A5C8F;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#fff;flex-shrink:0">유</span>
-          <div style="flex:1;min-width:200px">
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h1 style="font-size:26px;font-weight:900">엔돌핀</h1><span style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(58,92,143,.4);color:#C6CEDC;font-weight:800">수강생</span></div>
-            <p style="margin-top:5px;color:#9aa6bc;font-size:13.5px">수강 중 3 · 완료 5 · 위시 7</p>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:12px;color:#9aa6bc">보유 스타</div>
-            <div style="font-size:28px;font-weight:900;color:#fff">★ 240</div>
-            <a class="btn btn--primary" href="checkout.html" style="margin-top:8px">스타 충전</a>
-          </div>
-        </div>
-      </div>
+      <a href="mypage.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:18px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 마이페이지</a>
 
-      <div class="jcol" style="margin-top:24px">
-        <!-- 좌: 수강 중인 강의 -->
+      <div class="watch-col">
+        <!-- 가운데: 플레이어 -->
         <div>
-          <div class="sec-head" style="text-align:left;align-items:flex-start;margin-bottom:14px"><h2 class="sec-en" style="font-size:24px">LEARNING</h2><p class="sec-ko">수강 중인 강의</p></div>
-          <div class="course-grid">
-            <article class="course"><div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><svg class="glyph"><use href="#i-trend"/></svg></div><div class="course-body"><span class="course-cat">콘텐츠 스킬</span><h3>구독자 0 → 1,000 채널 성장 로드맵</h3><div class="prog"><i style="width:62%"></i></div><div class="course-meta" style="margin-top:8px"><span class="tname">5/8회차 · 62%</span><span class="enroll"><a href="watch.html" style="color:inherit">이어보기 →</a></span></div></div></article>
-            <article class="course"><div class="course-thumb" style="background:linear-gradient(135deg,#2B6E8F,#0F2530)"><svg class="glyph"><use href="#i-cam"/></svg></div><div class="course-body"><span class="course-cat">스트리밍</span><h3>버튜버 셋팅 A to Z</h3><div class="prog"><i style="width:30%"></i></div><div class="course-meta" style="margin-top:8px"><span class="tname">3/10회차 · 30%</span><span class="enroll"><a href="watch.html" style="color:inherit">이어보기 →</a></span></div></article>
+          <div class="player" id="player">
+            <span class="live-now"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block"></span> LIVE</span>
+            <div class="pbtn"><svg><use href="#i-play"/></svg></div>
+            <span class="plabel" id="pLabel">다시보기 재생</span>
+          </div>
+
+          <div style="margin-top:18px">
+            <h1 id="vTitle" style="font-size:22px;font-weight:900;line-height:1.35">첫 송출 가이드 라이브 Q&amp;A</h1>
+            <p id="vMeta" style="margin-top:6px;color:#9aa6bc;font-size:13.5px">김레오 · 6/14 (일) 21:00 · 다시보기</p>
+
+            <div class="tool-panel" style="margin-top:18px;padding:16px 18px">
+              <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+                <div style="flex:1;min-width:200px">
+                  <div style="font-size:12.5px;color:#9aa6bc;font-weight:700">내 학습 진행률</div>
+                  <div class="prog"><i id="progBar" style="width:33%"></i></div>
+                  <div id="progTxt" style="font-size:12px;color:#9aa6bc;margin-top:6px">6개 회차 중 2개 수강 완료</div>
+                </div>
+                <a class="btn btn--ghost" href="#" id="noteBtn"><svg width="15" height="15" style="margin-right:5px"><use href="#i-check"/></svg> 정리 노트</a>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- 우: 일정 + 위시 -->
-        <div>
+
+        <!-- 우측: 내 강의 스케줄 -->
+        <div class="sched">
           <div class="suno">
-            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">schedule</span><span class="live-tool">예약된 일정</span></div>
-            <div class="suno-body">
-              <div class="jrow"><span style="color:var(--blue);font-weight:700;white-space:nowrap">6/21 일</span><span style="flex:1">성장 로드맵 4회차 라이브</span></div>
-              <div class="jrow"><span style="color:var(--blue);font-weight:700;white-space:nowrap">6/24 화</span><span style="flex:1">1:1 보컬 레슨 — 박세아</span></div>
+            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">my-schedule</span><span class="live-tool">내 강의 스케줄</span></div>
+            <div class="suno-body" style="padding:8px">
+            <div class="ep ep-done" data-vtitle="보컬 트레이닝 1·2회차" data-vmeta="박세아 · 다시보기" data-live="0" onclick="playEp(this)">
+              <span class="ep-ico"><svg><use href="#i-check"/></svg></span>
+              <div class="ep-main"><div class="ep-t">보컬 트레이닝 1·2회차</div><div class="ep-m">박세아 · 다시보기</div></div>
+              <span class="ep-badge bg-done">수강완료</span>
+            </div>
+            <div class="ep ep-done" data-vtitle="라이브 보컬 트레이닝 3회차" data-vmeta="박세아 · 6/13 (토) 20:00 · 다시보기" data-live="0" onclick="playEp(this)">
+              <span class="ep-ico"><svg><use href="#i-check"/></svg></span>
+              <div class="ep-main"><div class="ep-t">라이브 보컬 트레이닝 3회차</div><div class="ep-m">박세아 · 6/13 (토) 20:00</div></div>
+              <span class="ep-badge bg-done">수강완료</span>
+            </div>
+            <div class="ep ep-todo" data-vtitle="첫 송출 가이드 라이브 Q&amp;A" data-vmeta="김레오 · 6/14 (일) 21:00 · 다시보기" data-live="0" onclick="playEp(this)">
+              <span class="ep-ico"><svg><use href="#i-play"/></svg></span>
+              <div class="ep-main"><div class="ep-t">첫 송출 가이드 라이브 Q&amp;A</div><div class="ep-m">김레오 · 6/14 (일) 21:00</div></div>
+              <span class="ep-badge bg-todo">미수강</span>
+            </div>
+            <div class="ep ep-live" data-vtitle="숏폼 댄스 챌린지 5회차" data-vmeta="정하늘 · 6/16 (화) 20:00 · 라이브 진행 중" data-live="1" onclick="playEp(this)">
+              <span class="ep-ico"><svg><use href="#i-cam"/></svg></span>
+              <div class="ep-main"><div class="ep-t">숏폼 댄스 챌린지 5회차</div><div class="ep-m">정하늘 · 6/16 (화) 20:00</div></div>
+              <span class="ep-badge bg-live">라이브 예정</span>
+            </div>
+            <div class="ep ep-live" data-vtitle="Suno 시그니처 BGM 워크숍" data-vmeta="한도윤 · 6/18 (목) 21:00 · 라이브 진행 중" data-live="1" onclick="playEp(this)">
+              <span class="ep-ico"><svg><use href="#i-cam"/></svg></span>
+              <div class="ep-main"><div class="ep-t">Suno 시그니처 BGM 워크숍</div><div class="ep-m">한도윤 · 6/18 (목) 21:00</div></div>
+              <span class="ep-badge bg-live">라이브 예정</span>
+            </div>
             </div>
           </div>
-          <div class="suno" style="margin-top:16px">
-            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">wishlist</span><span class="live-tool">위시리스트</span></div>
-            <div class="suno-body">
-              <div class="jrow"><span style="flex:1">Suno 시그니처 BGM 만들기</span><span style="color:#fff;font-weight:700">★59</span></div>
-              <div class="jrow"><span style="flex:1">방송에서 바로 쓰는 사주 풀이</span><span style="color:#fff;font-weight:700">★100</span></div>
-              <a class="btn btn--ghost" href="search.html" style="width:100%;justify-content:center;display:flex;margin-top:12px">더 둘러보기</a>
-            </div>
-          </div>
+          <p style="font-size:11.5px;color:#9aa6bc;margin-top:10px;line-height:1.55;padding:0 4px">결제한 계정은 스케줄에 맞춰 강의가 제공되고, 회차별 <b style="color:#C6CEDC">정리 노트</b>가 함께 지급됩니다. 회차를 누르면 가운데에서 바로 재생됩니다.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+  function recount(){
+    var eps = document.querySelectorAll('.ep');
+    var done = document.querySelectorAll('.ep.ep-done').length;
+    var total = eps.length;
+    var pct = Math.round(done/total*100);
+    document.getElementById('progBar').style.width = pct + '%';
+    document.getElementById('progTxt').textContent = total + '개 회차 중 ' + done + '개 수강 완료';
+  }
+  function playEp(el){
+    document.querySelectorAll('.ep').forEach(e=>e.classList.remove('playing'));
+    el.classList.add('playing');
+    document.getElementById('vTitle').innerHTML = el.dataset.vtitle;
+    document.getElementById('vMeta').textContent = el.dataset.vmeta;
+    var player = document.getElementById('player');
+    var isLive = el.dataset.live === '1';
+    player.classList.toggle('is-live', isLive);
+    document.getElementById('pLabel').textContent = isLive ? '라이브 방송 중' : '다시보기 재생';
+    // 라이브가 아니면(다시보기) 시청 시작 = 수강 완료 처리
+    if(!isLive && el.classList.contains('ep-todo')){
+      el.classList.remove('ep-todo'); el.classList.add('ep-done');
+      el.querySelector('.ep-ico svg use').setAttribute('href','#i-check');
+      var b = el.querySelector('.ep-badge'); b.textContent='수강완료'; b.className='ep-badge bg-done';
+      recount();
+    }
+  }
+  recount();
+  </script>
 
   <footer class="footer" style="margin-top:72px">
     <div class="footer-bar" style="position:static">
