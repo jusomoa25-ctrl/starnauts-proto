@@ -27,11 +27,11 @@
 .sb-btn{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:#fff;font-weight:800;font-size:13.5px;padding:11px 20px;border-radius:9px;border:none;cursor:pointer}
 .sb-btn:hover{background:#2560b0}
 .psoc{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.psoc a,.psoc .nat{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s;text-decoration:none}
+.psoc a,.psoc .nat{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s;text-decoration:none;overflow:hidden}
+.psoc a{background:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.14)}
 .psoc a:hover{transform:translateY(-2px)}
-.psoc a svg{width:19px;height:19px;color:#fff}
+.psoc a img{width:100%;height:100%;object-fit:cover;display:block}
 .psoc .nat{font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#2E6FC9,#1C4B86)}
-.psoc .ini{font-size:13px;font-weight:900}
 @media(max-width:760px){
   .sb-hero-grad{display:none}
   .sb-hero-body{position:static;max-width:100%;padding:20px;background:#0E1116}
@@ -111,13 +111,10 @@
             <a class="sb-btn" href="mailto:booking@starnauts.com">행사·강의 섭외 문의</a>
             <div class="psoc">
               <span class="nat">KR</span>
-              <a href="#" aria-label="YouTube" style="background:#FF0000"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="치지직" style="background:#1FE287;color:#0a2417"><span class="ini">치</span></a>
-              <a href="#" aria-label="SOOP" style="background:#00C9B7"><span class="ini" style="color:#fff">S</span></a>
-              <a href="#" aria-label="TikTok" style="background:#000"><svg><use href="#i-tiktok"/></svg></a>
-              <a href="#" aria-label="판다" style="background:#5A4FCF"><span class="ini" style="color:#fff">판</span></a>
-              <a href="#" aria-label="Threads" style="background:#000"><svg><use href="#i-threads"/></svg></a>
-              <a href="#" aria-label="Instagram" style="background:linear-gradient(45deg,#F09433,#DC2743,#BC1888)"><svg><use href="#i-ig"/></svg></a>
+              <a href="https://www.sooplive.com/station/dmsgkdn12" target="_blank" rel="noopener noreferrer" aria-label="SOOP"><img src="../assets/platform/soop.png" alt="SOOP"></a>
+              <a href="https://www.instagram.com/doll0403/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="../assets/platform/instagram.png" alt="Instagram"></a>
+              <a href="https://cafe.naver.com/endolphin0403" target="_blank" rel="noopener noreferrer" aria-label="네이버 카페"><img src="../assets/platform/navercafe.png" alt="네이버 카페"></a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X"><img src="../assets/platform/x.png" alt="X"></a>
             </div>
           </div>
         </div>

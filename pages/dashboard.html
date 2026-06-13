@@ -25,7 +25,8 @@
 .db-field input,.db-field select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13.5px;font-family:inherit}
 .db-pill{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:700;white-space:nowrap}
 .pl-item{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:9px;background:rgba(255,255,255,.04);margin-bottom:6px}
-.pl-dot{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.pl-dot{width:26px;height:26px;border-radius:50%;flex-shrink:0;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.pl-dot img{width:100%;height:100%;object-fit:cover;display:block}
 .pl-nm{font-weight:700;color:#fff;font-size:13px;width:66px;flex-shrink:0}
 .pl-url{flex:1;min-width:0;color:#9aa6bc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
 .pl-item button{background:none;border:none;color:#7c8699;cursor:pointer;font-size:17px;line-height:1;flex-shrink:0}
@@ -138,19 +139,21 @@
               </div>
               <div class="db-field"><label>플랫폼 링크 <span style="color:#7c8699;font-weight:400">— 저장한 순서대로 프로필에 노출됩니다</span></label>
                 <div id="plList">
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot" style="background:#FF0000">YT</span><span class="pl-nm">YouTube</span><span class="pl-url">youtube.com/@endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot" style="background:#1FE287;color:#0a2417">치</span><span class="pl-nm">치지직</span><span class="pl-url">chzzk.naver.com/endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot" style="background:#00C9B7">S</span><span class="pl-nm">SOOP</span><span class="pl-url">sooplive.co.kr/endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/youtube.png" alt=""></span><span class="pl-nm">YouTube</span><span class="pl-url">youtube.com/@endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/chzzk.png" alt=""></span><span class="pl-nm">치지직</span><span class="pl-url">chzzk.naver.com/endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/soop.png" alt=""></span><span class="pl-nm">SOOP</span><span class="pl-url">sooplive.co.kr/endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
                 </div>
                 <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
                   <select id="plPlat" style="flex:1 1 120px;min-width:0">
-                    <option data-c="#FF0000" data-fg="#fff" data-i="YT">YouTube</option>
-                    <option data-c="#1FE287" data-fg="#0a2417" data-i="치">치지직</option>
-                    <option data-c="#00C9B7" data-fg="#fff" data-i="S">SOOP</option>
-                    <option data-c="#000000" data-fg="#fff" data-i="TK">TikTok</option>
-                    <option data-c="#5A4FCF" data-fg="#fff" data-i="판">판다</option>
-                    <option data-c="#000000" data-fg="#fff" data-i="@">Threads</option>
-                    <option data-c="#BC1888" data-fg="#fff" data-i="IG">Instagram</option>
+                    <option data-img="youtube">YouTube</option>
+                    <option data-img="chzzk">치지직</option>
+                    <option data-img="soop">SOOP</option>
+                    <option data-img="tiktok">TikTok</option>
+                    <option data-img="panda">판다</option>
+                    <option data-img="threads">Threads</option>
+                    <option data-img="instagram">Instagram</option>
+                    <option data-img="navercafe">네이버 카페</option>
+                    <option data-img="x">X (트위터)</option>
                   </select>
                   <input id="plUrl" type="text" placeholder="채널 링크 붙여넣기" style="flex:1;min-width:120px">
                   <a class="btn btn--ghost" href="#" onclick="addPl();return false" style="white-space:nowrap">추가</a>
@@ -188,7 +191,7 @@ function addPl(){
   var url=(document.getElementById('plUrl').value||'').trim()||'링크 미입력';
   var item=document.createElement('div');
   item.className='pl-item';
-  item.innerHTML='<span class="drag">⠿</span><span class="pl-dot" style="background:'+o.dataset.c+';color:'+o.dataset.fg+'">'+o.dataset.i+'</span><span class="pl-nm">'+o.text+'</span><span class="pl-url">'+url+'</span><button onclick="this.parentNode.remove()">×</button>';
+  item.innerHTML='<span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/'+o.dataset.img+'.png" alt=""></span><span class="pl-nm">'+o.text+'</span><span class="pl-url">'+url+'</span><button onclick="this.parentNode.remove()">×</button>';
   document.getElementById('plList').appendChild(item);
   document.getElementById('plUrl').value='';
 }
