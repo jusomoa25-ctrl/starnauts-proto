@@ -54,7 +54,7 @@
 .sb-badges{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:11px}
 .sb-badges .sb-badge{margin-bottom:0}
 .sb-lang{background:rgba(255,255,255,.1);color:#C6CEDC;border-color:rgba(255,255,255,.2)}
-.class-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.class-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:14px}
 @media(max-width:1100px){.class-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.class-grid{grid-template-columns:1fr}}
 .class-card{position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;text-decoration:none;display:block;border:1px solid rgba(255,255,255,.08);transition:transform .15s}
@@ -68,7 +68,7 @@
 .class-card .cc-desc{font-size:12px;color:#C6CEDC}
 .sb-flag{width:22px;height:22px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.25)}
 .sb-badges img.sb-flag{margin:0}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr 0.72fr;gap:14px;margin-top:14px}
 @media(max-width:820px){.stat-grid{grid-template-columns:1fr}}
 .stat-box{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 20px;background:rgba(255,255,255,.02);min-height:160px}
 .stat-box .st-h{font-size:12px;font-weight:800;color:var(--blue-300);letter-spacing:.04em;margin-bottom:10px}
@@ -91,8 +91,8 @@
 .bar-row .bar i{display:block;height:100%;background:linear-gradient(90deg,#2E6FC9,#5FA8E0);border-radius:5px;animation:barGrow 1.3s cubic-bezier(.22,1,.36,1) both}
 @keyframes barGrow{from{width:0}}
 .bar-row .bv{width:58px;text-align:right;color:#fff;font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums}
-.num-wrap{display:flex;flex-direction:column;justify-content:center;height:100%;gap:13px;min-height:104px}
-.stat-big{font-size:17px;font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.num-wrap{display:flex;flex-direction:column;justify-content:flex-start;height:100%;gap:18px;min-height:104px;padding-top:11px}
+.stat-big{font-size:14px;font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
 .stat-cap{font-size:11.5px;color:#9aa6bc;margin-top:4px}
 </style>
 </head>
@@ -218,10 +218,8 @@
       </div>
 
       <!-- 진행 중인 클래스 -->
-      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 클래스</p></div>
-      <p style="color:#9aa6bc;font-size:13px;margin:-8px 0 18px">각 클래스를 누르면 무료 미리보기 영상 1편과 전체 커리큘럼을 볼 수 있습니다.</p>
       <div class="class-grid">
-        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c1.png') center/cover">
+        <a class="class-card" href="endolphin/soop-setup.html" style="background:url('../assets/class/c1.png') center/cover">
           <span class="cc-lvl">입문</span><span class="cc-hot">FREE</span>
           <div class="cc-overlay">
             <span class="cc-cat">스트리밍</span>
@@ -229,7 +227,7 @@
             <p class="cc-desc">무료 공개 · 첫 송출까지</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c2.png') center/cover">
+        <a class="class-card" href="endolphin/encademy-bootcamp.html" style="background:url('../assets/class/c2.png') center/cover">
           <span class="cc-lvl">4주 과정</span><span class="cc-hot">HOT</span>
           <div class="cc-overlay">
             <span class="cc-cat">부트캠프</span>
@@ -237,7 +235,7 @@
             <p class="cc-desc">4주 집중 · ★500</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c3.png') center/cover">
+        <a class="class-card" href="endolphin/youtube-editing.html" style="background:url('../assets/class/c3.png') center/cover">
           <span class="cc-lvl">입문</span>
           <div class="cc-overlay">
             <span class="cc-cat">편집</span>
@@ -245,7 +243,7 @@
             <p class="cc-desc">컷편집·썸네일 · ★100</p>
           </div>
         </a>
-        <a class="class-card" href="course-detail.html" style="background:url('../assets/class/c4.png') center/cover">
+        <a class="class-card" href="endolphin/bora-knowhow.html" style="background:url('../assets/class/c4.png') center/cover">
           <span class="cc-lvl">중급</span>
           <div class="cc-overlay">
             <span class="cc-cat">보라·여캠</span>
@@ -254,6 +252,8 @@
           </div>
         </a>
       </div>
+
+      <p style="color:#9aa6bc;font-size:13px;text-align:center;margin:16px 0 0">각 클래스를 누르면 무료 미리보기 영상 1편과 전체 커리큘럼을 볼 수 있습니다.</p>
 
       <!-- 이벤트 · 일정 -->
       <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">SCHEDULE</h2><p class="sec-ko">이벤트 · 강의 일정</p></div>
