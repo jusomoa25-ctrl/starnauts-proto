@@ -37,6 +37,10 @@
   .sb-hero-body{position:static;max-width:100%;padding:20px;background:#0E1116}
   .sb-name{font-size:25px}
 }
+.course-grid.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1100px){.course-grid.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.course-grid.four{grid-template-columns:1fr}}
+.course[onclick]{cursor:pointer}
 </style>
 </head>
 <body>
@@ -126,34 +130,44 @@
         <span style="color:var(--blue);font-weight:800;font-size:13px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px">자세히 <svg width="14" height="14"><use href="#i-chev-r"/></svg></span>
       </a>
 
-      <!-- 진행 중인 강의 -->
-      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 강의</p></div>
-      <div class="course-grid three">
-        <article class="course">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#1C4B86)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">입문</span></div>
+      <!-- 진행 중인 클래스 -->
+      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 클래스</p></div>
+      <p style="color:#9aa6bc;font-size:13px;margin:-8px 0 18px">각 클래스를 누르면 무료 미리보기 영상 1편과 전체 커리큘럼을 볼 수 있습니다.</p>
+      <div class="course-grid four">
+        <article class="course" onclick="location.href='course-detail.html'">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2B6E8F,#0F2530)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">입문</span></div>
           <div class="course-body">
             <span class="course-cat">스트리밍</span>
-            <h3>처음부터 끝까지: 첫 송출 완벽 가이드</h3>
-            <div class="course-meta"><span class="tname">유튜브 강의 + 라이브 Q&amp;A</span><span class="rate"><b>★</b> 4.9 <span style="color:var(--muted-2);font-weight:600">(213)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="free">무료</span></span><span class="enroll"><a href="class.html" style="color:inherit">수강하기 →</a></span></div>
+            <h3>버튜버 데뷔 셋팅 A to Z</h3>
+            <div class="course-meta"><span class="tname">8회차 · 수강생 412</span></div>
+            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>100 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
           </div>
         </article>
-        <article class="course">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><svg class="glyph"><use href="#i-trend"/></svg><span class="lvl">중급</span></div>
+        <article class="course" onclick="location.href='course-detail.html'">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><svg class="glyph"><use href="#i-mic"/></svg><span class="lvl">입문</span></div>
           <div class="course-body">
-            <span class="course-cat">콘텐츠 스킬</span>
-            <h3>구독자 0 → 1,000 채널 성장 로드맵</h3>
-            <div class="course-meta"><span class="tname">주 1회 스케줄 강의 + 정리 노트</span><span class="rate"><b>★</b> 4.8 <span style="color:var(--muted-2);font-weight:600">(145)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>99 <span class="punit">스타</span></span><span class="enroll"><a href="class.html" style="color:inherit">수강하기 →</a></span></div>
+            <span class="course-cat">보컬·댄스</span>
+            <h3>라이브 노래방송 보컬 트레이닝</h3>
+            <div class="course-meta"><span class="tname">6회차 · 수강생 287</span></div>
+            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>89 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
           </div>
         </article>
-        <article class="course">
+        <article class="course" onclick="location.href='course-detail.html'">
           <div class="course-thumb" style="background:linear-gradient(135deg,#2A3F61,#10161F)"><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">중급</span></div>
           <div class="course-body">
             <span class="course-cat">스트리밍</span>
-            <h3>토크가 끊기지 않는 라이브 진행의 기술</h3>
-            <div class="course-meta"><span class="tname">유튜브 강의 + 실습 과제</span><span class="rate"><b>★</b> 4.7 <span style="color:var(--muted-2);font-weight:600">(89)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>79 <span class="punit">스타</span></span><span class="enroll"><a href="class.html" style="color:inherit">수강하기 →</a></span></div>
+            <h3>끊기지 않는 게임 토크 진행법</h3>
+            <div class="course-meta"><span class="tname">5회차 · 수강생 196</span></div>
+            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>79 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
+          </div>
+        </article>
+        <article class="course" onclick="location.href='course-detail.html'">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><svg class="glyph"><use href="#i-trend"/></svg><span class="lvl">중급</span></div>
+          <div class="course-body">
+            <span class="course-cat">콘텐츠 스킬</span>
+            <h3>구독자 0 → 1,000 성장 로드맵</h3>
+            <div class="course-meta"><span class="tname">8회차 · 수강생 1,034</span></div>
+            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>99 <span class="punit">스타</span></span><span class="enroll">무료 미리보기 →</span></div>
           </div>
         </article>
       </div>
