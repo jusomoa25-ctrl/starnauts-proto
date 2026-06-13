@@ -3,14 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>STARNAUTS — 뉴스 · 블로그</title>
+<title>STARNAUTS — 강의 찾기</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
 <link rel="stylesheet" href="../home/shell.css?v=19">
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
 <style>
-.blog-card-cat{font-size:11px;font-weight:800;color:var(--blue-300);letter-spacing:.04em}
+.prog{height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:9px}
+.prog>i{display:block;height:100%;background:var(--blue);border-radius:3px}
+.jcol{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+@media(max-width:880px){.jcol{grid-template-columns:1fr}}
+.scol{display:grid;grid-template-columns:230px 1fr;gap:26px;align-items:start}
+@media(max-width:780px){.scol{grid-template-columns:1fr}}
+.steps{display:flex;gap:8px;max-width:480px;margin:0 auto 30px}
+.step{flex:1;text-align:center;font-size:12px;color:#9aa6bc}
+.step .dot{width:30px;height:30px;border-radius:50%;border:2px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 7px;font-weight:700}
+.step.on{color:#fff;font-weight:700}
+.step.on .dot{border-color:var(--blue);background:var(--blue);color:#fff}
+.jfld{margin-bottom:14px}
+.jfld label{display:block;font-size:12.5px;color:#9aa6bc;margin-bottom:6px;font-weight:700}
+.jfld input,.jfld select,.jfld textarea{width:100%;padding:11px 13px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:14px;font-family:inherit;box-sizing:border-box}
+.star-pack{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.pack{border:1.5px solid rgba(255,255,255,.14);border-radius:13px;padding:16px;text-align:center;cursor:pointer;background:rgba(255,255,255,.02)}
+.pack.on{border-color:var(--blue);background:rgba(46,111,201,.12)}
+.pack b{display:block;font-size:20px;font-weight:900;color:#fff}
+.pack span{font-size:12px;color:#9aa6bc}
+.pay-opt{display:flex;gap:10px;margin-bottom:18px}
+.pay{flex:1;border:1.5px solid rgba(255,255,255,.14);border-radius:11px;padding:13px;text-align:center;cursor:pointer;font-size:13px;font-weight:700;color:#C6CEDC}
+.pay.on{border-color:var(--blue);background:rgba(46,111,201,.12);color:#fff}
+.filt{margin-bottom:20px}
+.filt h5{font-size:13px;color:#fff;margin:0 0 8px;font-weight:800}
+.filt label{display:flex;gap:8px;align-items:center;font-size:13px;color:#9aa6bc;padding:4px 0;cursor:pointer}
+.art{max-width:740px;margin:0 auto}
+.art h2{font-size:22px;font-weight:800;color:#fff;margin:30px 0 12px}
+.art p{font-size:15px;color:#C6CEDC;line-height:1.85;margin-bottom:16px}
+.art blockquote{border-left:3px solid var(--blue);padding:4px 0 4px 18px;margin:20px 0;color:#fff;font-size:16px;font-style:italic}
+.art .imgph{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,#1C4B86,#0E1116);display:flex;align-items:center;justify-content:center;color:#5a6b85;font-size:13px;margin:22px 0;border:1px solid rgba(255,255,255,.07)}
+.jrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px}
+.jrow:last-child{border-bottom:none}
+.search-bar{display:flex;gap:10px;margin-bottom:26px}
+.search-bar input{flex:1;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:15px;font-family:inherit}
 </style></head>
 <body>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
@@ -47,7 +80,7 @@
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
   <nav class="side-nav">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
-    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="class.html" class="active"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
     <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
@@ -64,7 +97,7 @@
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
     <nav class="topnav">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
-      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="class.html" class="active">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
       <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
       <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
@@ -77,97 +110,54 @@
 
   <section class="section" style="padding-top:72px">
     <div class="wrap">
-      <div class="sec-head"><h2 class="sec-en">JOURNAL</h2><p class="sec-ko">뉴스 · 블로그</p></div>
-      <p class="sec-lead">스트리머가 되는 데 필요한 모든 정보<br>방송 셋팅부터 트렌드까지, 스타너츠가 정리합니다</p>
-
-      <div class="tabs center" id="courseTabs" role="tablist">
-        <button class="tab is-active" data-cat="all">전체</button>
-        <button class="tab" data-cat="guide">시작 가이드</button>
-        <button class="tab" data-cat="setup">방송 셋팅</button>
-        <button class="tab" data-cat="trend">트렌드</button>
-        <button class="tab" data-cat="news">소식</button>
+      <div class="sec-head"><h2 class="sec-en">SEARCH</h2><p class="sec-ko">강의 찾기</p></div>
+      <div class="search-bar" style="margin-top:22px">
+        <input type="text" placeholder="배우고 싶은 기술을 검색하세요 — 버튜버, OBS, 보컬...">
+        <button class="btn btn--primary">검색</button>
       </div>
 
-      <div class="course-grid three" id="courseGrid">
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="guide">
-          <div class="course-thumb" style="background:linear-gradient(135deg,5E4B8B,#1E1633)"><span class="hot">인기</span><svg class="glyph"><use href="#i-bolt"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">시작 가이드</span>
-            <h3>버튜버, 어떻게 시작하나요? 0원부터 데뷔까지</h3>
-            <div class="course-meta"><span class="tname">장비·모델·트래킹·송출 전 과정 한눈에 정리</span></div>
+      <div class="scol">
+        <!-- 필터 사이드 -->
+        <aside>
+          <div class="filt"><h5>카테고리</h5>
+            <label><input type="checkbox"> 스트리밍</label>
+            <label><input type="checkbox"> 편집</label>
+            <label><input type="checkbox"> 보컬·댄스</label>
+            <label><input type="checkbox"> 음원 제작</label>
+            <label><input type="checkbox"> 콘텐츠 스킬</label>
+            <label><input type="checkbox"> 지식·재능</label>
           </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="setup">
-          <div class="course-thumb" style="background:linear-gradient(135deg,2B6E8F,#0F2530)"><span class="hot">인기</span><svg class="glyph"><use href="#i-cam"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">방송 셋팅</span>
-            <h3>SOOP·치지직·유튜브 라이브 셋팅 완전 비교</h3>
-            <div class="course-meta"><span class="tname">플랫폼별 송출 설정·비트레이트·화면 구성 차이</span></div>
+          <div class="filt"><h5>난이도</h5>
+            <label><input type="checkbox"> 입문</label>
+            <label><input type="checkbox"> 중급</label>
+            <label><input type="checkbox"> 고급</label>
           </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="guide">
-          <div class="course-thumb" style="background:linear-gradient(135deg,2E6FC9,#16385F)"><svg class="glyph"><use href="#i-check"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">시작 가이드</span>
-            <h3>첫 송출 전 반드시 확인할 체크리스트 10가지</h3>
-            <div class="course-meta"><span class="tname">장비·소리·화면·고지까지 데뷔 전 점검 목록</span></div>
+          <div class="filt"><h5>가격</h5>
+            <label><input type="checkbox"> 무료</label>
+            <label><input type="checkbox"> ~ ★50</label>
+            <label><input type="checkbox"> ★50 ~ ★100</label>
+            <label><input type="checkbox"> ★100 이상</label>
           </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="setup">
-          <div class="course-thumb" style="background:linear-gradient(135deg,33547E,#142238)"><svg class="glyph"><use href="#i-video"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">방송 셋팅</span>
-            <h3>OBS 장면 전환과 알림 위젯 설정하기</h3>
-            <div class="course-meta"><span class="tname">초보도 따라 하는 OBS 기본 셋업 가이드</span></div>
+          <div class="filt"><h5>언어</h5>
+            <label><input type="checkbox"> 한국어</label>
+            <label><input type="checkbox"> English</label>
+            <label><input type="checkbox"> 日本語</label>
           </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="trend">
-          <div class="course-thumb" style="background:linear-gradient(135deg,1C4B86,#0E1116)"><span class="hot">주간</span><svg class="glyph"><use href="#i-trend"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">트렌드</span>
-            <h3>이번 주 떠오르는 콘텐츠 키워드 리포트</h3>
-            <div class="course-meta"><span class="tname">플랫폼별 급상승 포맷·키워드 주간 정리</span></div>
+        </aside>
+        <!-- 결과 -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><span style="font-size:13.5px;color:#9aa6bc"><b style="color:#fff">28</b>개 강의</span><select style="padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13px;font-family:inherit"><option>인기순</option><option>최신순</option><option>평점순</option><option>가격 낮은순</option></select></div>
+          <div class="course-grid">
+            <article class="course"><div class="course-thumb" style="background:linear-gradient(135deg,#2B6E8F,#0F2530)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">입문</span></div><div class="course-body"><span class="course-cat">스트리밍</span><h3>버튜버 셋팅 A to Z</h3><div class="course-foot"><span class="course-price"><span class="pstar">★</span>100 <span class="punit">스타</span></span><span class="enroll"><a href="course-detail.html" style="color:inherit">보기 →</a></span></div></div></article>
+            <article class="course"><div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#1C4B86)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">입문</span></div><div class="course-body"><span class="course-cat">스트리밍</span><h3>첫 송출 완벽 가이드</h3><div class="course-foot"><span class="course-price"><span class="free">무료</span></span><span class="enroll"><a href="course-detail.html" style="color:inherit">보기 →</a></span></div></div></article>
+            <article class="course"><div class="course-thumb" style="background:linear-gradient(135deg,#2A3342,#0E1116)"><svg class="glyph"><use href="#i-video"/></svg><span class="lvl">중급</span></div><div class="course-body"><span class="course-cat">편집</span><h3>시청자를 붙잡는 편집 문법</h3><div class="course-foot"><span class="course-price"><span class="pstar">★</span>89 <span class="punit">스타</span></span><span class="enroll"><a href="course-detail.html" style="color:inherit">보기 →</a></span></div></div></article>
+            <article class="course"><div class="course-thumb" style="background:linear-gradient(135deg,#5E4B8B,#1E1633)"><span class="hot">NEW</span><svg class="glyph"><use href="#i-bolt"/></svg><span class="lvl">입문</span></div><div class="course-body"><span class="course-cat">지식·재능</span><h3>방송에서 바로 쓰는 사주 풀이</h3><div class="course-foot"><span class="course-price"><span class="pstar">★</span>100 <span class="punit">스타</span></span><span class="enroll"><a href="course-detail.html" style="color:inherit">보기 →</a></span></div></div></article>
           </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="guide">
-          <div class="course-thumb" style="background:linear-gradient(135deg,4C86D8,#1C4B86)"><svg class="glyph"><use href="#i-mic"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">시작 가이드</span>
-            <h3>보컬·댄스 스트리머가 되려면 무엇부터?</h3>
-            <div class="course-meta"><span class="tname">노래·춤 방송을 준비하는 단계별 로드맵</span></div>
-          </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="setup">
-          <div class="course-thumb" style="background:linear-gradient(135deg,37475E,#121821)"><svg class="glyph"><use href="#i-cam"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">방송 셋팅</span>
-            <h3>예산 30만원 / 100만원 방송 장비 추천</h3>
-            <div class="course-meta"><span class="tname">예산대별 카메라·마이크·조명 조합 가이드</span></div>
-          </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="news">
-          <div class="course-thumb" style="background:linear-gradient(135deg,245AA8,#141A24)"><span class="hot">공지</span><svg class="glyph"><use href="#i-rocket"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">소식</span>
-            <h3>스타너츠 데뷔 부트캠프 9기 모집 시작</h3>
-            <div class="course-meta"><span class="tname">4주 만에 첫 송출 — 기수 한정 모집 안내</span></div>
-          </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="trend">
-          <div class="course-thumb" style="background:linear-gradient(135deg,3A5C8F,#141A24)"><svg class="glyph"><use href="#i-music"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">트렌드</span>
-            <h3>AI 음원으로 만드는 나만의 채널 BGM</h3>
-            <div class="course-meta"><span class="tname">저작권 걱정 없는 시그니처 사운드 만들기</span></div>
-          </div>
-        </article>
+          <div class="center-cta" style="margin-top:24px"><a class="btn btn--ghost" href="#">더 보기</a></div>
+        </div>
       </div>
-
-      <div class="center-cta"><a class="btn btn--ghost" href="signup.html">새 글 알림 받기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
     </div>
   </section>
-
-  <script src="../home/home.js"></script>
 
   <footer class="footer" style="margin-top:72px">
     <div class="footer-bar" style="position:static">
