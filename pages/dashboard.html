@@ -159,10 +159,29 @@
                   <a class="btn btn--ghost" href="#" onclick="addPl();return false" style="white-space:nowrap">추가</a>
                 </div>
               </div>
+              <div class="db-field"><label>구사 언어</label>
+                <div style="display:flex;gap:6px;flex-wrap:wrap">
+                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" checked style="width:auto"> 한국어</label>
+                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> English</label>
+                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> 日本語</label>
+                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> 中文</label>
+                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> ไทย</label>
+                </div>
+              </div>
               <div class="db-field"><label>이벤트 · 일정 추가</label>
                 <div style="display:flex;gap:8px">
                   <input type="text" placeholder="7/26 (토) 13:00 — 오프라인 팬미팅·장비 클리닉" style="flex:1">
                   <a class="btn btn--ghost" href="#" style="white-space:nowrap">추가</a>
+                </div>
+              </div>
+              <div class="db-field"><label>최근 뉴스 · 미디어 링크 <span style="color:#7c8699;font-weight:400">— 저장 순서대로 프로필에 노출</span></label>
+                <div id="newsList">
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:auto;color:var(--blue-300)">게임동아</span><span class="pl-url">버츄얼 스트리머 대상 인기상 수상</span><button onclick="this.parentNode.remove()">×</button></div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+                  <input id="newsSrc" type="text" placeholder="매체명" style="flex:0 1 90px;min-width:0">
+                  <input id="newsTitle" type="text" placeholder="기사 제목 / 링크" style="flex:1 1 130px;min-width:0">
+                  <a class="btn btn--ghost" href="#" onclick="addNews();return false" style="white-space:nowrap">추가</a>
                 </div>
               </div>
               <a class="btn btn--primary" href="streamer-leo.html" style="width:100%;justify-content:center;display:flex">저장하고 내 공개 페이지 확인 <svg width="15" height="15" style="margin-left:4px"><use href="#i-chev-r"/></svg></a>
@@ -194,6 +213,15 @@ function addPl(){
   item.innerHTML='<span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/'+o.dataset.img+'.png" alt=""></span><span class="pl-nm">'+o.text+'</span><span class="pl-url">'+url+'</span><button onclick="this.parentNode.remove()">×</button>';
   document.getElementById('plList').appendChild(item);
   document.getElementById('plUrl').value='';
+}
+function addNews(){
+  var src=(document.getElementById('newsSrc').value||'').trim()||'매체';
+  var title=(document.getElementById('newsTitle').value||'').trim()||'제목 미입력';
+  var item=document.createElement('div');
+  item.className='pl-item';
+  item.innerHTML='<span class="drag">⠿</span><span class="pl-nm" style="width:auto;color:var(--blue-300)">'+src+'</span><span class="pl-url">'+title+'</span><button onclick="this.parentNode.remove()">×</button>';
+  document.getElementById('newsList').appendChild(item);
+  document.getElementById('newsSrc').value='';document.getElementById('newsTitle').value='';
 }
 </script>
 </body>
