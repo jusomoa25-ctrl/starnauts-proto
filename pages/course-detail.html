@@ -14,9 +14,17 @@
 @media(max-width:900px){.cd-grid{grid-template-columns:1fr}}
 .cd-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px}
 .cd-row:last-child{border-bottom:none}
-.cd-pill{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:700;white-space:nowrap}
+.cd-pill{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:700;white-space:nowrap}
 .cd-free{background:rgba(46,158,91,.18);color:#5BC98A}
 .cd-lock{background:rgba(255,255,255,.1);color:#9aa6bc}
+.feat{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+.feat li{display:flex;gap:9px;align-items:flex-start;color:#C6CEDC;line-height:1.45}
+.feat .ic{width:20px;height:20px;border-radius:5px;background:rgba(46,111,201,.18);color:var(--blue-300);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feat .ic svg{width:13px;height:13px}
+.cd-prog{width:56px;height:5px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;flex-shrink:0}
+.cd-prog i{display:block;height:100%;background:var(--blue);border-radius:2px}
+.cd-grid .suno{border-radius:7px}
+.cd-grid .btn{border-radius:7px}
 </style>
 </head>
 <body>
@@ -76,7 +84,7 @@
       <div class="cd-grid" style="margin-top:26px">
         <!-- 좌: 플레이어 + 커리큘럼 -->
         <div>
-          <div style="position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#1C4B86,#0E1116);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08)">
+          <div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#1C4B86,#0E1116);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08)">
             <svg width="68" height="68" style="color:#fff;opacity:.92"><use href="#i-play"/></svg>
             <span style="position:absolute;left:14px;bottom:12px;font-size:12px;color:#9aa6bc">1회차 오리엔테이션 — 무료 미리보기</span>
           </div>
@@ -84,11 +92,11 @@
           <div class="suno" style="margin-top:22px">
             <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">curriculum</span><span class="live-tool">8회차 · 주 1회 업데이트</span></div>
             <div class="suno-body">
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">1회차</span><span style="flex:1">오리엔테이션 — 성장이 멈추는 진짜 이유</span><span class="cd-pill cd-free">무료</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">2회차</span><span style="flex:1">채널 포지셔닝: 누구에게 무엇을 줄 것인가</span><span class="cd-pill cd-lock">구매 후 시청</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">3회차</span><span style="flex:1">썸네일·제목 실험 설계</span><span class="cd-pill cd-lock">구매 후 시청</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">4회차</span><span style="flex:1">알고리즘과 업로드 루틴 <span style="color:#5BC98A;font-size:11px;font-weight:700">— 6/21 (일) 라이브</span></span><span class="cd-pill cd-lock">스케줄</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">5~8회차</span><span style="flex:1">커뮤니티 빌딩 · 수익화 · 번아웃 관리 · 1,000 이후</span><span class="cd-pill cd-lock">순차 공개</span></div>
+              <div class="cd-row"><span style="color:var(--blue);font-weight:700">1회차</span><span style="flex:1">오리엔테이션 — 성장이 멈추는 진짜 이유</span><div class="cd-prog"><i style="width:100%"></i></div><span class="cd-pill cd-free">무료</span></div>
+              <div class="cd-row"><span style="color:var(--blue);font-weight:700">2회차</span><span style="flex:1">채널 포지셔닝: 누구에게 무엇을 줄 것인가</span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">구매 후 시청</span></div>
+              <div class="cd-row"><span style="color:var(--blue);font-weight:700">3회차</span><span style="flex:1">썸네일·제목 실험 설계</span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">구매 후 시청</span></div>
+              <div class="cd-row"><span style="color:var(--blue);font-weight:700">4회차</span><span style="flex:1">알고리즘과 업로드 루틴 <span style="color:#5BC98A;font-size:11px;font-weight:700">— 6/21 (일) 라이브</span></span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">스케줄</span></div>
+              <div class="cd-row"><span style="color:var(--blue);font-weight:700">5~8회차</span><span style="flex:1">커뮤니티 빌딩 · 수익화 · 번아웃 관리 · 1,000 이후</span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">순차 공개</span></div>
               <p style="margin-top:12px;font-size:12px;color:#9aa6bc">매 회차 종료 후 <b style="color:#C6CEDC">정리 노트</b>(강사 작성 + AI 보조 제작)가 계정으로 지급됩니다.</p>
             </div>
           </div>
@@ -102,7 +110,7 @@
               <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:900;color:#fff">★ 99</span><span style="color:#9aa6bc;font-size:13px">스타 ($99)</span><s style="color:#7c8699;font-size:13px">129</s></div>
               <p style="font-size:12px;color:#9aa6bc;margin:6px 0 14px">강의 구매 — 한 번 구매로 영구 시청</p>
               <a class="btn btn--primary btn--lg" href="checkout.html" style="width:100%;justify-content:center;display:flex">스타로 구매하기</a>
-              <a class="btn btn--ghost" href="watch.html" style="width:100%;justify-content:center;display:flex;margin-top:8px">1회차 무료로 보기</a>
+              <a class="btn btn--ghost" href="watch.html" style="width:100%;justify-content:center;display:flex;margin-top:14px">1회차 무료로 보기</a>
               <ul class="feat" style="margin-top:16px;font-size:13px">
                 <li><span class="ic"><svg><use href="#i-check"/></svg></span>전 회차 영구 시청 + 업데이트 회차 포함</li>
                 <li><span class="ic"><svg><use href="#i-check"/></svg></span>스케줄 라이브 세션 입장 (다음: 6/21 일 20:00)</li>

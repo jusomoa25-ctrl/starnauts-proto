@@ -21,7 +21,7 @@
 .goods-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:6px}
 @media(max-width:1100px){.goods-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.goods-grid{grid-template-columns:1fr}}
-.goods-card{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02);display:flex;flex-direction:column}
+.goods-card{border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.02);display:flex;flex-direction:column}
 .gd-img{aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);position:relative}
 .gd-img span{font-size:11px;letter-spacing:.08em;position:absolute;bottom:10px}
 .gd-body{padding:14px 15px;display:flex;flex-direction:column;flex:1}
@@ -121,7 +121,7 @@
       <div class="pay-box" id="account">
         <div class="st-h" style="font-size:13px;font-weight:800;color:var(--blue-300);letter-spacing:.04em;margin-bottom:6px">결제 · 배송 안내</div>
         <div class="pay-row"><span class="pr-ic">N</span><div><b>네이버페이</b> — 위 ‘네이버페이로 주문’ 버튼 (새 창). 신재 계정으로 바로 결제됩니다.</div></div>
-        <div class="pay-row"><span class="pr-ic">₩</span><div><b>계좌이체</b> — 카카오뱅크 0000-00-0000000 (예금주: 신재). 입금 후 아래 배송지를 남겨 주세요.</div></div>
+        <div class="pay-row"><span class="pr-ic">₩</span><div><b>계좌이체</b> — 상품 주문 시 배송지 입력 후 <b>입금 계좌가 안내</b>됩니다. 입금 확인 후 신재가 직접 발송합니다.</div></div>
         <div class="pay-row"><span class="pr-ic">▦</span><div><b>배송지 입력</b> — 결제 후 주문 폼에 배송지를 입력하면 스타너츠가 <b>주문 목록을 엑셀로 정리</b>해 신재에게 전달합니다. <b>배송은 신재이 직접</b> 진행합니다.</div></div>
         <p style="margin-top:13px;font-size:12px;color:#7c8699;line-height:1.55">※ 스타너츠는 결제·배송 당사자가 아니며 거래 중개·주문 정리만 제공합니다. 결제 확인은 스트리머가 직접 또는 등록한 결제 API로 자동 처리됩니다.</p>
       </div>

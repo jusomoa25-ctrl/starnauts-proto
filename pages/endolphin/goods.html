@@ -21,7 +21,8 @@
 .goods-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:6px}
 @media(max-width:1100px){.goods-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.goods-grid{grid-template-columns:1fr}}
-.goods-card{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02);display:flex;flex-direction:column}
+.goods-card{border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:.15s}
+.goods-card:hover{transform:translateY(-2px);border-color:rgba(46,111,201,.45)}
 .gd-img{aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);position:relative}
 .gd-img span{font-size:11px;letter-spacing:.08em;position:absolute;bottom:10px}
 .gd-body{padding:14px 15px;display:flex;flex-direction:column;flex:1}
@@ -89,16 +90,15 @@
 
       <!-- 자체 진열 굿즈 (상품 먼저) -->
       <div class="goods-grid" style="margin-top:20px">
-        <div class="goods-card">
+        <a class="goods-card" href="goods-tshirt.html" style="text-decoration:none">
           <div class="gd-img" style="aspect-ratio:4/3;background:#fff url('../../assets/goods/tshirt.webp') center/cover"></div>
           <div class="gd-body">
             <div class="gd-nm">엔돌핀 굿즈 티셔츠 (ENDORPHIN — ALWAYS WITH YOU)</div>
             <div class="gd-price">65,000원</div>
             <div class="gd-spacer"></div>
-            <a class="gd-order" href="https://pay.naver.com/" target="_blank" rel="noopener"><svg width="14" height="14"><use href="#i-cart"/></svg> 네이버페이로 주문</a>
-            <a class="gd-order2" href="#account">계좌이체로 주문</a>
+            <span class="gd-order" style="margin-top:13px">주문하기 ›</span>
           </div>
-        </div>
+        </a>
       </div>
 
       <!-- 외부 쇼핑몰 배너 (대시보드에서 박스 크기 그대로 이미지로 교체 가능) -->
@@ -114,7 +114,7 @@
       <div class="pay-box" id="account">
         <div class="st-h" style="font-size:13px;font-weight:800;color:var(--blue-300);letter-spacing:.04em;margin-bottom:6px">결제 · 배송 안내</div>
         <div class="pay-row"><span class="pr-ic">N</span><div><b>네이버페이</b> — 위 ‘네이버페이로 주문’ 버튼 (새 창). 엔돌핀 계정으로 바로 결제됩니다.</div></div>
-        <div class="pay-row"><span class="pr-ic">₩</span><div><b>계좌이체</b> — 카카오뱅크 0000-00-0000000 (예금주: 엔돌핀). 입금 후 아래 배송지를 남겨 주세요.</div></div>
+        <div class="pay-row"><span class="pr-ic">₩</span><div><b>계좌이체</b> — 상품 주문 시 배송지 입력 후 <b>입금 계좌가 안내</b>됩니다. 입금 확인 후 엔돌핀이 직접 발송합니다.</div></div>
         <div class="pay-row"><span class="pr-ic">▦</span><div><b>배송지 입력</b> — 결제 후 주문 폼에 배송지를 입력하면 스타너츠가 <b>주문 목록을 엑셀로 정리</b>해 엔돌핀에게 전달합니다. <b>배송은 엔돌핀이 직접</b> 진행합니다.</div></div>
         <p style="margin-top:13px;font-size:12px;color:#7c8699;line-height:1.55">※ 스타너츠는 결제·배송 당사자가 아니며 거래 중개·주문 정리만 제공합니다. 결제 확인은 스트리머가 직접 또는 등록한 결제 API로 자동 처리됩니다.</p>
       </div>
