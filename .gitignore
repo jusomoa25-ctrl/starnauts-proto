@@ -2,3 +2,6 @@ _archive/
 uploads/
 design-canvas.jsx
 _*.py
+
+__pycache__/
+*.pyc
