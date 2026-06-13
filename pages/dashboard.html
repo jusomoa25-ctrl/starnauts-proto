@@ -31,6 +31,10 @@
 .pl-url{flex:1;min-width:0;color:#9aa6bc;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
 .pl-item button{background:none;border:none;color:#7c8699;cursor:pointer;font-size:17px;line-height:1;flex-shrink:0}
 .pl-item .drag{color:#5a6b85;cursor:grab;font-size:13px;flex-shrink:0}
+.lang-checks{display:flex;gap:11px;flex-wrap:wrap}
+.lang-checks label{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:#C6CEDC;cursor:pointer}
+.lang-checks img{width:20px;height:20px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.2)}
+.lang-checks input{width:auto}
 </style>
 </head>
 <body>
@@ -159,13 +163,19 @@
                   <a class="btn btn--ghost" href="#" onclick="addPl();return false" style="white-space:nowrap">추가</a>
                 </div>
               </div>
-              <div class="db-field"><label>구사 언어</label>
-                <div style="display:flex;gap:6px;flex-wrap:wrap">
-                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" checked style="width:auto"> 한국어</label>
-                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> English</label>
-                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> 日本語</label>
-                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> 中文</label>
-                  <label style="display:inline-flex;gap:5px;align-items:center;font-size:13px;color:#C6CEDC"><input type="checkbox" style="width:auto"> ไทย</label>
+              <div class="db-field"><label>구사 언어 <span style="color:#7c8699;font-weight:400">— 체크하면 프로필 배너에 국기로 노출</span></label>
+                <div class="lang-checks">
+                  <label><input type="checkbox" checked><img src="../assets/flags/kr.png" alt=""> 한국어</label>
+                  <label><input type="checkbox"><img src="../assets/flags/us.png" alt=""> English</label>
+                  <label><input type="checkbox"><img src="../assets/flags/jp.png" alt=""> 日本語</label>
+                  <label><input type="checkbox"><img src="../assets/flags/cn.png" alt=""> 中文</label>
+                  <label><input type="checkbox"><img src="../assets/flags/th.png" alt=""> ไทย</label>
+                  <label><input type="checkbox"><img src="../assets/flags/vn.png" alt=""> Tiếng Việt</label>
+                  <label><input type="checkbox"><img src="../assets/flags/de.png" alt=""> Deutsch</label>
+                  <label><input type="checkbox"><img src="../assets/flags/it.png" alt=""> Italiano</label>
+                  <label><input type="checkbox"><img src="../assets/flags/es.png" alt=""> Español</label>
+                  <label><input type="checkbox"><img src="../assets/flags/pt.png" alt=""> Português</label>
+                  <label><input type="checkbox"><img src="../assets/flags/ru.png" alt=""> Русский</label>
                 </div>
               </div>
               <div class="db-field"><label>이벤트 · 일정 추가</label>
