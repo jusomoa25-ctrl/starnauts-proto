@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARNAUTS — 뉴스 · 블로그</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+.blog-card-cat{font-size:11px;font-weight:800;color:var(--blue-300);letter-spacing:.04em}
+</style></head>
+<body>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 19 12 7 19.5z" fill="currentColor"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="14" height="11" rx="2.5"/><path d="M16.5 10l5-2.5v9L16.5 14"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5M21 7h-5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .8-5.2 4.8L18.3 22 12 18.3 5.7 22l1.5-7.9L2 9.3l7-.8z" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3.2 3 16 0 19M12 2.5c-3 3.2-3 16 0 19"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10v-6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a3 3 0 0 1 5.6 1.2c0 2-3 2.5-3 4.5M12 18h.01"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1-2 5-2 5s4-.5 5-2c.6-.9.5-2.1-.3-2.9-.8-.8-2-.9-2.7-.1z"/><path d="M9 12c1.5-4 4.5-8 11-8 0 6.5-4 9.5-8 11l-3-3z"/><circle cx="15" cy="9" r="1.5"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="signup.html">무료로 시작</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:72px">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="sec-en">JOURNAL</h2><p class="sec-ko">뉴스 · 블로그</p></div>
+      <p class="sec-lead">스트리머가 되는 데 필요한 모든 정보<br>방송 셋팅부터 트렌드까지, 스타너츠가 정리합니다</p>
+
+      <div class="tabs center" id="courseTabs" role="tablist">
+        <button class="tab is-active" data-cat="all">전체</button>
+        <button class="tab" data-cat="guide">시작 가이드</button>
+        <button class="tab" data-cat="setup">방송 셋팅</button>
+        <button class="tab" data-cat="trend">트렌드</button>
+        <button class="tab" data-cat="news">소식</button>
+      </div>
+
+      <div class="course-grid three" id="courseGrid">
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,5E4B8B,#1E1633)"><span class="hot">인기</span><svg class="glyph"><use href="#i-bolt"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">시작 가이드</span>
+            <h3>버튜버, 어떻게 시작하나요? 0원부터 데뷔까지</h3>
+            <div class="course-meta"><span class="tname">장비·모델·트래킹·송출 전 과정 한눈에 정리</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="setup">
+          <div class="course-thumb" style="background:linear-gradient(135deg,2B6E8F,#0F2530)"><span class="hot">인기</span><svg class="glyph"><use href="#i-cam"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">방송 셋팅</span>
+            <h3>SOOP·치지직·유튜브 라이브 셋팅 완전 비교</h3>
+            <div class="course-meta"><span class="tname">플랫폼별 송출 설정·비트레이트·화면 구성 차이</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,2E6FC9,#16385F)"><svg class="glyph"><use href="#i-check"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">시작 가이드</span>
+            <h3>첫 송출 전 반드시 확인할 체크리스트 10가지</h3>
+            <div class="course-meta"><span class="tname">장비·소리·화면·고지까지 데뷔 전 점검 목록</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="setup">
+          <div class="course-thumb" style="background:linear-gradient(135deg,33547E,#142238)"><svg class="glyph"><use href="#i-video"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">방송 셋팅</span>
+            <h3>OBS 장면 전환과 알림 위젯 설정하기</h3>
+            <div class="course-meta"><span class="tname">초보도 따라 하는 OBS 기본 셋업 가이드</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="trend">
+          <div class="course-thumb" style="background:linear-gradient(135deg,1C4B86,#0E1116)"><span class="hot">주간</span><svg class="glyph"><use href="#i-trend"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">트렌드</span>
+            <h3>이번 주 떠오르는 콘텐츠 키워드 리포트</h3>
+            <div class="course-meta"><span class="tname">플랫폼별 급상승 포맷·키워드 주간 정리</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,4C86D8,#1C4B86)"><svg class="glyph"><use href="#i-mic"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">시작 가이드</span>
+            <h3>보컬·댄스 스트리머가 되려면 무엇부터?</h3>
+            <div class="course-meta"><span class="tname">노래·춤 방송을 준비하는 단계별 로드맵</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="setup">
+          <div class="course-thumb" style="background:linear-gradient(135deg,37475E,#121821)"><svg class="glyph"><use href="#i-cam"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">방송 셋팅</span>
+            <h3>예산 30만원 / 100만원 방송 장비 추천</h3>
+            <div class="course-meta"><span class="tname">예산대별 카메라·마이크·조명 조합 가이드</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="news">
+          <div class="course-thumb" style="background:linear-gradient(135deg,245AA8,#141A24)"><span class="hot">공지</span><svg class="glyph"><use href="#i-rocket"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">소식</span>
+            <h3>스타너츠 데뷔 부트캠프 9기 모집 시작</h3>
+            <div class="course-meta"><span class="tname">4주 만에 첫 송출 — 기수 한정 모집 안내</span></div>
+          </div>
+        </article>
+        <article class="course" data-cat="trend">
+          <div class="course-thumb" style="background:linear-gradient(135deg,3A5C8F,#141A24)"><svg class="glyph"><use href="#i-music"/></svg></div>
+          <div class="course-body">
+            <span class="course-cat">트렌드</span>
+            <h3>AI 음원으로 만드는 나만의 채널 BGM</h3>
+            <div class="course-meta"><span class="tname">저작권 걱정 없는 시그니처 사운드 만들기</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="center-cta"><a class="btn btn--ghost" href="signup.html">새 글 알림 받기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+    </div>
+  </section>
+
+  <script src="../home/home.js"></script>
+
+  <footer class="footer" style="margin-top:72px">
+    <div class="footer-bar" style="position:static">
+      <div class="wrap fbar">
+        <div class="fbar-main">
+          <div class="fbar-brand-col">
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
+            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <div class="fbar-soc">
+              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+            </div>
+          </div>
+          <nav class="fbar-cols">
+            <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
+            <div class="fcolx"><h5>회사</h5><a href="about.html">소개</a><a href="about.html#careers">채용</a><a href="partnership.html">파트너십</a><a href="blog.html">블로그</a></div>
+            <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
+          </nav>
+        </div>
+        <p style="font-size:12px;color:#9aa6bc;margin:0 0 6px">Language — 한국어 · <a href="../en.html" style="color:#C6CEDC">English</a> · 日本語 · 中文 · ไทย · Tiếng Việt <span style="color:#7c8699">(다국어 지원 준비 중)</span></p>
+        <p class="fbar-copy">© 2026 STARNAUTS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
+</body>
+</html>

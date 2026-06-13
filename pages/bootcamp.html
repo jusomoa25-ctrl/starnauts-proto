@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARNAUTS — 데뷔 부트캠프</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+.tl{position:relative;margin:30px 0;padding-left:30px}
+.tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(#2E6FC9,rgba(46,111,201,.2))}
+.tl-item{position:relative;padding-bottom:26px}
+.tl-item::before{content:"";position:absolute;left:-29px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--navy);border:3px solid var(--blue)}
+.tl-week{font-size:12px;font-weight:800;color:var(--blue-300);letter-spacing:.04em}
+.tl-h{font-size:16px;font-weight:800;color:#fff;margin:4px 0 6px}
+.tl-d{font-size:13.5px;color:#9aa6bc;line-height:1.6}
+</style></head>
+<body>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 19 12 7 19.5z" fill="currentColor"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="14" height="11" rx="2.5"/><path d="M16.5 10l5-2.5v9L16.5 14"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5M21 7h-5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .8-5.2 4.8L18.3 22 12 18.3 5.7 22l1.5-7.9L2 9.3l7-.8z" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3.2 3 16 0 19M12 2.5c-3 3.2-3 16 0 19"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10v-6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a3 3 0 0 1 5.6 1.2c0 2-3 2.5-3 4.5M12 18h.01"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.5 1-2 5-2 5s4-.5 5-2c.6-.9.5-2.1-.3-2.9-.8-.8-2-.9-2.7-.1z"/><path d="M9 12c1.5-4 4.5-8 11-8 0 6.5-4 9.5-8 11l-3-3z"/><circle cx="15" cy="9" r="1.5"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html" class="active"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html" class="active">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="signup.html">무료로 시작</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:72px">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="sec-en">BOOTCAMP</h2><p class="sec-ko">데뷔 부트캠프</p></div>
+      <p class="sec-lead">장비도, 경험도 없던 당신이<br><b>4주 만에 첫 송출</b>까지 — 현직 스트리머가 끝까지 함께합니다</p>
+
+      <div class="bootcamp" style="margin-top:34px">
+        <div class="bootcamp-l">
+          <span class="tag">9기 모집중 · D-7</span>
+          <h3>버튜버 데뷔 부트캠프<br>4주 집중 트랙</h3>
+          <p>모델·트래킹 셋업부터 OBS 송출, 첫 방송 기획까지. 주 3회 라이브 세션과 단톡방 밀착 코칭으로, 혼자라면 몇 달 걸릴 데뷔를 4주에 끝냅니다. 같은 기수 동료들과 함께 시작하세요.</p>
+          <div class="bootcamp-feat">
+            <div class="it"><b>4주</b>주차별 커리큘럼</div>
+            <div class="it"><b>주3회</b>라이브 세션</div>
+            <div class="it"><b>320명</b>누적 수료</div>
+          </div>
+          <a class="btn btn--primary btn--lg" href="signup.html">9기 신청하기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+        </div>
+        <div class="bootcamp-r">
+          <div class="bc-badge">
+            <span class="bc-k">9기 모집중</span>
+            <span class="bc-d">D-7</span>
+            <span class="bc-s">잔여 8석</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-head" style="margin-top:64px"><h2 class="sec-en" style="font-size:30px">CURRICULUM</h2><p class="sec-ko">4주 커리큘럼</p></div>
+      <div class="tl" style="max-width:720px">
+        <div class="tl-item"><div class="tl-week">WEEK 1</div><div class="tl-h">셋업 — 장비·소프트웨어·캐릭터</div><div class="tl-d">예산별 장비 선택, OBS·트래킹 소프트웨어 설치, 버튜버 모델 준비. 첫 주 끝에 "송출 가능한 환경"을 완성합니다.</div></div>
+        <div class="tl-item"><div class="tl-week">WEEK 2</div><div class="tl-h">방송 화면 — 장면·오버레이·알림</div><div class="tl-d">장면 전환, 채팅·후원 알림, 시작/대기 화면 구성. 내 채널만의 분위기를 만드는 주차입니다.</div></div>
+        <div class="tl-item"><div class="tl-week">WEEK 3</div><div class="tl-h">콘텐츠 기획 — 첫 방송 설계</div><div class="tl-d">무슨 방송을, 누구에게, 어떻게. 첫 방송 시나리오를 짜고 멘토와 리허설을 진행합니다.</div></div>
+        <div class="tl-item"><div class="tl-week">WEEK 4</div><div class="tl-h">데뷔 — 첫 송출 & 피드백</div><div class="tl-d">실제 첫 방송을 송출하고, 멘토와 동기들의 실시간 피드백을 받습니다. 수료 = 데뷔.</div></div>
+      </div>
+
+      <div class="sec-head" style="margin-top:48px"><h2 class="sec-en" style="font-size:30px">INCLUDED</h2><p class="sec-ko">포함 내용</p></div>
+      <div class="tool-panel">
+        <ul class="feat" style="max-width:680px;margin:0 auto">
+          <li><span class="ic"><svg><use href="#i-check"/></svg></span>주 3회 현직 스트리머 라이브 세션 (4주 12회)</li>
+          <li><span class="ic"><svg><use href="#i-check"/></svg></span>기수 단톡방 밀착 코칭 + 동기 네트워크</li>
+          <li><span class="ic"><svg><use href="#i-check"/></svg></span>전 강의·도구 수강 기간 내 무제한 이용</li>
+          <li><span class="ic"><svg><use href="#i-check"/></svg></span>수료 시 STARNAUTS 인증 — 에이전시 섭외 우선 검토</li>
+        </ul>
+        <div style="text-align:center;margin-top:22px">
+          <div style="display:inline-flex;align-items:baseline;gap:8px"><span style="font-size:30px;font-weight:900;color:#fff">★ 490</span><span style="color:#9aa6bc">스타 ($490) / 기수</span></div>
+          <div style="margin-top:14px"><a class="btn btn--primary btn--lg" href="signup.html">9기 신청하기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+        </div>
+      </div>
+
+      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">VOICES</h2><p class="sec-ko">수료생 후기</p></div>
+      <div class="course-grid three">
+        <article class="course"><div class="course-body" style="padding-top:20px"><div class="stars" style="color:#F0C36A;font-size:15px">★★★★★</div><p style="color:#C6CEDC;font-size:14px;line-height:1.65;margin:10px 0 14px">"장비도 없던 제가 4주 만에 첫 송출을 했어요. 멘토님이 매주 방송을 같이 봐주신 게 정말 컸습니다."</p><div class="course-meta"><span class="tname">7기 수료 · 게임 버튜버</span></div></div></article>
+        <article class="course"><div class="course-body" style="padding-top:20px"><div class="stars" style="color:#F0C36A;font-size:15px">★★★★★</div><p style="color:#C6CEDC;font-size:14px;line-height:1.65;margin:10px 0 14px">"혼자 검색하며 몇 달을 헤맸는데, 4주 만에 정리됐어요. 동기들이랑 아직도 같이 방송해요."</p><div class="course-meta"><span class="tname">8기 수료 · 토크 버튜버</span></div></div></article>
+        <article class="course"><div class="course-body" style="padding-top:20px"><div class="stars" style="color:#F0C36A;font-size:15px">★★★★★</div><p style="color:#C6CEDC;font-size:14px;line-height:1.65;margin:10px 0 14px">"수료하고 바로 에이전시 섭외가 들어왔어요. 데뷔부터 매니지먼트까지 한 번에 해결됐습니다."</p><div class="course-meta"><span class="tname">6기 수료 · 음악 버튜버</span></div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top:72px">
+    <div class="footer-bar" style="position:static">
+      <div class="wrap fbar">
+        <div class="fbar-main">
+          <div class="fbar-brand-col">
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
+            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <div class="fbar-soc">
+              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+            </div>
+          </div>
+          <nav class="fbar-cols">
+            <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
+            <div class="fcolx"><h5>회사</h5><a href="about.html">소개</a><a href="about.html#careers">채용</a><a href="partnership.html">파트너십</a><a href="blog.html">블로그</a></div>
+            <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
+          </nav>
+        </div>
+        <p style="font-size:12px;color:#9aa6bc;margin:0 0 6px">Language — 한국어 · <a href="../en.html" style="color:#C6CEDC">English</a> · 日本語 · 中文 · ไทย · Tiếng Việt <span style="color:#7c8699">(다국어 지원 준비 중)</span></p>
+        <p class="fbar-copy">© 2026 STARNAUTS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
+</body>
+</html>
