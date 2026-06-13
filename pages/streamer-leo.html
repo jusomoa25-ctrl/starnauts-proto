@@ -3,12 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>STARNAUTS — 레오 (소속 스트리머)</title>
+<title>STARNAUTS — 엔돌핀 (소속 스트리머)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
 <link rel="stylesheet" href="../home/shell.css?v=19">
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+.sb-hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.sb-hero-img{display:block;width:100%;height:auto}
+.sb-hero-grad{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,11,18,.93) 0%,rgba(8,11,18,.74) 36%,rgba(8,11,18,.18) 66%,transparent 100%)}
+.sb-hero-body{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(22px,4vw,50px);max-width:64%}
+.sb-badge{display:inline-block;width:fit-content;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--blue-300);background:rgba(46,111,201,.22);border:1px solid rgba(46,111,201,.4);padding:4px 11px;border-radius:7px;margin-bottom:11px}
+.sb-name{font-size:clamp(28px,3.8vw,46px);font-weight:900;color:#fff;line-height:1.04}
+.sb-rec{font-size:clamp(11px,1.1vw,13.5px);color:#C6CEDC;margin-top:11px;font-weight:600;line-height:1.5}
+.sb-intro{font-size:clamp(11px,1vw,13px);color:#9aa6bc;margin-top:6px;line-height:1.55;max-width:30em}
+.sb-stats{display:flex;gap:16px;font-size:12.5px;color:#9aa6bc;margin-top:13px;flex-wrap:wrap}
+.sb-stats b{color:#fff}
+.sb-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px;align-items:center}
+.sb-chip{display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.08);color:#C6CEDC;border:1px solid rgba(255,255,255,.12)}
+.sb-chip.kr{background:rgba(46,111,201,.22);color:var(--blue-300);border-color:rgba(46,111,201,.4)}
+.sb-acts{display:flex;gap:14px;align-items:center;margin-top:18px;flex-wrap:wrap}
+.sb-acts .fbar-soc{margin-left:0}
+@media(max-width:760px){
+  .sb-hero-grad{display:none}
+  .sb-hero-body{position:static;max-width:100%;padding:20px;background:#0E1116}
+  .sb-name{font-size:25px}
+}
+</style>
 </head>
 <body>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
@@ -62,31 +84,30 @@
     <div class="wrap">
       <a href="agency.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:22px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 에이전시로 돌아가기</a>
 
-      <!-- 프로필 헤더 -->
-      <div class="tool-panel">
-        <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap">
-          <span style="width:96px;height:96px;border-radius:28px;background:#2E6FC9;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:#fff;flex-shrink:0">레</span>
-          <div style="flex:1;min-width:240px">
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-              <h1 style="font-size:30px;font-weight:900">레오</h1>
-              <span style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(46,111,201,.25);color:var(--blue-300);font-weight:800;letter-spacing:.04em">소속 스트리머 · 강사</span>
-            </div>
-            <p style="margin-top:6px;color:#C6CEDC;font-size:14.5px">게임 · 토크 스트리머 — 현업 7년차. 첫 송출부터 채널 성장까지, 직접 겪은 만큼만 가르칩니다.</p>
-            <div style="display:flex;gap:14px;margin-top:12px;font-size:13px;color:#9aa6bc;flex-wrap:wrap">
-              <span><b style="color:#fff">2,418명</b> 수강생</span>
-              <span><b style="color:#fff">★ 4.9</b> 평균 평점</span>
-              <span><b style="color:#fff">3개</b> 진행 강의</span>
-            </div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;align-items:center">
-              <span style="display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:6px;background:rgba(46,111,201,.22);color:var(--blue-300);border:1px solid rgba(46,111,201,.4)">KR</span>
-              <span style="display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.08);color:#C6CEDC;border:1px solid rgba(255,255,255,.12)">치지직</span>
-              <span style="display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:.03em;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.08);color:#C6CEDC;border:1px solid rgba(255,255,255,.12)">YouTube</span>
-            </div>
+      <!-- 배너 히어로 -->
+      <div class="sb-hero">
+        <img class="sb-hero-img" src="../assets/banner-endorphin.webp" alt="엔돌핀">
+        <div class="sb-hero-grad"></div>
+        <div class="sb-hero-body">
+          <span class="sb-badge">버츄얼 스트리머 · 강사</span>
+          <h1 class="sb-name">엔돌핀</h1>
+          <p class="sb-rec">2022 아프리카TV BJ대상 · great 500위 최근 1위 · 보라 파트너 BJ</p>
+          <p class="sb-intro">게임 · 노래 · 버츄얼 · 여행 등 다양한 콘텐츠 진행 — 엔돌핀과 함께하는 1:1 스트리머 콘텐츠</p>
+          <div class="sb-stats">
+            <span><b>2,418명</b> 수강생</span>
+            <span><b>★ 4.9</b> 평균 평점</span>
+            <span><b>3개</b> 진행 강의</span>
           </div>
-          <div style="display:flex;flex-direction:column;gap:9px;align-items:stretch">
+          <div class="sb-chips">
+            <span class="sb-chip kr">KR</span>
+            <span class="sb-chip">SOOP</span>
+            <span class="sb-chip">치지직</span>
+            <span class="sb-chip">YouTube</span>
+            <span class="sb-chip">TikTok</span>
+          </div>
+          <div class="sb-acts">
             <a class="btn btn--primary" href="mailto:booking@starnauts.com">행사·강의 섭외 문의</a>
-            <p style="text-align:center;font-size:11.5px;color:#9aa6bc;margin:0">booking@starnauts.com</p>
-            <div class="fbar-soc" style="margin-left:0;justify-content:center">
+            <div class="fbar-soc">
               <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
               <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
               <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
@@ -94,7 +115,7 @@
           </div>
         </div>
       </div>
-      <p style="text-align:center;font-size:12.5px;color:#9aa6bc;margin-top:10px">이 페이지의 프로필 · 강의 · 일정은 <b style="color:#C6CEDC">레오 님이 본인 대시보드에서 직접 설정</b>한 내용이 그대로 노출됩니다</p>
+      <p style="text-align:center;font-size:12.5px;color:#9aa6bc;margin-top:12px">이 페이지의 프로필 · 강의 · 일정은 <b style="color:#C6CEDC">엔돌핀 님이 본인 대시보드에서 직접 설정</b>한 내용이 그대로 노출됩니다</p>
 
       <!-- 진행 중인 강의 -->
       <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">CLASSES</h2><p class="sec-ko">진행 중인 강의</p></div>
