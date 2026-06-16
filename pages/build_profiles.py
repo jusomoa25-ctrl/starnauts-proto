@@ -164,21 +164,24 @@ def _videos(d):
       </div>'''
 
 
+def profile_sections(d):
+    """프로필 섹션별 HTML — 빌드와 대시보드 미리보기가 공유."""
+    return {
+        "hero": _hero(d) + _event(d),
+        "info": _info_grid(d),
+        "stat": _stat_grid(d),
+        "classes": _class_grid(d),
+        "goods": _goods(d),
+        "videos": _videos(d),
+    }
+
+
 def build(d):
     pre = PRE.replace("STARNAUTS — 엔돌핀 (소속 스트리머)", f"STARNAUTS — {d['title']}")
+    s = profile_sections(d)
     body = "\n".join([
         '      <a href="agency.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:22px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 에이전시로 돌아가기</a>\n',
-        _hero(d) + _event(d),
-        "",
-        _info_grid(d),
-        "",
-        _stat_grid(d),
-        "",
-        _class_grid(d),
-        "",
-        _goods(d),
-        "",
-        _videos(d),
+        s["hero"], "", s["info"], "", s["stat"], "", s["classes"], "", s["goods"], "", s["videos"],
     ])
     section = f'{SEC}\n    <div class="wrap">\n{body}\n    </div>\n  </section>\n\n  '
     return pre + section + POST
