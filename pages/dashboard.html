@@ -231,20 +231,28 @@
                   <label><input type="checkbox"><img src="../assets/flags/ru.png" alt=""> Русский</label>
                 </div>
               </div>
-              <div class="db-field"><label>이벤트 · 일정 추가</label>
-                <div style="display:flex;gap:8px">
-                  <input type="text" placeholder="7/26 (토) 13:00 — 오프라인 팬미팅·장비 클리닉" style="flex:1">
-                  <a class="btn btn--ghost" href="#" style="white-space:nowrap">추가</a>
+              <div class="db-field"><label>스케줄 글 작성 <span style="color:#7c8699;font-weight:400">— 공용 스케줄 게시판 게시 · 공지 체크 시 최상단 고정</span></label>
+                <div id="schedList">
+                  <div class="pl-item"><span style="font-size:9.5px;font-weight:800;color:#fff;background:#D64545;padding:2px 6px;border-radius:3px;flex-shrink:0">공지</span><span class="pl-url" style="flex:1">7월 정규 방송 시간 변경 안내</span><span style="color:#7c8699;font-size:12px">06.16</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="pl-url" style="flex:1">성장 로드맵 4주차 라이브 일정</span><span style="color:#7c8699;font-size:12px">06.15</span><button onclick="this.parentNode.remove()">×</button></div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center">
+                  <input id="schedTitle" type="text" placeholder="제목" style="flex:1 1 150px;min-width:0">
+                  <input id="schedDate" type="date" style="flex:0 1 140px;min-width:0">
+                  <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#9aa6bc;white-space:nowrap"><input type="checkbox" id="schedNotice" style="accent-color:var(--blue)"> 공지</label>
+                  <a class="btn btn--ghost" href="#" onclick="addPost('sched');return false" style="white-space:nowrap">등록</a>
                 </div>
               </div>
-              <div class="db-field"><label>최근 뉴스 · 미디어 링크 <span style="color:#7c8699;font-weight:400">— 저장 순서대로 프로필에 노출</span></label>
+              <div class="db-field"><label>뉴스 글 작성 <span style="color:#7c8699;font-weight:400">— 공용 뉴스 게시판 게시 · 공지 체크 시 최상단 고정</span></label>
                 <div id="newsList">
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:auto;color:var(--blue-300)">게임동아</span><span class="pl-url">버츄얼 스트리머 대상 인기상 수상</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span style="font-size:9.5px;font-weight:800;color:#fff;background:#D64545;padding:2px 6px;border-radius:3px;flex-shrink:0">공지</span><span class="pl-url" style="flex:1">팬미팅 티켓 오픈 일정 안내</span><span style="color:#7c8699;font-size:12px">06.15</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="pl-url" style="flex:1">버츄얼 시상식 인기상 수상</span><span style="color:#7c8699;font-size:12px">05.20</span><button onclick="this.parentNode.remove()">×</button></div>
                 </div>
-                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-                  <input id="newsSrc" type="text" placeholder="매체명" style="flex:0 1 90px;min-width:0">
-                  <input id="newsTitle" type="text" placeholder="기사 제목 / 링크" style="flex:1 1 130px;min-width:0">
-                  <a class="btn btn--ghost" href="#" onclick="addNews();return false" style="white-space:nowrap">추가</a>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center">
+                  <input id="newsTitle" type="text" placeholder="제목" style="flex:1 1 150px;min-width:0">
+                  <input id="newsDate" type="date" style="flex:0 1 140px;min-width:0">
+                  <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#9aa6bc;white-space:nowrap"><input type="checkbox" id="newsNotice" style="accent-color:var(--blue)"> 공지</label>
+                  <a class="btn btn--ghost" href="#" onclick="addPost('news');return false" style="white-space:nowrap">등록</a>
                 </div>
               </div>
               <div class="db-field"><label>성과 지표 · 인포그래픽 <span style="color:#7c8699;font-weight:400">— 박스 위치별 표시 형식을 고르고, 주제·항목·값을 넣으세요</span></label>
@@ -301,14 +309,16 @@ function addPl(){
   document.getElementById('plList').appendChild(item);
   document.getElementById('plUrl').value='';
 }
-function addNews(){
-  var src=(document.getElementById('newsSrc').value||'').trim()||'매체';
-  var title=(document.getElementById('newsTitle').value||'').trim()||'제목 미입력';
-  var item=document.createElement('div');
-  item.className='pl-item';
-  item.innerHTML='<span class="drag">⠿</span><span class="pl-nm" style="width:auto;color:var(--blue-300)">'+src+'</span><span class="pl-url">'+title+'</span><button onclick="this.parentNode.remove()">×</button>';
-  document.getElementById('newsList').appendChild(item);
-  document.getElementById('newsSrc').value='';document.getElementById('newsTitle').value='';
+function addPost(kind){
+  var t=document.getElementById(kind+'Title'),d=document.getElementById(kind+'Date'),n=document.getElementById(kind+'Notice');
+  var title=(t.value||'').trim();if(!title)return;
+  var date=d.value?d.value.slice(5).replace('-','.'):'';
+  var list=document.getElementById(kind+'List');
+  var row=document.createElement('div');row.className='pl-item';
+  var badge=n.checked?'<span style="font-size:9.5px;font-weight:800;color:#fff;background:#D64545;padding:2px 6px;border-radius:3px;flex-shrink:0">공지</span>':'';
+  row.innerHTML=badge+'<span class="pl-url" style="flex:1">'+title+'</span><span style="color:#7c8699;font-size:12px">'+date+'</span><button onclick="this.parentNode.remove()">×</button>';
+  if(n.checked)list.insertBefore(row,list.firstChild);else list.appendChild(row);
+  t.value='';d.value='';n.checked=false;
 }
 function addStat(){
   var g=(document.getElementById('statGroup').value||'').trim()||'주제';

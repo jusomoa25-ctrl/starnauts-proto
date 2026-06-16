@@ -97,6 +97,21 @@
 .cc-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
 .cc-tag{font-size:11.5px;color:#C6CEDC;font-weight:600;line-height:1.35;min-width:0}
 .cc-price{font-size:12px;font-weight:800;color:#fff;background:rgba(46,111,201,.92);padding:4px 10px;border-radius:7px;white-space:nowrap;flex-shrink:0}
+.board-card{display:flex;flex-direction:column}
+.board-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.board-head .ic-label{margin:0}
+.board-more{font-size:11.5px;color:var(--blue-300);font-weight:700;text-decoration:none;white-space:nowrap}
+.board-more:hover{color:#fff}
+.board-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid rgba(255,255,255,.06);text-decoration:none}
+.board-item:first-of-type{border-top:none}
+.bi-notice{font-size:9.5px;font-weight:800;color:#fff;background:#D64545;padding:2px 6px;border-radius:3px;flex-shrink:0;letter-spacing:.02em}
+.bi-title{flex:1;min-width:0;color:#C6CEDC;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board-item:hover .bi-title{color:#fff}
+.bi-date{font-size:11px;color:#7c8699;flex-shrink:0;font-variant-numeric:tabular-nums}
+.yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:0 auto}
+@media(max-width:760px){.yt-grid{grid-template-columns:1fr}}
+.yt-item{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#000}
+.yt-item iframe{width:100%;height:100%;border:0;display:block}
 </style>
 </head>
 <body>
@@ -187,8 +202,20 @@
       <div class="info-grid" style="margin-top:14px">
         <div class="info-card"><div class="ic-label">협업 분야</div><div class="ic-val">행사 진행 · 오프라인 보컬 레슨 · 온라인 1:1 코칭 · 브랜드 콜라보 · 광고 등</div></div>
         <div class="info-card"><div class="ic-label">활동 분야</div><div class="ic-val">보컬 · 음원 제작 · 명리(사주)</div></div>
-        <div class="info-card"><div class="ic-label">활동 경력</div><div class="ic-val">SOOP 보컬 트레이너 · 음원 프로듀서 · 다수 수강생 배출</div></div>
-        <div class="info-card"><div class="ic-label">강점</div><div class="ic-val">보컬·음원·사주 등 다분야 강의 + 태국 가수 신곡 프로듀싱 경험</div></div>
+        <div class="info-card board-card">
+          <div class="board-head"><div class="ic-label">스케줄</div><a href="schedule-board.html" class="board-more">전체 보기 ›</a></div>
+          <a class="board-item" href="schedule-board.html"><span class="bi-notice">공지</span><span class="bi-title">7월 보컬 클래스 시간표 안내</span><span class="bi-date">06.16</span></a>
+          <a class="board-item" href="schedule-board.html"><span class="bi-title">6월 보컬 클래스 추가 모집</span><span class="bi-date">06.15</span></a>
+          <a class="board-item" href="schedule-board.html"><span class="bi-title">AI 음원 강의 7월 일정 공개</span><span class="bi-date">06.12</span></a>
+          <a class="board-item" href="schedule-board.html"><span class="bi-title">작사·작곡 입문반 야간 타임 신설</span><span class="bi-date">06.08</span></a>
+        </div>
+        <div class="info-card board-card">
+          <div class="board-head"><div class="ic-label">뉴스</div><a href="news-board.html" class="board-more">전체 보기 ›</a></div>
+          <a class="board-item" href="news-board.html"><span class="bi-notice">공지</span><span class="bi-title">신곡 발매 쇼케이스 안내</span><span class="bi-date">06.14</span></a>
+          <a class="board-item" href="news-board.html"><span class="bi-title">태국 가수 신곡 프로듀싱 보도</span><span class="bi-date">05.10</span></a>
+          <a class="board-item" href="news-board.html"><span class="bi-title">AI 음원 강의 화제 — 인터뷰 게재</span><span class="bi-date">04.05</span></a>
+          <a class="board-item" href="news-board.html"><span class="bi-title">사주 콘텐츠 방송 인기</span><span class="bi-date">03.20</span></a>
+        </div>
       </div>
 
       <!-- 성과 인포그래픽 (대시보드 연동) -->
@@ -256,41 +283,12 @@
         <span style="color:var(--blue-300);flex-shrink:0"><svg width="18" height="18"><use href="#i-chev-r"/></svg></span>
       </a>
 
-      <!-- 이벤트 · 일정 -->
-      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">SCHEDULE</h2><p class="sec-ko">이벤트 · 강의 일정</p></div>
-      <div class="suno" style="max-width:760px;margin:0 auto">
-        <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">shinjae-schedule</span><span class="live-tool">대시보드에서 자동 동기화</span></div>
-        <div class="suno-body">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">6/15 (일) 21:00</span>
-            <span style="flex:1">보컬 트레이닝 3회차 — 호흡과 발성</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,158,91,.18);color:#5BC98A;font-weight:700;white-space:nowrap">강의</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">6/19 (목) 20:00</span>
-            <span style="flex:1">음원 제작 워크숍 — 믹싱·마스터링 실습</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,158,91,.18);color:#5BC98A;font-weight:700;white-space:nowrap">강의</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">6/22 (일) 22:00</span>
-            <span style="flex:1">신년 사주 라이브 — 시청자 참여 풀이</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,158,91,.18);color:#5BC98A;font-weight:700;white-space:nowrap">강의</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">7/12 (토) 19:00</span>
-            <span style="flex:1">합동 음원 발매 쇼케이스 — 수강생 참여</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,111,201,.22);color:var(--blue-300);font-weight:700;white-space:nowrap">이벤트</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 최근 뉴스 · 미디어 -->
-      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">NEWS</h2><p class="sec-ko">최근 뉴스 · 미디어</p></div>
-      <div style="max-width:760px;margin:0 auto">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="news-item"><span class="news-src">스타뉴스</span><span class="news-title">신재, 태국 가수 신곡 프로듀싱 참여</span><span class="news-date">2026.05</span></a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="news-item"><span class="news-src">탑스타뉴스</span><span class="news-title">AI 음원 → 실음원 발매 강의 화제 — 수강 후기</span><span class="news-date">2026.04</span></a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="news-item"><span class="news-src">OSEN</span><span class="news-title">보컬 트레이너 신재 인터뷰 — "누구나 첫 곡을 낼 수 있다"</span><span class="news-date">2026.02</span></a>
-        <p style="text-align:center;font-size:12px;color:#9aa6bc;margin-top:12px">뉴스·미디어 링크는 본인 대시보드에서 추가하면 순서대로 노출됩니다.</p>
+      <!-- 최근 영상 (대시보드에서 유튜브 링크 등록) -->
+      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">VIDEOS</h2><p class="sec-ko">최근 영상</p></div>
+      <div class="yt-grid">
+        <div class="yt-item"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" title="영상 1" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="yt-item"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" title="영상 2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="yt-item"><iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="영상 3" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
       </div>
 
       <div class="center-cta" style="margin-top:40px">

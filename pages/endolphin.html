@@ -98,6 +98,21 @@
 .cc-tag{font-size:11.5px;color:#C6CEDC;font-weight:600;line-height:1.35;min-width:0}
 .cc-price{font-size:12px;font-weight:800;color:#fff;background:rgba(46,111,201,.92);padding:4px 10px;border-radius:7px;white-space:nowrap;flex-shrink:0}
 .cc-thin{background:linear-gradient(transparent 55%,rgba(8,11,16,.82))!important}
+.board-card{display:flex;flex-direction:column}
+.board-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.board-head .ic-label{margin:0}
+.board-more{font-size:11.5px;color:var(--blue-300);font-weight:700;text-decoration:none;white-space:nowrap}
+.board-more:hover{color:#fff}
+.board-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid rgba(255,255,255,.06);text-decoration:none}
+.board-item:first-of-type{border-top:none}
+.bi-notice{font-size:9.5px;font-weight:800;color:#fff;background:#D64545;padding:2px 6px;border-radius:3px;flex-shrink:0;letter-spacing:.02em}
+.bi-title{flex:1;min-width:0;color:#C6CEDC;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board-item:hover .bi-title{color:#fff}
+.bi-date{font-size:11px;color:#7c8699;flex-shrink:0;font-variant-numeric:tabular-nums}
+.yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:0 auto}
+@media(max-width:760px){.yt-grid{grid-template-columns:1fr}}
+.yt-item{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#000}
+.yt-item iframe{width:100%;height:100%;border:0;display:block}
 </style>
 </head>
 <body>
@@ -192,8 +207,20 @@
       <div class="info-grid" style="margin-top:14px">
         <div class="info-card"><div class="ic-label">협업 분야</div><div class="ic-val">행사 진행 · 온라인 1:1 코칭 · 브랜드 콜라보 · 광고 등</div></div>
         <div class="info-card"><div class="ic-label">활동 분야</div><div class="ic-val">보라 · 여캠 · 게임 · 여행 · 버츄얼</div></div>
-        <div class="info-card"><div class="ic-label">활동 경력</div><div class="ic-val">SOOP 보라 BJ · 2014년부터 활동 · 신규 스트리머 양성 경험</div></div>
-        <div class="info-card"><div class="ic-label">강점</div><div class="ic-val">보라 · 여캠 · 게임 · 여행 · 버츄얼 등 다양한 콘텐츠 운영 및 신규 스트리머 육성 콘텐츠 경험</div></div>
+        <div class="info-card board-card">
+          <div class="board-head"><div class="ic-label">스케줄</div><a href="schedule-board.html" class="board-more">전체 보기 ›</a></div>
+          <a class="board-item" href="schedule-board.html"><span class="bi-notice">공지</span><span class="bi-title">7월 정규 방송 시간 변경 안내</span><span class="bi-date">06.16</span></a>
+          <a class="board-item" href="schedule-board.html"><span class="bi-title">성장 로드맵 4주차 라이브 일정</span><span class="bi-date">06.15</span></a>
+          <a class="board-item" href="schedule-board.html"><span class="bi-title">첫 송출 가이드 Q&amp;A 안내</span><span class="bi-date">06.13</span></a>
+          <a class="board-item" href="schedule-board.html"><span class="bi-title">7월 오프라인 팬미팅 일정 공유</span><span class="bi-date">06.10</span></a>
+        </div>
+        <div class="info-card board-card">
+          <div class="board-head"><div class="ic-label">뉴스</div><a href="news-board.html" class="board-more">전체 보기 ›</a></div>
+          <a class="board-item" href="news-board.html"><span class="bi-notice">공지</span><span class="bi-title">팬미팅 티켓 오픈 일정 안내</span><span class="bi-date">06.15</span></a>
+          <a class="board-item" href="news-board.html"><span class="bi-title">버츄얼 시상식 인기상 수상</span><span class="bi-date">05.20</span></a>
+          <a class="board-item" href="news-board.html"><span class="bi-title">한·일 합동 버츄얼 콘서트 출연</span><span class="bi-date">04.18</span></a>
+          <a class="board-item" href="news-board.html"><span class="bi-title">방송 셋업 인터뷰 게재</span><span class="bi-date">03.12</span></a>
+        </div>
       </div>
 
       <!-- 성과 인포그래픽 (대시보드 연동) -->
@@ -253,41 +280,12 @@
       <!-- 굿즈 스토어 배너 (모든 판매 정보를 한 페이지에) -->
       <a href="endolphin/goods.html" aria-label="엔돌핀 굿즈 스토어" style="display:block;height:100px;border-radius:10px;overflow:hidden;margin-top:16px;text-decoration:none;border:1px solid rgba(232,150,199,.55);background:url('../assets/goods/goods-banner.webp') center/cover"></a>
 
-      <!-- 이벤트 · 일정 -->
-      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">SCHEDULE</h2><p class="sec-ko">이벤트 · 강의 일정</p></div>
-      <div class="suno" style="max-width:760px;margin:0 auto">
-        <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">endolphin-schedule</span><span class="live-tool">대시보드에서 자동 동기화</span></div>
-        <div class="suno-body">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">6/14 (일) 21:00</span>
-            <span style="flex:1">첫 송출 가이드 라이브 Q&amp;A — 수강생 전용</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,158,91,.18);color:#5BC98A;font-weight:700;white-space:nowrap">강의</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">6/21 (일) 20:00</span>
-            <span style="flex:1">성장 로드맵 4주차 — 알고리즘과 업로드 루틴</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,158,91,.18);color:#5BC98A;font-weight:700;white-space:nowrap">강의</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">7/05 (일) 14:00</span>
-            <span style="flex:1">신입 스트리머 합동 방송 — 데뷔 부트캠프 9기 멘토링</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,111,201,.22);color:var(--blue-300);font-weight:700;white-space:nowrap">이벤트</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;font-size:13.5px">
-            <span style="color:var(--blue);font-weight:700;white-space:nowrap">7/26 (토) 13:00</span>
-            <span style="flex:1">오프라인 팬미팅 &amp; 방송 장비 클리닉 — 서울</span>
-            <span style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(46,111,201,.22);color:var(--blue-300);font-weight:700;white-space:nowrap">이벤트</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 최근 뉴스 · 미디어 -->
-      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">NEWS</h2><p class="sec-ko">최근 뉴스 · 미디어</p></div>
-      <div style="max-width:760px;margin:0 auto">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="news-item"><span class="news-src">게임동아</span><span class="news-title">엔돌핀, 버츄얼 스트리머 대상 시상식 인기상 수상</span><span class="news-date">2026.05</span></a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="news-item"><span class="news-src">인벤</span><span class="news-title">한·일 합동 버츄얼 콘서트 출연 — 현장 스케치</span><span class="news-date">2026.04</span></a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="news-item"><span class="news-src">디스이즈게임</span><span class="news-title">버츄얼 방송 셋업 인터뷰 — "장비보다 콘셉트"</span><span class="news-date">2026.03</span></a>
-        <p style="text-align:center;font-size:12px;color:#9aa6bc;margin-top:12px">뉴스·미디어 링크는 본인 대시보드에서 추가하면 순서대로 노출됩니다.</p>
+      <!-- 최근 영상 (대시보드에서 유튜브 링크 등록) -->
+      <div class="sec-head" style="margin-top:56px"><h2 class="sec-en" style="font-size:30px">VIDEOS</h2><p class="sec-ko">최근 영상</p></div>
+      <div class="yt-grid">
+        <div class="yt-item"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" title="영상 1" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="yt-item"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" title="영상 2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="yt-item"><iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="영상 3" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
       </div>
 
       <div class="center-cta" style="margin-top:40px">
