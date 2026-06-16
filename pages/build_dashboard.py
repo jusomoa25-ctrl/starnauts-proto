@@ -100,11 +100,12 @@ MODALS = f'''
 </div></div>
 
 <div class="db-modal" id="m-info"><div class="db-modal-box">
-  <h3>소식 · 분야 수정</h3><p class="msub">협업/활동 분야와 스케줄·뉴스 게시글입니다.</p>
+  <h3>소식 · 분야 수정</h3><p class="msub">협업·활동 분야를 설정합니다.</p>
   {field("협업 분야", d["info"][0][1])}
   {field("활동 분야", d["info"][1][1])}
-  <div class="db-field"><label>스케줄 글 <span style="color:#7c8699;font-weight:400">— 공지 체크 시 최상단</span></label>{posts_list(d["schedule_posts"])}</div>
-  <div class="db-field"><label>뉴스 글</label>{posts_list(d["news_posts"])}</div>
+  <div style="border:1px solid rgba(46,111,201,.35);background:rgba(46,111,201,.08);border-radius:8px;padding:13px 15px;font-size:12.5px;color:#C6CEDC;line-height:1.6">스케줄·뉴스 글은 작성하면 <b style="color:#fff">최신순으로 자동 노출</b>됩니다. 특정 글을 위에 고정하려면 <b style="color:#fff">게시판에서 글 작성 시 ‘공지’를 체크</b>하세요.
+    <div style="display:flex;gap:8px;margin-top:11px"><a class="btn btn--ghost" href="schedule-board.html" style="flex:1;justify-content:center;display:flex">스케줄 게시판</a><a class="btn btn--ghost" href="news-board.html" style="flex:1;justify-content:center;display:flex">뉴스 게시판</a></div>
+  </div>
   <div class="mfoot"><a class="btn btn--ghost" href="#" onclick="closeM();return false" style="flex:1;justify-content:center;display:flex">취소</a><a class="btn btn--primary" href="#" onclick="closeM();return false" style="flex:1;justify-content:center;display:flex">저장</a></div>
 </div></div>
 
@@ -141,16 +142,49 @@ CLASS_PANE = f'''      <div class="db-pane" data-pane="class">
       </div>'''
 
 # ── 굿즈 스토어 탭 ──
+_GSEC = "font-size:13px;font-weight:800;color:#fff;margin:18px 0 11px"
+_INP = "padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-family:inherit;font-size:13.5px"
+_ORD = "border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 14px;margin-bottom:8px;font-size:13px"
+_GUIDE = "border:1px solid rgba(255,255,255,.1);border-radius:8px;margin-bottom:13px"
 GOODS_PANE = f'''      <div class="db-pane" data-pane="goods">
-        <p style="color:#9aa6bc;font-size:13.5px;margin-bottom:14px">굿즈는 <b style="color:#F4C969">스타너츠 미경유 100% 직접 결제</b>입니다. 진열·배송지 엑셀만 제공.</p>
-        <div class="db-field"><label>판매 방식</label><select><option>스타너츠에서 진열 + 직접 결제</option><option>외부 쇼핑몰 링크로 연결</option></select></div>
-        {field("굿즈 이름", "")}
-        {field("가격(원)", "", typ="number")}
-        <div class="db-field"><label>굿즈 사진</label><input type="file" accept="image/*"></div>
-        <div class="db-field"><label>국가 · 결제 수단</label><select><option>한국 — 네이버페이 + 계좌</option><option>해외 — PayPal.me</option></select></div>
-        {field("결제 링크", "", "네이버페이·스마트스토어·PayPal.me")}
-        {field("입금 계좌", "", "계좌이체용")}
-        <a class="btn btn--ghost" href="endolphin/goods.html" target="_blank" style="display:inline-flex;margin-top:4px">굿즈 페이지 미리보기 ›</a>
+        <p style="color:#9aa6bc;font-size:13.5px;margin-bottom:8px">굿즈는 <b style="color:#F4C969">스타너츠 미경유 100% 직접 결제</b>입니다. 스타너츠는 진열·주문(주소) 정리·결제 자동확인만 제공하고 수수료는 받지 않습니다 — <b style="color:#fff">개인 쇼핑몰처럼</b> 운영하세요.</p>
+
+        <p style="{_GSEC}">내 굿즈</p>
+        <div id="goodsList">
+          <div class="pl-item"><span class="pl-dot"><img src="../assets/goods/tshirt.webp" alt=""></span><span class="pl-nm">티셔츠</span><span class="pl-url">엔돌핀 굿즈 티셔츠 (S/M/L/XL)</span><span style="color:#fff;font-weight:700">65,000원</span><button onclick="this.parentNode.remove()">×</button></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px">
+          <input type="text" placeholder="굿즈 이름" style="flex:1 1 140px;min-width:0;{_INP}">
+          <input type="number" placeholder="가격(원)" style="flex:0 1 110px;{_INP}">
+          <input type="file" accept="image/*" style="flex:1 1 120px;min-width:0;font-size:12px;color:#9aa6bc">
+          <a class="btn btn--ghost" href="#" style="white-space:nowrap">＋ 추가</a>
+        </div>
+
+        <div style="border-top:1px dashed rgba(255,255,255,.15);margin:20px 0 0"></div>
+        <p style="{_GSEC}">결제 연동 — 주문 시 자동 확인</p>
+        <div class="db-field"><label>판매 국가</label><select><option>한국</option><option>일본</option><option>태국</option><option>미국·해외</option></select></div>
+        <div class="db-field"><label>네이버페이 API 키 <span style="color:#7c8699;font-weight:400">— 한국 · 등록 시 결제·주문 자동 확인</span></label><input type="password" placeholder="네이버페이 가맹점 API 키 붙여넣기"></div>
+        <details style="{_GUIDE}"><summary style="padding:11px 14px;cursor:pointer;font-size:12.5px;color:var(--blue-300);font-weight:700;list-style:none">＋ 네이버페이 API 발급 방법</summary><ol style="padding:0 16px 14px 34px;margin:0;font-size:12.5px;color:#9aa6bc;line-height:1.7"><li>네이버페이 가맹점 센터(admin.pay.naver.com) 가입</li><li>가맹점 등록 후 심사 완료</li><li>‘개발 관리 &gt; 결제·API 관리’에서 API 키(Client ID·Secret) 발급</li><li>발급된 키를 위 칸에 붙여넣기 → 주문·결제가 자동으로 확인됩니다</li></ol></details>
+        <div class="db-field"><label>해외 결제 API <span style="color:#7c8699;font-weight:400">— 해외 판매 시 (PayPal / Stripe 등 국가별)</span></label><input type="password" placeholder="PayPal Client ID 또는 Stripe Secret Key"></div>
+        <details style="{_GUIDE}"><summary style="padding:11px 14px;cursor:pointer;font-size:12.5px;color:var(--blue-300);font-weight:700;list-style:none">＋ 해외 결제 API 발급 방법</summary><ol style="padding:0 16px 14px 34px;margin:0;font-size:12.5px;color:#9aa6bc;line-height:1.7"><li>PayPal: developer.paypal.com → 앱 생성 → Client ID·Secret 발급</li><li>Stripe: dashboard.stripe.com → 개발자 → API 키</li><li>판매 국가에 맞는 키를 등록하면 해당 결제가 자동 확인됩니다</li></ol></details>
+        <div class="db-field"><label>입금 계좌 <span style="color:#7c8699;font-weight:400">— 계좌이체 · 입금은 아래에서 수동 확인</span></label><input type="text" value="카카오뱅크 0000-00-0000000 (예금주 엔돌핀)"></div>
+
+        <div style="border-top:1px dashed rgba(255,255,255,.15);margin:20px 0 0"></div>
+        <p style="{_GSEC}">주문 관리</p>
+        <div style="{_ORD}">
+          <div>＊<b>06.17</b> · 엔돌핀 굿즈 티셔츠 (M) ×1</div>
+          <div style="color:#9aa6bc;font-size:12px;margin-top:5px">홍길동 · 010-1234-5678 · 서울시 강남구 ○○로 12, 101동 502호 (06234)</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="color:#fff;font-weight:700">68,000원</span><span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:5px;background:rgba(46,158,91,.18);color:#5BC98A">네이버페이 결제완료 ✓ 자동</span></div>
+        </div>
+        <div style="{_ORD}">
+          <div>＊<b>06.16</b> · 엔돌핀 굿즈 티셔츠 (L) ×1</div>
+          <div style="color:#9aa6bc;font-size:12px;margin-top:5px">김민지 · 010-9876-5432 · 부산시 해운대구 ○○대로 88, 303호 (48095)</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="color:#fff;font-weight:700">68,000원</span><label style="display:flex;align-items:center;gap:5px;font-size:12px;color:#C6CEDC;cursor:pointer"><input type="checkbox"> 계좌이체 입금확인 (수동)</label></div>
+        </div>
+        <a class="btn btn--ghost" href="#" style="display:inline-flex;margin-top:6px">⤓ 주소·주문 내역 엑셀(.xlsx) 다운로드</a>
+
+        <div style="border-top:1px dashed rgba(255,255,255,.15);margin:20px 0 14px"></div>
+        <a class="btn btn--ghost" href="endolphin/goods.html" target="_blank" style="display:inline-flex">굿즈 페이지 미리보기 ›</a>
       </div>'''
 
 BODY = f'''  <section class="section" style="padding-top:36px">
