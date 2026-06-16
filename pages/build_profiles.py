@@ -215,6 +215,8 @@ ACCOUNTS = {
                     ("endolphin/bora-knowhow.html", "c4.webp", "중급", "", "여캠 운영 노하우", "★100")],
         "goods": ("image", "endolphin/goods.html", "엔돌핀 굿즈 스토어", "goods-banner.webp"),
         "videos": ["jNQXAC9IVRw", "M7lc1UVf-VE", "aqz-KE-bpKQ"],
+        "email": "jes.endolphin@gemail.com",
+        "revenue": {"domestic": "70 / 30", "overseas_dub": "50 / 50"},
     },
     "streamer-shinjae.html": {
         "name": "신재", "title": "신재 (소속 스트리머)", "banner": "banner-shinjae.webp",

@@ -114,6 +114,15 @@
               </div>
             </div>
             <div class="db-field"><label>카테고리</label><select><option>스트리밍</option><option>편집</option><option>보컬·댄스</option><option>음원 제작</option><option>콘텐츠 스킬</option><option>지식·재능</option></select></div>
+            <div class="db-field"><label>수익 분배 <span style="color:#7c8699;font-weight:400">— 국내 / 해외(스타너츠 더빙 제작 시)</span></label>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <div style="flex:1 1 130px"><span style="font-size:11px;color:#7c8699">국내 (강사 / 스타너츠)</span><input type="text" value="70 / 30" readonly style="width:100%;opacity:.75;margin-top:4px;box-sizing:border-box"></div>
+                <div style="flex:1 1 150px"><span style="font-size:11px;color:#7c8699">해외 (강사 / 스타너츠)</span>
+                  <select style="width:100%;margin-top:4px;padding:9px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:12.5px;font-family:inherit"><option>50 / 50 — 스타너츠 더빙·자막 제작</option><option>70 / 30 — 직접 자막 제공</option></select>
+                </div>
+              </div>
+              <p style="font-size:11.5px;color:#7c8699;margin-top:6px">스타너츠가 외국어 더빙·자막을 제작한 강의는 해외 시청 수익을 5:5로 분배합니다.</p>
+            </div>
             <a class="btn btn--primary" href="#" style="width:100%;justify-content:center;display:flex">등록 신청 (심사 후 게시)</a>
             <p style="font-size:11.5px;color:#9aa6bc;margin-top:8px">심사는 부적절 콘텐츠 여부만 확인합니다. 가격·구성은 강사가 결정합니다.</p>
           </div>
@@ -184,9 +193,16 @@
           <div class="suno" style="margin-top:16px">
             <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">profile</span><span class="live-tool">저장 = 즉시 공개 반영</span></div>
             <div class="suno-body">
+              <div class="db-field"><label>계정 이메일 <span style="color:#7c8699;font-weight:400">— 스타너츠 로그인 계정 (가입 시 인증, 변경 불가)</span></label><input type="email" value="jes.endolphin@gemail.com" readonly style="opacity:.75"></div>
               <div class="db-field"><label>프로필 사진 <span style="color:#7c8699;font-weight:400">— 에이전시 카드·게시판에 공통으로 노출되는 계정 프로필</span></label>
                 <div style="display:flex;align-items:center;gap:12px">
                   <span style="width:54px;height:54px;border-radius:50%;background:#B85C9E;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;flex-shrink:0;border:1px solid rgba(255,255,255,.15)">엔</span>
+                  <input type="file" accept="image/*" style="flex:1">
+                </div>
+              </div>
+              <div class="db-field"><label>히어로 배너 이미지 <span style="color:#7c8699;font-weight:400">— 프로필 상단 와이드 배너 (권장 1440×540)</span></label>
+                <div style="display:flex;align-items:center;gap:12px">
+                  <span style="width:96px;height:36px;border-radius:6px;background:#0E1116 url('../assets/banner-endorphin.webp') center/cover;flex-shrink:0;border:1px solid rgba(255,255,255,.15)"></span>
                   <input type="file" accept="image/*" style="flex:1">
                 </div>
               </div>
@@ -197,14 +213,23 @@
                 </div>
               </div>
               <div class="db-field"><label>표시 이름 · 한 줄 소개</label><input type="text" value="엔돌핀 — 첫 송출부터 채널 성장까지, 직접 겪은 만큼만 가르칩니다."></div>
+              <div class="db-field"><label>배지 · 직함 <span style="color:#7c8699;font-weight:400">— 히어로 이름 위 표기</span></label><input type="text" value="스타너츠 파트너 · 강사"></div>
+              <div class="db-field"><label>한 줄 이력</label><input type="text" value="2022 아프리카TV BJ대상 · 아프리카TV(현 SOOP) 최단기 보라 파트너 BJ"></div>
+              <div class="db-field"><label>대표 통계 <span style="color:#7c8699;font-weight:400">— 히어로에 노출되는 핵심 수치 3개</span></label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <input type="text" value="2,418명 수강생" style="flex:1 1 90px;min-width:0">
+                  <input type="text" value="★ 4.9 평균 평점" style="flex:1 1 90px;min-width:0">
+                  <input type="text" value="3개 진행 강의" style="flex:1 1 90px;min-width:0">
+                </div>
+              </div>
               <div class="db-field"><label>국적</label>
                 <select style="width:120px"><option>KR</option><option>JP</option><option>TH</option><option>VN</option><option>US</option></select>
               </div>
               <div class="db-field"><label>플랫폼 링크 <span style="color:#7c8699;font-weight:400">— 저장한 순서대로 프로필에 노출됩니다</span></label>
                 <div id="plList">
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/youtube.png" alt=""></span><span class="pl-nm">YouTube</span><span class="pl-url">youtube.com/@endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/chzzk.png" alt=""></span><span class="pl-nm">치지직</span><span class="pl-url">chzzk.naver.com/endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/soop.png" alt=""></span><span class="pl-nm">SOOP</span><span class="pl-url">sooplive.co.kr/endorphin</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/soop.png" alt=""></span><span class="pl-nm">SOOP</span><span class="pl-url">sooplive.com/station/dmsgkdn12</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/instagram.png" alt=""></span><span class="pl-nm">Instagram</span><span class="pl-url">instagram.com/doll0403</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-dot"><img src="../assets/platform/navercafe.png" alt=""></span><span class="pl-nm">네이버 카페</span><span class="pl-url">cafe.naver.com/endolphin0403</span><button onclick="this.parentNode.remove()">×</button></div>
                 </div>
                 <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
                   <select id="plPlat" style="flex:1 1 120px;min-width:0">
@@ -235,6 +260,22 @@
                   <label><input type="checkbox"><img src="../assets/flags/es.png" alt=""> Español</label>
                   <label><input type="checkbox"><img src="../assets/flags/pt.png" alt=""> Português</label>
                   <label><input type="checkbox"><img src="../assets/flags/ru.png" alt=""> Русский</label>
+                </div>
+              </div>
+              <div class="db-field"><label>협업 분야</label><input type="text" value="행사 진행 · 온라인 1:1 코칭 · 브랜드 콜라보 · 광고 등"></div>
+              <div class="db-field"><label>활동 분야</label><input type="text" value="보라 · 여캠 · 게임 · 여행 · 버츄얼"></div>
+              <div class="db-field"><label>섭외 문의 이메일 <span style="color:#7c8699;font-weight:400">— 히어로 ‘섭외 문의’ 버튼</span></label><input type="email" value="booking@starnauts.com"></div>
+              <div class="db-field"><label>진행 중인 이벤트 <span style="color:#7c8699;font-weight:400">— 비우면 미노출</span></label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <input type="text" value="엔돌핀의 버츄얼 팬미팅 & 토크쇼 · 7/26 (토) 서울" style="flex:1 1 180px;min-width:0">
+                  <input type="text" value="endorphin/event.html" placeholder="링크" style="flex:0 1 140px;min-width:0">
+                </div>
+              </div>
+              <div class="db-field"><label>최근 영상 (유튜브 3개) <span style="color:#7c8699;font-weight:400">— 프로필 하단 노출</span></label>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <input type="text" value="https://youtu.be/jNQXAC9IVRw" placeholder="유튜브 링크 1">
+                  <input type="text" value="https://youtu.be/M7lc1UVf-VE" placeholder="유튜브 링크 2">
+                  <input type="text" value="https://youtu.be/aqz-KE-bpKQ" placeholder="유튜브 링크 3">
                 </div>
               </div>
               <div class="db-field"><label>스케줄 글 작성 <span style="color:#7c8699;font-weight:400">— 공용 스케줄 게시판 게시 · 공지 체크 시 최상단 고정</span></label>
@@ -274,9 +315,9 @@
                   </label>
                 </div>
                 <div id="statList">
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">팬덤·후원</span><span class="pl-url">애청자 · 57,166명</span><button onclick="this.parentNode.remove()">×</button></div>
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">방송 활동</span><span class="pl-url">총 방송 시간 · 13,294h</span><button onclick="this.parentNode.remove()">×</button></div>
-                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">성장 지표</span><span class="pl-url">누적 방문 · 678만회</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">SOOP 팬덤·후원</span><span class="pl-url">도넛 · 애청자 57,166 / 팬클럽 35,230 / 서포터 272</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">SOOP 누적 성과</span><span class="pl-url">막대 · 누적 유저 1,807만 / 방문 678만 / UP 45만</span><button onclick="this.parentNode.remove()">×</button></div>
+                  <div class="pl-item"><span class="drag">⠿</span><span class="pl-nm" style="width:82px;color:var(--blue-300)">SOOP 방송 활동</span><span class="pl-url">숫자 · 13,294h / 2014년 개설</span><button onclick="this.parentNode.remove()">×</button></div>
                 </div>
                 <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
                   <input id="statGroup" type="text" placeholder="주제(박스)" style="flex:1 1 84px;min-width:0">
