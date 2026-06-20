@@ -61,3 +61,48 @@
   .fbar-main{gap:26px}
   .fbar-cols{gap:30px}
 }
+
+/* ============================================================
+   A11y additions (audit C1/H4/H5/H8/M6) — tokens untouched
+   ============================================================ */
+
+/* C1) reduced-motion: stop twinkle/meteor/orbit/earth-spin etc. */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* H4) native dark controls/scrollbars/mobile chrome */
+html{color-scheme:dark}
+
+/* H5) visible focus ring (keyboard only) using brand --blue */
+:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:2px;
+}
+.fld input:focus-visible,.fld select:focus-visible,
+.jfld input:focus-visible,.jfld select:focus-visible,.jfld textarea:focus-visible,
+.pack:focus-visible,.pay:focus-visible,.role-card:focus-visible,.soc-btn:focus-visible{
+  outline:none;
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(46,111,201,.5);
+}
+
+/* H8) skip link — hidden until focused */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--blue);color:#fff;padding:10px 16px;border-radius:0 0 10px 0;
+  font-size:13px;font-weight:700;text-decoration:none;
+}
+.skip-link:focus{left:0}
+
+/* M6) mobile tap behavior */
+button,a,.pack,.pay,.role-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+/* C3) reset native button styling for div-replacing buttons so visuals stay identical */
+button.pack,button.pay,button.role-card{font-family:inherit;font-size:inherit;-webkit-appearance:none;appearance:none}
+button.pay{color:#C6CEDC}

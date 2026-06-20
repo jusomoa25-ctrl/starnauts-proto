@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
 <title>STARNAUTS — 로그인</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
@@ -27,6 +28,7 @@
 .soc-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13.5px;font-weight:700;margin-bottom:9px}
 </style></head>
 <body>
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -89,19 +91,19 @@
     </div>
   </header>
 
-  <section class="section" style="padding-top:36px">
+  <section class="section" id="main" style="padding-top:36px">
     <div class="wrap">
       <div class="auth-wrap">
-        <div class="sec-head" style="margin-bottom:6px"><h2 class="sec-en" style="font-size:30px">LOGIN</h2><p class="sec-ko">로그인</p></div>
+        <div class="sec-head" style="margin-bottom:6px"><h1 class="sec-en" style="font-size:30px">LOGIN</h1><p class="sec-ko">로그인</p></div>
         <p style="text-align:center;color:#9aa6bc;font-size:13.5px;margin-bottom:26px">다시 오신 것을 환영합니다.</p>
-        <form onsubmit="return false">
-          <div class="fld"><label>이메일</label><input type="email" placeholder="you@example.com"></div>
-          <div class="fld"><label>비밀번호</label><input type="password" placeholder="비밀번호"></div>
+        <form onsubmit="location.href='mypage.html';return false">
+          <div class="fld"><label for="loginEmail">이메일</label><input id="loginEmail" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com"></div>
+          <div class="fld"><label for="loginPassword">비밀번호</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호"></div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;font-size:12.5px">
             <label style="display:flex;gap:6px;align-items:center;color:#9aa6bc"><input type="checkbox" style="width:auto"> 로그인 유지</label>
             <a href="#" style="color:var(--blue)">비밀번호 찾기</a>
           </div>
-          <a class="btn btn--primary btn--lg" href="mypage.html" style="width:100%;justify-content:center;display:flex">로그인</a>
+          <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;display:flex">로그인</button>
         </form>
         <div class="divider-or">또는</div>
         <button class="soc-btn"><svg width="17" height="17"><use href="#i-yt"/></svg> Google로 로그인</button>

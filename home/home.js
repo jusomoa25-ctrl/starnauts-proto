@@ -5,6 +5,7 @@
   'use strict';
   const $  = (s,c)=> (c||document).querySelector(s);
   const $$ = (s,c)=> Array.from((c||document).querySelectorAll(s));
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Starfield ---------- */
   (function stars(){
@@ -52,16 +53,28 @@
   (function tabs(){
     const wrap=$('#courseTabs'), grid=$('#courseGrid'); if(!wrap||!grid) return;
     const cards=$$('.course',grid);
-    wrap.addEventListener('click',e=>{
-      const t=e.target.closest('.tab'); if(!t) return;
-      $$('.tab',wrap).forEach(x=>x.classList.remove('is-active'));
-      t.classList.add('is-active');
+    const tabsList=$$('.tab',wrap);
+    function activate(t){
+      tabsList.forEach(x=>{ x.classList.remove('is-active'); x.setAttribute('aria-selected','false'); });
+      t.classList.add('is-active'); t.setAttribute('aria-selected','true');
       const cat=t.dataset.cat;
       cards.forEach(c=>{
         const show = cat==='all' || c.dataset.cat===cat;
         c.style.display = show ? '' : 'none';
         if(show){ c.style.animation='none'; void c.offsetWidth; c.style.animation='fadeUp .4s ease'; }
       });
+    }
+    wrap.addEventListener('click',e=>{
+      const t=e.target.closest('.tab'); if(!t) return;
+      activate(t);
+    });
+    // arrow-key navigation between tabs (WAI-ARIA tablist pattern)
+    wrap.addEventListener('keydown',e=>{
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+      const i=tabsList.indexOf(document.activeElement); if(i<0) return;
+      e.preventDefault();
+      const next=e.key==='ArrowRight' ? (i+1)%tabsList.length : (i-1+tabsList.length)%tabsList.length;
+      tabsList[next].focus(); activate(tabsList[next]);
     });
     if(!document.getElementById('fu-kf')){
       const st=document.createElement('style'); st.id='fu-kf';
@@ -160,7 +173,7 @@
       $$('button',dotsHost).forEach((d,i)=>d.classList.toggle('on',i===index));
     }
     function go(d){ index=(index+d+slides.length)%slides.length; update(); }
-    function reset(){ clearInterval(timer); timer=setInterval(()=>go(1),6000); }
+    function reset(){ clearInterval(timer); if(!reduceMotion) timer=setInterval(()=>go(1),6000); }
     if(prev) prev.addEventListener('click',()=>{ go(-1); reset(); });
     if(next) next.addEventListener('click',()=>{ go(1); reset(); });
     buildDots(); update(); reset();
@@ -168,7 +181,7 @@
 
   /* ---------- Shooting stars in hero ---------- */
   (function shooters(){
-    const host=$('#stars'); if(!host) return;
+    const host=$('#stars'); if(!host || reduceMotion) return;
     function shoot(){
       const s=document.createElement('span');
       s.className='shooter';

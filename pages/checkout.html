@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
 <title>STARNAUTS — 결제</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
@@ -46,6 +47,7 @@
 .search-bar input{flex:1;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:15px;font-family:inherit}
 </style></head>
 <body>
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -108,32 +110,32 @@
     </div>
   </header>
 
-  <section class="section" style="padding-top:36px">
+  <section class="section" id="main" style="padding-top:36px">
     <div class="wrap" style="max-width:880px">
-      <div class="sec-head"><h2 class="sec-en">CHECKOUT</h2><p class="sec-ko">스타 충전 · 결제</p></div>
+      <div class="sec-head"><h1 class="sec-en">CHECKOUT</h1><p class="sec-ko">스타 충전 · 결제</p></div>
       <div class="steps" style="margin-top:24px">
         <div class="step on"><div class="dot">1</div>스타 충전</div>
         <div class="step on"><div class="dot">2</div>결제</div>
         <div class="step"><div class="dot">3</div>완료</div>
       </div>
 
-      <div class="jcol">
+      <form class="jcol" onsubmit="return false">
         <div>
           <div class="suno">
             <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">charge</span><span class="live-tool">충전 금액</span></div>
             <div class="suno-body">
-              <p style="font-size:12.5px;color:#9aa6bc;font-weight:700;margin-bottom:10px">충전할 스타 ($1 = 1 스타)</p>
-              <div class="star-pack">
-                <div class="pack" onclick="pickPack(this)"><b>★ 10</b><span>$10</span></div>
-                <div class="pack on" onclick="pickPack(this)"><b>★ 50</b><span>$50</span></div>
-                <div class="pack" onclick="pickPack(this)"><b>★ 100</b><span>$100</span></div>
-                <div class="pack" onclick="pickPack(this)"><b>★ 500</b><span>$500</span></div>
+              <p id="packLabel" style="font-size:12.5px;color:#9aa6bc;font-weight:700;margin-bottom:10px">충전할 스타 ($1 = 1 스타)</p>
+              <div class="star-pack" role="radiogroup" aria-labelledby="packLabel">
+                <button type="button" class="pack" role="radio" aria-checked="false" onclick="pickPack(this)"><b>★ 10</b><span>$10</span></button>
+                <button type="button" class="pack on" role="radio" aria-checked="true" onclick="pickPack(this)"><b>★ 50</b><span>$50</span></button>
+                <button type="button" class="pack" role="radio" aria-checked="false" onclick="pickPack(this)"><b>★ 100</b><span>$100</span></button>
+                <button type="button" class="pack" role="radio" aria-checked="false" onclick="pickPack(this)"><b>★ 500</b><span>$500</span></button>
               </div>
-              <div class="jfld"><label>직접 입력</label><input type="number" placeholder="충전할 스타 수"></div>
-              <p style="font-size:12.5px;color:#9aa6bc;font-weight:700;margin:18px 0 10px">결제 수단</p>
-              <div class="pay-opt">
-                <div class="pay on" onclick="pickPay(this)">PayPal</div>
-                <div class="pay" onclick="pickPay(this)">암호화폐 (Binance Pay)</div>
+              <div class="jfld"><label for="customStars">직접 입력</label><input id="customStars" name="customStars" type="number" inputmode="numeric" min="1" placeholder="충전할 스타 수"></div>
+              <p id="payLabel" style="font-size:12.5px;color:#9aa6bc;font-weight:700;margin:18px 0 10px">결제 수단</p>
+              <div class="pay-opt" role="radiogroup" aria-labelledby="payLabel">
+                <button type="button" class="pay on" role="radio" aria-checked="true" onclick="pickPay(this)">PayPal</button>
+                <button type="button" class="pay" role="radio" aria-checked="false" onclick="pickPay(this)">암호화폐 (Binance Pay)</button>
               </div>
             </div>
           </div>
@@ -146,18 +148,18 @@
               <div class="jrow"><span style="flex:1">보유 스타</span><span style="color:#9aa6bc">★ 240</span></div>
               <div class="jrow"><span style="flex:1">충전</span><span style="color:#5BC98A;font-weight:700">+ ★ 50</span></div>
               <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)"><span style="font-weight:700;color:#fff">결제 금액</span><span style="font-size:22px;font-weight:900;color:#fff">$50</span></div>
-              <a class="btn btn--primary btn--lg" href="mypage.html" style="width:100%;justify-content:center;display:flex;margin-top:16px">결제하기</a>
+              <button type="submit" class="btn btn--primary btn--lg" onclick="location.href='mypage.html'" style="width:100%;justify-content:center;display:flex;margin-top:16px">결제하기</button>
               <p style="font-size:11px;color:#9aa6bc;margin-top:10px;line-height:1.5">결제 시 <a href="terms.html" style="color:var(--blue)">이용약관</a>에 동의하며, 디지털 콘텐츠 특성상 시청 시작 후 환불이 제한될 수 있습니다.</p>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </section>
 
   <script>
-  function pickPack(el){document.querySelectorAll('.pack').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
-  function pickPay(el){document.querySelectorAll('.pay').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
+  function pickPack(el){document.querySelectorAll('.pack').forEach(c=>{c.classList.remove('on');c.setAttribute('aria-checked','false');});el.classList.add('on');el.setAttribute('aria-checked','true');}
+  function pickPay(el){document.querySelectorAll('.pay').forEach(c=>{c.classList.remove('on');c.setAttribute('aria-checked','false');});el.classList.add('on');el.setAttribute('aria-checked','true');}
   </script>
 
   <footer class="footer" style="margin-top:72px">

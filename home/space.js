@@ -5,6 +5,7 @@
   'use strict';
   const bg = document.getElementById('space-bg');
   if(!bg) return;
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const field = document.getElementById('space-stars') || (function(){
     const d=document.createElement('div'); d.id='space-stars'; bg.appendChild(d); return d;
   })();
@@ -41,7 +42,9 @@
       {opacity:0, transform:`rotate(${angle}deg) translate(${dx}px,${dy}px)`}
     ],{duration: 900+Math.random()*500, easing:'cubic-bezier(.4,0,.5,1)'}).onfinish=()=>m.remove();
   }
-  // periodic meteors, paused when tab hidden
-  setInterval(()=>{ if(!document.hidden && Math.random()>0.35) meteor(); }, 2600);
-  setTimeout(meteor, 1200);
+  // periodic meteors, paused when tab hidden — skipped entirely for reduced-motion users
+  if(!reduceMotion){
+    setInterval(()=>{ if(!document.hidden && Math.random()>0.35) meteor(); }, 2600);
+    setTimeout(meteor, 1200);
+  }
 })();

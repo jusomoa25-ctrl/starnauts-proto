@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
 <title>STARNAUTS — 회원가입</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
@@ -27,6 +28,7 @@
 .soc-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13.5px;font-weight:700;margin-bottom:9px}
 </style></head>
 <body>
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -89,42 +91,42 @@
     </div>
   </header>
 
-  <section class="section" style="padding-top:36px">
+  <section class="section" id="main" style="padding-top:36px">
     <div class="wrap">
       <div class="auth-wrap">
-        <div class="sec-head" style="margin-bottom:6px"><h2 class="sec-en" style="font-size:30px">JOIN</h2><p class="sec-ko">무료로 시작하기</p></div>
+        <div class="sec-head" style="margin-bottom:6px"><h1 class="sec-en" style="font-size:30px">JOIN</h1><p class="sec-ko">무료로 시작하기</p></div>
         <p style="text-align:center;color:#9aa6bc;font-size:13.5px;margin-bottom:26px">가입은 무료입니다. 강의는 스타(STAR)로 결제하며 <b style="color:#C6CEDC">$1 = 1 스타</b>로 충전합니다.</p>
 
-        <p style="font-size:12.5px;color:#9aa6bc;font-weight:700;margin-bottom:10px">어떻게 시작할까요?</p>
-        <div class="role-pick">
-          <div class="role-card on" data-role="learner" onclick="pickRole(this)">
-            <svg><use href="#i-user"/></svg>
+        <p id="roleLabel" style="font-size:12.5px;color:#9aa6bc;font-weight:700;margin-bottom:10px">어떻게 시작할까요?</p>
+        <div class="role-pick" role="radiogroup" aria-labelledby="roleLabel">
+          <button type="button" class="role-card on" role="radio" aria-checked="true" data-role="learner" onclick="pickRole(this)">
+            <svg aria-hidden="true"><use href="#i-user"/></svg>
             <b>배우고 싶어요</b>
             <span>강의를 듣는 일반 회원</span>
-          </div>
-          <div class="role-card" data-role="creator" onclick="pickRole(this)">
-            <svg><use href="#i-star"/></svg>
+          </button>
+          <button type="button" class="role-card" role="radio" aria-checked="false" data-role="creator" onclick="pickRole(this)">
+            <svg aria-hidden="true"><use href="#i-star"/></svg>
             <b>가르치고 싶어요</b>
             <span>강의를 파는 스트리머·전문가</span>
-          </div>
+          </button>
         </div>
 
-        <form onsubmit="return false">
-          <div class="fld"><label>이메일</label><input type="email" placeholder="you@example.com"></div>
-          <div class="fld"><label>닉네임</label><input type="text" placeholder="방송에서 쓰는 이름"></div>
-          <div class="fld"><label>비밀번호</label><input type="password" placeholder="8자 이상"></div>
-          <div class="fld"><label>국적</label>
-            <select><option>대한민국</option><option>日本 / Japan</option><option>ประเทศไทย / Thailand</option><option>中国 / China</option><option>Việt Nam</option><option>Other</option></select>
+        <form onsubmit="location.href='mypage.html';return false">
+          <div class="fld"><label for="suEmail">이메일</label><input id="suEmail" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com"></div>
+          <div class="fld"><label for="suNick">닉네임</label><input id="suNick" name="nickname" type="text" autocomplete="username" placeholder="방송에서 쓰는 이름"></div>
+          <div class="fld"><label for="suPassword">비밀번호</label><input id="suPassword" name="password" type="password" autocomplete="new-password" placeholder="8자 이상"></div>
+          <div class="fld"><label for="suCountry">국적</label>
+            <select id="suCountry" name="country" autocomplete="country-name"><option>대한민국</option><option>日本 / Japan</option><option>ประเทศไทย / Thailand</option><option>中国 / China</option><option>Việt Nam</option><option>Other</option></select>
           </div>
           <div id="creatorFields" class="hide">
-            <div class="fld"><label>주 방송 플랫폼</label>
-              <select><option>치지직</option><option>SOOP</option><option>YouTube Live</option><option>Twitch</option><option>TikTok Live</option><option>판다 / 기타</option></select>
+            <div class="fld"><label for="suPlatform">주 방송 플랫폼</label>
+              <select id="suPlatform" name="platform"><option>치지직</option><option>SOOP</option><option>YouTube Live</option><option>Twitch</option><option>TikTok Live</option><option>판다 / 기타</option></select>
             </div>
-            <div class="fld"><label>채널 링크</label><input type="text" placeholder="https://..."></div>
+            <div class="fld"><label for="suChannel">채널 링크</label><input id="suChannel" name="channel" type="url" inputmode="url" spellcheck="false" placeholder="https://..."></div>
             <p style="font-size:11.5px;color:#9aa6bc;margin:-4px 0 14px;line-height:1.5">강사 승인 후 강의 등록·가격 설정이 가능합니다. 판매 수익의 <b style="color:#5BC98A">70%</b>가 정산되며 PayPal·암호화폐로 환전합니다.</p>
           </div>
           <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#9aa6bc;margin-bottom:18px"><input type="checkbox" style="width:auto;margin-top:2px"> <span><a href="terms.html" style="color:var(--blue)">이용약관</a> 및 <a href="privacy.html" style="color:var(--blue)">개인정보처리방침</a>에 동의합니다.</span></label>
-          <button class="btn btn--primary btn--lg" style="width:100%;justify-content:center;display:flex">무료로 시작하기</button>
+          <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;display:flex">무료로 시작하기</button>
         </form>
 
         <div class="divider-or">또는</div>
@@ -137,8 +139,8 @@
 
   <script>
   function pickRole(el){
-    document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('on'));
-    el.classList.add('on');
+    document.querySelectorAll('.role-card').forEach(c=>{c.classList.remove('on');c.setAttribute('aria-checked','false');});
+    el.classList.add('on');el.setAttribute('aria-checked','true');
     document.getElementById('creatorFields').classList.toggle('hide', el.dataset.role!=='creator');
   }
   </script>
