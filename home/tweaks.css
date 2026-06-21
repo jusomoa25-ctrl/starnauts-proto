@@ -106,3 +106,18 @@ button,a,.pack,.pay,.role-card{touch-action:manipulation;-webkit-tap-highlight-c
 /* C3) reset native button styling for div-replacing buttons so visuals stay identical */
 button.pack,button.pay,button.role-card{font-family:inherit;font-size:inherit;-webkit-appearance:none;appearance:none}
 button.pay{color:#C6CEDC}
+
+/* H7) raise muted-text contrast floor to ~5:1 on the dark bg (#05080F).
+   Only neutral grays are lifted — brand blue/pink tokens untouched. */
+:root{
+  --muted-2:#9AA6BC;
+  --tx-mut:#9AA6BC;
+}
+.side-sub a,.side-copy,.fbar-copy{color:#9AA6BC}
+.imgph,[class*="imgph"]{color:#9AA6BC}
+
+/* M4) tabular numerals so stats/prices/counts don't shift width */
+.num,.cs b,.cs span,.statline .s .n,.course-price,.star-note b{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}

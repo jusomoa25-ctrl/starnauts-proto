@@ -176,6 +176,12 @@
     function reset(){ clearInterval(timer); if(!reduceMotion) timer=setInterval(()=>go(1),6000); }
     if(prev) prev.addEventListener('click',()=>{ go(-1); reset(); });
     if(next) next.addEventListener('click',()=>{ go(1); reset(); });
+    // L4) pause auto-advance on hover/focus, resume on leave/blur
+    const region=track.closest('.review-panel')||track;
+    region.addEventListener('mouseenter',()=>clearInterval(timer));
+    region.addEventListener('mouseleave',reset);
+    region.addEventListener('focusin',()=>clearInterval(timer));
+    region.addEventListener('focusout',reset);
     buildDots(); update(); reset();
   })();
 
