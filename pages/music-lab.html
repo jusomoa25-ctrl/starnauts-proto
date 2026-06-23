@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
 <style>
 /* ── AI MUSIC LAB ─────────────────────────────────────────── */
-.lab{max-width:1180px;margin:0 auto;padding:0 18px 120px}
+.lab{max-width:1180px;margin:0 auto;padding:0 18px 260px}
+@media(max-width:560px){.lab{padding-bottom:340px}}
 .lab-head{text-align:center;padding:34px 0 8px}
 .lab-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--blue-300);text-transform:uppercase}
 .lab-eyebrow svg{width:15px;height:15px}
@@ -20,13 +21,8 @@
 .lab-title svg{width:30px;height:30px;color:var(--blue-300)}
 .lab-sub{font-size:14px;color:#9aa6bc;line-height:1.6;max-width:48ch;margin:0 auto}
 
-/* 2컬럼 레이아웃 (데스크탑 폼 좌 · 미리보기 우 sticky) */
-.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:30px;align-items:start;max-width:880px;margin:0 auto}
-.lab-grid.wide{max-width:1140px}
-@media(max-width:980px){.lab-grid{grid-template-columns:1fr;max-width:780px}}
-.lab-form{min-width:0}
-.lab-aside{position:sticky;top:18px}
-@media(max-width:980px){.lab-aside{position:static;margin-top:8px}}
+/* 단일 컬럼 풀와이드 폼 (우측 패널 제거 · 하단 고정 도크로 이동) */
+.lab-form{min-width:0;max-width:860px;margin:0 auto}
 
 /* 안내 배너 */
 .lab-banner{display:flex;gap:13px;align-items:flex-start;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:14px;padding:15px 17px;margin:14px 0}
@@ -167,53 +163,77 @@
 .skip-link:focus{left:0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
-/* ── 실시간 Suno 미리보기 ───────────────────────────────── */
-.pv{border:1px solid rgba(127,169,224,.28);background:rgba(13,20,35,.72);border-radius:16px;padding:16px 16px 18px;backdrop-filter:blur(6px)}
-.pv-head{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.pv-head svg{width:17px;height:17px;color:var(--blue-300);flex-shrink:0}
-.pv-head h4{margin:0;font-size:13.5px;font-weight:900;color:#fff}
-.pv-head .pv-tag{margin-left:auto;font-size:10px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:6px;padding:2px 7px;letter-spacing:.04em}
-.pv-desc{font-size:11px;color:#9aa6bc;margin:0 0 12px;line-height:1.5}
-.pv-warn{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:#E7C26B;line-height:1.5;background:rgba(231,194,107,.08);border:1px solid rgba(231,194,107,.22);border-radius:9px;padding:8px 10px;margin-top:10px}
-.pv-warn svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
-.pv-warn:empty{display:none}
-
-/* ── AI 요청 프롬프트 패널 ─────────────────────────────── */
-.pv-prompt-desc{font-size:11.5px;color:#9aa6bc;margin:0 0 12px;line-height:1.5}
-.pv-prompt-ta{width:100%;min-height:320px;box-sizing:border-box;padding:13px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.34);color:#E4E9F2;font-size:12.5px;line-height:1.65;resize:vertical;font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);white-space:pre-wrap;word-break:break-word}
-.pv-prompt-ta::placeholder{color:#6b7689}
-.pv-prompt-ta:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.pv-prompt-bar{display:flex;align-items:center;gap:9px;margin-top:11px}
-.pv-target{font-size:11.5px;color:#9aa6bc;flex:1;min-width:0}
-.pv-target b{color:var(--blue-300);font-weight:800}
-.pv-copy-lg{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
-.pv-copy-lg:hover{background:rgba(46,111,201,.16);color:#fff}
-.pv-copy-lg:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
-.pv-copy-lg svg{width:13px;height:13px;flex-shrink:0}
-.pv-copy-lg.done{border-color:rgba(126,212,166,.5);color:#7ED4A6}
-
-/* ── 제공자 선택 (Gemini/GPT/Claude) ──────────────────── */
+/* ── 제공자 선택 (Gemini/GPT/Claude) — 상단 키 배너 ───── */
 .provrow{display:flex;gap:7px;margin:2px 0 10px;flex-wrap:wrap}
 .provrow .provb{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#C6CEDC;border-radius:9px;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
 .provrow .provb:hover{border-color:var(--blue-300);color:#fff}
 .provrow .provb[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.16);color:#fff}
+.provrow .provb .ok-dot{width:6px;height:6px;border-radius:50%;background:#7ED4A6;flex-shrink:0;display:none}
+.provrow .provb.has-key .ok-dot{display:inline-block}
 .provrow .provb:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
 .provlbl{font-size:11.5px;font-weight:800;color:#9aa6bc;margin:8px 0 4px;display:block}
 
-/* ── 선택 요약 sticky 바 ───────────────────────────────── */
-.sumbar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(8,13,24,.94);border-top:1px solid rgba(127,169,224,.22);backdrop-filter:blur(8px);transform:translateY(120%);transition:transform 220ms ease}
-.sumbar.show{transform:translateY(0)}
-.sumbar-in{max-width:1140px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.sumbar .sb-pills{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
+/* ── 하단 고정 도크 (#dock) ────────────────────────────── */
+#dock{position:fixed;left:0;right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
+.dock-in{max-width:980px;margin:0 auto;padding:0 18px}
+
+/* (A) 프롬프트 영역 (접이식) */
+.dock-prompt{border-bottom:1px solid rgba(255,255,255,.07)}
+.dock-prompt-h{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;color:#fff;font-family:inherit;font-size:12.5px;font-weight:800;padding:10px 0 8px;cursor:pointer;text-align:left}
+.dock-prompt-h svg.lead{width:15px;height:15px;color:var(--blue-300);flex-shrink:0}
+.dock-prompt-h .pv-tag{font-size:10px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:6px;padding:2px 7px;letter-spacing:.04em}
+.dock-prompt-h .chev{width:14px;height:14px;color:#9aa6bc;margin-left:auto;transition:transform 160ms}
+.dock-prompt-h[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.dock-prompt-body{display:none;padding-bottom:9px}
+.dock-prompt-body.open{display:block}
+.pv-prompt-ta{width:100%;max-height:150px;min-height:88px;box-sizing:border-box;padding:11px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.4);color:#E4E9F2;font-size:12.5px;line-height:1.6;resize:vertical;overflow:auto;font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);white-space:pre-wrap;word-break:break-word}
+.pv-prompt-ta::placeholder{color:#6b7689}
+.pv-prompt-ta:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.pv-warn{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:#E7C26B;line-height:1.5;background:rgba(231,194,107,.08);border:1px solid rgba(231,194,107,.22);border-radius:9px;padding:7px 10px;margin-top:8px}
+.pv-warn svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
+.pv-warn:empty{display:none}
+
+/* (B) 액션 줄 (항상 보임) */
+.dock-act{display:flex;align-items:center;gap:12px;padding:9px 0 11px}
+.dock-sum{display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex:1;min-width:0}
 .sb-pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#C6CEDC;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 11px}
 .sb-pill.warn{color:#E7C26B;border-color:rgba(231,194,107,.35);background:rgba(231,194,107,.08)}
 .sb-pill .k{color:#7d8aa0;font-weight:600}
-.sumbar .sb-act{display:flex;gap:7px;flex-shrink:0}
-.sb-btn{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.16);background:none;color:#C6CEDC;border-radius:9px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
-.sb-btn:hover{border-color:var(--blue-300);color:#fff}
-.sb-btn:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
-.sb-btn svg{width:13px;height:13px}
-@media(max-width:560px){.sumbar .sb-pills{font-size:11px}.sb-pill .k{display:none}}
+.sb-pill.empty{color:#7d8aa0;background:none;border-style:dashed}
+.dock-top{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.16);background:none;color:#C6CEDC;border-radius:9px;padding:6px 11px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.dock-top:hover{border-color:var(--blue-300);color:#fff}
+.dock-top svg{width:13px;height:13px}
+.dock-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.dock-target{display:flex;align-items:center;gap:6px}
+.dock-target-l{font-size:11px;font-weight:800;color:#7d8aa0;white-space:nowrap}
+.dock-tgrp{display:inline-flex;border:1px solid rgba(255,255,255,.14);border-radius:9px;overflow:hidden}
+.dock-tgrp button{position:relative;border:0;background:none;color:#9aa6bc;font-family:inherit;font-size:11.5px;font-weight:700;padding:7px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.dock-tgrp button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.dock-tgrp button:focus-visible{outline:2px solid var(--blue-300);outline-offset:-2px}
+.dock-tgrp button .ok-dot{width:5px;height:5px;border-radius:50%;background:#7ED4A6;display:none}
+.dock-tgrp button.has-key .ok-dot{display:inline-block}
+.dock-tgrp button[aria-pressed="true"].has-key .ok-dot{background:#fff}
+.pv-copy-lg{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.pv-copy-lg:hover{background:rgba(46,111,201,.16);color:#fff}
+.pv-copy-lg:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.pv-copy-lg svg{width:14px;height:14px;flex-shrink:0}
+.pv-copy-lg.done{border-color:rgba(126,212,166,.5);color:#7ED4A6}
+.dock-gen{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:background 140ms}
+.dock-gen:hover{background:var(--blue-700)}
+.dock-gen:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.dock-gen svg{width:16px;height:16px;flex-shrink:0}
+@media(max-width:760px){
+  .dock-act{flex-direction:column;align-items:stretch;gap:9px}
+  .dock-sum{order:1}
+  .dock-right{order:2;flex-wrap:wrap;justify-content:stretch}
+  .dock-target{width:100%;justify-content:space-between}
+  .dock-tgrp{flex:1}
+  .dock-tgrp button{flex:1;justify-content:center}
+  .pv-copy-lg,.dock-gen{flex:1;justify-content:center}
+  .dock-top{align-self:flex-start}
+  .pv-prompt-ta{max-height:110px;min-height:72px}
+  .sb-pill .k{display:none}
+}
 </style>
 </head>
 <body>
@@ -258,7 +278,7 @@
   <header class="lab-head">
     <span class="lab-eyebrow"><svg><use href="#i-music"/></svg> AI MUSIC LAB</span>
     <h1 class="lab-title"><svg><use href="#i-music"/></svg> 음악 만들기</h1>
-    <p class="lab-sub">옵션을 고르면 오른쪽에 <b>AI에게 보낼 요청 프롬프트</b>가 실시간으로 만들어져요.</p>
+    <p class="lab-sub">옵션을 고르면 화면 하단 바에 <b>AI에게 보낼 요청 프롬프트</b>가 실시간으로 만들어져요. 언제든 복사할 수 있어요.</p>
   </header>
 
   <!-- AI 제공자 선택 + API 키 (BYOK) -->
@@ -269,9 +289,9 @@
       <p>키 없이도 요청 프롬프트는 만들어집니다(복사해서 직접 사용). 자동 생성을 원할 때만 키를 등록하세요. 키는 이 브라우저에만 저장되고 서버로 전송되지 않아요.</p>
       <span class="provlbl">AI 제공자</span>
       <div class="provrow" id="provRow" role="group" aria-label="AI 제공자 선택">
-        <button type="button" class="provb" data-prov="gemini" aria-pressed="true">Gemini</button>
-        <button type="button" class="provb" data-prov="gpt" aria-pressed="false">GPT</button>
-        <button type="button" class="provb" data-prov="claude" aria-pressed="false">Claude</button>
+        <button type="button" class="provb" data-prov="gemini" aria-pressed="true"><span class="ok-dot" aria-hidden="true"></span>Gemini</button>
+        <button type="button" class="provb" data-prov="gpt" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>GPT</button>
+        <button type="button" class="provb" data-prov="claude" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>Claude</button>
       </div>
       <button type="button" class="blink" id="keyToggle"><svg><use href="#i-chev-r"/></svg> API 키 등록 / 설정</button>
       <div class="keybox" id="keyBox">
@@ -303,8 +323,7 @@
     </div>
   </div>
 
-  <div class="lab-grid wide" id="labGrid">
-  <div class="lab-form">
+  <div class="lab-form" id="labGrid">
 
   <!-- 1. 주제 / 컨셉 (맨 위) -->
   <div class="fld">
@@ -507,29 +526,7 @@
     </details>
   </div>
 
-  <button type="button" class="gen" id="genBtn"><svg><use href="#i-music"/></svg> 가사 + 스타일 만들기</button>
-
   </div><!-- /lab-form -->
-
-  <!-- AI 요청 프롬프트 (우 sticky) -->
-  <aside class="lab-aside" aria-label="AI 요청 프롬프트">
-    <div class="pv">
-      <div class="pv-head"><svg><use href="#i-eye"/></svg><h4>AI 요청 프롬프트</h4><span class="pv-tag">실시간</span></div>
-      <p class="pv-prompt-desc">이 내용이 그대로 AI에게 전송됩니다 (수정 가능).</p>
-
-      <label class="sr-only" for="pvPrompt">AI 요청 프롬프트</label>
-      <textarea class="pv-prompt-ta" id="pvPrompt" spellcheck="false" aria-describedby="pvTarget"></textarea>
-
-      <div class="pv-prompt-bar">
-        <span class="pv-target" id="pvTarget">전송 대상: <b id="pvTargetName">Gemini</b></span>
-        <button type="button" class="pv-copy-lg" id="pvCopy" aria-label="요청 프롬프트 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button>
-      </div>
-
-      <div class="pv-warn" id="pvWarn"></div>
-    </div>
-  </aside>
-
-  </div><!-- /lab-grid -->
 
   <div class="divider"></div>
 
@@ -544,14 +541,41 @@
 
 </main>
 
-<!-- 선택 요약 sticky 바 -->
-<div class="sumbar" id="sumbar" role="status" aria-live="polite">
-  <div class="sumbar-in">
-    <div class="sb-pills" id="sbPills"></div>
-    <div class="sb-act">
-      <button type="button" class="sb-btn" id="sbTop"><svg><use href="#i-up"/></svg> 맨 위로</button>
-      <button type="button" class="sb-btn" id="sbReset"><svg><use href="#i-refresh"/></svg> 초기화</button>
+<!-- ── 하단 고정 도크 (프롬프트 · 요약 · 전송대상 · 복사 · 생성) ── -->
+<div id="dock" role="complementary" aria-label="AI 요청 도크">
+  <div class="dock-in">
+
+    <!-- (A) 프롬프트 영역 (접이식) -->
+    <div class="dock-prompt">
+      <button type="button" class="dock-prompt-h" id="dockPromptToggle" aria-expanded="true" aria-controls="dockPromptBody">
+        <svg class="lead" aria-hidden="true"><use href="#i-eye"/></svg> AI 요청 프롬프트 <span class="pv-tag">실시간</span>
+        <svg class="chev" aria-hidden="true"><use href="#i-chev-r"/></svg>
+      </button>
+      <div class="dock-prompt-body open" id="dockPromptBody">
+        <label class="sr-only" for="pvPrompt">AI 요청 프롬프트 (수정 가능)</label>
+        <textarea class="pv-prompt-ta" id="pvPrompt" spellcheck="false" aria-label="AI 요청 프롬프트"></textarea>
+        <div class="pv-warn" id="pvWarn"></div>
+      </div>
     </div>
+
+    <!-- (B) 액션 줄 (항상 보임) -->
+    <div class="dock-act">
+      <div class="dock-sum" id="sbPills" role="status" aria-live="polite"></div>
+      <button type="button" class="dock-top" id="sbTop"><svg aria-hidden="true"><use href="#i-up"/></svg> 맨 위로</button>
+      <div class="dock-right">
+        <div class="dock-target">
+          <span class="dock-target-l">전송 대상</span>
+          <div class="dock-tgrp" id="dockTgrp" role="group" aria-label="전송 대상 선택">
+            <button type="button" data-prov="gemini" aria-pressed="true"><span class="ok-dot" aria-hidden="true"></span>Gemini</button>
+            <button type="button" data-prov="gpt" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>GPT</button>
+            <button type="button" data-prov="claude" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>Claude</button>
+          </div>
+        </div>
+        <button type="button" class="pv-copy-lg" id="pvCopy" aria-label="요청 프롬프트 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button>
+        <button type="button" class="dock-gen" id="genBtn"><svg aria-hidden="true"><use href="#i-music"/></svg> 가사 + 스타일 만들기</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -841,32 +865,18 @@ var ws=$('#weirdSlider'); if(ws){ ws.addEventListener('input',function(){ $('#we
 $$('#styleInfSeg button').forEach(function(b){ b.addEventListener('click',function(){ $$('#styleInfSeg button').forEach(function(x){x.setAttribute('aria-pressed','false');}); b.setAttribute('aria-pressed','true'); update(); }); });
 
 /* ── 선택 요약 sticky 바 ─────────────────────────────── */
+function summaryText(field){ var t=pickedTexts(field); return t; }
 function updateSummary(gN,mN,iN){
   var pills=[];
-  var gs=pickedTexts('genre'); if(gs.length) pills.push({k:'장르',v:gs.join('·'),warn:gN>2});
-  var ms=pickedTexts('mood'); if(ms.length) pills.push({k:'무드',v:ms.length>2?ms.slice(0,2).join('·')+' 외'+(ms.length-2):ms.join('·'),warn:mN>2});
-  var is=pickedTexts('inst'); if(is.length) pills.push({k:'악기',v:is.length+'개',warn:iN>3});
-  var len=$('.len[aria-pressed="true"] b'); if(len) pills.push({k:'길이',v:len.textContent,warn:false});
-  var st=$('.struct[aria-pressed="true"] b'); if(st) pills.push({k:'구조',v:st.textContent,warn:false});
-  var bar=$('#sumbar'), wrap=$('#sbPills');
-  if(!pills.length){ bar.classList.remove('show'); wrap.innerHTML=''; return; }
+  var gs=summaryText('genre'); pills.push({k:'장르',v:gs.length?gs.join('·'):'미선택',warn:gN>2});
+  var ms=summaryText('mood'); pills.push({k:'무드',v:ms.length?(ms.length>2?ms.slice(0,2).join('·')+' 외'+(ms.length-2):ms.join('·')):'미선택',warn:mN>2});
+  var is=summaryText('inst'); pills.push({k:'악기',v:is.length+'개',warn:iN>3});
+  var len=$('.len[aria-pressed="true"] b'); pills.push({k:'길이',v:len?len.textContent:'3:30',warn:false});
+  var st=$('.struct[aria-pressed="true"] b'); pills.push({k:'구조',v:st?st.textContent:'표준 팝',warn:false});
+  var wrap=$('#sbPills');
   wrap.innerHTML=pills.map(function(p){ return '<span class="sb-pill'+(p.warn?' warn':'')+'"><span class="k">'+p.k+'</span> '+p.v+(p.warn?' ⚠':'')+'</span>'; }).join('');
-  bar.classList.add('show');
 }
 $('#sbTop').addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
-$('#sbReset').addEventListener('click',function(){
-  $$('.mchip[aria-pressed="true"]').forEach(function(c){
-    // 기본값 유지: 언어 한국어 / 시대 현대 / 템포 중간
-    if(c.getAttribute('data-ko')||c.getAttribute('data-single')==='lang'&&c.getAttribute('data-ko')) return;
-    c.setAttribute('aria-pressed','false');
-  });
-  // 단일 그룹 기본값 복원
-  setPressedByText('lang','한국어'); setPressedByText('era','현대 (2020s)'); setPressedByText('tempo','중간 (90-110 BPM)');
-  selectSingleByStruct('pop');
-  var cc=$('#concept'); if(cc)cc.value='';
-  promptDirty=false; // 초기화 시 자동 작성 재개
-  syncStructNote(); update();
-});
 function setPressedByText(field,text){
   $$('.fld[data-field="'+field+'"] .mchip[data-single]').forEach(function(c){ c.setAttribute('aria-pressed', c.textContent.trim()===text?'true':'false'); });
 }
@@ -909,25 +919,51 @@ function refreshKey(){
   if(hasKey()){ banner.classList.add('ok'); title.textContent=p.name+' API 연결됨 — 가사 자동 생성 준비 완료'; }
   else { banner.classList.remove('ok'); title.textContent='AI 제공자를 고르세요 (현재 '+p.name+')'; }
 }
+// 등록된 키가 있는 제공자에 표시 점(.has-key) 부착 (상단 배너 + 도크)
+function refreshKeyDots(){
+  $$('#provRow .provb[data-prov],#dockTgrp button[data-prov]').forEach(function(b){
+    var pv=PROVIDERS[b.getAttribute('data-prov')];
+    var on=!!(pv&&localStorage.getItem(pv.key));
+    b.classList.toggle('has-key',on);
+  });
+}
+// 상단/도크 제공자 버튼 양방향 동기화 (aria-pressed)
+function syncProviderButtons(){
+  $$('#provRow .provb[data-prov],#dockTgrp button[data-prov]').forEach(function(b){
+    b.setAttribute('aria-pressed', b.getAttribute('data-prov')===currentProvider?'true':'false');
+  });
+}
 function applyProviderUI(){
   var p=provider();
   $('#gkey').placeholder=p.ph;
   $('#gkey').value=localStorage.getItem(p.key)||'';
   $('#keyIssueLink').href=p.issueUrl;
   $('#keyIssueLink').textContent=p.issue;
-  $('#pvTargetName').textContent=p.name;
+  syncProviderButtons();
+  refreshKeyDots();
   refreshKey();
 }
-$$('#provRow .provb[data-prov]').forEach(function(b){
-  b.addEventListener('click',function(){
-    $$('#provRow .provb').forEach(function(x){x.setAttribute('aria-pressed','false');});
-    b.setAttribute('aria-pressed','true');
-    currentProvider=b.getAttribute('data-prov');
-    applyProviderUI();
-  });
+function setProvider(prov){
+  if(!PROVIDERS[prov]||prov===currentProvider){ currentProvider=prov; applyProviderUI(); return; }
+  currentProvider=prov;
+  applyProviderUI();
+}
+$$('#provRow .provb[data-prov],#dockTgrp button[data-prov]').forEach(function(b){
+  b.addEventListener('click',function(){ setProvider(b.getAttribute('data-prov')); });
 });
+
+/* ── 도크 프롬프트 접이식 토글 ───────────────────────── */
+(function(){
+  var t=$('#dockPromptToggle'), body=$('#dockPromptBody');
+  if(!t||!body)return;
+  t.addEventListener('click',function(){
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded', open?'false':'true');
+    body.classList.toggle('open',!open);
+  });
+})();
 $('#keyToggle').addEventListener('click',function(){ box.classList.toggle('show'); $('#gkey').value=localStorage.getItem(provider().key)||''; });
-$('#keySave').addEventListener('click',function(){ var v=$('#gkey').value.trim(); if(v){localStorage.setItem(provider().key,v);}else{localStorage.removeItem(provider().key);} box.classList.remove('show'); refreshKey(); });
+$('#keySave').addEventListener('click',function(){ var v=$('#gkey').value.trim(); if(v){localStorage.setItem(provider().key,v);}else{localStorage.removeItem(provider().key);} box.classList.remove('show'); refreshKey(); refreshKeyDots(); });
 
 /* ── 가사+스타일 만들기 ──────────────────────────────── */
 function copyText(txt,cb){
@@ -947,7 +983,9 @@ $('#genBtn').addEventListener('click',function(){
     btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트를 복사했어요 — '+p.name+'에 붙여넣으세요';
   }
   setTimeout(function(){ btn.innerHTML=orig; },2400);
-  $('.lab-aside').scrollIntoView({behavior:'smooth',block:'start'});
+  // 도크 프롬프트가 접혀 있으면 펼쳐서 결과를 바로 보이게
+  var t=$('#dockPromptToggle'), body=$('#dockPromptBody');
+  if(t&&body&&t.getAttribute('aria-expanded')!=='true'){ t.setAttribute('aria-expanded','true'); body.classList.add('open'); }
 });
 
 /* 초기 렌더 */
