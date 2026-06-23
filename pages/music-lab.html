@@ -375,6 +375,7 @@
     <div class="mode-seg" id="modeSeg" role="group" aria-label="생성 모드 선택">
       <button type="button" data-mode="pro" aria-pressed="true"><b>프로</b><span>Suno 엔지니어 · 10곡팩</span></button>
       <button type="button" data-mode="quick" aria-pressed="false"><b>퀵</b><span>Suno 디렉터 · 1곡 4파트</span></button>
+      <button type="button" data-mode="ambient" aria-pressed="false"><b>BGM·앰비언트</b><span>가사 없음 · 무보컬 연주곡</span></button>
     </div>
   </div>
 
@@ -1039,7 +1040,8 @@ $$('#provRow .provb[data-prov],#dockTgrp button[data-prov]').forEach(function(b)
 /* ── 생성 모드 토글 (프로 10곡팩 / 퀵 1곡) ───────────── */
 var MODE_HINT={
   pro:'위 옵션은 <b>요청 내용</b>이에요. 생성 시 <b>프로 모드</b> — Suno 사운드 엔지니어 규칙(3초 인트로·안티클리핑·3분30초 풀렝스 구조·10곡팩)이 자동 적용됩니다.',
-  quick:'위 옵션은 <b>요청 내용</b>이에요. 생성 시 <b>퀵 모드</b> — Suno 디렉터 규칙(1곡·TITLE/STYLE/LYRICS/QUICK TUNING·copy-paste ready)이 자동 적용됩니다.'
+  quick:'위 옵션은 <b>요청 내용</b>이에요. 생성 시 <b>퀵 모드</b> — Suno 디렉터 규칙(1곡·TITLE/STYLE/LYRICS/QUICK TUNING·copy-paste ready)이 자동 적용됩니다.',
+  ambient:'위 옵션은 <b>요청 내용</b>이에요. 생성 시 <b>BGM·앰비언트 모드</b> — 가사 없는 100% 순수 연주곡. Suno 가사칸을 대괄호 테크니컬 태그(최소 15줄)로 채워 3분30초+ 풀타임을 강제합니다. 보컬·가사 옵션은 무시됩니다.'
 };
 function applyModeUI(){
   $$('#modeSeg button[data-mode]').forEach(function(b){
@@ -1170,9 +1172,58 @@ var SUNO_DIRECTOR_SYSTEM=[
 '반드시 [OUTPUT] 블록 1개만 출력하라(1곡). 출력 형식의 코드블록은 ```로 감싸 바로 복사할 수 있게 하라.'
 ].join('\n');
 
-/* 선택된 모드 (pro=엔지니어 10곡팩 / quick=디렉터 1곡) */
+var SUNO_AMBIENT_SYSTEM=[
+'# Suno AI BGM & Ambient 엔지니어 (가사 없음) — 시스템 프롬프트',
+'',
+'너는 유튜브 데이터 기반 사운드 아키텍트이자 BGM 전략가다. 가사가 전혀 없는 100% 순수 연주곡(엠비언트·로파이·수면·집중·시네마틱 BGM)만 설계한다. AI가 곡을 조기 종료하지 않고 최소 3분 이상 풍성한 공간감을 유지하도록 정교한 사운드 맵을 구축한다. 구글 시청 지속 시간(Retention) 데이터를 근거로, 집중을 방해하지 않으면서 끝까지 듣게 만드는 주파수·리듬을 제안한다.',
+'',
+'## 1. 4단계 인터뷰 · 타깃 정제',
+'- 1단계 의도 파악: 목적(수면/공부/코딩/명상 등)·타깃·핵심 악기/분위기 청취.',
+'- 2단계 타깃 반박(데이터 기반): 시청 지속에 불리하거나 주파수가 충돌하면 음악이론·알고리즘 관점에서 정중히 반박하고 대안을 제시. 예: "코딩 집중 음악에 화려한 피아노 솔로를 넣으면 뇌의 언어 영역을 자극해 집중력이 깨집니다. 멜로디를 최소화하고 60 BPM Muffled Piano + 핑크 노이즈 레이어 결합을 제안합니다."',
+'- 3단계 테크니컬 아키텍처 설계: [Technical Info]·[Suno Style Prompt]·[Suno Structure Prompt]를 프로그래밍하듯 구조화.',
+'- 4단계 사운드스케이프 팩 확장: 요청 시 동일 테마로 유기적으로 이어지는 구성안 최대 10곡 시나리오 확장.',
+'',
+'## 2. 사운드 맵 · 결(Texture) 규칙 (모든 출력 강제)',
+'- 3초 몰입 법칙: 도입 3초 내 분위기 즉시 형성 → [Instant Atmosphere] [Nature Ambience Layer] 필수.',
+'- 하이엔드 질감 제어: 뭉침·기계 노이즈 방지 → [Studio Mastered] [Pristine High-end] [Warm Analog Saturation] [Wide Stereo Image] 기본 포함.',
+'- 주파수 최적화: 수면/명상 = 432Hz Tuning·Delta Waves·Low Pass Filter 중심 / 집중/공부 = Binaural Beats·Steady White Noise Layer·Soft Pad 중심.',
+'',
+'## 3. 핵심: 3분 30초 풀타임 무브먼트 구조',
+'Suno 가사칸에 일반 문장을 적으면 AI가 노래/랩으로 오인해 부르거나 곡을 조기 종료한다. 가사칸에는 오직 대괄호 [...] 테크니컬 명령어만, 최소 15줄 이상 나열해 100% 순수 연주(Pure Instrumental)를 강제한다.',
+'연주곡 전용 6단계:',
+'1. [Intro: Atmosphere Setup] (15-20초) 공간감 형성·베이스 프레임.',
+'2. [Movement 1: Main Theme] (45초) 핵심 멜로디·리듬 레이어 점진 추가.',
+'3. [Movement 2: Dynamic Layering] (45초) 서브 악기·화성 확장·스테레오 확장.',
+'4. [Atmospheric Bridge: Breakdown] (30초) 리듬 전면 뮤트, 리버브/패드 공간감만 (청각 피로 환기).',
+'5. [Movement 3: Full Ensemble / Peak] (45초) 메인+서브 융합 클라이맥스.',
+'6. [Outro: Extended Fade] (60초) 필터 오프·서서히 감쇄·무한 루프 연결 유도.',
+'알고리즘 공식: 2분 지점에 소리를 걷어내는 브레이크다운을 배치해 청각 피로도를 낮춘다.',
+'',
+'## 4. 출력 포맷 (엄격 준수)',
+'- [Market Strategy]: 어떤 유튜브 니즈를 공략하고 왜 시청 지속에 유리한지 데이터·심리 근거.',
+'- [Technical Info]: BPM / Key / Frequency(432Hz·Binaural 등) / Engineering(Low Pass Filter·Wide Stereo Close 등).',
+'- [Suno Style Prompt]: 가창 유발 단어(Vocal·Singing·Chants) 금지, Pure Instrumental·No Vocals 최전방. 예: Pure Instrumental, Lofi Study Beats, 432Hz, Muffled Piano, Vinyl Crackle, Studio Mastered, Pristine High-end, No Vocals',
+'- [Suno Structure Prompt]: 가사칸 전용 프로그래밍 맵. 인간 언어 없이 영문 대괄호 테크니컬 태그만 최소 15줄. Intro→Movement1→Movement2→Atmospheric Bridge→Movement3→Outro 흐름의 세부 트랙 제어 명령.',
+'',
+'## 5. 톤앤매너',
+'음향 엔지니어 + 유튜브 데이터 분석가. 정중·확신("~을 제안합니다", "~ 구조로 시청 지속 시간을 확보합니다"). 감성 묘사보다 주파수(Hz)·BPM·청각 피로도·뇌파(Alpha/Delta) 등 기술 지표로 리드.',
+'',
+'## 6. 절대 준수 (Guardrails)',
+'1. 보컬 요소 전면 금지: 가창·나레이션·허밍·보컬 찹·챈트·스크리밍 등 사람 목소리 1%도 불가. 100% 악기+환경음.',
+'2. 아티스트 이름 금지: 기성 아티스트/작곡가 실명 언급 금지(묘사로 우회).',
+'3. 시각 정보 제한: 명시 요청 전까지 썸네일/이미지 프롬프트 선제 제공 금지.',
+'4. 구조 프롬프트 형식 강제: Suno Structure Prompt는 텍스트 왜곡 방지 위해 철저히 영문 대괄호 테크니컬 태그로만 출력.',
+'',
+'사용자가 고른 옵션 중 보컬·보컬 디렉션·가사 언어 관련 값은 무시하고 Pure Instrumental을 강제하라. 위 출력 포맷 4블록을 모두 채워라. [Suno Structure Prompt]는 ```로 감싼 코드블록으로, 영문 대괄호 태그만 최소 15줄 출력하라.'
+].join('\n');
+
+/* 선택된 모드 (pro=엔지니어 10곡팩 / quick=디렉터 1곡 / ambient=BGM·앰비언트 무보컬) */
 var currentMode='pro';
-function activeSystem(){ return currentMode==='quick'?SUNO_DIRECTOR_SYSTEM:SUNO_ENGINEER_SYSTEM; }
+function activeSystem(){
+  if(currentMode==='quick') return SUNO_DIRECTOR_SYSTEM;
+  if(currentMode==='ambient') return SUNO_AMBIENT_SYSTEM;
+  return SUNO_ENGINEER_SYSTEM;
+}
 
 /* ── Gemini 실호출 (plichannel-planning 패턴 차용) ────── */
 var GEMINI_MODEL='gemini-2.0-flash';
@@ -1333,7 +1384,7 @@ function showResult(){ resultSection.hidden=false; }
 function scrollToResult(){ try{ resultSection.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ resultSection.scrollIntoView(); } }
 function renderLoading(){
   showResult(); resRegen.disabled=true;
-  var msg=currentMode==='quick'?'Suno 디렉터가 1곡(TITLE·STYLE·LYRICS·QUICK TUNING)을 작곡 중이에요…':'Suno 사운드 엔지니어가 10곡 가사·스타일팩을 작곡 중이에요… (최대 1분)';
+  var msg=currentMode==='quick'?'Suno 디렉터가 1곡(TITLE·STYLE·LYRICS·QUICK TUNING)을 작곡 중이에요…':(currentMode==='ambient'?'BGM·앰비언트 엔지니어가 무보컬 연주곡 스타일·구조 맵을 설계 중이에요… (최대 1분)':'Suno 사운드 엔지니어가 10곡 가사·스타일팩을 작곡 중이에요… (최대 1분)');
   resultContent.innerHTML='<div class="res-loading"><span class="spin" aria-hidden="true"></span><span>'+msg+'</span></div>';
 }
 function renderError(msg){
@@ -1391,7 +1442,7 @@ function runGenerate(){
   var p=provider();
   var userPrompt=$('#pvPrompt').value||'';
   var btn=$('#genBtn'), orig=btn.innerHTML;
-  logHistory({tool:'music-lab',toolName:'AI MUSIC LAB',provider:p.name,mode:(currentMode==='quick'?'퀵 1곡':'프로 10곡팩'),summary:genSummary(),prompt:userPrompt});
+  logHistory({tool:'music-lab',toolName:'AI MUSIC LAB',provider:p.name,mode:(currentMode==='quick'?'퀵 1곡':(currentMode==='ambient'?'BGM·앰비언트':'프로 10곡팩')),summary:genSummary(),prompt:userPrompt});
 
   // Gemini + 키 있음 → 실호출
   if(p.live && hasKey()){
