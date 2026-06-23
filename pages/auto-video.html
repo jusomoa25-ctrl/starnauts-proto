@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
+<title>STARNAUTS — 자동영상 스튜디오</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+/* ── 자동영상 스튜디오 ─────────────────────────────────── */
+.av{max-width:1100px;margin:0 auto;padding:0 18px 260px}
+@media(max-width:560px){.av{padding-bottom:320px}}
+.av-head{text-align:center;padding:34px 0 8px}
+.av-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--blue-300);text-transform:uppercase}
+.av-eyebrow svg{width:15px;height:15px}
+.av-title{font-size:clamp(26px,5vw,38px);font-weight:900;color:#fff;margin:12px 0 8px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:11px}
+.av-title svg{width:30px;height:30px;color:var(--blue-300)}
+.av-sub{font-size:14px;color:#9aa6bc;line-height:1.6;max-width:54ch;margin:0 auto}
+
+/* 스텝 헤더 */
+.av-step-h{display:flex;align-items:center;gap:10px;margin:38px 0 16px}
+.av-step-h .num{width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.av-step-h h2{margin:0;font-size:17px;font-weight:900;color:#fff;letter-spacing:-.01em}
+.av-step-h .v-tag{margin-left:auto;font-size:11px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border:1px solid rgba(46,111,201,.3);border-radius:7px;padding:3px 9px;letter-spacing:.02em}
+.av-step-sub{font-size:12.5px;color:#9aa6bc;line-height:1.6;margin:-8px 0 16px;max-width:62ch}
+
+/* 프리셋 칩 바 */
+.av-presets{margin:4px 0 6px}
+.av-presets-l{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#C6CEDC;margin-bottom:10px}
+.av-presets-l svg{width:15px;height:15px;color:var(--blue-300);flex-shrink:0}
+.av-preset-row{display:flex;flex-wrap:wrap;gap:7px}
+.av-preset{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(127,169,224,.32);background:rgba(46,111,201,.08);color:#C6CEDC;border-radius:20px;padding:7px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
+.av-preset:hover{border-color:var(--blue);background:rgba(46,111,201,.2);color:#fff}
+.av-preset svg{width:13px;height:13px;flex-shrink:0;color:var(--blue-300)}
+
+/* 폼 필드 */
+.fld{margin-bottom:24px}
+.fld-l{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:#fff;margin-bottom:10px}
+.fld-l svg{width:17px;height:17px;color:var(--blue-300);flex-shrink:0}
+.fld-l .multi{font-size:10.5px;font-weight:700;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:5px;padding:2px 6px;letter-spacing:.02em;margin-left:auto}
+.fld-sub{font-size:12px;color:#9aa6bc;margin:-4px 0 10px;line-height:1.5}
+
+/* 칩 */
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.mchip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#C6CEDC;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
+.mchip:hover{border-color:var(--blue-300);color:#fff}
+.mchip[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.16);color:#fff}
+
+.cadd{display:flex;gap:8px;margin-top:10px}
+.cadd input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13px;font-family:inherit}
+.cadd input::placeholder{color:#6b7689}
+.cadd input:focus-visible,.fld textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.cadd .addb{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:0 14px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.cadd .addb:hover{background:rgba(46,111,201,.14);color:#fff}
+.cadd .addb svg{width:13px;height:13px;flex-shrink:0}
+
+.fld textarea{width:100%;min-height:74px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:14px;font-family:inherit;box-sizing:border-box;resize:vertical;line-height:1.6}
+.fld textarea::placeholder{color:#6b7689}
+
+.tip{display:flex;gap:9px;font-size:12px;color:#9aa6bc;line-height:1.6;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:11px 13px;margin-top:10px}
+.tip svg{width:15px;height:15px;flex-shrink:0;color:var(--blue-300);margin-top:1px}
+
+/* 화면비 세그먼트 */
+.seg{display:inline-flex;border:1px solid rgba(255,255,255,.14);border-radius:9px;overflow:hidden}
+.seg button{border:0;background:none;color:#9aa6bc;font-family:inherit;font-size:12.5px;font-weight:700;padding:9px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--blue-300);outline-offset:-2px}
+
+/* ── 가이드 카드 (섹션 2~4) ────────────────────────────── */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.card-grid{grid-template-columns:1fr}}
+.gcard{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015);border-radius:14px;padding:18px 19px}
+.gcard.rec{border-color:rgba(126,212,166,.32);background:rgba(126,212,166,.05)}
+.gcard-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.gcard-h .ci{flex-shrink:0;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(46,111,201,.14);color:var(--blue-300)}
+.gcard.rec .gcard-h .ci{background:rgba(126,212,166,.16);color:#7ED4A6}
+.gcard-h .ci svg{width:18px;height:18px}
+.gcard-h h3{margin:0;font-size:14.5px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gcard-h .badge{font-size:10px;font-weight:800;color:#7ED4A6;background:rgba(126,212,166,.14);border-radius:5px;padding:2px 7px;letter-spacing:.04em}
+.gcard-h .badge.lvl{color:var(--blue-300);background:rgba(46,111,201,.16)}
+.gcard p{margin:8px 0 0;font-size:12.5px;color:#9aa6bc;line-height:1.65}
+.gcard p strong,.gcard li strong{color:#fff;font-weight:800}
+.gcard code{font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);font-size:11.5px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:1px 6px;color:#E4E9F2}
+
+/* 체크리스트 */
+.checklist{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.checklist li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#C6CEDC;line-height:1.6}
+.checklist li .ck{flex-shrink:0;width:19px;height:19px;border-radius:6px;border:1.5px solid rgba(127,169,224,.4);display:flex;align-items:center;justify-content:center;margin-top:1px;cursor:pointer;background:none}
+.checklist li .ck svg{width:12px;height:12px;color:#7ED4A6;opacity:0;transition:opacity 120ms}
+.checklist li .ck[aria-checked="true"]{border-color:rgba(126,212,166,.6);background:rgba(126,212,166,.1)}
+.checklist li .ck[aria-checked="true"] svg{opacity:1}
+.checklist li .ck:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.checklist li b{color:#fff;font-weight:800}
+
+.fullcard{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015);border-radius:14px;padding:18px 20px;margin-top:14px}
+.fullcard h3{margin:0 0 4px;font-size:14.5px;font-weight:900;color:#fff;display:flex;align-items:center;gap:9px}
+.fullcard h3 svg{width:17px;height:17px;color:var(--blue-300);flex-shrink:0}
+
+/* 골든타임 강조 */
+.golden{display:flex;gap:11px;align-items:flex-start;border:1px solid rgba(231,194,107,.28);background:rgba(231,194,107,.07);border-radius:12px;padding:13px 15px;margin-top:14px}
+.golden .gi{flex-shrink:0;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(231,194,107,.14);color:#E7C26B}
+.golden .gi svg{width:17px;height:17px}
+.golden h4{margin:0 0 3px;font-size:13px;font-weight:800;color:#fff}
+.golden p{margin:0;font-size:12px;color:#C6CEDC;line-height:1.6}
+.golden b{color:#E7C26B}
+
+.divider{height:1px;background:rgba(255,255,255,.08);margin:36px 0}
+
+/* 핸드오프 카드 */
+.handoff-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:8px}
+@media(max-width:620px){.handoff-row{grid-template-columns:1fr}}
+.handoff{border:1px solid rgba(126,212,166,.3);background:rgba(126,212,166,.06);border-radius:13px;padding:15px 16px;display:flex;gap:13px;align-items:center}
+.handoff.blue{border-color:rgba(127,169,224,.32);background:rgba(46,111,201,.07)}
+.handoff .hi{flex-shrink:0;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(126,212,166,.16);color:#7ED4A6}
+.handoff.blue .hi{background:rgba(46,111,201,.16);color:var(--blue-300)}
+.handoff .hi svg{width:18px;height:18px}
+.handoff .ht{flex:1;min-width:0}
+.handoff h4{margin:0 0 2px;font-size:13.5px;font-weight:800;color:#fff}
+.handoff p{margin:0;font-size:12px;color:#9aa6bc;line-height:1.5}
+.handoff .hgo{display:inline-flex;align-items:center;gap:7px;background:#7ED4A6;color:#06281b;border:0;border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:900;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap}
+.handoff.blue .hgo{background:var(--blue);color:#fff}
+.handoff .hgo:hover{filter:brightness(1.08)}
+.handoff .hgo svg{width:14px;height:14px}
+
+.skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--blue);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;font-weight:800}
+.skip-link:focus{left:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* ── 하단 고정 도크 (#dock) — music-lab 패턴 ───────────── */
+#dock{position:fixed;left:0;right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
+.dock-in{max-width:980px;margin:0 auto;padding:0 18px}
+.dock-prompt{border-bottom:1px solid rgba(255,255,255,.07)}
+.dock-prompt-h{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;color:#fff;font-family:inherit;font-size:12.5px;font-weight:800;padding:10px 0 8px;cursor:pointer;text-align:left}
+.dock-prompt-h svg.lead{width:15px;height:15px;color:var(--blue-300);flex-shrink:0}
+.dock-prompt-h .pv-tag{font-size:10px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:6px;padding:2px 7px;letter-spacing:.04em}
+.dock-prompt-h .chev{width:14px;height:14px;color:#9aa6bc;margin-left:auto;transition:transform 160ms}
+.dock-prompt-h[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.dock-prompt-body{display:none;padding-bottom:9px}
+.dock-prompt-body.open{display:block}
+.pv-prompt-ta{width:100%;max-height:150px;min-height:88px;box-sizing:border-box;padding:11px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.4);color:#E4E9F2;font-size:12.5px;line-height:1.6;resize:vertical;overflow:auto;font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);white-space:pre-wrap;word-break:break-word}
+.pv-prompt-ta::placeholder{color:#6b7689}
+.pv-prompt-ta:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.pv-hint{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:#9aa6bc;line-height:1.5;background:rgba(46,111,201,.07);border:1px solid rgba(46,111,201,.2);border-radius:9px;padding:7px 10px;margin-top:8px}
+.pv-hint svg{width:13px;height:13px;flex-shrink:0;margin-top:1px;color:var(--blue-300)}
+.dock-act{display:flex;align-items:center;gap:12px;padding:9px 0 11px}
+.dock-sum{display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex:1;min-width:0}
+.sb-pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#C6CEDC;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 11px}
+.sb-pill .k{color:#7d8aa0;font-weight:600}
+.sb-pill.empty{color:#7d8aa0;background:none;border-style:dashed}
+.dock-top{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.16);background:none;color:#C6CEDC;border-radius:9px;padding:6px 11px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.dock-top:hover{border-color:var(--blue-300);color:#fff}
+.dock-top svg{width:13px;height:13px}
+.dock-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.pv-copy-lg{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--blue);color:#fff;border-radius:10px;padding:10px 18px;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:background 140ms}
+.pv-copy-lg:hover{background:var(--blue-700)}
+.pv-copy-lg:focus-visible,.dock-top:focus-visible,.dock-prompt-h:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.pv-copy-lg svg{width:15px;height:15px;flex-shrink:0}
+.pv-copy-lg.done{background:#7ED4A6;color:#06281b}
+.mchip:focus-visible,.seg button:focus-visible,.av-preset:focus-visible,.addb:focus-visible,.handoff .hgo:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+@media(max-width:760px){
+  .dock-act{flex-direction:column;align-items:stretch;gap:9px}
+  .dock-sum{order:1}
+  .dock-right{order:2;flex-wrap:wrap}
+  .pv-copy-lg{flex:1;justify-content:center}
+  .dock-top{align-self:flex-start}
+  .pv-prompt-ta{max-height:110px;min-height:72px}
+  .sb-pill .k{display:none}
+}
+</style>
+</head>
+<body>
+<a href="#av-main" class="skip-link">본문 바로가기</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-film" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5L5 21"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.3A5.2 5.2 0 0 1 12 6a5.2 5.2 0 0 1 9.3 5.7C19 15.7 12 20 12 20z"/></symbol>
+  <symbol id="i-paint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 3-3.5 3H16a2 2 0 0 0-1 3.7c.5.5.5 1.3 0 1.8A2.4 2.4 0 0 1 12 22z"/></symbol>
+  <symbol id="i-ratio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M14 7l3 3"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10l6-3v10l-6-3z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 12l10 5 10-5M2 17l10 5 10-5"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5 20 18M8 16.5 20 6"/></symbol>
+</svg>
+
+<main id="av-main" class="av">
+
+  <header class="av-head">
+    <span class="av-eyebrow"><svg><use href="#i-film"/></svg> AUTO VIDEO STUDIO</span>
+    <h1 class="av-title"><svg><use href="#i-film"/></svg> 자동영상 스튜디오</h1>
+    <p class="av-sub">기획(노바)의 이미지 프롬프트를 받아 <b>1시간 수면 영상</b>까지 만드는 도구예요. 옵션을 고르면 하단 바에 <b>미드저니 영문 프롬프트</b>가 실시간으로 조립됩니다. 아래는 이미지를 움직이는 영상으로 바꾸고, 오디오를 끊김 없이 합치고, 업로드 전략까지 잡는 제작 가이드예요.</p>
+  </header>
+
+  <!-- ── 섹션 1 — 미드저니 / AI 이미지 프롬프트 빌더 ───────── -->
+  <div class="av-step-h"><span class="num" aria-hidden="true">1</span><h2>미드저니 이미지 프롬프트 빌더</h2><span class="v-tag">Midjourney v6</span></div>
+  <p class="av-step-sub">수면·집중 영상의 <b>썸네일이자 영상 배경</b>이 될 정적 이미지를 만들어요. 한 장면을 고르고 시간대·날씨·무드·컬러를 더하면, 하단 바에 미드저니에 그대로 붙여넣을 영문 프롬프트가 만들어집니다.</p>
+
+  <!-- 빠른 시작 프리셋 -->
+  <div class="av-presets">
+    <div class="av-presets-l"><svg><use href="#i-spark"/></svg> 빠른 시작 — 노바 기획 예시 장면을 한 번에 채워요</div>
+    <div class="av-preset-row" id="presetRow" role="group" aria-label="프리셋">
+      <button type="button" class="av-preset" data-preset="rainroom"><svg><use href="#i-droplet"/></svg> 비 오는 새벽 방·헤드라이트</button>
+      <button type="button" class="av-preset" data-preset="lofidesk"><svg><use href="#i-moon"/></svg> 밤샘 코딩 책상</button>
+      <button type="button" class="av-preset" data-preset="cozywindow"><svg><use href="#i-heart"/></svg> 포근한 창가 카페</button>
+      <button type="button" class="av-preset" data-preset="tropical"><svg><use href="#i-sun"/></svg> 열대야 발코니</button>
+    </div>
+  </div>
+
+  <div id="builder">
+
+  <!-- 장면 (단일) -->
+  <div class="fld" data-field="scene">
+    <span class="fld-l"><svg><use href="#i-image"/></svg> 장면 <span class="multi">1개</span></span>
+    <div class="chips" role="group" aria-label="장면 선택">
+      <button type="button" class="mchip" aria-pressed="true" data-single="scene" data-en="a dark cozy bedroom with rain sliding down the window, faint car headlights passing across the ceiling">비 오는 침실</button><button type="button" class="mchip" aria-pressed="false" data-single="scene" data-en="a developer's desk at night, glowing monitor and terminal, warm desk lamp, city lights through the window">밤샘 책상</button><button type="button" class="mchip" aria-pressed="false" data-single="scene" data-en="a quiet cafe window seat, steam rising from a coffee cup, soft bokeh lights outside">창가 카페</button><button type="button" class="mchip" aria-pressed="false" data-single="scene" data-en="a tropical balcony at night, distant city skyline, palm silhouettes, warm humid air">열대야 발코니</button><button type="button" class="mchip" aria-pressed="false" data-single="scene" data-en="a lonely highway at night seen from inside a car, wet asphalt reflecting headlights">밤 고속도로</button><button type="button" class="mchip" aria-pressed="false" data-single="scene" data-en="a misty forest lake at dawn, still water, soft fog drifting over the surface">새벽 호수</button>
+    </div>
+    <div class="cadd"><label class="sr-only" for="scene-custom">장면 직접 입력 (영문 권장)</label><input id="scene-custom" type="text" placeholder="직접 입력 (예: a snowy mountain cabin window) — 영문 권장"><button type="button" class="addb" data-add="scene"><svg><use href="#i-plus"/></svg> 적용</button></div>
+  </div>
+
+  <!-- 시간대 (단일) -->
+  <div class="fld" data-field="time">
+    <span class="fld-l"><svg><use href="#i-moon"/></svg> 시간대 <span class="multi">1개</span></span>
+    <div class="chips" role="group" aria-label="시간대 선택">
+      <button type="button" class="mchip" aria-pressed="false" data-single="time" data-en="deep night">깊은 밤</button><button type="button" class="mchip" aria-pressed="true" data-single="time" data-en="pre-dawn, 4 AM">새벽 (4시)</button><button type="button" class="mchip" aria-pressed="false" data-single="time" data-en="golden hour dusk">노을 무렵</button><button type="button" class="mchip" aria-pressed="false" data-single="time" data-en="blue hour twilight">블루아워</button><button type="button" class="mchip" aria-pressed="false" data-single="time" data-en="midnight">자정</button>
+    </div>
+  </div>
+
+  <!-- 날씨 (단일) -->
+  <div class="fld" data-field="weather">
+    <span class="fld-l"><svg><use href="#i-droplet"/></svg> 날씨 <span class="multi">1개</span></span>
+    <div class="chips" role="group" aria-label="날씨 선택">
+      <button type="button" class="mchip" aria-pressed="true" data-single="weather" data-en="gentle rain on the window">잔잔한 비</button><button type="button" class="mchip" aria-pressed="false" data-single="weather" data-en="heavy rain, droplets streaking">굵은 빗줄기</button><button type="button" class="mchip" aria-pressed="false" data-single="weather" data-en="light snow falling slowly">눈</button><button type="button" class="mchip" aria-pressed="false" data-single="weather" data-en="soft fog and mist">안개</button><button type="button" class="mchip" aria-pressed="false" data-single="weather" data-en="clear calm sky">맑음</button><button type="button" class="mchip" aria-pressed="false" data-single="weather" data-en="thunderstorm far away">먼 천둥</button>
+    </div>
+  </div>
+
+  <!-- 무드 (다중) -->
+  <div class="fld" data-field="mood">
+    <span class="fld-l"><svg><use href="#i-heart"/></svg> 무드 <span class="multi">1~2개 권장</span></span>
+    <div class="chips" role="group" aria-label="무드 선택">
+      <button type="button" class="mchip" aria-pressed="true" data-en="calm and lonely">고요하고 쓸쓸한</button><button type="button" class="mchip" aria-pressed="false" data-en="warm and cozy">따스하고 포근한</button><button type="button" class="mchip" aria-pressed="true" data-en="melancholic">애잔한</button><button type="button" class="mchip" aria-pressed="false" data-en="dreamy ethereal">몽환적인</button><button type="button" class="mchip" aria-pressed="false" data-en="nostalgic">향수 어린</button><button type="button" class="mchip" aria-pressed="false" data-en="serene peaceful">평화로운</button><button type="button" class="mchip" aria-pressed="false" data-en="cinematic dramatic">영화 같은</button><button type="button" class="mchip" aria-pressed="false" data-en="quiet introspective">사색적인</button>
+    </div>
+    <div class="cadd"><label class="sr-only" for="mood-custom">무드 직접 입력</label><input id="mood-custom" type="text" placeholder="직접 입력 (예: bittersweet) — 쉼표로 여러 개"><button type="button" class="addb" data-add="mood"><svg><use href="#i-plus"/></svg> 추가</button></div>
+  </div>
+
+  <!-- 컬러 팔레트 (다중) -->
+  <div class="fld" data-field="palette">
+    <span class="fld-l"><svg><use href="#i-paint"/></svg> 컬러 팔레트 <span class="multi">1~2개 권장</span></span>
+    <p class="fld-sub">노바 기획의 무드앤톤 hex와 맞추면 썸네일·영상 톤이 일관돼요 (예: 딥네이비 <code>#0b0f17</code> + 웜앰버 <code>#f59e0b</code>).</p>
+    <div class="chips" role="group" aria-label="컬러 팔레트 선택">
+      <button type="button" class="mchip" aria-pressed="true" data-en="deep navy and warm amber tones">딥네이비 + 웜앰버</button><button type="button" class="mchip" aria-pressed="false" data-en="muted teal and soft gray">뮤트 틸 + 소프트 그레이</button><button type="button" class="mchip" aria-pressed="false" data-en="warm sepia and golden brown">세피아 + 골든브라운</button><button type="button" class="mchip" aria-pressed="false" data-en="cool blue and silver moonlight">쿨블루 + 실버</button><button type="button" class="mchip" aria-pressed="false" data-en="dusty pink and lavender twilight">더스티핑크 + 라벤더</button><button type="button" class="mchip" aria-pressed="false" data-en="monochrome charcoal and faint neon">차콜 + 페인트 네온</button>
+    </div>
+    <div class="cadd"><label class="sr-only" for="palette-custom">컬러 직접 입력</label><input id="palette-custom" type="text" placeholder="직접 입력 (예: emerald and gold)"><button type="button" class="addb" data-add="palette"><svg><use href="#i-plus"/></svg> 추가</button></div>
+  </div>
+
+  <!-- 화면비 (세그먼트) -->
+  <div class="fld" data-field="ratio">
+    <span class="fld-l"><svg><use href="#i-ratio"/></svg> 화면비</span>
+    <div class="seg" id="ratioSeg" role="group" aria-label="화면비 선택">
+      <button type="button" data-ar="16:9" aria-pressed="true">16:9 (유튜브)</button><button type="button" data-ar="9:16">9:16 (쇼츠·릴스)</button><button type="button" data-ar="1:1">1:1 (정사각)</button>
+    </div>
+  </div>
+
+  <!-- 추가 디테일 -->
+  <div class="fld" data-field="detail">
+    <label class="fld-l" for="detail"><svg><use href="#i-pen"/></svg> 추가 디테일 (선택)</label>
+    <textarea id="detail" placeholder="예) 천장을 스치는 헤드라이트 광선, 책상 위 식어가는 커피, 멀리 툭툭이 소리가 들릴 듯한 공기감…"></textarea>
+  </div>
+
+  </div><!-- /builder -->
+
+  <div class="divider"></div>
+
+  <!-- ── 섹션 2 — 이미지 → 움직임 ─────────────────────────── -->
+  <div class="av-step-h"><span class="num" aria-hidden="true">2</span><h2>이미지를 움직이는 영상으로</h2></div>
+  <p class="av-step-sub">위에서 만든 정적 이미지에 미세한 움직임을 입혀요. 카메라는 고정하고 <b>빗방울·불빛만 살짝</b> 움직이는 3~5초 루프가 핵심 — 화면이 출렁이면 잠이 깹니다.</p>
+  <div class="card-grid">
+
+    <div class="gcard">
+      <div class="gcard-h"><span class="ci" aria-hidden="true"><svg><use href="#i-video"/></svg></span><h3>방법 A — AI 영상 모델 <span class="badge lvl">난이도 하</span></h3></div>
+      <p><strong>Luma Dream Machine</strong> 또는 <strong>Runway Gen-3</strong>에 미드저니 이미지를 올리고, 이런 모션 프롬프트를 넣어요:</p>
+      <p><code>very subtle rain sliding down the window, faint light passing inside the dark room, static camera</code></p>
+      <ul class="checklist" aria-label="방법 A 체크리스트">
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span><b>카메라 고정</b> — 줌·팬 금지, 빗방울·불빛만 미세 이동</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span><b>3~5초 루프</b>로 짧게 뽑아 매끄럽게 반복</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>시작·끝 프레임이 비슷해야 이음매가 안 보여요</span></li>
+      </ul>
+    </div>
+
+    <div class="gcard rec">
+      <div class="gcard-h"><span class="ci" aria-hidden="true"><svg><use href="#i-layers"/></svg></span><h3>방법 B — 오버레이 합성 <span class="badge">추천</span></h3></div>
+      <p><strong>프리미어 · 캡컷 · Vrew(브루)</strong>에서 정적 이미지 위에 자연 소스 영상을 겹쳐요. Pixabay에서 <code>Rain effect overlay green screen</code> · <code>Dust particles overlay</code>를 받아 사용합니다.</p>
+      <ul class="checklist" aria-label="방법 B 체크리스트">
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>오버레이 클립을 이미지 <b>위 트랙</b>에 배치</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>블렌드 모드 <b>Screen / Lighten</b>으로 검은 배경 투명화</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>투명도(불투명도)를 낮춰 과하지 않게 조절</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 섹션 3 — 오디오 합치기 ──────────────────────────── -->
+  <div class="av-step-h"><span class="num" aria-hidden="true">3</span><h2>오디오 끊김 없이 합치기</h2></div>
+  <p class="av-step-sub">음악(music-lab)과 ASMR을 영상 길이에 맞게 깔아요. <b>툭 끊기면 잠이 깨니까</b> 크로스페이드와 트랙 분리가 핵심입니다.</p>
+  <div class="fullcard">
+    <h3><svg><use href="#i-scissors"/></svg> 루프 크로스페이드 + ASMR 트랙 분리</h3>
+    <ul class="checklist" aria-label="오디오 체크리스트">
+      <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span><b>5~10분 고품질 루프</b>를 준비 (music-lab에서 만든 곡)</span></li>
+      <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>루프끼리 <b>크로스페이드 1.5~2초 겹침</b>(Fade In/Out)으로 이어붙이기 — 툭 끊김 방지</span></li>
+      <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span><b>ASMR 레이어(빗소리·Deep Woosh)는 별도 트랙으로 영상 전체에 통으로</b> 길게 깔기</span></li>
+      <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>음악이 작아져도 <b>환경음은 끊기지 않게</b> — 정적 구간이 생기지 않도록</span></li>
+      <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>전체 볼륨 클리핑 점검 — 갑작스러운 큰 소리는 잠을 깨웁니다</span></li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 섹션 4 — 길이·업로드 전략 ───────────────────────── -->
+  <div class="av-step-h"><span class="num" aria-hidden="true">4</span><h2>길이 · 업로드 전략</h2></div>
+  <p class="av-step-sub">체류시간이 길수록 알고리즘이 전 세계로 밀어줘요. 짧으면 다음 영상 광고·정적에 잠이 깹니다. <b>퀄리티 1개가 수년 조회수</b>를 만듭니다.</p>
+  <div class="card-grid">
+
+    <div class="gcard">
+      <div class="gcard-h"><span class="ci" aria-hidden="true"><svg><use href="#i-clock"/></svg></span><h3>영상 길이</h3></div>
+      <ul class="checklist" aria-label="길이 체크리스트">
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span><b>최소 1시간 ~ 최대 3시간</b> (수면·집중 영상 기준)</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>중간에 광고·정적이 끼지 않게 한 트랙으로 길게</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>긴 체류시간 = 알고리즘 글로벌 노출 신호</span></li>
+      </ul>
+    </div>
+
+    <div class="gcard">
+      <div class="gcard-h"><span class="ci" aria-hidden="true"><svg><use href="#i-upload"/></svg></span><h3>업로드 주기</h3></div>
+      <ul class="checklist" aria-label="업로드 체크리스트">
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span><b>주 1~2회</b>, 요일·시간 고정</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>퀄리티 1개에 집중 (양보다 질)</span></li>
+        <li><button type="button" class="ck" role="checkbox" aria-checked="false" aria-label="체크"><svg aria-hidden="true"><use href="#i-check"/></svg></button><span>예약 업로드로 골든타임에 맞춰 공개</span></li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="golden">
+    <span class="gi" aria-hidden="true"><svg><use href="#i-cal"/></svg></span>
+    <div>
+      <h4>골든타임</h4>
+      <p>KR 기준 <b>목요일 또는 일요일 밤 9~11시</b> — 피로가 극에 달하고 월요병 불면이 시작돼 수면 검색이 폭발하는 시간대예요. 예약 업로드로 맞춰두세요.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── 핸드오프 ────────────────────────────────────────── -->
+  <div class="handoff-row">
+    <div class="handoff blue">
+      <span class="hi" aria-hidden="true"><svg><use href="#i-compass"/></svg></span>
+      <div class="ht"><h4>기획으로 돌아가기</h4><p>장면·무드를 다시 잡고 싶다면 노바에게.</p></div>
+      <a class="hgo" href="plichannel-planning.html"><svg aria-hidden="true"><use href="#i-chev-r"/></svg> 기획</a>
+    </div>
+    <div class="handoff">
+      <span class="hi" aria-hidden="true"><svg><use href="#i-music"/></svg></span>
+      <div class="ht"><h4>음악 만들기</h4><p>영상에 깔 음악·ASMR을 AI MUSIC LAB에서.</p></div>
+      <a class="hgo" href="music-lab.html"><svg aria-hidden="true"><use href="#i-chev-r"/></svg> 음악</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── 하단 고정 도크 (미드저니 프롬프트 실시간 조립 + 복사) ── -->
+<div id="dock" role="complementary" aria-label="미드저니 프롬프트 도크">
+  <div class="dock-in">
+
+    <div class="dock-prompt">
+      <button type="button" class="dock-prompt-h" id="dockPromptToggle" aria-expanded="true" aria-controls="dockPromptBody">
+        <svg class="lead" aria-hidden="true"><use href="#i-eye"/></svg> 미드저니 프롬프트 <span class="pv-tag">실시간</span>
+        <svg class="chev" aria-hidden="true"><use href="#i-chev-r"/></svg>
+      </button>
+      <div class="dock-prompt-body open" id="dockPromptBody">
+        <label class="sr-only" for="pvPrompt">미드저니 프롬프트 (수정 가능)</label>
+        <textarea class="pv-prompt-ta" id="pvPrompt" spellcheck="false" aria-label="미드저니 프롬프트"></textarea>
+        <p class="pv-hint"><svg aria-hidden="true"><use href="#i-info"/></svg><span>옵션을 고르면 영문 프롬프트가 실시간으로 조립돼요. 미드저니(또는 다른 이미지 AI)에 그대로 붙여넣으세요. <code>--ar</code> 화면비와 <code>--v 6.0</code>이 자동 부착됩니다.</span></p>
+      </div>
+    </div>
+
+    <div class="dock-act">
+      <div class="dock-sum" id="sbPills" role="status" aria-live="polite"></div>
+      <button type="button" class="dock-top" id="sbTop"><svg aria-hidden="true"><use href="#i-up"/></svg> 맨 위로</button>
+      <div class="dock-right">
+        <button type="button" class="pv-copy-lg" id="pvCopy" aria-label="미드저니 프롬프트 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 프롬프트 복사</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+/* ── 단일선택 그룹 (data-single) ──────────────────────── */
+function selectSingle(field,el){
+  $$('.fld[data-field="'+field+'"] .mchip[data-single]').forEach(function(x){x.setAttribute('aria-pressed','false');});
+  el.setAttribute('aria-pressed','true');
+}
+
+/* ── 칩 클릭 ──────────────────────────────────────────── */
+$$('.mchip').forEach(function(c){
+  c.addEventListener('click',function(){
+    if(c.hasAttribute('data-single')){ selectSingle(c.getAttribute('data-single'),c); }
+    else { c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true'); }
+    update();
+  });
+});
+
+/* ── 화면비 세그먼트 ──────────────────────────────────── */
+$$('#ratioSeg button').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('#ratioSeg button').forEach(function(x){x.setAttribute('aria-pressed','false');});
+    b.setAttribute('aria-pressed','true'); update();
+  });
+});
+function ratio(){ var b=$('#ratioSeg button[aria-pressed="true"]'); return b?b.getAttribute('data-ar'):'16:9'; }
+
+/* ── 커스텀 입력 → 칩 추가 ───────────────────────────── */
+var customInputs={scene:'scene-custom',mood:'mood-custom',palette:'palette-custom'};
+function addCustom(field){
+  var inp=$('#'+customInputs[field]); if(!inp)return;
+  var raw=inp.value.trim(); if(!raw)return;
+  var fld=$('.fld[data-field="'+field+'"]'); var grp=fld.querySelector('.chips'); if(!grp)return;
+  var single=!!fld.querySelector('.mchip[data-single]');
+  raw.split(',').forEach(function(part){
+    var t=part.trim(); if(!t)return;
+    var b=document.createElement('button');
+    b.type='button'; b.className='mchip'; b.setAttribute('aria-pressed','true');
+    b.setAttribute('data-en',t); b.textContent=t;
+    if(single){ b.setAttribute('data-single',field); selectSingle(field,b); }
+    b.addEventListener('click',function(){
+      if(b.hasAttribute('data-single')){ selectSingle(field,b); }
+      else { b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true'); }
+      update();
+    });
+    grp.appendChild(b);
+  });
+  inp.value=''; update();
+}
+$$('.addb[data-add]').forEach(function(b){ b.addEventListener('click',function(){ addCustom(b.getAttribute('data-add')); }); });
+Object.keys(customInputs).forEach(function(f){ var inp=$('#'+customInputs[f]); if(inp){ inp.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); addCustom(f); } }); } });
+
+/* ── 헬퍼: 선택 값 수집 ──────────────────────────────── */
+function pickedEn(field){
+  return $$('.fld[data-field="'+field+'"] .mchip[aria-pressed="true"]').map(function(c){return (c.getAttribute('data-en')||'').trim();}).filter(Boolean);
+}
+function pickedText(field){
+  return $$('.fld[data-field="'+field+'"] .mchip[aria-pressed="true"]').map(function(c){return c.textContent.trim();});
+}
+function singleEn(field){ var c=$('.fld[data-field="'+field+'"] .mchip[aria-pressed="true"][data-single]'); return c?(c.getAttribute('data-en')||'').trim():''; }
+function singleText(field){ var c=$('.fld[data-field="'+field+'"] .mchip[aria-pressed="true"][data-single]'); return c?c.textContent.trim():''; }
+
+/* ── 미드저니 프롬프트 조립 ──────────────────────────── */
+function buildPrompt(){
+  var parts=[];
+  var scene=singleEn('scene'); if(scene) parts.push(scene);
+  var time=singleEn('time'); if(time) parts.push(time);
+  var weather=singleEn('weather'); if(weather) parts.push(weather);
+  pickedEn('mood').slice(0,2).forEach(function(m){parts.push(m+' atmosphere');});
+  pickedEn('palette').slice(0,2).forEach(function(p){parts.push(p);});
+  var detail=($('#detail').value||'').trim(); if(detail) parts.push(detail);
+  // 품질 디스크립터 (정적 배경 이미지 기본 톤)
+  parts.push('cinematic lighting','soft grain','highly detailed','no people','no text');
+  // dedupe
+  var seen={}, out=[];
+  parts.forEach(function(p){ var k=p.toLowerCase(); if(p&&!seen[k]){seen[k]=1;out.push(p);} });
+  return out.join(', ')+' --ar '+ratio()+' --v 6.0';
+}
+
+/* ── 갱신 ─────────────────────────────────────────────── */
+var promptDirty=false;
+function update(){
+  if(!promptDirty) $('#pvPrompt').value=buildPrompt();
+  updateSummary();
+}
+$('#pvPrompt').addEventListener('input',function(){ promptDirty=true; });
+$('#detail').addEventListener('input',function(){ update(); });
+
+/* ── 선택 요약 핀 ─────────────────────────────────────── */
+function updateSummary(){
+  var pills=[];
+  pills.push({k:'장면',v:singleText('scene')||'미선택'});
+  pills.push({k:'시간',v:singleText('time')||'미선택'});
+  var ms=pickedText('mood'); pills.push({k:'무드',v:ms.length?(ms.length>2?ms.slice(0,2).join('·')+' 외'+(ms.length-2):ms.join('·')):'미선택'});
+  pills.push({k:'화면비',v:ratio()});
+  var wrap=$('#sbPills');
+  wrap.innerHTML=pills.map(function(p){ return '<span class="sb-pill'+(p.v==='미선택'?' empty':'')+'"><span class="k">'+p.k+'</span> '+p.v+'</span>'; }).join('');
+}
+$('#sbTop').addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+/* ── 프롬프트 복사 ───────────────────────────────────── */
+function copyText(txt,cb){
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(cb,cb); }
+  else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); cb(); }
+}
+$('#pvCopy').addEventListener('click',function(){
+  var b=$('#pvCopy'); var orig=b.innerHTML;
+  copyText($('#pvPrompt').value||'',function(){
+    b.classList.add('done'); b.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 복사됨';
+    setTimeout(function(){ b.classList.remove('done'); b.innerHTML=orig; },1400);
+  });
+});
+
+/* ── 도크 프롬프트 접이식 토글 ───────────────────────── */
+(function(){
+  var t=$('#dockPromptToggle'), body=$('#dockPromptBody');
+  if(!t||!body)return;
+  t.addEventListener('click',function(){
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded', open?'false':'true');
+    body.classList.toggle('open',!open);
+  });
+})();
+
+/* ── 가이드 체크리스트 토글 ──────────────────────────── */
+$$('.checklist .ck').forEach(function(b){
+  b.addEventListener('click',function(){
+    b.setAttribute('aria-checked', b.getAttribute('aria-checked')==='true'?'false':'true');
+  });
+});
+
+/* ── 프리셋 ───────────────────────────────────────────── */
+function pressSingleByEn(field,en){
+  var c=$('.fld[data-field="'+field+'"] .mchip[data-single][data-en="'+en+'"]');
+  if(c) selectSingle(field,c);
+}
+function clearMulti(field){ $$('.fld[data-field="'+field+'"] .mchip[aria-pressed="true"]:not([data-single])').forEach(function(c){c.setAttribute('aria-pressed','false');}); }
+function pressMultiByEn(field,enList){ enList.forEach(function(en){ var c=$('.fld[data-field="'+field+'"] .mchip[data-en="'+en+'"]:not([data-single])'); if(c)c.setAttribute('aria-pressed','true'); }); }
+function setRatio(ar){ $$('#ratioSeg button').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-ar')===ar?'true':'false'); }); }
+var PRESETS={
+  rainroom:{scene:'a dark cozy bedroom with rain sliding down the window, faint car headlights passing across the ceiling',time:'pre-dawn, 4 AM',weather:'gentle rain on the window',mood:['calm and lonely','melancholic'],palette:['deep navy and warm amber tones'],ratio:'16:9'},
+  lofidesk:{scene:"a developer's desk at night, glowing monitor and terminal, warm desk lamp, city lights through the window",time:'deep night',weather:'clear calm sky',mood:['quiet introspective','warm and cozy'],palette:['monochrome charcoal and faint neon'],ratio:'16:9'},
+  cozywindow:{scene:'a quiet cafe window seat, steam rising from a coffee cup, soft bokeh lights outside',time:'golden hour dusk',weather:'gentle rain on the window',mood:['warm and cozy','nostalgic'],palette:['warm sepia and golden brown'],ratio:'16:9'},
+  tropical:{scene:'a tropical balcony at night, distant city skyline, palm silhouettes, warm humid air',time:'midnight',weather:'clear calm sky',mood:['dreamy ethereal','serene peaceful'],palette:['cool blue and silver moonlight'],ratio:'16:9'}
+};
+$$('.av-preset[data-preset]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var p=PRESETS[b.getAttribute('data-preset')]; if(!p)return;
+    promptDirty=false;
+    if(p.scene)pressSingleByEn('scene',p.scene);
+    if(p.time)pressSingleByEn('time',p.time);
+    if(p.weather)pressSingleByEn('weather',p.weather);
+    clearMulti('mood'); if(p.mood)pressMultiByEn('mood',p.mood);
+    clearMulti('palette'); if(p.palette)pressMultiByEn('palette',p.palette);
+    if(p.ratio)setRatio(p.ratio);
+    update();
+    $('#builder').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+/* 초기 렌더 */
+update();
+})();
+</script>
+</body>
+</html>
