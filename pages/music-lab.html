@@ -1221,7 +1221,7 @@ function callGemini(userPrompt){
    둘 다 BYOK + 브라우저 직접 호출(키는 localStorage만, 서버 미전송).
    Anthropic은 anthropic-dangerous-direct-browser-access 헤더로 브라우저 직접 호출 허용. */
 var OPENAI_MODEL='gpt-4o';
-var ANTHROPIC_MODEL='claude-sonnet-4-6';
+var ANTHROPIC_MODEL='claude-opus-4-8';
 var ANTHROPIC_VERSION='2023-06-01';
 function netFail(){ throw {message:'네트워크 오류예요. 인터넷 연결을 확인하고 다시 시도해 주세요.'}; }
 function httpErr(status){
