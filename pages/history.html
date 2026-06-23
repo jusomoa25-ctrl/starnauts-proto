@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
+<title>STARNAUTS — 내 요청 기록</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=19">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+.hist-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
+.hist-toolbar .grow{flex:1}
+.hchip{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#C6CEDC;font-family:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer;transition:border-color .15s,background .15s,color .15s}
+.hchip:hover{border-color:rgba(255,255,255,.3)}
+.hchip[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.16);color:#fff}
+.hchip:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.hcount{font-size:13px;color:#9aa6bc;font-weight:700}
+.hbtn{border:1.5px solid rgba(255,255,255,.14);background:transparent;color:#C6CEDC;font-family:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.hbtn:hover{border-color:rgba(255,255,255,.32);color:#fff}
+.hbtn svg{width:15px;height:15px}
+.hbtn.danger:hover{border-color:#c8556a;color:#e98ea0}
+.hist-day{font-size:13px;font-weight:800;color:#9aa6bc;letter-spacing:.02em;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.hist-item{background:var(--glass);border:1px solid var(--glass-line);border-radius:16px;padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(6px)}
+.hi-head{display:flex;align-items:center;gap:10px}
+.hi-badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#fff;padding:5px 11px;border-radius:9px;background:rgba(58,92,143,.35)}
+.hi-badge svg{width:15px;height:15px}
+.hi-badge.tm-plan{background:rgba(91,71,168,.35)}
+.hi-badge.tm-music{background:rgba(58,92,143,.35)}
+.hi-time{font-size:12.5px;color:#9aa6bc;font-weight:600}
+.hi-del{margin-left:auto;border:none;background:transparent;color:#7c8699;cursor:pointer;padding:6px;border-radius:8px;display:inline-flex}
+.hi-del:hover{color:#e98ea0;background:rgba(200,85,106,.12)}
+.hi-del svg{width:17px;height:17px}
+.hi-del:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.hi-chips{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0 9px}
+.hi-chip{font-size:11.5px;font-weight:700;color:#C6CEDC;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:3px 9px;border-radius:7px}
+.hi-summary{font-size:14px;color:#E4E9F2;line-height:1.55;margin:0}
+.hi-prompt{margin-top:11px}
+.hi-prompt>summary{font-size:12.5px;font-weight:700;color:#9aa6bc;cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:5px 0}
+.hi-prompt>summary::-webkit-details-marker{display:none}
+.hi-prompt>summary::before{content:"▸";color:var(--blue);font-size:11px}
+.hi-prompt[open]>summary::before{content:"▾"}
+.hi-prompt>summary:hover{color:#C6CEDC}
+.hi-prompt-body{position:relative;margin-top:8px}
+.hi-prompt-body pre{margin:0;padding:14px 14px 14px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.08);border-radius:11px;color:#cdd6e4;font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow:auto}
+.hi-copy{position:absolute;top:9px;right:9px;border:1px solid rgba(255,255,255,.16);background:rgba(10,16,26,.8);color:#C6CEDC;font-family:inherit;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.hi-copy:hover{border-color:var(--blue);color:#fff}
+.hi-copy svg{width:13px;height:13px}
+.hist-empty{text-align:center;padding:64px 20px;color:#9aa6bc}
+.hist-empty h3{font-size:18px;color:#E4E9F2;font-weight:800;margin:0 0 8px}
+.hist-empty p{font-size:14px;margin:0 0 22px}
+.hist-empty .links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hnote{font-size:12.5px;color:#7c8699;line-height:1.6;margin-top:18px;padding:13px 15px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px}
+</style></head>
+<body>
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2M6 7l1 13a1.5 1.5 0 0 0 1.5 1.4h7A1.5 1.5 0 0 0 17 20l1-13"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main" id="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="mypage.html">마이페이지</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:36px">
+    <div class="wrap" style="max-width:860px">
+      <nav class="crumb" aria-label="위치" style="font-size:12.5px;color:#9aa6bc;margin-bottom:10px">
+        <a href="../Starnauts%20Home.html" style="color:#9aa6bc">홈</a> / <a href="tool.html" style="color:#9aa6bc">도구</a> / <span style="color:#C6CEDC">내 요청 기록</span>
+      </nav>
+      <div class="sec-head"><h1 class="sec-en">HISTORY</h1><p class="sec-ko">내 요청 기록</p></div>
+      <p class="sec-lead" style="text-align:left">AI MUSIC LAB · 플리채널 기획에서 요청한 내역을 시간순으로 모아둡니다.<br>가장 최근 요청이 맨 위에 옵니다.</p>
+
+      <div class="hist-toolbar">
+        <button type="button" class="hchip" data-filter="all" aria-pressed="true">전체</button>
+        <button type="button" class="hchip" data-filter="music-lab" aria-pressed="false">음원</button>
+        <button type="button" class="hchip" data-filter="plichannel" aria-pressed="false">기획</button>
+        <span class="grow"></span>
+        <span class="hcount" id="histCount">0건</span>
+        <button type="button" class="hbtn" id="histExport"><svg aria-hidden="true"><use href="#i-dl"/></svg> 내보내기</button>
+        <button type="button" class="hbtn danger" id="histClear"><svg aria-hidden="true"><use href="#i-trash"/></svg> 전체 삭제</button>
+      </div>
+
+      <div id="histList" aria-live="polite"></div>
+
+      <p class="hnote">이 기록은 <b>이 브라우저(기기)에만</b> 저장됩니다(서버 미전송). 다른 기기·시크릿 창에서는 보이지 않으며, 브라우저 데이터를 지우면 함께 삭제됩니다. 로그인 계정 기반으로 기기와 무관하게 따라오는 기록은 추후 업데이트 예정입니다.</p>
+    </div>
+  </section>
+
+  <footer class="footer" style="margin-top:72px">
+    <div class="footer-bar" style="position:static">
+      <div class="wrap fbar">
+        <div class="fbar-main">
+          <div class="fbar-brand-col">
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
+            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <div class="fbar-soc">
+              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+            </div>
+          </div>
+          <nav class="fbar-cols">
+            <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
+            <div class="fcolx"><h5>도구</h5><a href="music-lab.html">AI MUSIC LAB</a><a href="plichannel-planning.html">플리채널 기획</a><a href="auto-video.html">자동영상</a><a href="history.html">내 요청 기록</a></div>
+            <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
+          </nav>
+        </div>
+        <p class="fbar-copy">© 2026 STARNAUTS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY='starnauts_tool_history';
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+  var TOOLMETA={ 'music-lab':{icon:'i-music',cls:'tm-music'}, 'plichannel':{icon:'i-chat',cls:'tm-plan'} };
+  var curFilter='all';
+
+  function load(){ try{ var a=JSON.parse(localStorage.getItem(KEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+  function save(a){ try{ localStorage.setItem(KEY, JSON.stringify(a)); }catch(e){} }
+  function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function pad(n){ return n<10?'0'+n:''+n; }
+  function fmtDay(d){ return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'; }
+  function fmtTime(d){ var h=d.getHours(); var ap=h<12?'오전':'오후'; var hh=h%12; if(hh===0)hh=12; return ap+' '+hh+':'+pad(d.getMinutes()); }
+
+  function emptyHtml(total){
+    var msg = total>0 ? '이 분류에는 요청 기록이 없어요.' : '아직 요청 기록이 없어요. 도구에서 한 번 생성해 보세요.';
+    return '<div class="hist-empty"><h3>'+esc(msg)+'</h3>'+
+      (total>0?'':'<p>AI MUSIC LAB에서 음원 프롬프트를 만들거나, 노바와 채널 기획을 시작하면 여기에 자동으로 쌓입니다.</p>'+
+      '<div class="links"><a class="btn btn--primary" href="music-lab.html">음원 만들기</a><a class="btn" href="plichannel-planning.html" style="border:1px solid rgba(255,255,255,.18);color:#fff">기획 시작</a></div>')+
+      '</div>';
+  }
+  function rowHtml(r){
+    var meta=TOOLMETA[r.tool]||{icon:'i-bolt',cls:''};
+    var d=new Date(r.ts);
+    return '<article class="hist-item" data-id="'+esc(r.id)+'">'+
+      '<div class="hi-head">'+
+        '<span class="hi-badge '+meta.cls+'"><svg aria-hidden="true"><use href="#'+meta.icon+'"/></svg>'+esc(r.toolName||r.tool)+'</span>'+
+        '<span class="hi-time">'+esc(fmtTime(d))+'</span>'+
+        '<button type="button" class="hi-del" data-del="'+esc(r.id)+'" aria-label="이 기록 삭제"><svg aria-hidden="true"><use href="#i-trash"/></svg></button>'+
+      '</div>'+
+      '<div class="hi-chips">'+
+        (r.provider?'<span class="hi-chip">'+esc(r.provider)+'</span>':'')+
+        (r.mode?'<span class="hi-chip">'+esc(r.mode)+'</span>':'')+
+      '</div>'+
+      '<p class="hi-summary">'+esc(r.summary||'(요약 없음)')+'</p>'+
+      (r.prompt?'<details class="hi-prompt"><summary>요청 프롬프트 보기</summary>'+
+        '<div class="hi-prompt-body"><button type="button" class="hi-copy" aria-label="프롬프트 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button><pre>'+esc(r.prompt)+'</pre></div>'+
+      '</details>':'')+
+    '</article>';
+  }
+  function render(){
+    var all=load();
+    $('#histCount').textContent=all.length+'건';
+    var items=all.filter(function(r){ return curFilter==='all'||r.tool===curFilter; });
+    var wrap=$('#histList');
+    if(!items.length){ wrap.innerHTML=emptyHtml(all.length); return; }
+    var groups=[], map={};
+    items.forEach(function(r){
+      var day=fmtDay(new Date(r.ts));
+      if(!map[day]){ map[day]={day:day,rows:[]}; groups.push(map[day]); }
+      map[day].rows.push(r);
+    });
+    wrap.innerHTML=groups.map(function(g){
+      return '<div class="hist-day">'+esc(g.day)+'</div>'+g.rows.map(rowHtml).join('');
+    }).join('');
+  }
+  function copyText(txt,cb){
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(cb,cb); }
+    else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); cb(); }
+  }
+
+  // 이벤트 위임: 삭제 / 복사
+  $('#histList').addEventListener('click',function(e){
+    var del=e.target.closest('[data-del]');
+    if(del){ var id=del.getAttribute('data-del'); save(load().filter(function(r){return r.id!==id;})); render(); return; }
+    var cp=e.target.closest('.hi-copy');
+    if(cp){ var pre=cp.parentNode.querySelector('pre'); copyText(pre?pre.textContent:'',function(){
+      var o=cp.innerHTML; cp.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 복사됨';
+      setTimeout(function(){ cp.innerHTML=o; },1300);
+    }); }
+  });
+  // 필터
+  $$('.hchip[data-filter]').forEach(function(b){
+    b.addEventListener('click',function(){
+      curFilter=b.getAttribute('data-filter');
+      $$('.hchip[data-filter]').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+      render();
+    });
+  });
+  // 전체 삭제
+  $('#histClear').addEventListener('click',function(){
+    if(!load().length) return;
+    if(window.confirm('내 요청 기록을 모두 삭제할까요? 되돌릴 수 없습니다.')){ localStorage.removeItem(KEY); render(); }
+  });
+  // 내보내기 (JSON 다운로드)
+  $('#histExport').addEventListener('click',function(){
+    var data=load(); if(!data.length){ return; }
+    var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=url; a.download='starnauts-requests.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); },1000);
+  });
+
+  render();
+})();
+</script>
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
+</body>
+</html>

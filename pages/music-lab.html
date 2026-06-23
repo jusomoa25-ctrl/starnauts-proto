@@ -357,6 +357,7 @@
         <button type="button" class="provb" data-prov="claude" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>Claude</button>
       </div>
       <button type="button" class="blink" id="keyToggle"><svg><use href="#i-chev-r"/></svg> API 키 등록 / 설정</button>
+      <a class="blink" href="history.html" style="margin-left:14px;text-decoration:none">내 요청 기록 →</a>
       <div class="keybox" id="keyBox">
         <div class="keyrow">
           <label class="sr-only" for="gkey" id="gkeyLabel">API 키</label>
@@ -1358,6 +1359,30 @@ function renderResult(md){
   bindCodeCopies();
 }
 
+/* ── 요청 기록 (localStorage · history.html에서 조회) ─── */
+function logHistory(rec){
+  try{
+    var k='starnauts_tool_history';
+    var arr=JSON.parse(localStorage.getItem(k)||'[]');
+    if(!Array.isArray(arr)) arr=[];
+    rec.id='h'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
+    rec.ts=new Date().toISOString();
+    arr.unshift(rec);
+    if(arr.length>500) arr.length=500;
+    localStorage.setItem(k,JSON.stringify(arr));
+  }catch(e){}
+}
+function genSummary(){
+  var g=summaryText('genre'), m=summaryText('mood'), i=summaryText('inst');
+  var len=$('.len[aria-pressed="true"] b');
+  var parts=[];
+  parts.push(g.length?g.join('·'):'장르 미선택');
+  if(m.length) parts.push(m.slice(0,2).join('·'));
+  if(i.length) parts.push('악기 '+i.length);
+  parts.push(len?len.textContent:'3:30');
+  return parts.join(' / ');
+}
+
 /* ── 생성 실행 (Gemini 실호출 / 무료 복사 경로) ──────── */
 var generating=false;
 function runGenerate(){
@@ -1366,6 +1391,7 @@ function runGenerate(){
   var p=provider();
   var userPrompt=$('#pvPrompt').value||'';
   var btn=$('#genBtn'), orig=btn.innerHTML;
+  logHistory({tool:'music-lab',toolName:'AI MUSIC LAB',provider:p.name,mode:(currentMode==='quick'?'퀵 1곡':'프로 10곡팩'),summary:genSummary(),prompt:userPrompt});
 
   // Gemini + 키 있음 → 실호출
   if(p.live && hasKey()){

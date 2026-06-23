@@ -188,6 +188,7 @@
         <button type="button" class="provb" data-prov="claude" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>Claude</button>
       </div>
       <button type="button" class="blink" id="keyToggle"><svg><use href="#i-chev-r"/></svg> API 키 등록 / 설정</button>
+      <a class="blink" href="history.html" style="margin-left:14px;text-decoration:none">내 요청 기록 →</a>
       <div class="keybox" id="keyBox">
         <div class="keyrow">
           <label class="sr-only" for="gkey" id="gkeyLabel">API 키</label>
@@ -509,6 +510,20 @@ function callLLM(){
   return callGemini();
 }
 
+/* ── 요청 기록 (localStorage · history.html에서 조회) ─── */
+function logHistory(rec){
+  try{
+    var k='starnauts_tool_history';
+    var arr=JSON.parse(localStorage.getItem(k)||'[]');
+    if(!Array.isArray(arr)) arr=[];
+    rec.id='h'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
+    rec.ts=new Date().toISOString();
+    arr.unshift(rec);
+    if(arr.length>500) arr.length=500;
+    localStorage.setItem(k,JSON.stringify(arr));
+  }catch(e){}
+}
+
 /* ──────────────────────────────────────────────────────────
    턴 진행: 사용자 메시지(또는 시작 트리거) → AI 응답
    ────────────────────────────────────────────────────────── */
@@ -524,6 +539,7 @@ function sendTurn(userText, isStart){
     history.push({role:'user', text:userText});
     addMsg('usr', userText);
   }
+  logHistory({tool:'plichannel',toolName:'플리채널 기획 노바',provider:provider().name,mode:'STEP '+(maxStepReached||1),summary:(isStart?'기획 세션 시작':userText),prompt:(isStart?'(기획 시작)':userText)});
 
   addLoading();
   callLLM().then(function(txt){
