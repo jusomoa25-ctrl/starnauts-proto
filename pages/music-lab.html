@@ -146,7 +146,7 @@
 
 .gen{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--blue);color:#fff;border:0;border-radius:14px;padding:17px;font-size:16px;font-weight:900;cursor:pointer;font-family:inherit;margin-top:8px;transition:background 140ms,transform 140ms}
 .gen:hover{background:var(--blue-700);transform:translateY(-1px)}
-.gen:focus-visible,.mchip:focus-visible,.len:focus-visible,.struct:focus-visible,.eng:focus-visible,.blink:focus-visible,.gcat-h:focus-visible,.preset:focus-visible,.morebtn:focus-visible,.copyb:focus-visible,.adv-toggle:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.gen:focus-visible,.mchip:focus-visible,.len:focus-visible,.struct:focus-visible,.eng:focus-visible,.blink:focus-visible,.gcat-h:focus-visible,.preset:focus-visible,.morebtn:focus-visible,.adv-toggle:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
 .gen svg{width:19px;height:19px;flex-shrink:0}
 
 .eng-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
@@ -174,23 +174,31 @@
 .pv-head h4{margin:0;font-size:13.5px;font-weight:900;color:#fff}
 .pv-head .pv-tag{margin-left:auto;font-size:10px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:6px;padding:2px 7px;letter-spacing:.04em}
 .pv-desc{font-size:11px;color:#9aa6bc;margin:0 0 12px;line-height:1.5}
-.pv-block{border:1px solid rgba(255,255,255,.1);border-radius:11px;background:rgba(0,0,0,.22);margin-bottom:10px;overflow:hidden}
-.pv-block:last-child{margin-bottom:0}
-.pv-bh{display:flex;align-items:center;gap:7px;padding:9px 11px;border-bottom:1px solid rgba(255,255,255,.07)}
-.pv-bh .lbl{font-size:11px;font-weight:900;color:#C6CEDC;letter-spacing:.06em}
-.pv-bh .count{font-size:10.5px;font-weight:800;border-radius:20px;padding:2px 8px;margin-left:2px}
-.pv-bh .count.ok{color:#7ED4A6;background:rgba(126,212,166,.14)}
-.pv-bh .count.warn{color:#E7C26B;background:rgba(231,194,107,.14)}
-.pv-bh .count.bad{color:#E78B8B;background:rgba(231,139,139,.16)}
-.copyb{margin-left:auto;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
-.copyb:hover{background:rgba(46,111,201,.16);color:#fff}
-.copyb svg{width:12px;height:12px;flex-shrink:0}
-.copyb.done{border-color:rgba(126,212,166,.5);color:#7ED4A6}
-.pv-body{padding:11px;font-size:12.5px;color:#E4E9F2;line-height:1.6;white-space:pre-wrap;word-break:break-word;font-family:"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace}
-.pv-body.muted{color:#6b7689;font-style:italic}
 .pv-warn{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:#E7C26B;line-height:1.5;background:rgba(231,194,107,.08);border:1px solid rgba(231,194,107,.22);border-radius:9px;padding:8px 10px;margin-top:10px}
 .pv-warn svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
 .pv-warn:empty{display:none}
+
+/* ── AI 요청 프롬프트 패널 ─────────────────────────────── */
+.pv-prompt-desc{font-size:11.5px;color:#9aa6bc;margin:0 0 12px;line-height:1.5}
+.pv-prompt-ta{width:100%;min-height:320px;box-sizing:border-box;padding:13px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.34);color:#E4E9F2;font-size:12.5px;line-height:1.65;resize:vertical;font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);white-space:pre-wrap;word-break:break-word}
+.pv-prompt-ta::placeholder{color:#6b7689}
+.pv-prompt-ta:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.pv-prompt-bar{display:flex;align-items:center;gap:9px;margin-top:11px}
+.pv-target{font-size:11.5px;color:#9aa6bc;flex:1;min-width:0}
+.pv-target b{color:var(--blue-300);font-weight:800}
+.pv-copy-lg{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.pv-copy-lg:hover{background:rgba(46,111,201,.16);color:#fff}
+.pv-copy-lg:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.pv-copy-lg svg{width:13px;height:13px;flex-shrink:0}
+.pv-copy-lg.done{border-color:rgba(126,212,166,.5);color:#7ED4A6}
+
+/* ── 제공자 선택 (Gemini/GPT/Claude) ──────────────────── */
+.provrow{display:flex;gap:7px;margin:2px 0 10px;flex-wrap:wrap}
+.provrow .provb{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#C6CEDC;border-radius:9px;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
+.provrow .provb:hover{border-color:var(--blue-300);color:#fff}
+.provrow .provb[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.16);color:#fff}
+.provrow .provb:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.provlbl{font-size:11.5px;font-weight:800;color:#9aa6bc;margin:8px 0 4px;display:block}
 
 /* ── 선택 요약 sticky 바 ───────────────────────────────── */
 .sumbar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(8,13,24,.94);border-top:1px solid rgba(127,169,224,.22);backdrop-filter:blur(8px);transform:translateY(120%);transition:transform 220ms ease}
@@ -250,23 +258,29 @@
   <header class="lab-head">
     <span class="lab-eyebrow"><svg><use href="#i-music"/></svg> AI MUSIC LAB</span>
     <h1 class="lab-title"><svg><use href="#i-music"/></svg> 음악 만들기</h1>
-    <p class="lab-sub">옵션을 고르면 오른쪽에 <b>Suno에 그대로 붙여넣을 STYLE·LYRICS</b>가 실시간으로 만들어져요.</p>
+    <p class="lab-sub">옵션을 고르면 오른쪽에 <b>AI에게 보낼 요청 프롬프트</b>가 실시간으로 만들어져요.</p>
   </header>
 
-  <!-- Gemini API 키 (BYOK) -->
+  <!-- AI 제공자 선택 + API 키 (BYOK) -->
   <div class="lab-banner" id="keyBanner">
     <span class="bi" aria-hidden="true"><svg><use href="#i-key"/></svg></span>
     <div style="flex:1">
-      <h4 id="keyTitle">아직 Gemini API Key가 없어요</h4>
-      <p>가사·스타일 미리보기·복사는 <b>키 없이 무료</b>로 됩니다. AI로 가사 10곡 자동 생성을 원할 때만 <b>본인 Gemini API 키</b>를 등록하세요. 키는 이 브라우저에만 저장되고 서버로 전송되지 않아요.</p>
+      <h4 id="keyTitle">AI 제공자를 고르세요</h4>
+      <p>키 없이도 요청 프롬프트는 만들어집니다(복사해서 직접 사용). 자동 생성을 원할 때만 키를 등록하세요. 키는 이 브라우저에만 저장되고 서버로 전송되지 않아요.</p>
+      <span class="provlbl">AI 제공자</span>
+      <div class="provrow" id="provRow" role="group" aria-label="AI 제공자 선택">
+        <button type="button" class="provb" data-prov="gemini" aria-pressed="true">Gemini</button>
+        <button type="button" class="provb" data-prov="gpt" aria-pressed="false">GPT</button>
+        <button type="button" class="provb" data-prov="claude" aria-pressed="false">Claude</button>
+      </div>
       <button type="button" class="blink" id="keyToggle"><svg><use href="#i-chev-r"/></svg> API 키 등록 / 설정</button>
       <div class="keybox" id="keyBox">
         <div class="keyrow">
-          <label class="sr-only" for="gkey">Gemini API 키</label>
-          <input id="gkey" type="password" placeholder="AIza… (Gemini API 키 붙여넣기)" autocomplete="off">
+          <label class="sr-only" for="gkey" id="gkeyLabel">API 키</label>
+          <input id="gkey" type="password" placeholder="Gemini API 키 붙여넣기 (AIza…)" autocomplete="off" aria-labelledby="gkeyLabel">
           <button type="button" class="saveb" id="keySave">저장</button>
         </div>
-        <p class="keyhint">키는 <code>localStorage</code>에만 저장됩니다(서버 미전송). 발급: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a></p>
+        <p class="keyhint" id="keyHint">키는 <code>localStorage</code>에만 저장됩니다(서버 미전송). 발급: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" id="keyIssueLink">aistudio.google.com/apikey</a></p>
       </div>
     </div>
   </div>
@@ -497,30 +511,18 @@
 
   </div><!-- /lab-form -->
 
-  <!-- 실시간 Suno 미리보기 (우 sticky) -->
-  <aside class="lab-aside" aria-label="Suno 미리보기">
+  <!-- AI 요청 프롬프트 (우 sticky) -->
+  <aside class="lab-aside" aria-label="AI 요청 프롬프트">
     <div class="pv">
-      <div class="pv-head"><svg><use href="#i-eye"/></svg><h4>Suno 미리보기</h4><span class="pv-tag">실시간</span></div>
-      <p class="pv-desc">고른 옵션이 그대로 Suno 입력값으로 조립돼요. 각 블록을 복사해 Suno에 붙여넣으세요.</p>
+      <div class="pv-head"><svg><use href="#i-eye"/></svg><h4>AI 요청 프롬프트</h4><span class="pv-tag">실시간</span></div>
+      <p class="pv-prompt-desc">이 내용이 그대로 AI에게 전송됩니다 (수정 가능).</p>
 
-      <div class="pv-block">
-        <div class="pv-bh"><span class="lbl">STYLE</span><span class="count ok" id="styleCount">0</span><button type="button" class="copyb" data-copy="style"><svg><use href="#i-copy"/></svg> 복사</button></div>
-        <div class="pv-body muted" id="pvStyle">장르·무드를 고르면 여기에 채워져요</div>
-      </div>
+      <label class="sr-only" for="pvPrompt">AI 요청 프롬프트</label>
+      <textarea class="pv-prompt-ta" id="pvPrompt" spellcheck="false" aria-describedby="pvTarget"></textarea>
 
-      <div class="pv-block">
-        <div class="pv-bh"><span class="lbl">LYRICS 구조</span><button type="button" class="copyb" data-copy="lyrics"><svg><use href="#i-copy"/></svg> 복사</button></div>
-        <div class="pv-body" id="pvLyrics">[Intro]</div>
-      </div>
-
-      <div class="pv-block">
-        <div class="pv-bh"><span class="lbl">EXCLUDE</span><button type="button" class="copyb" data-copy="exclude"><svg><use href="#i-copy"/></svg> 복사</button></div>
-        <div class="pv-body muted" id="pvExclude">제외할 요소 없음</div>
-      </div>
-
-      <div class="pv-block">
-        <div class="pv-bh"><span class="lbl">SLIDERS</span><button type="button" class="copyb" data-copy="sliders"><svg><use href="#i-copy"/></svg> 복사</button></div>
-        <div class="pv-body" id="pvSliders">Weirdness 50 · Style Influence Balanced</div>
+      <div class="pv-prompt-bar">
+        <span class="pv-target" id="pvTarget">전송 대상: <b id="pvTargetName">Gemini</b></span>
+        <button type="button" class="pv-copy-lg" id="pvCopy" aria-label="요청 프롬프트 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button>
       </div>
 
       <div class="pv-warn" id="pvWarn"></div>
@@ -697,36 +699,120 @@ function buildStyle(){
 function styleInfluence(){ var b=$('#styleInfSeg button[aria-pressed="true"]'); return b?b.getAttribute('data-inf'):'Balanced'; }
 function weirdness(){ return $('#weirdSlider').value; }
 
-/* ── 미리보기 갱신 (핵심) ────────────────────────────── */
+/* ── 제공자 (Gemini/GPT/Claude) ───────────────────────── */
+var PROVIDERS={
+  gemini:{name:'Gemini',key:'starnauts_key_gemini',ph:'Gemini API 키 붙여넣기 (AIza…)',issue:'aistudio.google.com/apikey',issueUrl:'https://aistudio.google.com/apikey'},
+  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys'},
+  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys'}
+};
+var currentProvider='gemini';
+function provider(){ return PROVIDERS[currentProvider]; }
+
+/* ── AI 요청 프롬프트 조립 ─────────────────────────────── */
+function langName(){
+  var l=pickedSingle('lang');
+  if(l){ if(l.ko) return '한국어'; if(l.text) return l.text; }
+  // 언어 커스텀
+  var c=$('.fld[data-field="lang"] .mchip[aria-pressed="true"]:not([data-single])');
+  if(c) return c.textContent.trim();
+  return '한국어';
+}
+function isKoreanLang(){
+  var l=pickedSingle('lang');
+  return !!(l&&l.ko);
+}
+function structLabel(){ var s=$('.struct[data-struct][aria-pressed="true"] b'); return s?s.textContent.trim():'표준 팝'; }
+function structSeqSentence(){ return STRUCTS[currentStruct()].join(' → '); }
+function songLength(){ var b=$('.len[aria-pressed="true"] b'); return b?b.textContent.trim():'3:30'; }
+
+function buildPrompt(){
+  var lines=[];
+  var lang=langName();
+  lines.push('너는 Suno AI 음악 프롬프트 전문가야. 아래 조건으로 '+lang+' 노래 10곡의 가사와 Suno 스타일 프롬프트를 만들어줘.');
+  lines.push('');
+
+  // 채워진 필드만 포함
+  var concept=($('#concept').value||'').trim();
+  if(concept) lines.push('[주제/컨셉] '+concept);
+
+  var genres=picked('genre');
+  if(genres.length) lines.push('[장르] '+genres.join(', '));
+
+  var era=pickedSingle('era');
+  var eraTxt=(era&&era.en)?era.text:'';
+  if(eraTxt) lines.push('[시대감] '+eraTxt);
+
+  var moods=picked('mood');
+  if(moods.length) lines.push('[무드] '+moods.join(', '));
+
+  // 템포: descriptor 우선, 커스텀 숫자 ~NNN BPM
+  var tempoParts=[];
+  var ts=pickedSingle('tempo');
+  if(ts&&ts.text) tempoParts.push(ts.text);
+  $$('.fld[data-field="tempo"] .mchip[aria-pressed="true"]:not([data-single])').forEach(function(c){
+    var tc=(c.getAttribute('data-en')||'').trim(); if(!tc)return;
+    var m=tc.match(/(\d{2,3})\s*bpm/i)||tc.match(/^(\d{2,3})$/);
+    tempoParts.push(m?('~'+m[1]+' BPM'):tc);
+  });
+  if(tempoParts.length) lines.push('[템포] '+tempoParts.join(', '));
+
+  var inst=picked('inst');
+  if(inst.length) lines.push('[악기] '+inst.join(', '));
+
+  // 보컬 음색 / 디렉션
+  var vocal=picked('vocal');
+  var dirs=picked('vdir');
+  if(vocal.length||dirs.length){
+    var vl='[보컬] '+(vocal.length?vocal.join(', '):'지정 없음');
+    if(dirs.length) vl+=' / 디렉션: '+dirs.join(', ');
+    lines.push(vl);
+  }
+
+  var prod=picked('prod');
+  if(prod.length) lines.push('[프로덕션] '+prod.join(', '));
+
+  lines.push('[곡 구조] '+structLabel()+' ('+structSeqSentence()+')');
+
+  var excludes=picked('exclude');
+  if(excludes.length) lines.push('[제외할 것] '+excludes.join(', '));
+
+  lines.push('[곡 길이] '+songLength());
+
+  // 고급 슬라이더
+  lines.push('[실험성/스타일강도] Weirdness '+weirdness()+', Style Influence '+styleInfluence());
+
+  // 용도
+  var uses=pickedTexts('use');
+  if(uses.length) lines.push('[사용 용도] '+uses.join(', '));
+
+  lines.push('');
+  lines.push('[지켜야 할 Suno 규칙]');
+  lines.push('- Style 프롬프트는 descriptor 4~7개를 쉼표로, 강한 것부터.');
+  lines.push('- 가사는 '+(isKoreanLang()?'한글로, ':'')+'[Intro][Verse][Pre-Chorus][Chorus][Bridge][Outro][End] 구조 태그 포함.');
+  lines.push('- 보컬 디렉션은 [Verse: belting]처럼 섹션 콜론 문법.');
+  lines.push('- BPM은 정확 숫자 대신 근사(~NNN BPM)나 표현으로.');
+  lines.push('- 위 [제외할 것]은 빼고, 마지막에 반드시 [End] 태그.');
+  lines.push('');
+  lines.push('[출력 형식] 곡마다: 1) 제목  2) Suno STYLE(한 줄)  3) 가사(구조 태그 포함)');
+
+  return lines.join('\n');
+}
+
+/* ── 갱신 (핵심): 프롬프트 자동 작성 + 경고 + 요약 ────── */
+var promptDirty=false; // 사용자가 textarea 직접 편집 시 true → 자동덮어쓰기 중단
+function refreshPrompt(){
+  if(promptDirty) return;
+  $('#pvPrompt').value=buildPrompt();
+}
 function update(){
-  // STYLE
+  refreshPrompt();
+
+  // 경고 모음 (STYLE descriptor 수는 buildStyle 기준 유지)
   var styleArr=buildStyle();
-  var styleStr=styleArr.join(', ');
-  var pvStyle=$('#pvStyle');
-  if(styleArr.length){ pvStyle.classList.remove('muted'); pvStyle.textContent=styleStr; }
-  else { pvStyle.classList.add('muted'); pvStyle.textContent='장르·무드를 고르면 여기에 채워져요'; }
-  // 카운터 (4~7 초록 · 8~9 노랑 · 10+ 빨강)
-  var n=styleArr.length, cEl=$('#styleCount');
-  cEl.textContent=n;
-  cEl.className='count '+(n>=10?'bad':(n>=8?'warn':'ok'));
-
-  // LYRICS
-  $('#pvLyrics').textContent=buildLyrics();
-
-  // EXCLUDE
-  var exc=picked('exclude');
-  // 커스텀 exclude 칩 포함됨 (picked already covers)
-  var pvE=$('#pvExclude');
-  if(exc.length){ pvE.classList.remove('muted'); pvE.textContent=exc.join(', '); }
-  else { pvE.classList.add('muted'); pvE.textContent='제외할 요소 없음'; }
-
-  // SLIDERS
-  $('#pvSliders').textContent='Weirdness '+weirdness()+' · Style Influence '+styleInfluence();
-
-  // 경고 모음
+  var n=styleArr.length;
   var warns=[];
-  if(n>=10) warns.push('STYLE 디스크립터가 '+n+'개 — 10개 이상은 소리가 뭉개질 수 있어요. 4~7개를 권장합니다.');
-  else if(n>=8) warns.push('STYLE 디스크립터가 '+n+'개 — 8~9개는 약간 과해요. 4~7개가 가장 또렷합니다.');
+  if(n>=10) warns.push('STYLE 디스크립터가 '+n+'개. 10개 이상은 소리가 뭉개질 수 있어요. 4~7개를 권장합니다.');
+  else if(n>=8) warns.push('STYLE 디스크립터가 '+n+'개. 8~9개는 약간 과해요. 4~7개가 가장 또렷합니다.');
   var gN=pickedTexts('genre').length; if(gN>2) warns.push('장르가 '+gN+'개 선택됐어요. 1~2개로 줄이면 더 일관된 곡이 나와요.');
   var mN=pickedTexts('mood').length; if(mN>2) warns.push('무드가 '+mN+'개 선택됐어요. 1~2개를 권장합니다.');
   var iN=pickedTexts('inst').length; if(iN>3) warns.push('악기가 '+iN+'개 선택됐어요. 2~3개로 줄이면 믹스가 깔끔해요.');
@@ -736,20 +822,18 @@ function update(){
   updateSummary(gN,mN,iN);
 }
 
-/* ── 복사 버튼 ───────────────────────────────────────── */
-var copyMap={
-  style:function(){ return buildStyle().join(', '); },
-  lyrics:function(){ return buildLyrics(); },
-  exclude:function(){ return picked('exclude').join(', '); },
-  sliders:function(){ return 'Weirdness '+weirdness()+', Style Influence '+styleInfluence(); }
-};
-$$('.copyb[data-copy]').forEach(function(b){
-  b.addEventListener('click',function(){
-    var txt=copyMap[b.getAttribute('data-copy')]()||'';
-    var done=function(){ var orig=b.innerHTML; b.classList.add('done'); b.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 복사됨'; setTimeout(function(){ b.classList.remove('done'); b.innerHTML=orig; },1400); };
-    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,done); }
-    else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
-  });
+/* ── textarea 직접 편집 → dirty (자동덮어쓰기 중단) ───── */
+$('#pvPrompt').addEventListener('input',function(){ promptDirty=true; });
+
+/* ── concept 입력 → 프롬프트 갱신 ────────────────────── */
+$('#concept').addEventListener('input',function(){ update(); });
+
+/* ── 프롬프트 복사 ───────────────────────────────────── */
+$('#pvCopy').addEventListener('click',function(){
+  var b=$('#pvCopy'); var txt=$('#pvPrompt').value||'';
+  var done=function(){ var orig=b.innerHTML; b.classList.add('done'); b.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 복사됨'; setTimeout(function(){ b.classList.remove('done'); b.innerHTML=orig; },1400); };
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,done); }
+  else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
 });
 
 /* ── 슬라이더 / Style Influence 동작 ─────────────────── */
@@ -779,6 +863,8 @@ $('#sbReset').addEventListener('click',function(){
   // 단일 그룹 기본값 복원
   setPressedByText('lang','한국어'); setPressedByText('era','현대 (2020s)'); setPressedByText('tempo','중간 (90-110 BPM)');
   selectSingleByStruct('pop');
+  var cc=$('#concept'); if(cc)cc.value='';
+  promptDirty=false; // 초기화 시 자동 작성 재개
   syncStructNote(); update();
 });
 function setPressedByText(field,text){
@@ -803,6 +889,7 @@ var PRESETS={
 $$('.preset[data-preset]').forEach(function(b){
   b.addEventListener('click',function(){
     var p=PRESETS[b.getAttribute('data-preset')]; if(!p)return;
+    promptDirty=false; // 프리셋 적용 시 자동 작성 재개
     clearMulti();
     ['genre','mood','inst','prod','vocal'].forEach(function(f){ if(p[f])pressByEn(f,p[f]); });
     if(p.era)setPressedByText('era',p.era);
@@ -814,22 +901,58 @@ $$('.preset[data-preset]').forEach(function(b){
   });
 });
 
-/* ── Gemini API 키 (BYOK · localStorage) ──────────────── */
-var KEY='starnauts_gemini_key';
+/* ── 제공자별 API 키 (BYOK · localStorage) ────────────── */
 var box=$('#keyBox'), banner=$('#keyBanner'), title=$('#keyTitle');
-function refreshKey(){ var k=localStorage.getItem(KEY); if(k){ banner.classList.add('ok'); title.textContent='Gemini API 연결됨 — 가사 자동 생성 준비 완료'; } else { banner.classList.remove('ok'); title.textContent='아직 Gemini API Key가 없어요'; } }
-$('#keyToggle').addEventListener('click',function(){ box.classList.toggle('show'); var v=localStorage.getItem(KEY); if(v)$('#gkey').value=v; });
-$('#keySave').addEventListener('click',function(){ var v=$('#gkey').value.trim(); if(v){localStorage.setItem(KEY,v);}else{localStorage.removeItem(KEY);} box.classList.remove('show'); refreshKey(); });
-refreshKey();
+function hasKey(){ return !!localStorage.getItem(provider().key); }
+function refreshKey(){
+  var p=provider();
+  if(hasKey()){ banner.classList.add('ok'); title.textContent=p.name+' API 연결됨 — 가사 자동 생성 준비 완료'; }
+  else { banner.classList.remove('ok'); title.textContent='AI 제공자를 고르세요 (현재 '+p.name+')'; }
+}
+function applyProviderUI(){
+  var p=provider();
+  $('#gkey').placeholder=p.ph;
+  $('#gkey').value=localStorage.getItem(p.key)||'';
+  $('#keyIssueLink').href=p.issueUrl;
+  $('#keyIssueLink').textContent=p.issue;
+  $('#pvTargetName').textContent=p.name;
+  refreshKey();
+}
+$$('#provRow .provb[data-prov]').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('#provRow .provb').forEach(function(x){x.setAttribute('aria-pressed','false');});
+    b.setAttribute('aria-pressed','true');
+    currentProvider=b.getAttribute('data-prov');
+    applyProviderUI();
+  });
+});
+$('#keyToggle').addEventListener('click',function(){ box.classList.toggle('show'); $('#gkey').value=localStorage.getItem(provider().key)||''; });
+$('#keySave').addEventListener('click',function(){ var v=$('#gkey').value.trim(); if(v){localStorage.setItem(provider().key,v);}else{localStorage.removeItem(provider().key);} box.classList.remove('show'); refreshKey(); });
 
-/* ── 가사+스타일 만들기 (stub — 미리보기까지만, Gemini 호출은 다음 단계) ── */
+/* ── 가사+스타일 만들기 ──────────────────────────────── */
+function copyText(txt,cb){
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(cb,cb); }
+  else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); cb(); }
+}
 $('#genBtn').addEventListener('click',function(){
-  update();
+  if(!promptDirty) refreshPrompt();
+  var p=provider();
+  var btn=$('#genBtn'), orig=btn.innerHTML;
+  if(hasKey()){
+    // 키 있음: 실제 API 호출은 다음 단계
+    btn.innerHTML='<svg aria-hidden="true"><use href="#i-music"/></svg> '+p.name+'로 생성 준비됨 (다음 단계: API 호출)';
+  } else {
+    // 키 없음: 프롬프트 자동 복사 + 안내
+    copyText($('#pvPrompt').value||'',function(){});
+    btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트를 복사했어요 — '+p.name+'에 붙여넣으세요';
+  }
+  setTimeout(function(){ btn.innerHTML=orig; },2400);
   $('.lab-aside').scrollIntoView({behavior:'smooth',block:'start'});
 });
 
 /* 초기 렌더 */
 syncStructNote();
+applyProviderUI();
 update();
 })();
 </script>
