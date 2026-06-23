@@ -131,7 +131,7 @@
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
 /* ── 하단 고정 도크 (#dock) — music-lab 패턴 ───────────── */
-#dock{position:fixed;left:0;right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
+#dock{position:fixed;left:var(--side-w);right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
 .dock-in{max-width:980px;margin:0 auto;padding:0 18px}
 .dock-prompt{border-bottom:1px solid rgba(255,255,255,.07)}
 .dock-prompt-h{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;color:#fff;font-family:inherit;font-size:12.5px;font-weight:800;padding:10px 0 8px;cursor:pointer;text-align:left}
@@ -202,7 +202,47 @@
   <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
   <symbol id="i-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5 20 18M8 16.5 20 6"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
 </svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav">
+      <a href="playstars.html">플리채널 스튜디오</a>
+      <a href="plichannel-planning.html">기획 노바</a>
+      <a href="music-lab.html">음악 랩</a>
+      <a href="auto-video.html" class="cur">자동영상</a>
+      <a href="history.html">내 기록</a>
+    </div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main" id="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="history.html">내 요청 기록</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
 
 <main id="av-main" class="av">
 
@@ -404,6 +444,7 @@
   </div>
 
 </main>
+</div>
 
 <!-- ── 하단 고정 도크 (미드저니 프롬프트 실시간 조립 + 복사) ── -->
 <div id="dock" role="complementary" aria-label="미드저니 프롬프트 도크">
@@ -599,5 +640,7 @@ $$('.av-preset[data-preset]').forEach(function(b){
 update();
 })();
 </script>
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
 </body>
 </html>

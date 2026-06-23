@@ -188,7 +188,7 @@
 .provlbl{font-size:11.5px;font-weight:800;color:#9aa6bc;margin:8px 0 4px;display:block}
 
 /* ── 하단 고정 도크 (#dock) ────────────────────────────── */
-#dock{position:fixed;left:0;right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
+#dock{position:fixed;left:var(--side-w);right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
 .dock-in{max-width:1180px;margin:0 auto;padding:0 18px}
 
 /* (A) 프롬프트 영역 (접이식) */
@@ -334,7 +334,47 @@
   <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 12l10 5 10-5M2 17l10 5 10-5"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
   <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
 </svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav">
+      <a href="playstars.html">플리채널 스튜디오</a>
+      <a href="plichannel-planning.html">기획 노바</a>
+      <a href="music-lab.html" class="cur">음악 랩</a>
+      <a href="auto-video.html">자동영상</a>
+      <a href="history.html">내 기록</a>
+    </div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main" id="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="history.html">내 요청 기록</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+    </div>
+  </header>
 
 <main id="lab-main" class="lab">
 
@@ -642,6 +682,7 @@
   </section>
 
 </main>
+</div>
 
 <!-- ── 하단 고정 도크 (프롬프트 · 요약 · 전송대상 · 복사 · 생성) ── -->
 <div id="dock" role="complementary" aria-label="AI 요청 도크">
@@ -1528,5 +1569,7 @@ applyModeUI();
 update();
 })();
 </script>
+<script src="../home/space.js"></script>
+<script src="../home/shell.js"></script>
 </body>
 </html>
