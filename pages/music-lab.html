@@ -234,6 +234,55 @@
   .pv-prompt-ta{max-height:110px;min-height:72px}
   .sb-pill .k{display:none}
 }
+
+/* ── 결과 화면 (Suno 엔지니어 출력 렌더) ───────────────── */
+.lab-result{max-width:860px;margin:30px auto 0;scroll-margin-top:20px}
+.lab-result[hidden]{display:none}
+.res-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.res-head .num{width:30px;height:30px;border-radius:9px;background:#7ED4A6;color:#06210f;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.res-head h3{margin:0;font-size:16px;font-weight:900;color:#fff}
+.res-head .regen{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:8px 13px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.res-head .regen:hover{background:rgba(46,111,201,.16);color:#fff}
+.res-head .regen:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.res-head .regen svg{width:14px;height:14px;flex-shrink:0}
+.res-head .regen[disabled]{opacity:.5;cursor:not-allowed}
+
+/* 로딩 */
+.res-loading{display:flex;align-items:center;gap:12px;border:1px solid rgba(127,169,224,.28);background:rgba(46,111,201,.08);border-radius:14px;padding:18px 20px;color:#C6CEDC;font-size:13.5px;font-weight:700}
+.res-loading .spin{width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(127,169,224,.3);border-top-color:var(--blue-300);animation:res-spin .8s linear infinite;flex-shrink:0}
+@keyframes res-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.res-loading .spin{animation:none}}
+
+/* 에러 */
+.res-error{display:flex;gap:12px;align-items:flex-start;border:1px solid rgba(231,107,107,.35);background:rgba(231,107,107,.08);border-radius:14px;padding:16px 18px}
+.res-error .ei{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:rgba(231,107,107,.16);color:#E76B6B;display:flex;align-items:center;justify-content:center}
+.res-error .ei svg{width:18px;height:18px}
+.res-error h4{margin:0 0 4px;font-size:13.5px;font-weight:800;color:#fff}
+.res-error p{margin:0;font-size:12.5px;color:#C6CEDC;line-height:1.55}
+
+/* 마크다운 본문 */
+.res-body{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015);border-radius:14px;padding:20px 22px}
+@media(max-width:560px){.res-body{padding:16px 15px}}
+.res-body h2{font-size:18px;font-weight:900;color:#fff;margin:22px 0 10px;letter-spacing:-.01em}
+.res-body h3{font-size:15px;font-weight:800;color:var(--blue-300);margin:20px 0 9px}
+.res-body h4{font-size:13.5px;font-weight:800;color:#C6CEDC;margin:16px 0 7px}
+.res-body :first-child{margin-top:0}
+.res-body p{font-size:13.5px;color:#C6CEDC;line-height:1.7;margin:0 0 11px}
+.res-body strong{color:#fff;font-weight:800}
+.res-body ul,.res-body ol{margin:0 0 12px;padding-left:22px}
+.res-body li{font-size:13.5px;color:#C6CEDC;line-height:1.7;margin-bottom:4px}
+.res-body code{font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);font-size:12.5px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:1px 6px;color:#E4E9F2}
+.res-body hr{border:0;height:1px;background:rgba(255,255,255,.08);margin:18px 0}
+
+/* 코드블록 + 복사 버튼 */
+.res-codewrap{position:relative;margin:0 0 14px}
+.res-codewrap pre{margin:0;background:rgba(0,0,0,.42);border:1px solid rgba(127,169,224,.2);border-radius:12px;padding:14px 16px;overflow:auto}
+.res-codewrap pre code{display:block;background:none;border:0;padding:0;font-size:12.5px;line-height:1.65;color:#E4E9F2;white-space:pre-wrap;word-break:break-word}
+.res-codecopy{position:absolute;top:9px;right:9px;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:rgba(8,13,24,.85);color:var(--blue-300);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit}
+.res-codecopy:hover{background:rgba(46,111,201,.3);color:#fff}
+.res-codecopy:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
+.res-codecopy.done{border-color:rgba(126,212,166,.5);color:#7ED4A6}
+.res-codecopy svg{width:12px;height:12px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -539,6 +588,16 @@
     <button type="button" class="eng" aria-pressed="true" data-single="eng"><span class="et"><svg><use href="#i-copy"/></svg> 사용 안 함</span><p>가사·스타일만 만들고 Suno 웹에 직접 붙여넣기.</p><span class="req free"><svg><use href="#i-check"/></svg> 100% 무료</span></button>
   </div>
 
+  <!-- ── 결과 화면 (Suno 사운드 엔지니어 출력) ───────────── -->
+  <section class="lab-result" id="labResult" hidden aria-labelledby="resTitle">
+    <div class="res-head">
+      <span class="num" aria-hidden="true"><svg width="16" height="16"><use href="#i-music"/></svg></span>
+      <h3 id="resTitle">생성 결과 — 10곡 가사 + Suno 스타일팩</h3>
+      <button type="button" class="regen" id="resRegen"><svg aria-hidden="true"><use href="#i-refresh"/></svg> 재생성</button>
+    </div>
+    <div id="resContent" role="status" aria-live="polite" aria-atomic="false"></div>
+  </section>
+
 </main>
 
 <!-- ── 하단 고정 도크 (프롬프트 · 요약 · 전송대상 · 복사 · 생성) ── -->
@@ -554,6 +613,7 @@
       <div class="dock-prompt-body open" id="dockPromptBody">
         <label class="sr-only" for="pvPrompt">AI 요청 프롬프트 (수정 가능)</label>
         <textarea class="pv-prompt-ta" id="pvPrompt" spellcheck="false" aria-label="AI 요청 프롬프트"></textarea>
+        <p class="pv-warn" style="color:#9aa6bc;background:rgba(46,111,201,.07);border-color:rgba(46,111,201,.2)"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>위 옵션은 <b>요청 내용</b>이에요. 생성 시 Suno 사운드 엔지니어 규칙(3초 인트로·안티클리핑·3분30초 풀렝스 구조·10곡팩)이 자동 적용됩니다.</span></p>
         <div class="pv-warn" id="pvWarn"></div>
       </div>
     </div>
@@ -725,9 +785,9 @@ function weirdness(){ return $('#weirdSlider').value; }
 
 /* ── 제공자 (Gemini/GPT/Claude) ───────────────────────── */
 var PROVIDERS={
-  gemini:{name:'Gemini',key:'starnauts_key_gemini',ph:'Gemini API 키 붙여넣기 (AIza…)',issue:'aistudio.google.com/apikey',issueUrl:'https://aistudio.google.com/apikey'},
-  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys'},
-  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys'}
+  gemini:{name:'Gemini',key:'starnauts_key_gemini',ph:'Gemini API 키 붙여넣기 (AIza…)',issue:'aistudio.google.com/apikey',issueUrl:'https://aistudio.google.com/apikey',live:true},
+  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys',live:false},
+  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys',live:false}
 };
 var currentProvider='gemini';
 function provider(){ return PROVIDERS[currentProvider]; }
@@ -970,23 +1030,251 @@ function copyText(txt,cb){
   if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(cb,cb); }
   else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); cb(); }
 }
-$('#genBtn').addEventListener('click',function(){
+
+/* ── 생성 두뇌: Suno 사운드 엔지니어 시스템 프롬프트 (verbatim, _suno-engineer-system-prompt.md) ── */
+var SUNO_ENGINEER_SYSTEM=[
+'# Suno AI 사운드 엔지니어 & 음악 전략가 — 시스템 프롬프트 (music-lab 생성 두뇌)',
+'',
+'역할: YouTube 데이터 분석가 + 월드클래스 프로듀서. Suno v5.5/Flow Music용 최적 프롬프트팩 + 풀렝스 가사 생성. 유튜브 체류율·글로벌 청취자 극대화.',
+'',
+'## 1. 핵심 운영 원칙 (1% 퀄리티)',
+'1. **3초 인트로 룰**: 메인 테마 3초 내 시작(체류율). 항상 `[No Intro Fade-in]`, `[Immediate Hook]`. 긴 허밍·내레이션 금지.',
+'2. **안티-슬롭 & 안티-클리핑**: 고역 뭉개짐·메탈릭 노이즈·볼륨 클리핑 방지. style에 필수: `[Studio Mastered]` `[Pristine High-end]` `[Clean Transients]` `[Analog Warmth]` `[Balanced Mix]` `[Controlled Dynamics]`.',
+'3. **안티-클리핑 클라이맥스**: Bridge·Final Chorus에서 AI 절규/클리핑 방지. `[Screaming]` `[Explosive]` `[High Pitch]` 절대 금지 → `[Powerful Vocal Harmonies]` `[Emotional Intensity]` `[Full Band Buildup]`로 하모니·악기 레이어링 웅장함.',
+'4. **보컬 휴머나이제이션**: `[Emotional Breaths]` `[Vocal Layering]` `[Natural Enunciation]`로 기계음 제거.',
+'5. **BPM 최적화**: 장르 기반 최적 BPM 자동 결정·주입.',
+'6. **글로벌 알고리즘 타겟팅**: 장르에 맞는 전통악기·트렌디 스케일 전략 블렌딩.',
+'7. **안티-클로닝 인트로(변주 룰)**: 배치 생성 시 동일 인트로 방지 → 같은 장르/보컬 톤 유지하되 시작 리드 악기 바꾼 **인트로 변주 3종** 추가 생성.',
+'',
+'## 2. 4단계 인터랙션·정제 로직',
+'- Step1 분석·역제안: 장르 조합이 오디오 충돌(하시 메탈+로파이 등)이면 균형 잡힌 대안으로 부드럽게 정제.',
+'- Step2 타겟 정렬: 사운드 텍스처를 그 장르의 현 글로벌 유튜브 알고리즘 트렌드에 정렬.',
+'- Step3 구조 분해: 가사 쓰기 전 **최소 3분30초 풀렝스 로드맵** 제시.',
+'- Step4 출력: 아래 출력 형식 정확히 준수.',
+'',
+'## 3. 풀렝스(3분30초) 구조 코드',
+'(Suno가 일찍 끝내지 못하게 교차 구조):',
+'`[Intro]`→`[Verse 1]`(4줄)→`[Pre-Chorus]`(2줄)→`[Chorus]`(4줄)→`[Instrumental Break]`(길이 핵심)→`[Verse 2]`(4줄)→`[Pre-Chorus]`(2줄)→`[Chorus]`(4줄)→`[Extended Guitar Solo]` or `[Synth Solo]`(2분 지점)→`[Bridge]`(4줄, 안티클리핑 태그)→`[Final Chorus]`(4줄)→`[Big Finish]`→`[Double Length Outro]`→`[End]`',
+'',
+'## 4. 고품질 풀렝스 가사 규칙',
+'- **약어 금지**: `[Chorus Repeat]` 금지. Verse2·Final Chorus 전 단어 작성(AI가 끝까지 노래). **곡당 최소 20줄**.',
+'- **운율·모음 최적화**: 고음 클라이맥스엔 열린 모음(A·E·O). 음절 끝 거친 자음 회피(보컬 매끄럽게).',
+'- **10세트 팩**: 요청 시 **10개 곡 제목+풀 가사**. 각 곡에 다른 인트로 메타태그 교차(`[Instrumental Solo Intro]` `[Acoustic Chords Intro]` 등)로 생성 중복 방지.',
+'',
+'## 5. 출력 형식',
+'- **[Global Strategy]**: 장르의 현 바이럴 트렌드·알고리즘 이점.',
+'- **[Technical Info]**: 권장 BPM·Key·엔지니어링 셋업.',
+'- **[Suno Style Prompt Pack]** (코드블록): `[Main Style (Base)]` + `[Intro Variation 1 (Instrument Swap)]` + `[Intro Variation 2 (Ambient/Texture)]` + `[Intro Variation 3 (Rhythm Build-up)]`.',
+'- **[Suno Structure Prompt]**: 가사 박스 상단에 붙일 구조 메타태그.',
+'- **[10 Songs Lyrics Pack]**: 10개 완전·비약어 가사(복사 버튼/명확 포맷). Bridge에 `[Bridge - Powerful Vocal Harmonies, Deep Emotion]`.',
+'',
+'## 6. 절대 금지 (네거티브)',
+'- **실명 가수 금지**: 묘사로 우회("90s Neo-soul vocal" not "Erykah Badu").',
+'- **내레이션·과한 허밍 금지**.',
+'- **이미지 생성 금지**(텍스트 프롬프트·구조·가사 100% 집중, 명시 요청 시만).',
+'- **톤**: 월드클래스 음악 디렉터 + 데이터 분석가. 프로페셔널·날카롭되 위트 있고 현실적.',
+'',
+'각 코드블록(Style Prompt Pack, Structure Prompt)은 ```로 감싸 사용자가 바로 복사할 수 있게 출력하라. 마크다운 헤더(##/###)와 **굵게**로 섹션을 명확히 구분하라.'
+].join('\n');
+
+/* ── Gemini 실호출 (plichannel-planning 패턴 차용) ────── */
+var GEMINI_MODEL='gemini-2.0-flash';
+function geminiEndpoint(key){
+  return 'https://generativelanguage.googleapis.com/v1beta/models/'+GEMINI_MODEL+':generateContent?key='+encodeURIComponent(key);
+}
+function parseGeminiError(status,data){
+  if(status===400) return 'API 키가 올바르지 않거나 요청 형식 오류예요. 키를 다시 확인해 주세요.';
+  if(status===403) return 'API 키 권한 오류예요(403). 키가 유효한지, Generative Language API가 활성화됐는지 확인해 주세요.';
+  if(status===429) return '요청이 너무 많아요(429). 잠시 후 다시 시도해 주세요.';
+  if(data&&data.error&&data.error.message) return 'Gemini 오류: '+data.error.message;
+  return '응답을 받지 못했어요(HTTP '+status+'). 잠시 후 다시 시도해 주세요.';
+}
+// 성공 시 model 텍스트 반환, 실패 시 throw {message}. userPrompt = 옵션 프롬프트(user 메시지)
+function callGemini(userPrompt){
+  var key=localStorage.getItem(PROVIDERS.gemini.key);
+  if(!key) return Promise.reject({message:'Gemini 키가 없어요. 먼저 키를 등록해 주세요.'});
+  var body={
+    system_instruction:{ parts:[{ text:SUNO_ENGINEER_SYSTEM }] },
+    contents:[{ role:'user', parts:[{ text:userPrompt }] }],
+    generationConfig:{ temperature:0.9, topP:0.95, maxOutputTokens:8192 }
+  };
+  return fetch(geminiEndpoint(key),{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  }).then(function(res){
+    return res.json().catch(function(){return {};}).then(function(data){
+      if(!res.ok) throw {message:parseGeminiError(res.status,data)};
+      var cand=data&&data.candidates&&data.candidates[0];
+      if(!cand){
+        if(data&&data.promptFeedback&&data.promptFeedback.blockReason)
+          throw {message:'요청이 안전 필터에 걸렸어요('+data.promptFeedback.blockReason+'). 표현을 바꿔 다시 시도해 주세요.'};
+        throw {message:'빈 응답을 받았어요. 다시 시도해 주세요.'};
+      }
+      var parts=(cand.content&&cand.content.parts)||[];
+      var txt=parts.map(function(p){return p.text||'';}).join('').trim();
+      if(!txt) throw {message:'응답 텍스트가 비어 있어요. 다시 시도해 주세요.'};
+      return txt;
+    });
+  },function(){
+    throw {message:'네트워크 오류예요. 인터넷 연결을 확인하고 다시 시도해 주세요.'};
+  });
+}
+
+/* ── 경량 마크다운 렌더 (외부 라이브러리 금지) ───────── */
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function renderInline(s){
+  // 인라인 코드 → **굵게** (escape는 호출 전 처리)
+  s=s.replace(/`([^`]+)`/g,function(_,c){return '<code>'+c+'</code>';});
+  s=s.replace(/\*\*([^*]+)\*\*/g,function(_,c){return '<strong>'+c+'</strong>';});
+  return s;
+}
+function renderMarkdown(md){
+  var src=md.replace(/\r\n/g,'\n').split('\n');
+  var html=[], i=0, codeIdx=0, listOpen=null;
+  function closeList(){ if(listOpen){ html.push('</'+listOpen+'>'); listOpen=null; } }
+  while(i<src.length){
+    var line=src[i];
+    // 코드블록 (```lang ... ```)
+    var fence=line.match(/^\s*```(.*)$/);
+    if(fence){
+      closeList();
+      var buf=[]; i++;
+      while(i<src.length && !/^\s*```\s*$/.test(src[i])){ buf.push(src[i]); i++; }
+      i++; // 닫는 펜스 소비
+      var raw=buf.join('\n');
+      var id='resCode'+(codeIdx++);
+      html.push(
+        '<div class="res-codewrap">'+
+          '<button type="button" class="res-codecopy" data-code-for="'+id+'" aria-label="코드 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button>'+
+          '<pre><code id="'+id+'">'+escHtml(raw)+'</code></pre>'+
+        '</div>'
+      );
+      continue;
+    }
+    // 헤더
+    var h=line.match(/^(#{1,4})\s+(.*)$/);
+    if(h){ closeList(); var lvl=Math.min(h[1].length+1,4); html.push('<h'+lvl+'>'+renderInline(escHtml(h[2].trim()))+'</h'+lvl+'>'); i++; continue; }
+    // 수평선
+    if(/^\s*(---|\*\*\*|___)\s*$/.test(line)){ closeList(); html.push('<hr>'); i++; continue; }
+    // 순서 목록
+    var ol=line.match(/^\s*\d+\.\s+(.*)$/);
+    if(ol){ if(listOpen!=='ol'){ closeList(); html.push('<ol>'); listOpen='ol'; } html.push('<li>'+renderInline(escHtml(ol[1]))+'</li>'); i++; continue; }
+    // 비순서 목록
+    var ul=line.match(/^\s*[-*+]\s+(.*)$/);
+    if(ul){ if(listOpen!=='ul'){ closeList(); html.push('<ul>'); listOpen='ul'; } html.push('<li>'+renderInline(escHtml(ul[1]))+'</li>'); i++; continue; }
+    // 빈 줄
+    if(/^\s*$/.test(line)){ closeList(); i++; continue; }
+    // 일반 단락
+    closeList(); html.push('<p>'+renderInline(escHtml(line))+'</p>'); i++;
+  }
+  closeList();
+  return html.join('');
+}
+
+/* ── 결과 영역 상태 렌더 ─────────────────────────────── */
+var resultSection=$('#labResult'), resultContent=$('#resContent'), resRegen=$('#resRegen');
+function showResult(){ resultSection.hidden=false; }
+function scrollToResult(){ try{ resultSection.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ resultSection.scrollIntoView(); } }
+function renderLoading(){
+  showResult(); resRegen.disabled=true;
+  resultContent.innerHTML='<div class="res-loading"><span class="spin" aria-hidden="true"></span><span>Suno 사운드 엔지니어가 10곡 가사·스타일팩을 작곡 중이에요… (최대 1분)</span></div>';
+}
+function renderError(msg){
+  showResult(); resRegen.disabled=false;
+  resultContent.innerHTML='<div class="res-error"><span class="ei" aria-hidden="true"><svg><use href="#i-info"/></svg></span><div><h4>생성에 실패했어요</h4><p>'+escHtml(msg||'알 수 없는 오류가 발생했어요.')+'</p></div></div>';
+}
+function bindCodeCopies(){
+  $$('#resContent .res-codecopy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var code=document.getElementById(b.getAttribute('data-code-for'));
+      var txt=code?code.textContent:'';
+      copyText(txt,function(){
+        var orig=b.innerHTML; b.classList.add('done');
+        b.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 복사됨';
+        setTimeout(function(){ b.classList.remove('done'); b.innerHTML=orig; },1400);
+      });
+    });
+  });
+}
+function renderResult(md){
+  showResult(); resRegen.disabled=false;
+  resultContent.innerHTML='<div class="res-body">'+renderMarkdown(md)+'</div>';
+  bindCodeCopies();
+}
+
+/* ── 생성 실행 (Gemini 실호출 / 무료 복사 경로) ──────── */
+var generating=false;
+function runGenerate(){
+  if(generating) return;
   if(!promptDirty) refreshPrompt();
   var p=provider();
+  var userPrompt=$('#pvPrompt').value||'';
   var btn=$('#genBtn'), orig=btn.innerHTML;
-  if(hasKey()){
-    // 키 있음: 실제 API 호출은 다음 단계
-    btn.innerHTML='<svg aria-hidden="true"><use href="#i-music"/></svg> '+p.name+'로 생성 준비됨 (다음 단계: API 호출)';
-  } else {
-    // 키 없음: 프롬프트 자동 복사 + 안내
-    copyText($('#pvPrompt').value||'',function(){});
-    btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트를 복사했어요 — '+p.name+'에 붙여넣으세요';
+
+  // Gemini + 키 있음 → 실호출
+  if(p.live && hasKey()){
+    generating=true;
+    btn.disabled=true;
+    btn.innerHTML='<svg aria-hidden="true"><use href="#i-music"/></svg> 생성 중…';
+    renderLoading(); scrollToResult();
+    callGemini(userPrompt).then(function(txt){
+      renderResult(txt);
+      generating=false; btn.disabled=false; btn.innerHTML=orig;
+      scrollToResult();
+    }).catch(function(e){
+      renderError((e&&e.message)||'알 수 없는 오류가 발생했어요.');
+      generating=false; btn.disabled=false; btn.innerHTML=orig;
+    });
+    return;
   }
-  setTimeout(function(){ btn.innerHTML=orig; },2400);
+
+  // 키 없음 / Gemini 외 제공자(CORS) → 무료 경로: 프롬프트 복사 + 안내
+  copyText(userPrompt,function(){});
+  if(p.live && !hasKey()){
+    btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트를 복사했어요 — '+p.name+'에 붙여넣으세요';
+  } else {
+    // GPT/Claude는 브라우저 직접 호출 제한 → 복사 안내
+    btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트 복사됨 — '+p.name+'은 직접 붙여넣기 (실시간 생성은 Gemini)';
+  }
+  setTimeout(function(){ btn.innerHTML=orig; },2600);
   // 도크 프롬프트가 접혀 있으면 펼쳐서 결과를 바로 보이게
   var t=$('#dockPromptToggle'), body=$('#dockPromptBody');
   if(t&&body&&t.getAttribute('aria-expanded')!=='true'){ t.setAttribute('aria-expanded','true'); body.classList.add('open'); }
-});
+}
+$('#genBtn').addEventListener('click',runGenerate);
+resRegen.addEventListener('click',runGenerate);
+
+/* 테스트용: 샘플 마크다운 결과 주입 (?demo=result) */
+if(/[?&]demo=result/.test(location.search)){
+  renderResult([
+    '## [Global Strategy]',
+    'City pop **레트로 리바이벌**이 글로벌 알고리즘에서 강세. 80s 신스 텍스처가 체류율을 높입니다.',
+    '',
+    '## [Technical Info]',
+    '- 권장 BPM: ~104 BPM',
+    '- Key: F# Major',
+    '- 엔지니어링: `[Studio Mastered]` `[Analog Warmth]` `[Balanced Mix]`',
+    '',
+    '## [Suno Style Prompt Pack]',
+    '```',
+    '[Main Style (Base)] city pop, ~104 BPM, rhodes electric piano, wide stereo, [Analog Warmth][Balanced Mix][Clean Transients]',
+    '```',
+    '```',
+    '[Intro Variation 1 (Instrument Swap)] saxophone lead intro, same city pop base',
+    '```',
+    '',
+    '## [Suno Structure Prompt]',
+    '```',
+    '[Intro][No Intro Fade-in][Immediate Hook][Verse 1][Pre-Chorus][Chorus][Instrumental Break][Verse 2][Bridge - Powerful Vocal Harmonies][Final Chorus][Big Finish][End]',
+    '```',
+    '',
+    '## [10 Songs Lyrics Pack]',
+    '### 1. 네온 거리의 너',
+    '[Intro]',
+    '도시의 불빛 아래 …'
+  ].join('\n'));
+}
 
 /* 초기 렌더 */
 syncStructNote();
