@@ -180,7 +180,7 @@
     <span class="bi" aria-hidden="true"><svg><use href="#i-key"/></svg></span>
     <div style="flex:1">
       <h4 id="keyTitle">Gemini 키를 등록하면 노바와 대화를 시작할 수 있어요</h4>
-      <p>노바는 실제 LLM과 대화하는 기획 에이전트예요. 키는 이 브라우저(localStorage)에만 저장되고 서버로 전송되지 않습니다. <b>지금은 Gemini만 실시간 대화가 가능</b>합니다(GPT·Claude는 브라우저 직접 호출 제한).</p>
+      <p>노바는 실제 LLM과 대화하는 기획 에이전트예요. 키는 이 브라우저(localStorage)에만 저장되고 서버로 전송되지 않습니다. <b>Gemini · GPT · Claude</b> 중 원하는 AI를 골라 본인 키로 바로 대화하세요.</p>
       <span class="provlbl">AI 제공자</span>
       <div class="provrow" id="provRow" role="group" aria-label="AI 제공자 선택">
         <button type="button" class="provb" data-prov="gemini" aria-pressed="true"><span class="ok-dot" aria-hidden="true"></span>Gemini</button>
@@ -308,8 +308,8 @@ var SYSTEM_PROMPT = [
 /* ── 제공자 (Gemini/GPT/Claude) — music-lab과 동일 키 패턴 ── */
 var PROVIDERS={
   gemini:{name:'Gemini',key:'starnauts_key_gemini',ph:'Gemini API 키 붙여넣기 (AIza…)',issue:'aistudio.google.com/apikey',issueUrl:'https://aistudio.google.com/apikey',live:true},
-  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys',live:false},
-  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys',live:false}
+  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys',live:true},
+  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys',live:true}
 };
 var currentProvider='gemini';
 function provider(){ return PROVIDERS[currentProvider]; }
@@ -453,15 +453,68 @@ function callGemini(){
 }
 
 /* ──────────────────────────────────────────────────────────
+   GPT(OpenAI) / Claude(Anthropic) 실호출 — 둘 다 BYOK 브라우저 직접 호출.
+   history({role:'user'|'model'}) → 각 API의 messages 형식으로 변환.
+   ────────────────────────────────────────────────────────── */
+var OPENAI_MODEL='gpt-4o';
+var ANTHROPIC_MODEL='claude-sonnet-4-6';
+var ANTHROPIC_VERSION='2023-06-01';
+function netFail(){ throw {message:'네트워크 오류예요. 인터넷 연결을 확인하고 다시 시도해 주세요.'}; }
+function httpErr(status){
+  if(status===401||status===403) return 'API 키 권한 오류예요('+status+'). 키가 유효한지 확인해 주세요.';
+  if(status===429) return '요청이 너무 많아요(429). 잠시 후 다시 시도해 주세요.';
+  if(status===400) return '요청 형식 또는 키 오류예요(400). 키를 다시 확인해 주세요.';
+  return '응답을 받지 못했어요(HTTP '+status+'). 잠시 후 다시 시도해 주세요.';
+}
+function toMsgs(){ return history.map(function(h){ return { role:(h.role==='model'?'assistant':'user'), content:h.text }; }); }
+function callOpenAI(){
+  var key=localStorage.getItem(PROVIDERS.gpt.key);
+  if(!key) return Promise.reject({message:'GPT 키가 없어요. 먼저 키를 등록해 주세요.'});
+  var body={ model:OPENAI_MODEL, temperature:0.9, max_tokens:2048,
+    messages:[{role:'system',content:SYSTEM_PROMPT}].concat(toMsgs()) };
+  return fetch('https://api.openai.com/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+    body:JSON.stringify(body)
+  }).then(function(res){
+    return res.json().catch(function(){return {};}).then(function(data){
+      if(!res.ok){ var m=data&&data.error&&data.error.message; throw {message:m?'GPT 오류: '+m:httpErr(res.status)}; }
+      var c=data&&data.choices&&data.choices[0], txt=(c&&c.message&&c.message.content||'').trim();
+      if(!txt) throw {message:'노바가 빈 응답을 보냈어요. 다시 시도해 주세요.'};
+      return txt;
+    });
+  },netFail);
+}
+function callAnthropic(){
+  var key=localStorage.getItem(PROVIDERS.claude.key);
+  if(!key) return Promise.reject({message:'Claude 키가 없어요. 먼저 키를 등록해 주세요.'});
+  var body={ model:ANTHROPIC_MODEL, max_tokens:2048, system:SYSTEM_PROMPT, messages:toMsgs() };
+  return fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,
+      'anthropic-version':ANTHROPIC_VERSION,'anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify(body)
+  }).then(function(res){
+    return res.json().catch(function(){return {};}).then(function(data){
+      if(!res.ok){ var m=data&&data.error&&data.error.message; throw {message:m?'Claude 오류: '+m:httpErr(res.status)}; }
+      var blocks=(data&&data.content)||[], txt=blocks.map(function(b){return b.text||'';}).join('').trim();
+      if(!txt) throw {message:'노바가 빈 응답을 보냈어요. 다시 시도해 주세요.'};
+      return txt;
+    });
+  },netFail);
+}
+function callLLM(){
+  if(currentProvider==='gpt') return callOpenAI();
+  if(currentProvider==='claude') return callAnthropic();
+  return callGemini();
+}
+
+/* ──────────────────────────────────────────────────────────
    턴 진행: 사용자 메시지(또는 시작 트리거) → AI 응답
    ────────────────────────────────────────────────────────── */
 function sendTurn(userText, isStart){
   if(busy) return;
   if(!hasKey()){ return; }
-  if(!provider().live){
-    addMsg('ani','지금은 '+provider().name+'의 브라우저 직접 호출이 CORS 제한으로 막혀 있어요. 추후 프록시 연동 예정입니다. 지금은 **Gemini**를 선택해 주세요.');
-    return;
-  }
   busy=true; setDockEnabled();
 
   if(isStart){
@@ -473,7 +526,7 @@ function sendTurn(userText, isStart){
   }
 
   addLoading();
-  callGemini().then(function(txt){
+  callLLM().then(function(txt){
     removeLoading();
     history.push({role:'model', text:txt});
     addMsg('ani', txt);

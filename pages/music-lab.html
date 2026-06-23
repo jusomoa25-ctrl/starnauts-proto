@@ -809,8 +809,8 @@ function weirdness(){ return $('#weirdSlider').value; }
 /* ── 제공자 (Gemini/GPT/Claude) ───────────────────────── */
 var PROVIDERS={
   gemini:{name:'Gemini',key:'starnauts_key_gemini',ph:'Gemini API 키 붙여넣기 (AIza…)',issue:'aistudio.google.com/apikey',issueUrl:'https://aistudio.google.com/apikey',live:true},
-  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys',live:false},
-  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys',live:false}
+  gpt:{name:'GPT',key:'starnauts_key_gpt',ph:'OpenAI API 키 붙여넣기 (sk-…)',issue:'platform.openai.com/api-keys',issueUrl:'https://platform.openai.com/api-keys',live:true},
+  claude:{name:'Claude',key:'starnauts_key_claude',ph:'Claude API 키 붙여넣기 (sk-ant-…)',issue:'console.anthropic.com/settings/keys',issueUrl:'https://console.anthropic.com/settings/keys',live:true}
 };
 var currentProvider='gemini';
 function provider(){ return PROVIDERS[currentProvider]; }
@@ -1217,6 +1217,64 @@ function callGemini(userPrompt){
   });
 }
 
+/* ── GPT(OpenAI) / Claude(Anthropic) 실호출 ───────────
+   둘 다 BYOK + 브라우저 직접 호출(키는 localStorage만, 서버 미전송).
+   Anthropic은 anthropic-dangerous-direct-browser-access 헤더로 브라우저 직접 호출 허용. */
+var OPENAI_MODEL='gpt-4o';
+var ANTHROPIC_MODEL='claude-sonnet-4-6';
+var ANTHROPIC_VERSION='2023-06-01';
+function netFail(){ throw {message:'네트워크 오류예요. 인터넷 연결을 확인하고 다시 시도해 주세요.'}; }
+function httpErr(status){
+  if(status===401||status===403) return 'API 키 권한 오류예요('+status+'). 키가 유효한지 확인해 주세요.';
+  if(status===429) return '요청이 너무 많아요(429). 잠시 후 다시 시도해 주세요.';
+  if(status===400) return '요청 형식 또는 키 오류예요(400). 키를 다시 확인해 주세요.';
+  return '응답을 받지 못했어요(HTTP '+status+'). 잠시 후 다시 시도해 주세요.';
+}
+// system 지시 + user 메시지 1개 → model 텍스트. 실패 시 throw {message}
+function callOpenAI(system,userPrompt){
+  var key=localStorage.getItem(PROVIDERS.gpt.key);
+  if(!key) return Promise.reject({message:'GPT 키가 없어요. 먼저 키를 등록해 주세요.'});
+  var body={ model:OPENAI_MODEL, temperature:0.9, max_tokens:8192,
+    messages:[{role:'system',content:system},{role:'user',content:userPrompt}] };
+  return fetch('https://api.openai.com/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+    body:JSON.stringify(body)
+  }).then(function(res){
+    return res.json().catch(function(){return {};}).then(function(data){
+      if(!res.ok){ var m=data&&data.error&&data.error.message; throw {message:m?'GPT 오류: '+m:httpErr(res.status)}; }
+      var c=data&&data.choices&&data.choices[0], txt=(c&&c.message&&c.message.content||'').trim();
+      if(!txt) throw {message:'빈 응답을 받았어요. 다시 시도해 주세요.'};
+      return txt;
+    });
+  },netFail);
+}
+function callAnthropic(system,userPrompt){
+  var key=localStorage.getItem(PROVIDERS.claude.key);
+  if(!key) return Promise.reject({message:'Claude 키가 없어요. 먼저 키를 등록해 주세요.'});
+  var body={ model:ANTHROPIC_MODEL, max_tokens:8192, system:system,
+    messages:[{role:'user',content:userPrompt}] };
+  return fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,
+      'anthropic-version':ANTHROPIC_VERSION,'anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify(body)
+  }).then(function(res){
+    return res.json().catch(function(){return {};}).then(function(data){
+      if(!res.ok){ var m=data&&data.error&&data.error.message; throw {message:m?'Claude 오류: '+m:httpErr(res.status)}; }
+      var blocks=(data&&data.content)||[], txt=blocks.map(function(b){return b.text||'';}).join('').trim();
+      if(!txt) throw {message:'빈 응답을 받았어요. 다시 시도해 주세요.'};
+      return txt;
+    });
+  },netFail);
+}
+// 현재 선택된 제공자로 분기
+function callLLM(userPrompt){
+  if(currentProvider==='gpt') return callOpenAI(activeSystem(),userPrompt);
+  if(currentProvider==='claude') return callAnthropic(activeSystem(),userPrompt);
+  return callGemini(userPrompt);
+}
+
 /* ── 경량 마크다운 렌더 (외부 라이브러리 금지) ───────── */
 function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function renderInline(s){
@@ -1315,7 +1373,7 @@ function runGenerate(){
     btn.disabled=true;
     btn.innerHTML='<svg aria-hidden="true"><use href="#i-music"/></svg> 생성 중…';
     renderLoading(); scrollToResult();
-    callGemini(userPrompt).then(function(txt){
+    callLLM(userPrompt).then(function(txt){
       renderResult(txt);
       generating=false; btn.disabled=false; btn.innerHTML=orig;
       scrollToResult();
@@ -1326,14 +1384,9 @@ function runGenerate(){
     return;
   }
 
-  // 키 없음 / Gemini 외 제공자(CORS) → 무료 경로: 프롬프트 복사 + 안내
+  // 키 없음 → 무료 경로: 프롬프트를 복사해 두고 직접 붙여넣도록 안내
   copyText(userPrompt,function(){});
-  if(p.live && !hasKey()){
-    btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트를 복사했어요 — '+p.name+'에 붙여넣으세요';
-  } else {
-    // GPT/Claude는 브라우저 직접 호출 제한 → 복사 안내
-    btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트 복사됨 — '+p.name+'은 직접 붙여넣기 (실시간 생성은 Gemini)';
-  }
+  btn.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 프롬프트를 복사했어요 — '+p.name+' 키를 등록하면 자동 생성돼요';
   setTimeout(function(){ btn.innerHTML=orig; },2600);
   // 도크 프롬프트가 접혀 있으면 펼쳐서 결과를 바로 보이게
   var t=$('#dockPromptToggle'), body=$('#dockPromptBody');
