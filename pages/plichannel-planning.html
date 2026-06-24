@@ -175,9 +175,10 @@
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <div class="side-sub-nav">
-      <a href="playstars.html">플리채널 스튜디오</a>
+      <a href="pli-studio.html">플리채널 스튜디오</a>
       <a href="plichannel-planning.html" class="cur">기획 노바</a>
       <a href="music-lab.html">음악 랩</a>
+      <a href="channel-research.html">채널 딥 리서치</a>
       <a href="auto-video.html">자동영상</a>
       <a href="history.html">내 기록</a>
     </div>
@@ -603,7 +604,7 @@ function sendTurn(userText, isStart){
 
 /* ── 대화 시작 ── */
 function startConversation(){
-  if(started||!hasKey()||!provider().live) return;
+  if(started||!hasKey()) return;
   started=true;
   if(chatEmpty) chatEmpty.style.display='none';
   msgInput.focus();
@@ -642,8 +643,7 @@ $('#resetBtn').addEventListener('click', function(){
 var box=$('#keyBox');
 function refreshKeyState(){
   var p=provider();
-  if(hasKey() && p.live){ banner.classList.add('ok'); title.textContent=p.name+' 연결됨 — 노바와 대화를 시작할 수 있어요'; }
-  else if(hasKey() && !p.live){ banner.classList.remove('ok'); title.textContent=p.name+' 키는 등록됐지만, 지금은 Gemini만 실시간 대화가 가능해요'; }
+  if(hasKey()){ banner.classList.add('ok'); title.textContent=p.name+' 연결됨 — 노바와 대화를 시작할 수 있어요'; }
   else { banner.classList.remove('ok'); title.textContent=p.name+' 키를 등록하면 노바와 대화를 시작할 수 있어요'; }
 }
 function refreshKeyDots(){
@@ -658,17 +658,15 @@ function syncProviderButtons(){
     b.setAttribute('aria-pressed', b.getAttribute('data-prov')===currentProvider?'true':'false');
   });
   $('#targetName').textContent=provider().name;
-  $('#targetPill').classList.toggle('warn', !provider().live);
 }
 function setDockEnabled(){
-  var ready = started && hasKey() && provider().live && !busy;
+  var ready = started && hasKey() && !busy;
   msgInput.disabled = !ready;
   sendBtn.disabled = !ready;
   msgInput.placeholder = ready ? '노바에게 답하기…' :
-    (!hasKey()? 'Gemini 키를 등록하면 입력할 수 있어요…' :
-     (!provider().live? '지금은 Gemini만 대화가 가능해요…' :
-      (!started? '위 「노바와 대화 시작」을 먼저 눌러주세요…' : '응답을 기다리는 중…')));
-  startBtn.disabled = !(hasKey() && provider().live) || started;
+    (!hasKey()? 'API 키를 등록하면 입력할 수 있어요…' :
+     (!started? '위 「노바와 대화 시작」을 먼저 눌러주세요…' : '응답을 기다리는 중…'));
+  startBtn.disabled = !hasKey() || started;
 }
 function applyProviderUI(){
   var p=provider();
@@ -702,6 +700,6 @@ applyProviderUI();
 })();
 </script>
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
+<script src="../home/shell.js?v=21"></script>
 </body>
 </html>
