@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>번역 + SRT 다운로드 · STARNAUTS</title>
+<link rel="stylesheet" href="../home/home.css"><link rel="stylesheet" href="../home/space-theme.css?v=17"><link rel="stylesheet" href="../home/shell.css?v=20"><link rel="stylesheet" href="../home/tweaks.css?v=14"><style>
+:root{--bg:#0d1117;--card:#161b22;--blue:#4d7cff;--ink:#e6edf3;--ink2:#9aa6bc;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:34px 18px 90px}
+.kicker{font-size:12px;color:var(--blue);font-weight:800;letter-spacing:.08em}
+h1{font-size:24px;margin:6px 0 4px}.sub{color:var(--ink2);font-size:14px;margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn:hover{background:#3d6bef}.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}
+.btn.mini{padding:6px 12px;font-size:12px}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:30px 16px;text-align:center;color:var(--ink2);cursor:pointer;transition:.15s;font-size:14px}
+.drop:hover,.drop.over{border-color:var(--blue);color:var(--ink);background:rgba(77,124,255,.06)}
+.lbl{display:block;font-size:13px;color:var(--ink2);margin:14px 0 6px;font-weight:700}
+select,textarea{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:8px;padding:11px 12px;color:var(--ink);font-family:inherit;font-size:14px}
+textarea{resize:vertical;line-height:1.5}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.headrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.hint{font-size:12px;color:var(--ink2);margin-top:8px}
+.seg{display:flex;gap:12px;padding:11px 12px;background:rgba(255,255,255,.03);border-radius:9px;margin-bottom:7px}
+.tc{color:var(--blue);font-weight:700;font-size:11px;font-variant-numeric:tabular-nums;min-width:78px;line-height:1.7;font-family:ui-monospace,monospace}
+.seg-t{flex:1}
+.seg-t [contenteditable]{outline:none;border-radius:5px;padding:2px 4px}
+.seg-t [contenteditable]:focus{background:rgba(77,124,255,.1)}
+.seg-t .tr{color:var(--ink2);font-size:13px;margin-top:3px}
+b{font-size:15px}
+</style></head>
+<body><aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav"></div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub"><a href="blog.html">뉴스</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a><p class="side-copy">(c) 2026 STARNAUTS</p></div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+<div class="main"><div class="wrap">
+<div class="kicker"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="vertical-align:-1px;margin-right:4px"><path d="M12 2l2.6 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.4z"/></svg>TRANSLATE &amp; SRT</div>
+<h1>번역 + SRT 다운로드</h1>
+<p class="sub">음원 파일을 올리면 <b>Gemini</b>가 가사+타임코드를 추출하고, 의역 번역 후 <b>SRT 자막</b>으로 받아요.</p>
+
+<div class="card">
+  <b>STEP 1 · 음원 업로드</b>
+  <div class="drop" id="drop" style="margin-top:12px">🎵 음원 파일 선택/드래그 <span style="font-size:12px">(mp3·wav·m4a·flac · 1곡)</span><input type="file" id="file" accept="audio/*" hidden></div>
+  <label class="lbl">번역 목표 언어</label>
+  <select id="lang">
+    <option value="한국어, 한국 정서/감성 표현을 우선해 자연스럽게">🇰🇷 한국어 (한국 정서/감성)</option>
+    <option value="영어, 미국/영국 팝 가사 스타일로">🇺🇸 영어 (미국/영국 팝)</option>
+    <option value="일본어, J-POP 가사 표현 방식으로">🇯🇵 일본어 (J-POP)</option>
+    <option value="중국어(간체), C-POP 감성 표현으로">🇨🇳 중국어 (C-POP)</option>
+    <option value="스페인어, 라틴팝 감성으로">🇪🇸 스페인어 (라틴팝)</option>
+  </select>
+  <label class="lbl">원작 가사 (선택 — 있으면 받아쓰기 대신 이 가사로 정확히 매칭)</label>
+  <textarea id="lyrics" rows="4" placeholder="우리가 만든 곡이라 가사가 있으면 붙여넣으세요. 음원을 들으며 타임코드만 매기고 번역해서 받아쓰기 오류가 사라집니다. (비워두면 음원에서 직접 받아씁니다)"></textarea>
+  <div class="tools"><button class="btn" id="go">🎵 가사 추출 + 번역 시작 ✨</button></div>
+  <div class="hint" id="status"></div>
+</div>
+
+<div class="card" id="outcard" style="display:none">
+  <div class="headrow"><b>STEP 2 · 가사 + 번역 <span style="font-size:12px;color:var(--ink2)">(인라인 편집 가능)</span></b>
+  <div class="tools" style="margin:0">
+    <button class="btn ghost mini" id="cpEn">원문 복사</button>
+    <button class="btn ghost mini" id="cpTr">번역 복사</button>
+    <button class="btn ghost mini" id="cpBoth">합본 복사</button>
+    <button class="btn mini" id="dlEn">⬇ 원문 SRT</button>
+    <button class="btn mini" id="dlTr">⬇ 번역 SRT</button>
+    <button class="btn mini" id="dlBoth">⬇ 합본 SRT</button>
+  </div></div>
+  <div id="rows" style="margin-top:12px"></div>
+</div>
+
+<script src="../home/cr-keys.js?v=1"></script>
+<script>
+var $=function(s){return document.querySelector(s);};
+var file=null,segs=[];
+function esc(s){return (''+(s||'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+$('#drop').onclick=function(){$('#file').click();};
+$('#file').onchange=function(e){if(e.target.files[0]){file=e.target.files[0];$('#drop').innerHTML='✅ '+esc(file.name)+' ('+(file.size/1048576).toFixed(1)+'MB) · 다시 선택하려면 클릭';}};
+['dragover','dragenter'].forEach(function(ev){$('#drop').addEventListener(ev,function(e){e.preventDefault();$('#drop').classList.add('over');});});
+$('#drop').addEventListener('dragleave',function(e){e.preventDefault();$('#drop').classList.remove('over');});
+$('#drop').addEventListener('drop',function(e){e.preventDefault();$('#drop').classList.remove('over');if(e.dataTransfer.files[0]){file=e.dataTransfer.files[0];$('#drop').innerHTML='✅ '+esc(file.name)+' · 다시 선택하려면 클릭';}});
+
+function b64(f){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(r.result.split(',')[1]);};r.onerror=rej;r.readAsDataURL(f);});}
+function geminiAudio(data,mime,prompt,key){
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+encodeURIComponent(key),
+    {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{inline_data:{mime_type:mime,data:data}},{text:prompt}]}],generationConfig:{responseMimeType:'application/json'}})})
+    .then(function(r){return r.json();}).then(function(j){if(j.error)throw new Error(j.error.message||'API 오류');var t=j.candidates&&j.candidates[0]&&j.candidates[0].content.parts[0].text;return JSON.parse(t);});
+}
+$('#go').onclick=function(){
+  if(!file){$('#status').textContent='음원 파일을 먼저 올려주세요.';return;}
+  var DEF=window.__CR_DEFAULT_KEYS||{};var key=localStorage.getItem('starnauts_key_gemini')||'';
+  if(!key){key=localStorage.getItem('starnauts_gem_key')||'';if(key)localStorage.setItem('starnauts_key_gemini',key);} /* 구 키 1회 이관 */
+  key=key||DEF.gem||'';
+  if(!key){$('#status').textContent='Gemini API 키가 없습니다(cr-keys.js 확인).';return;}
+  var langName=$('#lang').value;
+  $('#status').textContent='Gemini가 가사를 듣고 추출 + 번역 중… (음원 길이에 따라 1~2분)';$('#go').disabled=true;
+  b64(file).then(function(d){
+    var userLyrics=$('#lyrics').value.trim();
+    var prompt = userLyrics
+      ? ('아래 [원작 가사]가 이 음원의 정확한 가사입니다. 받아쓰지 말고, 음원을 들으며 각 가사 줄이 불리는 정확한 타임코드(시작/끝)를 매기고 '+langName+' 번역하세요.\n[중요] text에는 제공된 원작 가사를 그대로 쓰세요(단어·철자 임의 변경 금지, 빠뜨리지 말 것). 반복되는 후렴도 음원에서 불리는 횟수만큼 모두 타임코드를 매기세요.\n[자막 끊기] 의미가 완결되는 구절(2~5초)로 묶되 원작 단어는 보존.\n[번역] 자막용으로 짧고 임팩트 있게. 문장 부호와 어조를 그대로 살릴 것 — 의문문(물음표)은 의문문으로, 평서문은 평서문으로 번역해 원작의 뉘앙스와 화자의 태도를 보존하세요. 같은 문장이라도 맥락에 따라 감정·태도가 달라질 수 있으니, 곡의 흐름으로 판단해 그 감정이 드러나게 번역하세요.\n[전체 검토] 모든 줄을 1차 번역한 뒤, 곡 전체를 처음부터 끝까지 하나의 이야기로 다시 읽으세요. 화자의 일관된 감정선에 맞춰 앞뒤가 어긋나거나 어색한 줄, 맥락에 안 맞는 번역을 자연스럽게 다듬은 최종본을 출력하세요.\n[형식] 타임코드 SRT HH:MM:SS,mmm. JSON 스키마: {"segments":[{"start":"00:00:03,400","end":"00:00:05,700","text":"원작 가사 한 줄","trans":"번역 한 줄"}]}\n\n[원작 가사]\n'+userLyrics)
+      : ('이 음원을 끝까지 듣고 실제 가사를 정확히 받아쓴 뒤 '+langName+' 번역해 SRT 자막을 만드세요.\n[자막 끊기] 한 자막은 의미가 완결되는 구절 단위(보통 2~5초, 6~12단어)로 합치세요. 예: "Ice on my hand, you are still shining like before"를 한 줄로 두고, "Ice on my hand"와 "you are still shining"처럼 한두 단어로 잘게 쪼개지 마세요.\n[번역] 자막용으로 짧고 임팩트 있게 의역하되, 원문이 평서문이면 평서문을 유지하고(평서문을 의문형으로 바꾸지 말 것) 설명적으로 길게 늘이지 마세요.\n[받아쓰기] 들리는 그대로 받아쓰고, 불확실한 부분은 곡 문맥상 가장 자연스러운 가사로 채우세요.\n[전체 검토] 모든 줄을 1차 번역한 뒤, 곡 전체를 하나의 이야기로 다시 읽고 화자의 일관된 감정선에 맞춰 앞뒤가 어긋나거나 어색한 번역을 자연스럽게 다듬은 최종본을 출력하세요.\n[형식] 타임코드는 SRT 형식 HH:MM:SS,mmm, 가사 없는 구간 제외. JSON 스키마: {"segments":[{"start":"00:00:03,400","end":"00:00:05,700","text":"원문 가사 한 줄","trans":"번역 한 줄"}]}');
+    return geminiAudio(d,file.type||'audio/mpeg',prompt,key);
+  }).then(function(r){
+    segs=(r&&r.segments)||[];renderRows();$('#outcard').style.display='block';
+    $('#status').textContent='완료 ✓ ('+segs.length+'줄) — 틀린 부분은 직접 클릭해 수정하세요';$('#go').disabled=false;
+    $('#outcard').scrollIntoView({behavior:'smooth'});
+  }).catch(function(e){$('#status').textContent='실패: '+(e.message||e);$('#go').disabled=false;});
+};
+function renderRows(){
+  $('#rows').innerHTML=segs.map(function(s,i){return '<div class="seg"><span class="tc">'+esc(s.start)+'<br>'+esc(s.end)+'</span><div class="seg-t"><div contenteditable data-i="'+i+'" data-k="text">'+esc(s.text)+'</div><div class="tr" contenteditable data-i="'+i+'" data-k="trans">'+esc(s.trans)+'</div></div></div>';}).join('');
+  Array.prototype.forEach.call($('#rows').querySelectorAll('[contenteditable]'),function(el){el.oninput=function(){segs[+el.dataset.i][el.dataset.k]=el.textContent;};});
+}
+function srtBuild(mode){return segs.map(function(s,i){var body=(mode==='en')?s.text:((mode==='tr')?s.trans:(s.text+'\n'+s.trans));return (i+1)+'\n'+s.start+' --> '+s.end+'\n'+body+'\n';}).join('\n');}
+function dlSrt(mode,suf){var blob=new Blob([srtBuild(mode)],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(file?file.name.replace(/\.[^.]+$/,''):'lyrics')+suf+'.srt';a.click();}
+function cp(txt,btn){navigator.clipboard.writeText(txt).then(function(){var o=btn.textContent;btn.textContent='복사됨';setTimeout(function(){btn.textContent=o;},1200);});}
+$('#cpEn').onclick=function(){cp(segs.map(function(s){return s.text;}).join('\n'),this);};
+$('#cpTr').onclick=function(){cp(segs.map(function(s){return s.trans;}).join('\n'),this);};
+$('#cpBoth').onclick=function(){cp(segs.map(function(s){return s.text+'\n'+s.trans;}).join('\n\n'),this);};
+$('#dlEn').onclick=function(){dlSrt('en','_original');};
+$('#dlTr').onclick=function(){dlSrt('tr','_translation');};
+$('#dlBoth').onclick=function(){dlSrt('both','_combined');};
+</script>
+</div></div><script src="../home/tool-nav.js"></script></body></html>

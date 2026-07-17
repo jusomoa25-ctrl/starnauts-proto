@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>메타데이터 생성기 · STARNAUTS</title>
+<link rel="stylesheet" href="../home/home.css"><link rel="stylesheet" href="../home/space-theme.css?v=17"><link rel="stylesheet" href="../home/shell.css?v=20"><link rel="stylesheet" href="../home/tweaks.css?v=14"><style>
+:root{--bg:#0d1117;--card:#161b22;--blue:#4d7cff;--ink:#e6edf3;--ink2:#9aa6bc;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:34px 18px 90px}
+.kicker{font-size:12px;color:var(--blue);font-weight:800;letter-spacing:.08em}
+h1{font-size:24px;margin:6px 0 4px}
+.sub{color:var(--ink2);font-size:14px;margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn:hover{background:#3d6bef}.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}
+.btn.mini{padding:5px 11px;font-size:12px}
+input,textarea{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--ink);font-family:inherit;font-size:14px;margin-bottom:8px}
+input:focus,textarea:focus{outline:none;border-color:var(--blue)}
+.frow{display:flex;gap:8px}.frow input{flex:1}
+.row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:6px;font-size:14px}
+.row .ts{color:var(--blue);font-weight:800;min-width:22px}
+.row .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .du{color:var(--ink2);font-size:12px}
+.x{background:none;border:0;color:var(--ink2);cursor:pointer;font-size:18px;line-height:1}
+.tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.out{background:#0a0e14;border:1px solid var(--line);border-radius:10px;padding:14px;font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;white-space:pre-wrap;color:var(--ink);margin-top:10px}
+.headrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.hint{font-size:12px;color:var(--ink2);margin-top:8px}
+b{font-size:15px}
+</style></head>
+<body><aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav"></div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub"><a href="blog.html">뉴스</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a><p class="side-copy">(c) 2026 STARNAUTS</p></div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+<div class="main"><div class="wrap">
+<div class="kicker"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="vertical-align:-1px;margin-right:4px"><path d="M12 2l2.6 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.4z"/></svg>METADATA GENERATOR</div>
+<h1>메타데이터 생성기</h1>
+<p class="sub">노래를 저장하면 <b>타임스탬프 + SEO 제목·태그·설명</b>을 자동 생성해요. 저장한 노래는 <b>'영상 만들기'</b>에서도 그대로 불러옵니다.</p>
+
+<div class="card">
+  <b>1. 노래 추가</b> <span class="hint">(영상 만들기와 공유)</span>
+  <div class="frow" style="margin-top:10px"><input id="sTitle" placeholder="노래 제목 (예: Ice on My Hands)"><input id="sLen" placeholder="길이 3:24" style="max-width:120px"></div>
+  <input id="sStyle" placeholder="음악 스타일/분위기 (예: trap soul, 808, 138bpm) — 선택">
+  <textarea id="sLyrics" placeholder="가사 — 선택(SEO·매칭 정확도 ↑)" rows="2"></textarea>
+  <div class="tools"><button class="btn" id="add">+ 노래 추가</button></div>
+  <div id="songs" style="margin-top:12px"></div>
+</div>
+
+<div class="card">
+  <b>2. 채널 정보 + 생성</b>
+  <div class="frow" style="margin-top:10px"><input id="chName" placeholder="채널명 (예: GEKOLIST)"><input id="chGenre" placeholder="장르/컨셉 (예: lofi hiphop, 늦은 밤)"></div>
+  <div class="tools"><button class="btn" id="gen">🏷️ 메타데이터 생성</button><button class="btn ghost" id="clear">노래 전체 삭제</button></div>
+  <div class="hint" id="status"></div>
+</div>
+
+<div id="result"></div>
+
+<script src="../home/cr-keys.js?v=1"></script>
+<script>
+var $=function(s){return document.querySelector(s);};
+var LS='starnauts_songs';
+var songs=JSON.parse(localStorage.getItem(LS)||'[]');
+function lenToSec(s){if(!s)return 0;var p=(''+s).split(':').map(Number);if(p.length===3)return p[0]*3600+p[1]*60+p[2];if(p.length===2)return p[0]*60+p[1];return +s||0;}
+function fmt(sec){sec=Math.floor(sec||0);var h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;var p=function(n){return(n<10?'0':'')+n;};return (h>0?h+':'+p(m):m)+':'+p(s);}
+function save(){localStorage.setItem(LS,JSON.stringify(songs));}
+function renderSongs(){
+  $('#songs').innerHTML=songs.map(function(s,i){return '<div class="row"><span class="ts">'+(i+1)+'</span><span class="nm">'+esc(s.title)+'</span><span class="du">'+esc(s.len||'?')+'</span><button class="x" data-i="'+i+'">&times;</button></div>';}).join('');
+  Array.prototype.forEach.call(document.querySelectorAll('.x'),function(b){b.onclick=function(){songs.splice(+b.dataset.i,1);save();renderSongs();};});
+}
+function esc(s){return (''+(s||'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+$('#add').onclick=function(){var t=$('#sTitle').value.trim();if(!t)return;songs.push({title:t,len:$('#sLen').value.trim(),style:$('#sStyle').value.trim(),lyrics:$('#sLyrics').value.trim()});save();renderSongs();$('#sTitle').value=$('#sLen').value=$('#sStyle').value=$('#sLyrics').value='';$('#sTitle').focus();};
+$('#clear').onclick=function(){if(confirm('저장된 노래를 모두 지울까요?')){songs=[];save();renderSongs();$('#result').innerHTML='';}};
+renderSongs();
+
+function geminiJSON(prompt,key){
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+encodeURIComponent(key),
+    {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json'}})})
+    .then(function(r){return r.json();}).then(function(j){
+      if(j.error)throw new Error(j.error.message||'API 오류');
+      var t=j.candidates&&j.candidates[0]&&j.candidates[0].content.parts[0].text;return JSON.parse(t);});
+}
+$('#gen').onclick=function(){
+  if(!songs.length){$('#status').textContent='노래를 먼저 추가해 주세요.';return;}
+  var DEF=window.__CR_DEFAULT_KEYS||{};
+  var key=localStorage.getItem('starnauts_key_gemini')||'';
+  if(!key){key=localStorage.getItem('starnauts_gem_key')||'';if(key)localStorage.setItem('starnauts_key_gemini',key);} /* 구 키 1회 이관 */
+  key=key||DEF.gem||'';
+  if(!key){$('#status').textContent='Gemini API 키가 없습니다(cr-keys.js 확인).';return;}
+  var t=0,ts=songs.map(function(s){var line=fmt(t)+' '+s.title;t+=lenToSec(s.len);return line;}).join('\n');
+  var ch=$('#chName').value.trim(),ge=$('#chGenre').value.trim();
+  $('#status').textContent='Gemini로 SEO 생성 중…';$('#gen').disabled=true;
+  var prompt='유튜브 음악 플레이리스트 영상의 SEO 메타데이터를 생성하세요.\n채널명: "'+ch+'"\n장르/컨셉: "'+ge+'"\n수록곡: '+songs.map(function(s){return s.title+(s.style?' ('+s.style+')':'');}).join(', ')+'\n조건: ① titles는 제목 후보 3개 — 감정+상황 키워드 + 장르(한/영 병기 가능), 클릭 유도하되 낚시·미래연도·유명아티스트 사칭 금지 ② tags는 검색 수요 키워드 12~20개 ③ description은 3~5문장(채널 무드 + 청취 상황 + 가벼운 댓글 유도). 한국어 위주, 글로벌 노출용 영어 키워드 일부 병기. JSON: {"titles":[string,string,string],"tags":[string],"description":string}';
+  geminiJSON(prompt,key).then(function(d){
+    var h='';
+    h+='<div class="card"><div class="headrow"><b>📋 타임스탬프</b><button class="btn ghost mini" data-c="ts">복사</button></div><div class="out" id="o-ts">'+esc(ts)+'</div></div>';
+    h+='<div class="card"><b>✨ 제목 후보</b>'+(d.titles||[]).map(function(x){return '<div class="row"><span class="nm">'+esc(x)+'</span><button class="btn ghost mini" data-copy="'+esc(x)+'">복사</button></div>';}).join('')+'</div>';
+    h+='<div class="card"><div class="headrow"><b>🏷️ 태그</b><button class="btn ghost mini" data-c="tags">복사</button></div><div class="out" id="o-tags">'+esc((d.tags||[]).join(', '))+'</div></div>';
+    h+='<div class="card"><div class="headrow"><b>📝 설명 (타임스탬프 포함)</b><button class="btn ghost mini" data-c="desc">복사</button></div><div class="out" id="o-desc">'+esc((d.description||'')+'\n\n'+ts)+'</div></div>';
+    $('#result').innerHTML=h;$('#status').textContent='완료 ✓';$('#gen').disabled=false;bindCopy();
+    $('#result').scrollIntoView({behavior:'smooth'});
+  }).catch(function(e){$('#status').textContent='실패: '+(e.message||e);$('#gen').disabled=false;});
+};
+function bindCopy(){
+  Array.prototype.forEach.call(document.querySelectorAll('[data-c]'),function(b){b.onclick=function(){navigator.clipboard.writeText($('#o-'+b.dataset.c).textContent);b.textContent='복사됨';setTimeout(function(){b.textContent='복사';},1200);};});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'),function(b){b.onclick=function(){navigator.clipboard.writeText(b.dataset.copy);b.textContent='복사됨';setTimeout(function(){b.textContent='복사';},1200);};});
+}
+</script>
+</div></div><script src="../home/tool-nav.js"></script></body></html>

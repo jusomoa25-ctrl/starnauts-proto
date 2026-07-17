@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>영상 만들기 (비주얼 매칭) · STARNAUTS</title>
+<link rel="stylesheet" href="../home/home.css"><link rel="stylesheet" href="../home/space-theme.css?v=17"><link rel="stylesheet" href="../home/shell.css?v=20"><link rel="stylesheet" href="../home/tweaks.css?v=14"><style>
+:root{--bg:#0d1117;--card:#161b22;--blue:#4d7cff;--ink:#e6edf3;--ink2:#9aa6bc;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:820px;margin:0 auto;padding:34px 18px 90px}
+.kicker{font-size:12px;color:var(--blue);font-weight:800;letter-spacing:.08em}
+h1{font-size:24px;margin:6px 0 4px}.sub{color:var(--ink2);font-size:14px;margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn:hover{background:#3d6bef}.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}
+.btn.mini{padding:6px 12px;font-size:12px}
+input,textarea,select{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--ink);font-family:inherit;font-size:14px;margin-bottom:8px}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blue)}
+.lbl{display:block;font-size:13px;color:var(--ink2);margin:12px 0 5px;font-weight:700}
+.srcs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 4px}
+.src{border:1.5px solid var(--line);border-radius:11px;padding:13px;cursor:pointer;transition:.15s;background:#0a0e14}
+.src.on{border-color:var(--blue);background:rgba(77,124,255,.07)}
+.src b{font-size:13.5px}.src p{font-size:11.5px;color:var(--ink2);margin:5px 0 0;line-height:1.45}
+.opt{font-size:11px;color:var(--blue);font-weight:700;margin-top:6px}
+.frow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.tools{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.hint{font-size:12px;color:var(--ink2);margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
+.pcard{background:#0a0e14;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px}
+.pcard .pt{font-weight:800;color:var(--blue);font-size:12px;margin-bottom:5px}
+.pcard pre{white-space:pre-wrap;margin:0 0 8px;font-family:ui-monospace,monospace;font-size:12px;color:var(--ink)}
+.imgwrap img{width:100%;border-radius:8px;display:block}
+.headrow{display:flex;justify-content:space-between;align-items:center}
+b{font-size:15px}
+</style></head>
+<body><aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav"></div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub"><a href="blog.html">뉴스</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a><p class="side-copy">(c) 2026 STARNAUTS</p></div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+<div class="main"><div class="wrap">
+<div class="kicker"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="vertical-align:-1px;margin-right:4px"><path d="M12 2l2.6 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.4z"/></svg>VIDEO ARTWORK</div>
+<h1>영상 만들기 (비주얼 매칭)</h1>
+<p class="sub">음악 + 비주얼을 자동 매칭해서 유튜브 영상에 쓸 이미지를 추천해요. <b>메타데이터에 저장한 노래</b>를 불러오거나 직접 입력하세요.</p>
+
+<div class="card">
+  <b>STEP 1 · 음악 선택</b>
+  <label class="lbl">📁 저장된 노래에서 선택</label>
+  <select id="saved"><option value="">— 직접 입력하기 —</option></select>
+  <label class="lbl">🎵 노래 제목</label>
+  <input id="title" placeholder="예) 비 오는 날 우리">
+  <label class="lbl">🎨 음악 스타일 / 분위기</label>
+  <input id="style" placeholder="예) Lo-fi K-pop ballad, female solo, melancholic, 80 BPM">
+  <label class="lbl">📝 가사 / 주제 (선택, 더 정확한 매칭)</label>
+  <textarea id="lyrics" rows="2" placeholder="가사를 붙여넣으면 더 정확한 비주얼이 나와요!"></textarea>
+</div>
+
+<div class="card">
+  <b>STEP 2 · 이미지 소스 선택</b>
+  <div class="srcs">
+    <div class="src on" data-src="prompt"><b>🖋 AI 이미지 프롬프트</b><p>Midjourney/DALL·E 등에 붙여넣을 영문 프롬프트만 생성.</p><div class="opt">★ Gemini 키만 있으면 OK</div></div>
+    <div class="src" data-src="pexels"><b>📷 Pexels 무료 이미지</b><p>Pexels에서 음악과 어울리는 무료 사진을 자동 검색.</p><div class="opt">★ Pexels 키 필요(무료)</div></div>
+    <div class="src" data-src="imagen"><b>🎨 Imagen 3</b><p>Google Imagen으로 직접 이미지 생성(브라우저 표시).</p><div class="opt">★ Gemini 빌링 활성화 필요</div></div>
+  </div>
+  <div class="frow">
+    <div style="flex:1"><label class="lbl">📐 이미지 비율</label>
+      <select id="ratio"><option value="16:9">16:9 (유튜브 가로)</option><option value="1:1">1:1 (앨범 자켓)</option><option value="9:16">9:16 (쇼츠 세로)</option></select></div>
+    <div style="flex:1"><label class="lbl">🎯 이미지 갯수: <span id="cntv">3</span>장</label>
+      <input type="range" id="cnt" min="1" max="6" value="3" style="padding:0"></div>
+  </div>
+  <div class="tools"><button class="btn" id="go">📊 비주얼 매칭하기 ✨</button></div>
+  <div class="hint" id="status"></div>
+</div>
+
+<div id="result"></div>
+
+<script src="../home/cr-keys.js?v=1"></script>
+<script>
+var $=function(s){return document.querySelector(s);};
+var src='prompt';
+function esc(s){return (''+(s||'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+// 저장된 노래 로드
+var songs=JSON.parse(localStorage.getItem('starnauts_songs')||'[]');
+$('#saved').innerHTML='<option value="">— 직접 입력하기 —</option>'+songs.map(function(s,i){return '<option value="'+i+'">'+esc(s.title)+'</option>';}).join('');
+$('#saved').onchange=function(){var s=songs[+this.value];if(s){$('#title').value=s.title||'';$('#style').value=s.style||'';$('#lyrics').value=s.lyrics||'';}};
+Array.prototype.forEach.call(document.querySelectorAll('.src'),function(el){el.onclick=function(){Array.prototype.forEach.call(document.querySelectorAll('.src'),function(x){x.classList.remove('on');});el.classList.add('on');src=el.dataset.src;};});
+$('#cnt').oninput=function(){$('#cntv').textContent=this.value;};
+
+function gem(parts,key,json){
+  var cfg=json?{responseMimeType:'application/json'}:{};
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+encodeURIComponent(key),
+    {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:parts}],generationConfig:cfg})})
+    .then(function(r){return r.json();}).then(function(j){if(j.error)throw new Error(j.error.message);var t=j.candidates[0].content.parts[0].text;return json?JSON.parse(t):t;});
+}
+function musicDesc(){return '제목: '+$('#title').value+'\n스타일: '+$('#style').value+'\n가사/주제: '+$('#lyrics').value;}
+$('#go').onclick=function(){
+  if(!$('#title').value.trim()&&!$('#style').value.trim()){$('#status').textContent='노래 제목이나 스타일을 입력해 주세요.';return;}
+  var DEF=window.__CR_DEFAULT_KEYS||{};var key=localStorage.getItem('starnauts_key_gemini')||'';
+  if(!key){key=localStorage.getItem('starnauts_gem_key')||'';if(key)localStorage.setItem('starnauts_key_gemini',key);} /* 구 키 1회 이관 */
+  key=key||DEF.gem||'';
+  if(!key){$('#status').textContent='Gemini API 키가 없습니다(cr-keys.js 확인).';return;}
+  var n=+$('#cnt').value,ratio=$('#ratio').value;
+  $('#go').disabled=true;$('#result').innerHTML='';
+  if(src==='prompt'){
+    $('#status').textContent='음악 무드 → 이미지 프롬프트 생성 중…';
+    gem([{text:'다음 음악에 어울리는 유튜브 영상 배경 이미지 프롬프트를 '+n+'개 만드세요. 각 prompt는 Midjourney/DALL·E에 바로 붙여넣을 영문, 분위기·색감·구도·시간대를 구체적으로. title은 한국어 한 줄 설명. 비율 '+ratio+'.\n'+musicDesc()+'\nJSON: {"prompts":[{"title":string,"prompt":string}]}'}],key,true).then(function(d){
+      $('#result').innerHTML='<div class="card"><b>🖋 이미지 프롬프트 '+(d.prompts||[]).length+'개</b><div class="grid">'+(d.prompts||[]).map(function(p){return '<div class="pcard"><div class="pt">'+esc(p.title)+'</div><pre>'+esc(p.prompt)+'</pre><button class="btn ghost mini" data-copy="'+esc(p.prompt)+'">복사</button></div>';}).join('')+'</div></div>';
+      bindCopy();$('#status').textContent='완료 ✓';$('#go').disabled=false;
+    }).catch(err);
+  } else if(src==='pexels'){
+    var pkey=DEF.pexels||localStorage.getItem('starnauts_pexels_key')||'';
+    if(!pkey){var k=prompt('Pexels API 키를 입력하세요(무료 발급: pexels.com/api). 한 번만 저장돼요.');if(k){localStorage.setItem('starnauts_pexels_key',k);pkey=k;}else{$('#go').disabled=false;return;}}
+    $('#status').textContent='음악 → 검색 키워드 생성 중…';
+    gem([{text:'다음 음악에 어울리는 Pexels 사진 검색 키워드(영문 1~3단어)를 '+n+'개. JSON: {"queries":[string]}.\n'+musicDesc()}],key,true).then(function(d){
+      var qs=(d.queries||[]).slice(0,n),or=ratio==='9:16'?'portrait':(ratio==='1:1'?'square':'landscape');
+      return Promise.all(qs.map(function(q){return fetch('https://api.pexels.com/v1/search?per_page=1&orientation='+or+'&query='+encodeURIComponent(q),{headers:{Authorization:pkey}}).then(function(r){return r.json();}).then(function(j){return {q:q,photo:(j.photos&&j.photos[0])||null};});}));
+    }).then(function(res){
+      $('#result').innerHTML='<div class="card"><b>📷 Pexels 추천 '+res.length+'장</b><div class="grid">'+res.map(function(r){return '<div class="pcard"><div class="pt">'+esc(r.q)+'</div>'+(r.photo?'<div class="imgwrap"><a href="'+r.photo.src.original+'" target="_blank"><img src="'+r.photo.src.large+'"></a></div><div style="font-size:11px;color:var(--ink2);margin-top:5px">© '+esc(r.photo.photographer)+' · <a href="'+r.photo.url+'" target="_blank" style="color:var(--blue)">Pexels</a></div>':'결과 없음')+'</div>';}).join('')+'</div></div>';
+      $('#status').textContent='완료 ✓';$('#go').disabled=false;
+    }).catch(err);
+  } else {
+    $('#status').textContent='Imagen 3로 이미지 생성 중… (빌링 필요, 1~2분)';
+    fetch('https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key='+encodeURIComponent(key),
+      {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt:musicDesc()+' / cinematic youtube background, '+ratio}],parameters:{sampleCount:n,aspectRatio:ratio}})})
+      .then(function(r){return r.json();}).then(function(j){
+        if(j.error)throw new Error(j.error.message);
+        var imgs=(j.predictions||[]).map(function(p){return p.bytesBase64Encoded;});
+        $('#result').innerHTML='<div class="card"><b>🎨 Imagen 3 생성 '+imgs.length+'장</b><div class="grid">'+imgs.map(function(b){return '<div class="pcard imgwrap"><a download="imagen.png" href="data:image/png;base64,'+b+'"><img src="data:image/png;base64,'+b+'"></a></div>';}).join('')+'</div></div>';
+        $('#status').textContent='완료 ✓ (이미지 클릭 시 다운로드)';$('#go').disabled=false;
+      }).catch(err);
+  }
+  function err(e){$('#status').textContent='실패: '+(e.message||e);$('#go').disabled=false;}
+};
+function bindCopy(){Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'),function(b){b.onclick=function(){navigator.clipboard.writeText(b.dataset.copy);b.textContent='복사됨';setTimeout(function(){b.textContent='복사';},1200);};});}
+</script>
+</div></div><script src="../home/tool-nav.js"></script></body></html>
