@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
+<title>STARNAUTS — 자동 업로드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=20">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+.cr{max-width:1180px;margin:0 auto;padding:0 18px 160px;font-family:"Noto Sans KR",system-ui,sans-serif}
+.cr-head{padding:6px 0 4px}
+.cr-eyebrow{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase}
+.cr-title{font-size:clamp(24px,4vw,34px);font-weight:900;color:#fff;margin:9px 0 8px}.cr-title b{color:var(--blue-300)}
+.cr-sub{font-size:14px;color:#9aa6bc;line-height:1.65;max-width:70ch}
+.cr-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 24px;border-bottom:1px solid rgba(255,255,255,.08)}
+.cr-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;font-size:13.5px;font-weight:800;color:#9aa6bc;cursor:pointer;border:0;background:none;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
+.cr-tab:hover{color:#C6CEDC}.cr-tab.cur{color:#fff;border-bottom-color:var(--blue)}
+.pane{display:none}.pane.cur{display:block}
+.cr-card{background:rgba(17,24,37,.55);border:1px solid rgba(127,169,224,.16);border-radius:18px;padding:22px 24px;margin:0 0 18px}
+.cr-card h3{font-size:16px;font-weight:900;color:#fff;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.kfld{margin-bottom:18px}
+.kfld .kl{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.kfld .kl b{font-size:13.5px;color:#fff;font-weight:800}
+.kfld .st{font-size:11.5px;font-weight:700}
+.st.on{color:#7ED4A6}.st.off{color:#7d8aa0}.st.warn{color:#E7C26B}
+.kfld input[type=text],.kfld input[type=datetime-local],.kfld textarea,.kfld select{width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:13px 14px;color:#fff;font-size:14px;font-family:"Noto Sans KR",sans-serif;outline:none}
+.kfld input.mono{font-family:"Noto Sans Mono",ui-monospace,monospace}
+.kfld textarea{min-height:150px;resize:vertical;line-height:1.6}
+.kfld input:focus,.kfld textarea:focus,.kfld select:focus{border-color:var(--blue-300)}
+.kfld select option{background:#111825;color:#fff}
+.kfld .kh{font-size:11.5px;color:#7d8aa0;margin-top:7px;line-height:1.6}
+.kfld .kh code{font-family:"Noto Sans Mono",ui-monospace,monospace;color:#C6CEDC;background:rgba(255,255,255,.06);border-radius:4px;padding:1px 5px}
+.kfld .kh a{color:var(--blue-300)}
+.krow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.kbtn{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:11px 18px;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit;border:0}
+.kbtn.save{background:#1a1f2b;color:#fff;border:1px solid rgba(255,255,255,.16)}
+.kbtn.go{background:var(--blue);color:#fff}
+.kbtn.mini{padding:7px 12px;font-size:12px;border-radius:9px;background:rgba(255,255,255,.05);color:#C6CEDC;border:1px solid rgba(255,255,255,.14)}
+.kbtn:hover{filter:brightness(1.12)}
+.kbtn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.kmsg{font-size:12.5px;margin-top:12px;display:none;line-height:1.6}
+.kmsg.ok{color:#7ED4A6;display:block}.kmsg.err{color:#E76B6B;display:block}.kmsg.info{color:#9aa6bc;display:block}
+.chbadge{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1)}
+.chbadge img{width:42px;height:42px;border-radius:50%}
+.chbadge .cn{font-size:14px;font-weight:800;color:#fff}
+.chbadge .cs{font-size:11.5px;color:#7d8aa0;margin-top:2px}
+.dot{width:9px;height:9px;border-radius:50%;background:#7d8aa0;flex-shrink:0}
+.dot.on{background:#7ED4A6;box-shadow:0 0 8px rgba(126,212,166,.7)}
+.langs{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.lchip{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:10px;font-size:12.5px;font-weight:700;color:#9aa6bc;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);cursor:pointer;user-select:none}
+.lchip input{display:none}
+.lchip.on{background:rgba(46,111,201,.18);color:#fff;border-color:rgba(127,169,224,.4)}
+.lchip.lock{opacity:.4;cursor:not-allowed}
+.slotrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.prog{height:9px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:14px;display:none}
+.prog i{display:block;height:100%;width:0;background:var(--blue);border-radius:5px;transition:width .3s}
+.plog{font-size:12px;color:#9aa6bc;font-family:"Noto Sans Mono",ui-monospace,monospace;margin-top:10px;line-height:1.7;max-height:150px;overflow-y:auto;white-space:pre-wrap}
+.tr-item{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 15px;margin-bottom:10px;background:rgba(255,255,255,.02)}
+.tr-item .tl{font-size:12px;font-weight:800;color:var(--blue-300);margin-bottom:8px}
+.tr-item input{width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:9px 11px;color:#fff;font-size:13px;font-family:inherit;margin-bottom:8px}
+.tr-item textarea{width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:9px 11px;color:#C6CEDC;font-size:12.5px;font-family:inherit;min-height:84px;resize:vertical;line-height:1.55}
+.done-card{border:1px solid rgba(126,212,166,.35);background:rgba(126,212,166,.06);border-radius:15px;padding:18px 20px;margin-top:16px;display:none}
+.done-card h4{font-size:14.5px;font-weight:900;color:#7ED4A6;margin:0 0 10px}
+.done-card ul{margin:0;padding-left:18px;font-size:13px;color:#C6CEDC;line-height:1.9}
+.done-card a{color:var(--blue-300)}
+.gt-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+.gt-tbl th{text-align:left;color:#7d8aa0;font-weight:700;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.1)}
+.gt-tbl td{padding:8px 10px;color:#C6CEDC;border-bottom:1px dashed rgba(255,255,255,.06)}
+.gt-tbl td b{color:#fff}.gt-tbl .num{font-family:"Noto Sans Mono",ui-monospace,monospace}
+.hist{font-size:12.5px}
+.hist .h-item{display:flex;justify-content:space-between;gap:12px;padding:10px 4px;border-bottom:1px dashed rgba(255,255,255,.08);color:#9aa6bc}
+.hist .h-item b{color:#C6CEDC;font-weight:700}
+.hist .h-item a{color:var(--blue-300);text-decoration:none;flex-shrink:0}
+.step{display:flex;gap:14px;padding:15px 16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+.step .sn{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
+.step .stt{font-size:13.5px;font-weight:800;color:#fff;margin:0 0 5px}
+.step .sx{font-size:12.5px;color:#9aa6bc;line-height:1.65}
+.step .sx code{font-family:"Noto Sans Mono",ui-monospace,monospace;color:#C6CEDC;background:rgba(255,255,255,.07);border-radius:4px;padding:1px 6px}
+.gnote{font-size:12px;color:#E7C26B;background:rgba(231,194,107,.08);border:1px solid rgba(231,194,107,.22);border-radius:11px;padding:13px 15px;line-height:1.65;margin-top:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+<div class="main"><main class="wrap"><div class="cr">
+
+<div class="cr-head">
+  <div class="cr-eyebrow">AUTO UPLOAD</div>
+  <h1 class="cr-title">유튜브 <b>자동 업로드</b> · 다국어 등록</h1>
+  <p class="cr-sub">브라우저에서 유튜브로 직접 전송(중간 서버 없음 · 32MB 청크). 예약 공개, 채널 발행 슬롯 프리셋, 썸네일 자동 압축, Gemini 다국어 번역(기본 8개 언어 + 추가 선택)까지 한 화면에서 처리합니다.</p>
+</div>
+
+<div class="cr-tabs">
+  <button class="cr-tab cur" data-pane="conn">1. 채널 연결</button>
+  <button class="cr-tab" data-pane="up">2. 업로드 · 예약</button>
+  <button class="cr-tab" data-pane="gt">3. 골든타임</button>
+  <button class="cr-tab" data-pane="guide">발급 가이드</button>
+</div>
+
+<!-- ───── 1. 연결 ───── -->
+<section class="pane cur" data-pane="conn">
+  <div class="cr-card">
+    <h3>OAuth 클라이언트 ID</h3>
+    <div class="kfld">
+      <div class="kl"><b>클라이언트 ID</b><span class="st off" id="cidSt">미저장</span></div>
+      <input type="text" id="inCid" class="mono" placeholder="xxxxxxxx.apps.googleusercontent.com" autocomplete="off">
+      <div class="kh">구글 클라우드 콘솔에서 발급한 웹 애플리케이션 클라이언트 ID. 브라우저에만 저장되며(localStorage) 서버로 전송되지 않습니다. 발급 절차는 <b>발급 가이드</b> 탭 참고.</div>
+    </div>
+    <div class="krow">
+      <button class="kbtn save" id="btnCidSave">저장</button>
+      <button class="kbtn go" id="btnConnect">채널 연결</button>
+    </div>
+    <div class="kmsg" id="connMsg"></div>
+  </div>
+  <div class="cr-card">
+    <h3>연결된 채널</h3>
+    <div class="chbadge" id="chBadge">
+      <span class="dot" id="chDot"></span>
+      <div><div class="cn" id="chName">아직 연결되지 않았습니다</div><div class="cs" id="chSub">연결 토큰은 약 1시간 유지 — 만료되면 다시 [채널 연결]을 누르세요</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 2. 업로드 ───── -->
+<section class="pane" data-pane="up">
+  <div class="cr-card">
+    <h3>영상 파일</h3>
+    <div class="kfld">
+      <input type="file" id="inFile" accept="video/*">
+      <div class="kh" id="fileInfo">1~3GB 플레이리스트 영상 지원. 메모리에 통째로 올리지 않고 32MB 조각으로 나눠 보냅니다. 네트워크가 끊기면 마지막 지점부터 자동 재개합니다.</div>
+    </div>
+  </div>
+
+  <div class="cr-card">
+    <h3>메타데이터</h3>
+    <div class="kfld">
+      <div class="kl"><b>제목</b><span class="st off" id="titleSt">0 / 100</span></div>
+      <input type="text" id="inTitle" maxlength="100" placeholder="Playlist | ...">
+      <div class="kh" id="titleHint">플레이리스트 채널 표준: <code>Playlist |</code> 접두사로 시작해야 합니다.</div>
+    </div>
+    <div class="kfld">
+      <div class="kl"><b>설명</b>
+        <button class="kbtn mini" id="btnSuno" type="button">Suno 라이선스 증빙 블록 삽입 (EN+KO)</button>
+      </div>
+      <textarea id="inDesc" placeholder="영상 설명"></textarea>
+      <div class="kh">타임스탬프·트랙리스트·TEAM PLAYSTARS LIST 소개 블록·저작권 고지를 포함하세요. Suno 언급 줄 다음에는 상업 라이선스 증빙 한 줄이 필수입니다(위 버튼).</div>
+    </div>
+    <div class="two">
+      <div class="kfld">
+        <div class="kl"><b>태그 (콤마 구분)</b></div>
+        <input type="text" id="inTags" placeholder="playlist, lofi, chill">
+      </div>
+      <div class="kfld">
+        <div class="kl"><b>카테고리</b></div>
+        <select id="inCat">
+          <option value="10" selected>음악</option>
+          <option value="22">인물 및 블로그</option>
+          <option value="24">엔터테인먼트</option>
+          <option value="27">교육</option>
+        </select>
+      </div>
+    </div>
+    <div class="two">
+      <div class="kfld">
+        <div class="kl"><b>기본 언어</b></div>
+        <select id="inDefLang">
+          <option value="en" selected>영어 (en) — 채널 표준</option>
+          <option value="ko">한국어 (ko)</option>
+          <option value="ja">일본어 (ja)</option>
+        </select>
+      </div>
+      <div class="kfld">
+        <div class="kl"><b>녹화 날짜</b></div>
+        <input type="datetime-local" id="inRec">
+        <div class="kh">비워 두면 업로드 시각으로 채웁니다.</div>
+      </div>
+    </div>
+    <div class="kfld">
+      <div class="kl"><b>옵션</b></div>
+      <div class="langs">
+        <label class="lchip on"><input type="checkbox" id="inAi" checked>AI 생성 콘텐츠 고지 (항상 ON — 채널 영구 규칙)</label>
+        <label class="lchip"><input type="checkbox" id="inKids">아동용 영상</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="cr-card">
+    <h3>다국어 번역 (localizations)</h3>
+    <div class="kfld">
+      <div class="kl"><b>번역 언어</b><span class="st off" id="langCnt"></span></div>
+      <div class="langs" id="langBox"></div>
+      <div class="krow" style="margin-top:12px">
+        <select id="inAddLang" style="width:auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:9px 12px;color:#fff;font-family:inherit;font-size:12.5px"></select>
+        <button class="kbtn mini" id="btnAddLang" type="button">언어 추가</button>
+      </div>
+      <div class="kh">기본 8개 언어(한·영·일·중간체·스·태·베·인니)는 채널 표준으로 미리 선택되어 있습니다. 기본 언어로 지정한 언어는 번역 대상에서 제외됩니다.</div>
+    </div>
+    <div class="krow">
+      <button class="kbtn go" id="btnTrans">Gemini로 번역 생성</button>
+      <span class="st off" id="transSt"></span>
+    </div>
+    <div class="kmsg" id="transMsg"></div>
+    <div id="transBox" style="margin-top:16px"></div>
+  </div>
+
+  <div class="cr-card">
+    <h3>공개 설정 · 예약</h3>
+    <div class="two">
+      <div class="kfld">
+        <div class="kl"><b>공개 상태</b></div>
+        <select id="inPriv">
+          <option value="schedule" selected>예약 공개 (추천)</option>
+          <option value="private">비공개</option>
+          <option value="unlisted">일부 공개</option>
+          <option value="public">즉시 공개</option>
+        </select>
+      </div>
+      <div class="kfld" id="pubWrap">
+        <div class="kl"><b>예약 공개 시각 (KST)</b></div>
+        <input type="datetime-local" id="inPub">
+      </div>
+    </div>
+    <div class="kfld">
+      <div class="kl"><b>채널 발행 슬롯 프리셋</b></div>
+      <div class="slotrow" id="slotRow"></div>
+      <div class="kh">확정 슬롯 그리드(KST): 게코 금 21시 · 테디 일 22시 · 웨일 수 22시 · 푸쿠 목 21시 · 펭 토 20시. 버튼을 누르면 다음 해당 슬롯으로 예약 시각이 채워집니다.</div>
+    </div>
+  </div>
+
+  <div class="cr-card">
+    <h3>썸네일</h3>
+    <div class="kfld">
+      <input type="file" id="inThumb" accept="image/jpeg,image/png">
+      <div class="kh" id="thumbInfo">JPG/PNG. <b>2MB를 초과하면 업로드 전에 브라우저에서 자동 압축</b>합니다(1280×720 JPEG, 외부 도구 불필요). 맞춤 썸네일은 채널 전화 인증이 되어 있어야 적용됩니다.</div>
+    </div>
+  </div>
+
+  <div class="cr-card">
+    <h3>업로드</h3>
+    <div class="krow">
+      <button class="kbtn go" id="btnUpload">업로드 시작</button>
+      <button class="kbtn save" id="btnAbort" style="display:none">중단</button>
+    </div>
+    <div class="prog" id="upProg"><i id="upBar"></i></div>
+    <div class="plog" id="upLog"></div>
+    <div class="done-card" id="doneCard">
+      <h4>업로드 완료 — Studio에서 마무리할 것</h4>
+      <ul>
+        <li>영상 확인: <a id="doneLink" href="#" target="_blank" rel="noopener">Studio에서 열기</a></li>
+        <li>핀 댓글 작성·고정 (문안: 노션 플리 운영 정본 — 고정은 API 미지원, Studio 수동)</li>
+        <li>엔드스크린·카드 추가, 재생목록에 넣기</li>
+        <li>자막 인증 문구·리믹스 설정 확인</li>
+        <li>chboard 현황판 갱신 요청 (Claude에게 "예약 등록됨" 전달)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cr-card">
+    <h3>업로드 기록</h3>
+    <div class="hist" id="histBox">아직 기록이 없습니다.</div>
+  </div>
+</section>
+
+<!-- ───── 3. 골든타임 ───── -->
+<section class="pane" data-pane="gt">
+  <div class="cr-card">
+    <h3>내 채널 실측 골든타임</h3>
+    <p class="cr-sub" style="margin:0 0 14px">추정 가중치 대신 <b>연결된 채널의 최근 업로드 50개 실측</b>으로 계산합니다 — 발행 슬롯(요일×시간)별 영상 수와 평균 조회수를 조회수순으로 보여줍니다. 표본이 적은 신규 채널은 아래 확정 슬롯 그리드를 그대로 따르세요.</p>
+    <div class="krow"><button class="kbtn go" id="btnGt">분석 실행</button><span class="st off" id="gtSt"></span></div>
+    <div class="kmsg" id="gtMsg"></div>
+    <div id="gtBox"></div>
+  </div>
+  <div class="cr-card">
+    <h3>확정 발행 슬롯 그리드 (KST)</h3>
+    <table class="gt-tbl">
+      <tr><th>채널</th><th>슬롯</th></tr>
+      <tr><td><b>GEKOLIST</b></td><td>금요일 21:00</td></tr>
+      <tr><td><b>SLEEPYTEDDYLIST</b></td><td>일요일 22:00</td></tr>
+      <tr><td><b>WHALELIST</b></td><td>수요일 22:00</td></tr>
+      <tr><td><b>FUKULIST</b></td><td>목요일 21:00</td></tr>
+      <tr><td><b>PENGLIST</b></td><td>토요일 20:00</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ───── 가이드 ───── -->
+<section class="pane" data-pane="guide">
+  <div class="cr-card">
+    <h3>OAuth 클라이언트 발급 (최초 1회)</h3>
+    <div class="step"><div class="sn">1</div><div><div class="stt">구글 클라우드 콘솔 접속</div><div class="sx"><a href="https://console.cloud.google.com/auth/overview" target="_blank" rel="noopener" style="color:var(--blue-300)">console.cloud.google.com/auth/overview</a> — 프로젝트가 없으면 새로 만들고, 동의 화면에서 Get started를 누릅니다. 앱 이름은 아무거나(예: STARNAUTS Upload).</div></div></div>
+    <div class="step"><div class="sn">2</div><div><div class="stt">동의 화면 구성</div><div class="sx">User type은 <code>외부(External)</code>, 본인 이메일 입력 후 동의·Create·Continue. <b>Audience → Add user</b>에서 본인 구글 계정(채널 소유 계정)을 테스트 유저로 등록합니다.</div></div></div>
+    <div class="step"><div class="sn">3</div><div><div class="stt">YouTube Data API v3 사용 설정</div><div class="sx">API 및 서비스 → 라이브러리에서 <code>YouTube Data API v3</code>를 검색해 사용 설정합니다.</div></div></div>
+    <div class="step"><div class="sn">4</div><div><div class="stt">클라이언트 생성</div><div class="sx">Clients → Create client → <code>웹 애플리케이션</code>. <b>승인된 자바스크립트 원본</b>에 이 페이지를 여는 주소를 등록합니다(예: <code>http://localhost:8000</code>). 리디렉션 URI는 필요 없습니다(토큰 팝업 방식).</div></div></div>
+    <div class="step"><div class="sn">5</div><div><div class="stt">클라이언트 ID 저장</div><div class="sx">발급된 <code>....apps.googleusercontent.com</code>을 복사해 [1. 채널 연결] 탭에 저장하고 채널 연결을 누르면 끝. 이후에는 연결 버튼만 누르면 됩니다.</div></div></div>
+    <div class="gnote">테스트 모드에서는 등록한 테스트 유저 계정만 연결할 수 있고, 연결 토큰은 약 1시간 유지됩니다. 화면이 막히면 해당 화면을 캡처해 AI에게 다음 단계를 물어보는 것이 가장 빠릅니다.</div>
+  </div>
+  <div class="cr-card">
+    <h3>알아둘 제한</h3>
+    <div class="step"><div class="sn">·</div><div><div class="stt">15분 초과 영상 = 채널 전화 인증 필수</div><div class="sx"><a href="https://www.youtube.com/verify" target="_blank" rel="noopener" style="color:var(--blue-300)">youtube.com/verify</a> — 1~2시간 플레이리스트 영상은 반드시 필요합니다. 맞춤 썸네일에도 전화 인증이 필요합니다.</div></div></div>
+    <div class="step"><div class="sn">·</div><div><div class="stt">하루 API 업로드 한도 약 6개</div><div class="sx">구글 기본 할당량 10,000 중 업로드 1건이 1,600을 소비합니다. 플레이리스트 채널 운영에는 충분합니다.</div></div></div>
+    <div class="step"><div class="sn">·</div><div><div class="stt">예약 공개는 유튜브가 처리</div><div class="sx">업로드가 끝나면 컴퓨터를 꺼도 됩니다. 예약 시각(KST 입력)은 자동으로 UTC로 변환되어 등록됩니다.</div></div></div>
+    <div class="step"><div class="sn">·</div><div><div class="stt">번역 검수</div><div class="sx">Gemini 번역 결과는 등록 전에 언어별 미리보기에서 직접 수정할 수 있습니다. 고유명사(채널명·아티스트명)와 링크는 번역하지 않도록 지시되어 있습니다.</div></div></div>
+  </div>
+</section>
+
+</div></main></div>
+<script src="../home/cr-keys.js"></script>
+<script>
+(function(){
+'use strict';
+function $(s){return document.querySelector(s);}
+var CID='starnauts_au_client_id', HIST='starnauts_au_history';
+var GEM='starnauts_key_gemini';
+var DEF=(window.__CR_DEFAULT_KEYS||{});
+function gemKey(){return localStorage.getItem(GEM)||DEF.gem||'';}
+
+/* 탭 */
+Array.prototype.forEach.call(document.querySelectorAll('.cr-tab'),function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.cr-tab').forEach(function(x){x.classList.remove('cur');});
+    document.querySelectorAll('.pane').forEach(function(x){x.classList.remove('cur');});
+    t.classList.add('cur');
+    document.querySelector('.pane[data-pane="'+t.getAttribute('data-pane')+'"]').classList.add('cur');
+  });
+});
+
+/* ───── 1. OAuth 연결 ───── */
+var token=null, tokenExp=0, myChannel=null;
+function connMsg(txt,cls){var m=$('#connMsg');m.textContent=txt;m.className='kmsg '+cls;}
+function refreshCid(){
+  var v=localStorage.getItem(CID)||'';
+  if(v){$('#inCid').value=v;$('#cidSt').textContent='저장됨';$('#cidSt').className='st on';}
+}
+$('#btnCidSave').addEventListener('click',function(){
+  var v=$('#inCid').value.trim();
+  if(!v||v.indexOf('.apps.googleusercontent.com')<0){connMsg('클라이언트 ID 형식이 아닙니다 (....apps.googleusercontent.com)','err');return;}
+  localStorage.setItem(CID,v);refreshCid();connMsg('저장했습니다. [채널 연결]을 누르세요.','ok');
+});
+function hasToken(){return token&&Date.now()<tokenExp-60000;}
+function connect(cb){
+  var cid=localStorage.getItem(CID);
+  if(!cid){connMsg('먼저 클라이언트 ID를 저장하세요.','err');return;}
+  if(!window.google||!google.accounts){connMsg('구글 로그인 스크립트를 아직 불러오는 중입니다. 잠시 후 다시 시도하세요.','err');return;}
+  var tc=google.accounts.oauth2.initTokenClient({
+    client_id:cid,
+    scope:'https://www.googleapis.com/auth/youtube',
+    callback:function(res){
+      if(res.error){connMsg('연결 실패: '+res.error,'err');return;}
+      token=res.access_token;tokenExp=Date.now()+(res.expires_in||3600)*1000;
+      loadChannel(cb);
+    }
+  });
+  tc.requestAccessToken();
+}
+function loadChannel(cb){
+  fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,contentDetails&mine=true',{headers:{Authorization:'Bearer '+token}})
+  .then(function(r){return r.json();})
+  .then(function(j){
+    if(!j.items||!j.items.length){connMsg('채널을 찾지 못했습니다. 연결한 구글 계정에 채널이 있는지 확인하세요.','err');return;}
+    myChannel=j.items[0];
+    $('#chDot').className='dot on';
+    $('#chName').textContent=myChannel.snippet.title;
+    $('#chSub').textContent='구독자 '+Number(myChannel.statistics.subscriberCount||0).toLocaleString()+'명 · 영상 '+Number(myChannel.statistics.videoCount||0).toLocaleString()+'개 · 토큰 만료 '+new Date(tokenExp).toLocaleTimeString('ko-KR');
+    var img=$('#chBadge img');
+    if(!img){img=document.createElement('img');$('#chBadge').insertBefore(img,$('#chBadge').children[1]);}
+    img.src=(myChannel.snippet.thumbnails.default||{}).url||'';
+    connMsg('연결 완료. 업로드 탭으로 이동하세요.','ok');
+    if(cb)cb();
+  })
+  .catch(function(){connMsg('채널 조회 중 네트워크 오류가 발생했습니다.','err');});
+}
+$('#btnConnect').addEventListener('click',function(){connect();});
+refreshCid();
+
+/* ───── 제목 규칙 ───── */
+$('#inTitle').addEventListener('input',function(){
+  var v=this.value;
+  $('#titleSt').textContent=v.length+' / 100';
+  var ok=v.indexOf('Playlist |')===0;
+  $('#titleHint').innerHTML=ok
+    ?'<span style="color:#7ED4A6">채널 표준 접두사 확인됨.</span>'
+    :'플레이리스트 채널 표준: <code>Playlist |</code> 접두사로 시작해야 합니다.';
+});
+
+/* Suno 증빙 블록 (영구 규칙 2026-07-18 정본 문구) */
+var SUNO_EN="Commercial license: all tracks are created under an active Suno Pro subscription, with commercial use permitted under Suno's Terms of Service — https://suno.com/terms";
+var SUNO_KO="상업 라이선스: 전 곡은 Suno Pro 유료 구독 하에 제작되었으며, Suno 이용약관에 따라 상업적 사용 권리를 보유합니다 — https://suno.com/terms";
+$('#btnSuno').addEventListener('click',function(){
+  var d=$('#inDesc');
+  if(d.value.indexOf('suno.com/terms')>=0)return;
+  d.value=(d.value?d.value.replace(/\s+$/,'')+'\n\n':'')+SUNO_EN+'\n'+SUNO_KO;
+});
+
+/* ───── 다국어 언어 선택 ───── */
+var LANGS=[
+  {c:'ko',n:'한국어'},{c:'en',n:'영어'},{c:'ja',n:'일본어'},{c:'zh-Hans',n:'중국어 간체'},
+  {c:'es',n:'스페인어'},{c:'th',n:'태국어'},{c:'vi',n:'베트남어'},{c:'id',n:'인도네시아어'}
+];
+var EXTRAS=[
+  {c:'fr',n:'프랑스어'},{c:'de',n:'독일어'},{c:'pt',n:'포르투갈어'},{c:'ru',n:'러시아어'},
+  {c:'hi',n:'힌디어'},{c:'ar',n:'아랍어'},{c:'tr',n:'터키어'},{c:'it',n:'이탈리아어'},
+  {c:'ms',n:'말레이어'},{c:'fil',n:'필리핀어'},{c:'pl',n:'폴란드어'},{c:'nl',n:'네덜란드어'},
+  {c:'uk',n:'우크라이나어'},{c:'sv',n:'스웨덴어'},{c:'zh-Hant',n:'중국어 번체'}
+];
+var picked={};LANGS.forEach(function(l){picked[l.c]=true;});
+function langName(c){var a=LANGS.concat(EXTRAS).filter(function(l){return l.c===c;});return a.length?a[0].n:c;}
+function renderLangs(){
+  var def=$('#inDefLang').value, box=$('#langBox');box.innerHTML='';
+  Object.keys(picked).forEach(function(c){
+    var lock=(c===def);
+    var lab=document.createElement('label');
+    lab.className='lchip'+(lock?' lock':(picked[c]?' on':''));
+    lab.innerHTML='<input type="checkbox"'+(picked[c]&&!lock?' checked':'')+(lock?' disabled':'')+'>'+langName(c)+' ('+c+')'+(lock?' — 기본 언어':'');
+    if(!lock)lab.addEventListener('click',function(e){e.preventDefault();picked[c]=!picked[c];renderLangs();});
+    box.appendChild(lab);
+  });
+  var n=activeLangs().length;
+  $('#langCnt').textContent='선택 '+n+'개 언어';
+  var sel=$('#inAddLang');sel.innerHTML='';
+  EXTRAS.filter(function(l){return !(l.c in picked);}).forEach(function(l){
+    var o=document.createElement('option');o.value=l.c;o.textContent=l.n+' ('+l.c+')';sel.appendChild(o);
+  });
+}
+function activeLangs(){
+  var def=$('#inDefLang').value;
+  return Object.keys(picked).filter(function(c){return picked[c]&&c!==def;});
+}
+$('#btnAddLang').addEventListener('click',function(){
+  var c=$('#inAddLang').value;if(!c)return;picked[c]=true;renderLangs();
+});
+$('#inDefLang').addEventListener('change',renderLangs);
+renderLangs();
+
+/* ───── Gemini 번역 ───── */
+var translations={};
+function transMsg(t,c){var m=$('#transMsg');m.textContent=t;m.className='kmsg '+c;}
+$('#btnTrans').addEventListener('click',function(){
+  var title=$('#inTitle').value.trim(), desc=$('#inDesc').value.trim();
+  if(!title){transMsg('제목을 먼저 입력하세요.','err');return;}
+  var langs=activeLangs();
+  if(!langs.length){transMsg('번역할 언어를 선택하세요.','err');return;}
+  var key=gemKey();
+  if(!key){transMsg('Gemini 키가 없습니다. 채널 딥 리서치 도구의 API 등록 탭에서 저장하세요.','err');return;}
+  $('#transSt').textContent='번역 중… ('+langs.length+'개 언어)';$('#transSt').className='st warn';
+  var names=langs.map(function(c){return c+' ('+langName(c)+')';}).join(', ');
+  var prompt='You are translating YouTube video metadata for a music playlist channel.\n'
+    +'Translate the TITLE and DESCRIPTION below into each of these languages: '+names+'.\n'
+    +'Rules: keep URLs, hashtags, timestamps (0:00 style), artist names, channel names (GEKOLIST, SLEEPYTEDDYLIST, WHALELIST, FUKULIST, PENGLIST, LAZE, TEAM PLAYSTARS LIST) and the prefix "Playlist |" exactly as-is. Natural native phrasing, no literal translation. Keep line breaks.\n'
+    +'Return ONLY JSON: {"<langCode>":{"title":"...","description":"..."}} for every requested language code exactly as given.\n\n'
+    +'TITLE:\n'+title+'\n\nDESCRIPTION:\n'+desc;
+  fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+encodeURIComponent(key),{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',thinkingConfig:{thinkingBudget:0}}})
+  })
+  .then(function(r){if(!r.ok)throw new Error('Gemini '+r.status);return r.json();})
+  .then(function(j){
+    var txt=(((j.candidates||[])[0]||{}).content||{}).parts;
+    txt=txt&&txt[0]?txt[0].text:'';
+    var obj=JSON.parse(txt);
+    translations={};
+    var box=$('#transBox');box.innerHTML='';
+    langs.forEach(function(c){
+      if(!obj[c])return;
+      translations[c]=obj[c];
+      var it=document.createElement('div');it.className='tr-item';it.setAttribute('data-lang',c);
+      it.innerHTML='<div class="tl">'+langName(c)+' ('+c+')</div>'
+        +'<input type="text" class="tr-title" maxlength="100">'
+        +'<textarea class="tr-desc"></textarea>';
+      it.querySelector('.tr-title').value=obj[c].title||'';
+      it.querySelector('.tr-desc').value=obj[c].description||'';
+      box.appendChild(it);
+    });
+    $('#transSt').textContent=Object.keys(translations).length+'개 언어 번역 완료 — 아래에서 검수·수정 가능';
+    $('#transSt').className='st on';
+    transMsg('업로드 시 자동으로 함께 등록됩니다. 등록 전에 문구를 자유롭게 수정하세요.','ok');
+  })
+  .catch(function(e){
+    $('#transSt').textContent='';$('#transSt').className='st off';
+    transMsg('번역 실패: '+e.message,'err');
+  });
+});
+function collectTranslations(){
+  var out={};
+  Array.prototype.forEach.call(document.querySelectorAll('#transBox .tr-item'),function(it){
+    var c=it.getAttribute('data-lang');
+    out[c]={title:it.querySelector('.tr-title').value,description:it.querySelector('.tr-desc').value};
+  });
+  return out;
+}
+
+/* ───── 슬롯 프리셋 ───── */
+var SLOTS=[
+  {n:'게코 · 금 21시',d:5,h:21},{n:'테디 · 일 22시',d:0,h:22},{n:'웨일 · 수 22시',d:3,h:22},
+  {n:'푸쿠 · 목 21시',d:4,h:21},{n:'펭 · 토 20시',d:6,h:20}
+];
+function pad(n){return (n<10?'0':'')+n;}
+function nextSlot(dow,hour){
+  var d=new Date();d.setHours(hour,0,0,0);
+  while(d.getDay()!==dow||d<=new Date())d.setDate(d.getDate()+1);
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(hour)+':00';
+}
+SLOTS.forEach(function(s){
+  var b=document.createElement('button');b.type='button';b.className='kbtn mini';b.textContent=s.n;
+  b.addEventListener('click',function(){$('#inPub').value=nextSlot(s.d,s.h);$('#inPriv').value='schedule';});
+  $('#slotRow').appendChild(b);
+});
+$('#inPriv').addEventListener('change',function(){
+  $('#pubWrap').style.display=this.value==='schedule'?'':'none';
+});
+
+/* ───── 썸네일 자동 압축 ───── */
+var THUMB_MAX=2*1024*1024;
+function prepThumb(file){
+  return new Promise(function(res,rej){
+    if(file.size<=THUMB_MAX){res(file);return;}
+    var img=new Image();
+    img.onload=function(){
+      var cv=document.createElement('canvas');cv.width=1280;cv.height=720;
+      cv.getContext('2d').drawImage(img,0,0,1280,720);
+      var q=0.92;
+      (function step(){
+        cv.toBlob(function(b){
+          if(!b){rej(new Error('썸네일 압축 실패'));return;}
+          if(b.size<=THUMB_MAX||q<=0.5){res(b);}
+          else{q-=0.08;step();}
+        },'image/jpeg',q);
+      })();
+    };
+    img.onerror=function(){rej(new Error('썸네일 이미지를 읽지 못했습니다'));};
+    img.src=URL.createObjectURL(file);
+  });
+}
+$('#inThumb').addEventListener('change',function(){
+  var f=this.files[0];if(!f)return;
+  $('#thumbInfo').innerHTML=f.size>THUMB_MAX
+    ?'<b>'+(f.size/1048576).toFixed(1)+'MB → 업로드 시 자동으로 2MB 이하 JPEG로 압축합니다.</b>'
+    :(f.size/1048576).toFixed(2)+'MB — 그대로 사용합니다.';
+});
+
+/* ───── 파일 표시 ───── */
+$('#inFile').addEventListener('change',function(){
+  var f=this.files[0];if(!f)return;
+  $('#fileInfo').innerHTML='<b>'+f.name+'</b> · '+(f.size/1073741824).toFixed(2)+'GB · '+Math.ceil(f.size/(32*1024*1024))+'개 조각으로 전송됩니다.';
+});
+
+/* ───── 업로드 ───── */
+var CHUNK=32*1024*1024, aborted=false;
+function log(t){var l=$('#upLog');l.textContent+=t+'\n';l.scrollTop=l.scrollHeight;}
+function setBar(p){$('#upProg').style.display='block';$('#upBar').style.width=p+'%';}
+function putChunk(url,file,start,total){
+  var end=Math.min(start+CHUNK,total);
+  return fetch(url,{method:'PUT',
+    headers:{'Content-Range':'bytes '+start+'-'+(end-1)+'/'+total},
+    body:file.slice(start,end)
+  }).then(function(r){
+    if(r.status===308){
+      var range=r.headers.get('Range');
+      return {next:range?parseInt(range.split('-')[1],10)+1:end};
+    }
+    if(r.ok)return r.json().then(function(j){return {done:j};});
+    throw new Error('업로드 응답 '+r.status);
+  });
+}
+function uploadLoop(url,file,start){
+  if(aborted)return Promise.reject(new Error('사용자 중단'));
+  return putChunk(url,file,start,file.size).then(function(res){
+    if(res.done)return res.done;
+    setBar(Math.round(res.next/file.size*100));
+    log('  '+(res.next/1048576).toFixed(0)+'MB / '+(file.size/1048576).toFixed(0)+'MB');
+    return uploadLoop(url,file,res.next);
+  }).catch(function(e){
+    if(aborted||e.message==='사용자 중단')throw e;
+    log('  청크 오류('+e.message+') — 3초 후 이어올리기 재시도');
+    return new Promise(function(r){setTimeout(r,3000);}).then(function(){
+      return fetch(url,{method:'PUT',headers:{'Content-Range':'bytes */'+file.size}}).then(function(r){
+        if(r.status===308){
+          var range=r.headers.get('Range');
+          return uploadLoop(url,file,range?parseInt(range.split('-')[1],10)+1:0);
+        }
+        if(r.ok)return r.json();
+        throw new Error('재개 실패 '+r.status);
+      });
+    });
+  });
+}
+$('#btnAbort').addEventListener('click',function(){aborted=true;});
+$('#btnUpload').addEventListener('click',function(){
+  var file=$('#inFile').files[0];
+  var title=$('#inTitle').value.trim();
+  if(!file){alert('영상 파일을 선택하세요.');return;}
+  if(!title){alert('제목을 입력하세요.');return;}
+  if($('#inPriv').value==='schedule'&&!$('#inPub').value){alert('예약 공개 시각을 선택하세요.');return;}
+  var run=function(){
+    aborted=false;
+    $('#btnUpload').disabled=true;$('#btnAbort').style.display='';
+    $('#upLog').textContent='';$('#doneCard').style.display='none';setBar(0);
+    var priv=$('#inPriv').value;
+    var status={selfDeclaredMadeForKids:$('#inKids').checked,containsSyntheticMedia:$('#inAi').checked};
+    if(priv==='schedule'){status.privacyStatus='private';status.publishAt=new Date($('#inPub').value).toISOString();}
+    else status.privacyStatus=priv;
+    var meta={
+      snippet:{
+        title:title,
+        description:$('#inDesc').value,
+        tags:$('#inTags').value.split(',').map(function(s){return s.trim();}).filter(Boolean),
+        categoryId:$('#inCat').value,
+        defaultLanguage:$('#inDefLang').value
+      },
+      status:status,
+      recordingDetails:{recordingDate:($('#inRec').value?new Date($('#inRec').value):new Date()).toISOString()}
+    };
+    log('업로드 세션 시작…');
+    fetch('https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status,recordingDetails',{
+      method:'POST',
+      headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',
+        'X-Upload-Content-Length':String(file.size),'X-Upload-Content-Type':file.type||'video/*'},
+      body:JSON.stringify(meta)
+    })
+    .then(function(r){
+      if(!r.ok)return r.json().then(function(j){throw new Error((j.error&&j.error.message)||('세션 생성 실패 '+r.status));});
+      var url=r.headers.get('Location');
+      log('전송 시작 — 조각 크기 32MB');
+      return uploadLoop(url,file,0);
+    })
+    .then(function(video){
+      setBar(100);log('영상 업로드 완료: '+video.id);
+      var chain=Promise.resolve();
+      var tr=collectTranslations();
+      if(Object.keys(tr).length){
+        chain=chain.then(function(){
+          log('다국어 등록 중… ('+Object.keys(tr).length+'개 언어)');
+          return fetch('https://www.googleapis.com/youtube/v3/videos?part=localizations',{
+            method:'PUT',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+            body:JSON.stringify({id:video.id,localizations:tr})
+          }).then(function(r){log(r.ok?'다국어 등록 완료':'다국어 등록 실패('+r.status+') — Studio에서 수동 등록 필요');});
+        });
+      }
+      var tf=$('#inThumb').files[0];
+      if(tf){
+        chain=chain.then(function(){return prepThumb(tf);}).then(function(blob){
+          log('썸네일 등록 중…'+(blob!==tf?' (자동 압축 적용, '+(blob.size/1048576).toFixed(2)+'MB)':''));
+          return fetch('https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId='+video.id,{
+            method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':blob.type||'image/jpeg'},body:blob
+          }).then(function(r){log(r.ok?'썸네일 등록 완료':'썸네일 등록 실패('+r.status+') — 전화 인증 여부 확인');});
+        });
+      }
+      return chain.then(function(){return video;});
+    })
+    .then(function(video){
+      log('모든 작업 완료.');
+      $('#doneLink').href='https://studio.youtube.com/video/'+video.id+'/edit';
+      $('#doneCard').style.display='block';
+      var h=[];try{h=JSON.parse(localStorage.getItem(HIST)||'[]');}catch(e){}
+      h.unshift({id:video.id,t:title,ch:myChannel?myChannel.snippet.title:'',when:new Date().toISOString(),pub:status.publishAt||status.privacyStatus});
+      localStorage.setItem(HIST,JSON.stringify(h.slice(0,50)));
+      renderHist();
+    })
+    .catch(function(e){log('실패: '+e.message);})
+    .then(function(){$('#btnUpload').disabled=false;$('#btnAbort').style.display='none';});
+  };
+  if(hasToken())run();
+  else{
+    document.querySelector('.cr-tab[data-pane="conn"]').click();
+    connMsg('토큰이 없거나 만료되었습니다. 연결 후 자동으로 업로드를 시작합니다.','info');
+    connect(function(){document.querySelector('.cr-tab[data-pane="up"]').click();run();});
+  }
+});
+function renderHist(){
+  var h=[];try{h=JSON.parse(localStorage.getItem(HIST)||'[]');}catch(e){}
+  var box=$('#histBox');
+  if(!h.length){box.textContent='아직 기록이 없습니다.';return;}
+  box.innerHTML=h.map(function(x){
+    var pub=x.pub&&x.pub.indexOf('T')>0?'예약 '+new Date(x.pub).toLocaleString('ko-KR'):(x.pub||'');
+    return '<div class="h-item"><span><b>'+x.t+'</b><br>'+(x.ch||'')+' · '+new Date(x.when).toLocaleString('ko-KR')+' · '+pub+'</span><a href="https://studio.youtube.com/video/'+x.id+'/edit" target="_blank" rel="noopener">Studio</a></div>';
+  }).join('');
+}
+renderHist();
+
+/* ───── 3. 골든타임 ───── */
+var DOW=['일','월','화','수','목','금','토'];
+function gtMsg(t,c){var m=$('#gtMsg');m.textContent=t;m.className='kmsg '+c;}
+$('#btnGt').addEventListener('click',function(){
+  var go=function(){
+    $('#gtSt').textContent='분석 중…';$('#gtSt').className='st warn';
+    var upl=myChannel.contentDetails.relatedPlaylists.uploads;
+    fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&playlistId='+upl,{headers:{Authorization:'Bearer '+token}})
+    .then(function(r){return r.json();})
+    .then(function(j){
+      var ids=(j.items||[]).map(function(i){return i.contentDetails.videoId;});
+      if(!ids.length)throw new Error('업로드 영상이 없습니다');
+      return fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id='+ids.join(','),{headers:{Authorization:'Bearer '+token}});
+    })
+    .then(function(r){return r.json();})
+    .then(function(j){
+      var slots={};
+      (j.items||[]).forEach(function(v){
+        var d=new Date(v.snippet.publishedAt);
+        var k=d.getDay()+'-'+d.getHours();
+        if(!slots[k])slots[k]={dow:d.getDay(),h:d.getHours(),n:0,views:0};
+        slots[k].n++;slots[k].views+=Number(v.statistics.viewCount||0);
+      });
+      var rows=Object.keys(slots).map(function(k){return slots[k];})
+        .map(function(s){s.avg=Math.round(s.views/s.n);return s;})
+        .sort(function(a,b){return b.avg-a.avg;});
+      var total=(j.items||[]).length;
+      var html='<table class="gt-tbl"><tr><th>발행 슬롯 (KST)</th><th>영상 수</th><th>평균 조회수</th><th>총 조회수</th></tr>';
+      rows.forEach(function(s){
+        html+='<tr><td><b>'+DOW[s.dow]+'요일 '+pad(s.h)+'시</b></td><td class="num">'+s.n+'</td><td class="num">'+s.avg.toLocaleString()+'</td><td class="num">'+s.views.toLocaleString()+'</td></tr>';
+      });
+      html+='</table>';
+      if(total<15)html+='<div class="gnote" style="margin-top:12px">표본이 '+total+'개로 적어 통계 신뢰도가 낮습니다. 확정 슬롯 그리드를 유지하면서 표본을 쌓으세요.</div>';
+      $('#gtBox').innerHTML=html;
+      $('#gtSt').textContent='최근 '+total+'개 영상 분석 완료';$('#gtSt').className='st on';
+      gtMsg('주의: 조회수는 발행 후 경과 시간의 영향을 받습니다. 오래된 영상일수록 유리하게 나오므로 비슷한 시기 영상끼리 비교하세요.','info');
+    })
+    .catch(function(e){$('#gtSt').textContent='';gtMsg('분석 실패: '+e.message,'err');});
+  };
+  if(hasToken()&&myChannel)go();
+  else{gtMsg('먼저 [1. 채널 연결]에서 채널을 연결하세요.','err');}
+});
+})();
+</script>
+<script src="../home/tool-nav.js"></script>
+</body>
+</html>
