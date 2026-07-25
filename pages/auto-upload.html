@@ -116,6 +116,12 @@
       <button class="kbtn save" id="btnCidSave">저장</button>
       <button class="kbtn go" id="btnConnect">채널 연결</button>
     </div>
+    <div class="kfld" style="margin-top:22px">
+      <div class="kl"><b>액세스 토큰 직접 입력 (고급)</b></div>
+      <input type="text" id="inTok" class="mono" placeholder="ya29...." autocomplete="off">
+      <div class="kh">MCP·스크립트 등 외부에서 이미 발급한 액세스 토큰으로 팝업 없이 바로 연결합니다(약 1시간 유효). 데스크톱 타입 OAuth 클라이언트만 있을 때 유용합니다. 토큰은 저장되지 않습니다.</div>
+      <div class="krow"><button class="kbtn save" id="btnTok">토큰으로 연결</button></div>
+    </div>
     <div class="kmsg" id="connMsg"></div>
   </div>
   <div class="cr-card">
@@ -376,6 +382,13 @@ function loadChannel(cb){
   .catch(function(){connMsg('채널 조회 중 네트워크 오류가 발생했습니다.','err');});
 }
 $('#btnConnect').addEventListener('click',function(){connect();});
+$('#btnTok').addEventListener('click',function(){
+  var v=$('#inTok').value.trim();
+  if(!v){connMsg('액세스 토큰을 입력하세요.','err');return;}
+  token=v;tokenExp=Date.now()+3500*1000;
+  connMsg('토큰으로 채널 조회 중…','info');
+  loadChannel();
+});
 refreshCid();
 
 /* ───── 제목 규칙 ───── */
