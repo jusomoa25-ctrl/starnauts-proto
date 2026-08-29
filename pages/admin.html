@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>관리자 콘솔 · STARNAUTS</title>
+<meta name="description" content="스타너츠 도구가 남긴 기록을 계정별로 조회하고 백업·복원합니다. 브라우저에 저장된 데이터만 다루며 서버로 전송하지 않습니다.">
+<link rel="canonical" href="https://starnauts.com/pages/admin">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="관리자 콘솔 · STARNAUTS">
+<meta property="og:url" content="https://starnauts.com/pages/admin">
+<meta property="og:image" content="https://starnauts.com/assets/site-logo.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://starnauts.com/assets/site-logo.webp">
+<link rel="stylesheet" href="../home/home.css"><link rel="stylesheet" href="../home/space-theme.css?v=17"><link rel="stylesheet" href="../home/shell.css?v=20"><link rel="stylesheet" href="../home/tweaks.css?v=14"><style>
+:root{--bg:#0d1117;--card:#161b22;--blue:#4d7cff;--ink:#e6edf3;--ink2:#9aa6bc;--line:rgba(255,255,255,.08);--warn:#f0883e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:1040px;margin:0 auto;padding:34px 18px 90px}
+.kicker{font-size:12px;color:var(--blue);font-weight:800;letter-spacing:.08em}
+h1{font-size:24px;margin:6px 0 4px}
+h2{font-size:16px;margin:0 0 14px}
+.sub{color:var(--ink2);font-size:14px;margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn:hover{background:#3d6bef}
+.btn.ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}
+.btn.danger{background:transparent;color:var(--warn);box-shadow:inset 0 0 0 1.5px var(--warn)}
+.btn.sm{padding:6px 12px;font-size:12px;border-radius:8px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input,select,textarea{background:#0a0e14;border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:9px 11px;font-size:14px;font-family:inherit}
+textarea{width:100%;min-height:120px;font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:rgba(255,255,255,.03);border-radius:10px;padding:14px}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--ink2)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--ink2);font-size:12px;font-weight:700}
+td.num{font-variant-numeric:tabular-nums;color:var(--ink2);white-space:nowrap}
+.tag{display:inline-block;background:rgba(77,124,255,.14);color:#9db6ff;border-radius:6px;padding:2px 7px;font-size:11px;font-weight:700}
+.tag.shared{background:rgba(240,136,62,.14);color:#ffc08a}
+.empty{color:var(--ink2);font-size:14px;padding:22px 0;text-align:center}
+.hint{font-size:12px;color:var(--ink2);line-height:1.6;margin-top:10px}
+.headrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body><aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="/#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav" aria-label="주요 메뉴">
+    <a href="/#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav"></div>
+    <a href="content"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub"><a href="blog">뉴스</a><a href="contact">문의하기</a><a href="terms">이용약관</a><p class="side-copy">(c) 2026 STARNAUTS</p></div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+<div class="main" id="main" tabindex="-1"><div class="wrap">
+
+<div class="kicker">ADMIN CONSOLE</div>
+<h1>관리자 콘솔</h1>
+<p class="sub">도구가 남긴 기록을 계정별로 보고, 지우고, 백업합니다. 데이터는 이 브라우저에만 있고 서버로 나가지 않습니다.</p>
+
+<div class="card">
+  <h2>현황</h2>
+  <div class="stats" id="stats"></div>
+</div>
+
+<div class="card">
+  <div class="headrow">
+    <h2 style="margin:0">계정</h2>
+    <div class="tools">
+      <select id="accSel" aria-label="계정 선택"></select>
+      <input id="accNew" placeholder="새 계정 이름" style="width:160px">
+      <button class="btn sm ghost" id="accAdd">추가·전환</button>
+    </div>
+  </div>
+  <p class="hint">지금은 브라우저 로컬 계정입니다. 기록의 소유자 구분에만 쓰이며 로그인 인증이 아닙니다.
+  Supabase 연결 시 <code>tool-store.js</code>의 backend 객체만 교체하면 실제 계정으로 바뀝니다.</p>
+</div>
+
+<div class="card">
+  <div class="headrow">
+    <h2 style="margin:0">기록</h2>
+    <div class="tools">
+      <select id="fTool" aria-label="도구 필터"><option value="">모든 도구</option></select>
+      <select id="fOwner" aria-label="소유자 필터"><option value="">모든 소유자</option></select>
+      <input id="fText" placeholder="제목 검색" style="width:170px">
+      <button class="btn sm ghost" id="fClear">초기화</button>
+    </div>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>시각</th><th>도구</th><th>소유자</th><th>제목</th><th>공유</th><th></th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+  <div class="empty" id="empty" hidden>기록이 없습니다.</div>
+</div>
+
+<div class="card">
+  <h2>백업</h2>
+  <div class="tools">
+    <button class="btn" id="expBtn">내보내기 (JSON 다운로드)</button>
+    <button class="btn ghost" id="impBtn">가져오기</button>
+    <button class="btn danger" id="wipeBtn">전체 삭제</button>
+  </div>
+  <textarea id="impArea" placeholder="여기에 백업 JSON 을 붙여 넣고 가져오기를 누르세요" hidden></textarea>
+  <p class="hint">가져오기는 <b>합치기</b>입니다. 같은 id 는 건너뛰므로 기존 기록이 지워지지 않습니다.
+  전체 삭제는 되돌릴 수 없으니 먼저 내보내기로 백업하세요.</p>
+</div>
+
+</div></div>
+
+<script src="../home/shell.js"></script>
+<script src="../home/tool-store.js"></script>
+<script>
+(function () {
+  'use strict';
+  var S = window.ToolStore;
+  var $ = function (id) { return document.getElementById(id); };
+
+  if (!S) {
+    $('stats').innerHTML = '<div class="stat"><b>—</b><span>tool-store.js 를 불러오지 못했습니다</span></div>';
+    return;
+  }
+
+  var filters = { tool: '', owner: '', text: '' };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function titleOf(r) {
+    return r.title || r.name || (r.payload && (r.payload.title || r.payload.name)) || r.kind || '(제목 없음)';
+  }
+
+  function when(ts) {
+    if (!ts) return '—';
+    var d = new Date(ts);
+    if (isNaN(d)) return '—';
+    return d.toISOString().slice(0, 16).replace('T', ' ');
+  }
+
+  function renderStats(all) {
+    var byTool = {};
+    all.forEach(function (r) { byTool[r.tool || '기타'] = (byTool[r.tool || '기타'] || 0) + 1; });
+    var top = Object.keys(byTool).sort(function (a, b) { return byTool[b] - byTool[a]; })[0];
+    var last = all.map(function (r) { return r.ts || ''; }).sort().pop();
+    $('stats').innerHTML =
+      '<div class="stat"><b>' + all.length + '</b><span>전체 기록</span></div>' +
+      '<div class="stat"><b>' + S.accounts().length + '</b><span>계정</span></div>' +
+      '<div class="stat"><b>' + Object.keys(byTool).length + '</b><span>사용한 도구</span></div>' +
+      '<div class="stat"><b>' + esc(top || '—') + '</b><span>가장 많이 쓴 도구</span></div>' +
+      '<div class="stat"><b style="font-size:15px">' + esc(when(last)) + '</b><span>마지막 활동</span></div>';
+  }
+
+  function fillSelect(sel, values, keep) {
+    var cur = keep ? sel.value : '';
+    sel.length = 1;
+    values.forEach(function (v) {
+      var o = document.createElement('option');
+      o.value = v; o.textContent = v;
+      sel.appendChild(o);
+    });
+    sel.value = cur;
+  }
+
+  function render() {
+    var all = S.all();
+    renderStats(all);
+
+    fillSelect($('fTool'), Array.from(new Set(all.map(function (r) { return r.tool || '기타'; }))).sort(), true);
+    fillSelect($('fOwner'), Array.from(new Set(all.map(function (r) { return r.owner || 'default'; }))).sort(), true);
+
+    var acc = S.account();
+    var sel = $('accSel');
+    sel.innerHTML = '';
+    S.accounts().forEach(function (a) {
+      var o = document.createElement('option');
+      o.value = a; o.textContent = a + (a === acc ? ' (현재)' : '');
+      sel.appendChild(o);
+    });
+    sel.value = acc;
+
+    var rows = all.filter(function (r) {
+      if (filters.tool && (r.tool || '기타') !== filters.tool) return false;
+      if (filters.owner && (r.owner || 'default') !== filters.owner) return false;
+      if (filters.text && titleOf(r).toLowerCase().indexOf(filters.text.toLowerCase()) < 0) return false;
+      return true;
+    });
+
+    $('empty').hidden = rows.length > 0;
+    $('rows').innerHTML = rows.slice(0, 300).map(function (r) {
+      var shared = (r.shared === true || r.tool === 'channel-research');
+      return '<tr>' +
+        '<td class="num">' + esc(when(r.ts)) + '</td>' +
+        '<td><span class="tag">' + esc(r.tool || '기타') + '</span></td>' +
+        '<td class="num">' + esc(r.owner || 'default') + '</td>' +
+        '<td>' + esc(titleOf(r)) + '</td>' +
+        '<td>' + (shared ? '<span class="tag shared">공유</span>' : '') + '</td>' +
+        '<td><button class="btn sm danger" data-del="' + esc(r.id) + '">삭제</button></td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  $('rows').addEventListener('click', function (e) {
+    var id = e.target && e.target.getAttribute && e.target.getAttribute('data-del');
+    if (!id) return;
+    // confirm 은 브라우저 모달이라 자동화 환경에서 막힐 수 있지만, 삭제는 되돌릴 수 없으므로 유지한다.
+    if (!window.confirm('이 기록을 삭제할까요? 되돌릴 수 없습니다.')) return;
+    S.remove(id);
+    render();
+  });
+
+  $('accAdd').addEventListener('click', function () {
+    var name = $('accNew').value.trim();
+    if (!name) return;
+    S.setAccount(name);
+    $('accNew').value = '';
+    render();
+  });
+
+  $('accSel').addEventListener('change', function () { S.setAccount(this.value); render(); });
+
+  $('fTool').addEventListener('change', function () { filters.tool = this.value; render(); });
+  $('fOwner').addEventListener('change', function () { filters.owner = this.value; render(); });
+  $('fText').addEventListener('input', function () { filters.text = this.value; render(); });
+  $('fClear').addEventListener('click', function () {
+    filters = { tool: '', owner: '', text: '' };
+    $('fTool').value = ''; $('fOwner').value = ''; $('fText').value = '';
+    render();
+  });
+
+  $('expBtn').addEventListener('click', function () {
+    var blob = new Blob([S.exportJSON()], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'starnauts-tool-history-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  $('impBtn').addEventListener('click', function () {
+    var area = $('impArea');
+    if (area.hidden) { area.hidden = false; area.focus(); return; }
+    var n = S.importJSON(area.value);
+    area.value = '';
+    area.hidden = true;
+    render();
+    alert(n + '건을 가져왔습니다. (중복 id 는 건너뜁니다)');
+  });
+
+  $('wipeBtn').addEventListener('click', function () {
+    if (!window.confirm('모든 기록을 삭제합니다. 되돌릴 수 없습니다. 계속할까요?')) return;
+    S.all().forEach(function (r) { S.remove(r.id); });
+    render();
+  });
+
+  render();
+})();
+</script>
+</body></html>
