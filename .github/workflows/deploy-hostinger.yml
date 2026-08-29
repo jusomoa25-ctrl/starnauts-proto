@@ -1,0 +1,104 @@
+name: Deploy to Hostinger
+
+# main 에 올라오면 Hostinger 로 정적 배포한다.
+#
+# Hostinger 의 GitHub 연동 대신 API 를 직접 호출한다. 그쪽 연동은 호스팅 계정당
+# GitHub 계정 하나만 붙는 것으로 보이는데 저장소가 계정별로 흩어져 있다.
+# API 호출은 저장소 소유 계정과 무관하게 동작한다.
+#
+# 아카이브에는 추적 파일만 담긴다. data/ 와 uploads/ 는 .gitignore 대상이라
+# 빠지는데, HTML·JS 어디서도 참조하지 않는 것을 확인했다 (2026-08-29).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      API: https://developers.hostinger.com
+      USERNAME: u303624340
+      DOMAIN: starnauts.com
+      ARCHIVE: starnauts-site.zip
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 정적 아카이브 생성
+        run: |
+          set -euo pipefail
+          # 빌드 스크립트(_*.py)는 배포본에 들어갈 이유가 없다.
+          git archive --format=zip -o "$ARCHIVE" HEAD \
+            ':(exclude)*.py' ':(exclude)_*' ':(exclude).github'
+          ls -lh "$ARCHIVE"
+
+      - name: 업로드 · 배포
+        env:
+          TOKEN: ${{ secrets.HOSTINGER_API_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          echo "::group::업로드 자격 발급"
+          creds=$(curl -sS -X POST "$API/api/hosting/v1/files/upload-urls" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"username\":\"$USERNAME\",\"domain\":\"$DOMAIN\"}")
+          up_url=$(echo "$creds" | jq -r '.url')
+          auth=$(echo "$creds" | jq -r '.auth_key')
+          rest=$(echo "$creds" | jq -r '.rest_auth_key')
+          echo "::add-mask::$auth"
+          echo "::add-mask::$rest"
+          if [ -z "$up_url" ] || [ "$up_url" = "null" ]; then
+            echo "업로드 URL 발급 실패: $creds"; exit 1
+          fi
+          echo "::endgroup::"
+
+          echo "::group::TUS 업로드"
+          size=$(stat -c%s "$ARCHIVE")
+          target="$up_url/$ARCHIVE?override=true"
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$target" \
+            -H "X-Auth: $auth" -H "X-Auth-Rest: $rest" \
+            -H "Tus-Resumable: 1.0.0" \
+            -H "Upload-Length: $size" -H "Upload-Offset: 0")
+          [ "$code" = "201" ] || { echo "TUS create 실패: HTTP $code"; exit 1; }
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X PATCH "$target" \
+            -H "X-Auth: $auth" -H "X-Auth-Rest: $rest" \
+            -H "Tus-Resumable: 1.0.0" \
+            -H "Content-Type: application/offset+octet-stream" \
+            -H "Upload-Offset: 0" --data-binary "@$ARCHIVE")
+          [ "$code" = "204" ] || { echo "TUS upload 실패: HTTP $code"; exit 1; }
+          echo "업로드 완료 ($size bytes)"
+          echo "::endgroup::"
+
+          echo "::group::정적 배포"
+          resp=$(curl -sS -o /tmp/deploy.json -w '%{http_code}' -X POST \
+            "$API/api/hosting/v1/accounts/$USERNAME/websites/$DOMAIN/deploy" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"archive_path\":\"$ARCHIVE\"}")
+          cat /tmp/deploy.json
+          case "$resp" in
+            2*) echo "배포 요청 수락됨" ;;
+            *)  echo "배포 실패: HTTP $resp"; exit 1 ;;
+          esac
+          echo "::endgroup::"
+
+      - name: 배포 확인
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 12); do
+            sleep 10
+            home=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "https://$DOMAIN/" || true)
+            page=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "https://$DOMAIN/pages/about" || true)
+            echo "[$i] home=$home about=$page"
+            if [ "$home" = "200" ] && [ "$page" = "200" ]; then exit 0; fi
+          done
+          echo "배포 후 확인 실패"
+          exit 1

@@ -34,20 +34,20 @@
       var tb=document.createElement('header');tb.className='topbar';
       tb.innerHTML='<button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>'
         +'<nav class="topnav" aria-label="상단 메뉴">'
-        +'<a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>'
-        +'<a href="class.html">CLASS<span class="tko">강의</span></a>'
-        +'<a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>'
-        +'<a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>'
-        +'<a href="agency.html">AGENCY<span class="tko">에이전시</span></a>'
+        +'<a href="/">STARNAUTS<span class="tko">스타너츠</span></a>'
+        +'<a href="class">CLASS<span class="tko">강의</span></a>'
+        +'<a href="tool" class="active">TOOL<span class="tko">도구</span></a>'
+        +'<a href="content">CONTENT<span class="tko">콘텐츠</span></a>'
+        +'<a href="agency">AGENCY<span class="tko">에이전시</span></a>'
         +'</nav>'
-        +'<div class="top-right"><a class="top-cta" href="signup.html">무료로 시작</a></div>';
+        +'<div class="top-right"><a class="top-cta" href="signup">무료로 시작</a></div>';
       mainEl.insertBefore(tb,mainEl.firstChild);
     }
     var tname=(TOOLS.filter(function(o){return o.h===cur;})[0]||{}).t||'도구';
     var box=document.querySelector('.main main, .wrap')||document.querySelector('.main');
     if(box&&!document.querySelector('.st-crumb')){
       var cb=document.createElement('nav');cb.className='st-crumb';cb.setAttribute('aria-label','위치');
-      cb.innerHTML='<a href="../Starnauts%20Home.html">홈</a><span>/</span><a href="tool.html">도구</a><span>/</span><b>'+tname+'</b>';
+      cb.innerHTML='<a href="/">홈</a><span>/</span><a href="tool">도구</a><span>/</span><b>'+tname+'</b>';
       box.style.paddingTop='30px';box.style.maxWidth='1180px';box.insertBefore(cb,box.firstChild);
       Array.prototype.forEach.call(document.querySelectorAll('.cr-crumb, .crumb, nav[aria-label="위치"]'),function(o){if(o!==cb)o.style.display='none';});
       var cs=document.createElement('style');
@@ -72,7 +72,7 @@
   document.head.appendChild(st);
   var bar=document.createElement('nav');
   bar.id='st-bar';bar.setAttribute('aria-label','도구 바로가기');
-  bar.innerHTML='<a class="st-home" href="tool.html">★ STARNAUTS 도구</a><div class="st-links">'+links()+'</div>';
+  bar.innerHTML='<a class="st-home" href="tool">★ STARNAUTS 도구</a><div class="st-links">'+links()+'</div>';
   // 스킵 링크가 있으면 그 뒤에 넣는다 — 앞에 넣으면 스킵 링크가 첫 탭 스톱을 잃어 무력화된다
   var skip=document.body.querySelector(':scope > a.skip-link');
   document.body.insertBefore(bar,skip?skip.nextSibling:document.body.firstChild);

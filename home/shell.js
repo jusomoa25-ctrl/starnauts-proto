@@ -42,7 +42,7 @@
   if(!tr || !email) return;
   var ini = email.trim().charAt(0).toUpperCase();
   tr.innerHTML =
-    '<a href="mypage.html" class="acct" title="'+email+'" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:700;font-size:13px">'
+    '<a href="mypage" class="acct" title="'+email+'" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:700;font-size:13px">'
     + '<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2E6FC9,#5B47A8);display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fff">'+ini+'</span>'
     + '<span style="max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+email+'</span></a>'
     + '<button type="button" id="snLogout" aria-label="로그아웃" style="background:none;border:1px solid rgba(255,255,255,.18);color:#9aa6bc;border-radius:9px;padding:7px 11px;font-size:12px;cursor:pointer;font-family:inherit;margin-left:8px">로그아웃</button>';

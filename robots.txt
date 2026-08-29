@@ -1,11 +1,8 @@
-# STARNAUTS — https://jusomoa25-ctrl.github.io/starnauts-proto/
+# STARNAUTS — https://starnauts.com/
 #
-# 주의: 현재 배포는 GitHub Pages 프로젝트 사이트(서브패스)라서 크롤러는
-# 호스트 루트인 https://jusomoa25-ctrl.github.io/robots.txt 만 읽는다.
-# 즉 이 파일은 지금 위치(/starnauts-proto/robots.txt)에서는 크롤러에 적용되지 않는다.
-# 실효를 가지려면 (a) 커스텀 도메인(CNAME)을 붙이거나
-# (b) 사용자 사이트 저장소(jusomoa25-ctrl.github.io)의 루트에 같은 내용을 두어야 한다.
-# 그때까지 sitemap 은 Search Console 에 직접 제출한다.
+# 2026-08-29 Hostinger 이전. 이전에는 GitHub Pages 프로젝트 사이트라 robots.txt 가
+# 호스트 루트에 없어서 크롤러에 적용되지 않았다. 이제 커스텀 도메인 루트에 있으므로
+# 정상 적용된다.
 
 User-agent: *
 Allow: /
@@ -16,4 +13,4 @@ Disallow: /uploads/
 Disallow: /data/
 Disallow: /reports/
 
-Sitemap: https://jusomoa25-ctrl.github.io/starnauts-proto/sitemap.xml
+Sitemap: https://starnauts.com/sitemap.xml
