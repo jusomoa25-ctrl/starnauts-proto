@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
+<title>STARNAUTS — 유튜브 채널 딥 리서치</title>
+<meta name="description" content="채널이나 영상 주소만 넣으면 메타데이터와 통계를 수집해 Gemini가 5개 영역의 정책 리스크 점수와 성장 관점 피드백을 산출합니다. YouTube Data API 사용, 키는 브라우저에만 저장됩니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/channel-research.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STARNAUTS — 유튜브 채널 딥 리서치">
+<meta property="og:description" content="채널이나 영상 주소만 넣으면 메타데이터와 통계를 수집해 Gemini가 5개 영역의 정책 리스크 점수와 성장 관점 피드백을 산출합니다. YouTube Data API 사용, 키는 브라우저에만 저장됩니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/channel-research.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/tool-thumbs/channel-research.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=20">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<script src="../home/cr-keys.js?v=1"></script>
+<script src="../home/cr-shared.js?v=6"></script>
+<style>
+.cr{max-width:1180px;margin:0 auto;padding:0 18px 160px}
+.cr-crumb{font-size:12.5px;color:#9aa6bc;margin:6px 0 14px}
+.cr-crumb a{color:#9aa6bc;text-decoration:none}.cr-crumb a:hover{color:#C6CEDC}
+.cr-head{padding:6px 0 4px}
+.cr-eyebrow{font-size:12px;font-weight:900;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.cr-eyebrow svg{width:15px;height:15px}
+.cr-title{font-size:clamp(24px,4vw,34px);font-weight:900;color:#fff;margin:9px 0 8px;letter-spacing:-.01em}
+.cr-title b{color:var(--blue-300)}
+.cr-sub{font-size:14px;color:#9aa6bc;line-height:1.65;max-width:64ch}
+.cr-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 24px;border-bottom:1px solid rgba(255,255,255,.08)}
+.cr-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;font-size:13.5px;font-weight:900;color:#9aa6bc;text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px}
+.cr-tab svg{width:15px;height:15px}.cr-tab:hover{color:#C6CEDC}
+.cr-tab.cur{color:#fff;border-bottom-color:var(--blue)}
+.cr-card{background:rgba(17,24,37,.55);border:1px solid rgba(127,169,224,.16);border-radius:18px;padding:22px 24px;margin:0 0 18px}
+/* 입력 */
+.in-row{display:flex;gap:10px;flex-wrap:wrap}
+.in-wrap{flex:1;min-width:240px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:0 14px}
+.in-wrap svg{width:18px;height:18px;color:var(--blue-300);flex-shrink:0}
+.in-wrap input{flex:1;min-width:0;background:none;border:0;color:#fff;font-size:15px;font-family:inherit;padding:15px 0;outline:none}
+.in-wrap input::placeholder{color:#6b7689}
+.an-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:0;border-radius:13px;padding:0 22px;font-size:15px;font-weight:900;cursor:pointer;font-family:inherit}
+.an-btn:hover{background:var(--blue-700)}.an-btn:disabled{opacity:.5;cursor:default}
+.an-btn.ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}
+.an-btn.ghost:hover{background:rgba(0,0,0,.04)}
+.res-cache{padding:30px 24px;text-align:center}
+.res-cache h3{margin:0 0 10px;font-size:18px;font-weight:900}
+.res-cache p{color:#555;line-height:1.65;margin:0 0 18px}
+.res-cache .muted{color:#999;font-size:13px}
+.res-cache-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.why-list{display:flex;flex-direction:column;gap:9px}
+.why-item{padding:11px 13px;background:rgba(120,150,255,.06);border-radius:9px}
+.why-f{font-weight:900;color:#dfe6f2;font-size:14px;margin-bottom:3px}
+.why-b{font-size:13px;color:#9aa6bc;line-height:1.55}
+.adopt-list{display:flex;flex-direction:column;gap:9px}
+.adopt-item{padding:10px 12px;background:rgba(120,150,255,.06);border-radius:9px}
+.adopt-s{font-weight:900;color:#dfe6f2;font-size:13.5px}
+.adopt-a{font-size:12.5px;color:#9aa6bc;margin-top:3px}
+.an-btn svg{width:17px;height:17px}
+.ex-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:#7d8aa0}
+.ex-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:5px 12px;color:#C6CEDC;font-size:12px;cursor:pointer;font-family:inherit}
+.ex-chip:hover{border-color:var(--blue-300)}
+.disclaim{float:right;font-size:11.5px;color:var(--blue-300);border:1px dashed rgba(127,169,224,.4);border-radius:20px;padding:5px 13px}
+/* 고급 자가진단 */
+.adv{margin-top:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+.adv-h{display:flex;align-items:center;gap:9px;background:none;border:0;color:#fff;font-family:inherit;font-size:13.5px;font-weight:900;cursor:pointer;padding:0;width:100%;text-align:left}
+.adv-h svg.lead{width:16px;height:16px;color:var(--blue-300)}
+.adv-h .chev{width:14px;height:14px;color:#9aa6bc;margin-left:auto;transition:transform .16s}
+.adv[open] .adv-h .chev{transform:rotate(90deg)}
+.adv-h .pill{font-size:10.5px;font-weight:700;color:#7d8aa0;background:rgba(255,255,255,.06);border-radius:20px;padding:3px 9px}
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:14px}
+@media(max-width:680px){.adv-grid{grid-template-columns:1fr}}
+.adv-fld label{display:block;font-size:12px;font-weight:700;color:#C6CEDC;margin-bottom:6px}
+.adv-fld select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:11px 12px;color:#fff;font-size:13px;font-family:inherit;outline:none}
+.adv-note{font-size:11.5px;color:#7d8aa0;line-height:1.6;margin-top:12px;background:rgba(255,255,255,.025);border-radius:10px;padding:11px 13px}
+.adv-note b{color:#C6CEDC}
+/* 결과 */
+#crResult{margin-top:6px}
+.res-empty{text-align:center;padding:48px 20px;color:#9aa6bc}
+.res-empty .av{width:88px;height:88px;border-radius:50%;margin:0 auto 18px;background:rgba(46,111,201,.14);border:2px dashed rgba(127,169,224,.4);display:flex;align-items:center;justify-content:center}
+.res-empty .av svg{width:38px;height:38px;color:var(--blue-300)}
+.res-empty h3{color:#fff;font-size:17px;margin:0 0 6px}
+.res-loading{text-align:center;padding:44px 20px}
+.res-loading .av{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;border:3px solid rgba(127,169,224,.25);border-top-color:var(--blue);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.res-loading h3{color:#fff;font-size:16px;margin:0 0 4px}.res-loading p{color:var(--blue-300);font-size:13px;margin:0}
+.res-err{padding:20px 22px;border-radius:14px;background:rgba(231,107,107,.08);border:1px solid rgba(231,107,107,.3);color:#E76B6B;font-size:13.5px;line-height:1.6}
+/* 채널 헤더(배너+프로필) — 보고서 최상단 */
+.chan-banner{aspect-ratio:6.2/1;min-height:96px;max-height:210px;background:#0a1018 center/cover no-repeat}
+.chan-banner.nobg{background:linear-gradient(135deg,#16385F,#0a1018)}
+.chan-id{display:flex;align-items:center;gap:14px;padding:0 20px 16px}
+.chan-id img{width:74px;height:74px;border-radius:50%;object-fit:cover;border:3px solid #05080F;margin-top:-30px;background:#05080F;flex-shrink:0}
+.chan-id .chan-meta{min-width:0}
+.chan-id .cn{font-size:21px;font-weight:900;color:#fff;line-height:1.2}
+.chan-id .cs{font-size:12.5px;color:#9aa6bc;margin-top:3px}
+.chan-id .chan-go{margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;font-size:12.5px;font-weight:900;padding:8px 13px;border-radius:10px;flex-shrink:0}
+.chan-id .chan-go svg{width:15px;height:15px;color:#E76B6B}
+.chan-id .chan-go:hover{border-color:var(--blue-300)}
+@media(max-width:560px){.chan-id .chan-go{display:none}.chan-id .cn{font-size:18px}}
+/* 점수 헤더 */
+.score-top{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.ring{position:relative;width:170px;height:170px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring .rv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .rv b{font-size:44px;font-weight:900;color:#fff;line-height:1}
+.ring .rv b span{font-size:18px;color:#9aa6bc}
+.ring .rv i{font-size:12.5px;font-weight:900;margin-top:4px;font-style:normal}
+.score-info{flex:1;min-width:260px}
+.grade-badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:900;padding:6px 13px;border-radius:20px}
+.grade-badge .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.score-info h2{font-size:24px;font-weight:900;color:#fff;margin:12px 0 4px}
+.score-info .meta{font-size:13px;color:#9aa6bc;margin:0 0 12px}
+.score-info .summ{font-size:13.5px;color:#C6CEDC;line-height:1.7}
+.g-vsafe{background:rgba(126,212,166,.16);color:#7ED4A6}.g-safe{background:rgba(126,212,166,.10);color:#9ad9b8}
+.g-warn{background:rgba(231,194,107,.14);color:#E7C26B}.g-danger{background:rgba(231,107,107,.14);color:#E76B6B}.g-crit{background:rgba(231,107,107,.22);color:#ff9a9a}
+/* AI 음악 스타일 */
+.style-card{background:linear-gradient(135deg,rgba(46,111,201,.22),rgba(91,71,168,.16));border:1px solid rgba(120,140,220,.3)}
+.style-card h3{font-size:16px;font-weight:900;color:#fff;margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.style-card .sdesc{font-size:13px;color:#C6CEDC;line-height:1.6;margin:0 0 14px}
+.srow{display:grid;grid-template-columns:84px 1fr;gap:12px;align-items:start;padding:9px 0;border-top:1px solid rgba(255,255,255,.07)}
+.srow .sl{font-size:11px;font-weight:900;letter-spacing:.04em;color:var(--blue-300);padding-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;color:#dfe6f2;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:4px 11px}
+.suno-box{margin-top:14px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 15px;position:relative}
+.suno-box .sbl{font-size:11px;font-weight:900;letter-spacing:.08em;color:var(--blue-300);display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.suno-box pre{margin:0;font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:12px;color:#cfe0c9;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+.suno-copy{position:absolute;top:11px;right:11px;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:5px 11px;font-size:11.5px;font-weight:900;cursor:pointer;font-family:inherit}
+/* 영역별 점수 */
+.areas-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.areas-grid{grid-template-columns:1fr}}
+.acard{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 18px}
+.acard .ah{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.acard .ah .an{font-size:14px;font-weight:900;color:#fff}
+.acard .ah .as{font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:14px;font-weight:700;color:#fff;white-space:nowrap}
+.acard .ah .as span{color:#7d8aa0;font-size:12px}
+.abar{height:4px;border-radius:3px;margin:9px 0 13px;background:rgba(255,255,255,.1);overflow:hidden}
+.abar i{display:block;height:100%;border-radius:3px}
+.aitem{display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-top:1px dashed rgba(255,255,255,.07)}
+.aitem:first-of-type{border-top:0}
+.aitem .ic{flex-shrink:0;width:17px;height:17px;margin-top:1px}
+.aitem .ic svg{width:17px;height:17px}
+.aitem .it{flex:1;min-width:0}
+.aitem .itn{font-size:12.5px;font-weight:700;color:#dfe6f2}
+.aitem .itx{font-size:11.5px;color:#9aa6bc;line-height:1.55;margin-top:2px}
+.aitem .vb{flex-shrink:0;font-size:11px;font-weight:900;padding:2px 8px;border-radius:7px}
+.vb.ok{background:rgba(126,212,166,.12);color:#7ED4A6}.vb.bad{background:rgba(231,107,107,.14);color:#E76B6B}
+.aitem .itn .ev{font-style:normal;font-size:9.5px;font-weight:900;padding:1px 5px;border-radius:5px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
+.ev.ev-hard{background:rgba(46,111,201,.2);color:var(--blue-300)}
+.ev.ev-soft{background:rgba(255,255,255,.07);color:#9aa6bc}
+.sig-card{padding:6px 0}
+.sig-row{display:grid;grid-template-columns:104px 1fr;gap:12px;align-items:start;padding:11px 22px;border-top:1px solid rgba(255,255,255,.07)}
+.sig-row:first-child{border-top:0}
+.sig-row .sig-l{font-size:11.5px;font-weight:900;letter-spacing:.03em;color:var(--blue-300);padding-top:1px}
+.sig-row .sig-v{font-size:12.5px;color:#C6CEDC;line-height:1.55}
+.sig-row .sig-v.warn{color:#E7C26B}
+/* 피드백 10 */
+.fb{display:flex;flex-direction:column;gap:12px}
+.fbc{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 18px}
+.fbc .fh{display:flex;align-items:flex-start;gap:12px}
+.fbc .fno{font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:14px;font-weight:900;color:var(--blue-300)}
+.fbc .ft{flex:1;min-width:0}
+.fbc .ftn{font-size:14px;font-weight:900;color:#fff}
+.fbc .fte{font-size:11px;color:#7d8aa0;letter-spacing:.03em}
+.fbc .fg{flex-shrink:0;font-size:11px;font-weight:900;padding:3px 10px;border-radius:8px}
+.fg.good{background:rgba(126,212,166,.14);color:#7ED4A6}.fg.mid{background:rgba(231,194,107,.14);color:#E7C26B}.fg.bad{background:rgba(231,107,107,.14);color:#E76B6B}
+.fbc .fsum{font-size:12.5px;color:#C6CEDC;line-height:1.65;margin:10px 0 0}
+.fbc .fadv{font-size:12px;color:#9aa6bc;line-height:1.7;margin:10px 0 0;background:rgba(46,111,201,.07);border-left:2px solid var(--blue);border-radius:0 8px 8px 0;padding:11px 13px}
+/* 개선 제안 */
+.sugg{list-style:none;padding:0;margin:0;counter-reset:s}
+.sugg li{counter-increment:s;font-size:13px;color:#C6CEDC;line-height:1.65;padding:11px 0 11px 36px;border-top:1px solid rgba(255,255,255,.07);position:relative}
+.sugg li:first-child{border-top:0}
+.sugg li::before{content:counter(s);position:absolute;left:0;top:11px;width:22px;height:22px;border-radius:7px;background:rgba(46,111,201,.18);color:var(--blue-300);font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+/* 분석 영상 */
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.vid-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.vid-grid{grid-template-columns:1fr}}
+.vcard{border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);text-decoration:none}
+.vcard .vt{aspect-ratio:16/9;background:#0a0f18 center/cover no-repeat;display:block}
+.vcard .vb{padding:10px 12px}
+.vcard .vtt{font-size:12px;color:#dfe6f2;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vcard .vm{font-size:11px;color:#7d8aa0;margin-top:5px}
+.sec-h{font-size:18px;font-weight:900;color:#fff;margin:26px 0 12px;display:flex;align-items:center;gap:9px}
+.sec-h .bar{width:4px;height:18px;border-radius:3px;background:var(--blue)}
+.sec-h .ic{width:18px;height:18px;color:var(--blue-300)}
+.cv-row{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:start;padding:12px 0;border-top:1px solid rgba(255,255,255,.07)}
+.cv-row:first-child{border-top:0}
+@media(max-width:560px){.cv-row{grid-template-columns:1fr;gap:6px}}
+.cv-l{font-size:11.5px;font-weight:900;letter-spacing:.03em;color:var(--blue-300);padding-top:3px}
+.cv-v{font-size:13px;color:#C6CEDC;line-height:1.6}
+.cv-pal{display:flex;flex-wrap:wrap;gap:8px}
+.cv-pal .sw{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#C6CEDC;font-family:"Noto Sans Mono",ui-monospace,monospace;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 9px 4px 5px}
+.cv-pal .sw i{width:18px;height:18px;border-radius:5px;border:1px solid rgba(255,255,255,.2);display:inline-block}
+</style>
+</head>
+<body>
+<a href="#cr-main" class="skip-link">본문으로 건너뛰기</a>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M19 17H6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2 20 3M16 7l3 3M14 9l2 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="#7ED4A6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-xmark" viewBox="0 0 24 24" fill="none" stroke="#E76B6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="14" height="11" rx="2.5"/><path d="M16.5 10l5-2.5v9L16.5 14"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav" aria-label="주요 메뉴">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav">
+      <a href="pli-studio.html">플리채널 스튜디오</a>
+      <a href="plichannel-planning.html">기획 노바</a>
+      <a href="music-lab.html">음악 랩</a>
+      <a href="channel-research.html" class="cur">채널 딥 리서치</a>
+      <a href="auto-video.html">자동영상</a>
+      <a href="history.html">내 기록</a>
+    </div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav" aria-label="상단 메뉴">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="signup.html">무료로 시작</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <main class="cr" id="cr-main" tabindex="-1">
+    <nav class="cr-crumb" aria-label="위치"><a href="../Starnauts%20Home.html">홈</a> / <a href="tool.html">도구</a> / <span style="color:#C6CEDC">채널 딥 리서치</span></nav>
+    <header class="cr-head">
+      <span class="cr-eyebrow"><svg aria-hidden="true"><use href="#i-shield"/></svg> CHANNEL DEEP RESEARCH</span>
+      <h1 class="cr-title">유튜브 채널 <b>딥 리서치</b></h1>
+      <p class="cr-sub">분석할 채널 주소나 개별 영상 주소를 붙여 넣어 주세요. 영상 메타데이터와 통계를 수집해 Gemini가 5개 영역의 정책 리스크 점수를 산출하고, 성장 관점의 전문 피드백을 제공합니다.</p>
+    </header>
+
+    <nav class="cr-tabs" aria-label="딥 리서치 도구">
+      <a class="cr-tab cur" href="channel-research.html" aria-current="page"><svg aria-hidden="true"><use href="#i-search"/></svg>딥 리서치</a>
+      <a class="cr-tab" href="channel-research-guide.html"><svg aria-hidden="true"><use href="#i-book"/></svg>평가 가이드라인</a>
+      <a class="cr-tab" href="channel-research-history.html"><svg aria-hidden="true"><use href="#i-clock"/></svg>기록</a>
+      <a class="cr-tab" href="channel-research-api.html"><svg aria-hidden="true"><use href="#i-key"/></svg>API 등록</a>
+    </nav>
+
+    <!-- 입력 -->
+    <section class="cr-card">
+      <span class="disclaim">100% 정답은 아닙니다 ✦</span>
+      <div class="in-row">
+        <label class="in-wrap"><svg aria-hidden="true"><use href="#i-link"/></svg><input id="crUrl" type="text" placeholder="https://www.youtube.com/@channel  또는  https://youtu.be/abc123…" autocomplete="off"></label>
+        <button class="an-btn" id="crGo"><svg aria-hidden="true"><use href="#i-search"/></svg> 분석 시작</button>
+      </div>
+      <div class="ex-row">예시 → <button class="ex-chip" data-ex="@pariswav">@pariswav</button><button class="ex-chip" data-ex="@LofiGirl">@LofiGirl</button><button class="ex-chip" data-ex="@anihan_official">@anihan_official</button></div>
+
+      <details class="adv" id="crAdv">
+        <summary class="adv-h"><svg aria-hidden="true" class="lead"><use href="#i-shield"/></svg> 고급 자가진단 <span class="pill">선택 입력 · 점수 정확도 ↑</span><svg aria-hidden="true" class="chev"><use href="#i-chev-r"/></svg></summary>
+        <div class="adv-grid">
+          <div class="adv-fld"><label>Content ID 분쟁 이력</label>
+            <select id="advContentId"><option value="">선택 안 함</option><option value="none">분쟁 없음</option><option value="few">1~2건 있음</option><option value="many">3건 이상</option></select></div>
+          <div class="adv-fld"><label>Suno/Udio 상업 라이선스</label>
+            <select id="advLicense"><option value="">선택 안 함</option><option value="paid">유료 플랜 보유</option><option value="free">무료 플랜 사용</option></select></div>
+          <div class="adv-fld"><label>설명란 라이선스 명시</label>
+            <select id="advDesc"><option value="">선택 안 함</option><option value="yes">매 영상 명시</option><option value="some">일부만</option><option value="no">명시 안 함</option></select></div>
+        </div>
+        <p class="adv-note">여기 입력한 정보는 <b>이번 분석 한 번에만</b> 사용되고 저장되지 않습니다. AI가 데이터로 직접 확인하기 어려운 운영 상태를 알려주면 점수가 더 정확해집니다.</p>
+      </details>
+    </section>
+
+    <!-- 결과 -->
+    <div id="crResult">
+      <section class="cr-card">
+        <div class="res-empty">
+          <div class="av"><svg aria-hidden="true"><use href="#i-search"/></svg></div>
+          <h3>분석 결과가 여기에 표시됩니다</h3>
+          <p>채널 또는 영상 URL을 붙여 넣고 <b style="color:#C6CEDC">분석 시작</b>을 눌러 보세요.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="../home/tool-store.js"></script>
+<script src="../home/space.js"></script>
+<script src="../home/shell.js?v=21"></script>
+<script src="../home/cr-shared.js?v=6"></script>
+<script>
+(function(){'use strict';
+var $=function(s,r){return (r||document).querySelector(s);};
+var GEMINI_MODEL='gemini-2.5-flash';
+var YT_KEY_LS='starnauts_yt_key', GEM_KEY_LS='starnauts_key_gemini', HIST_LS='starnauts_tool_history', USE_LS='starnauts_cr_usage';
+var GRADES=[
+  {min:90,label:'매우 안전',cls:'g-vsafe',ring:'#7ED4A6'},
+  {min:70,label:'안전',cls:'g-safe',ring:'#9ad9b8'},
+  {min:40,label:'주의',cls:'g-warn',ring:'#E7C26B'},
+  {min:20,label:'위험',cls:'g-danger',ring:'#E76B6B'},
+  {min:0,label:'심각',cls:'g-crit',ring:'#ff9a9a'}
+];
+function gradeOf(s){for(var i=0;i<GRADES.length;i++){if(s>=GRADES[i].min)return GRADES[i];}return GRADES[GRADES.length-1];}
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function num(n){return (n==null||isNaN(n))?'—':Number(n).toLocaleString('ko-KR');}
+
+/* ── URL 파싱 ── */
+function parseInput(raw){
+  raw=(raw||'').trim();
+  if(!raw)return null;
+  var m;
+  if((m=raw.match(/[?&]v=([\w-]{6,})/))||(m=raw.match(/youtu\.be\/([\w-]{6,})/))||(m=raw.match(/\/shorts\/([\w-]{6,})/)))return{type:'video',id:m[1]};
+  if((m=raw.match(/youtube\.com\/@([\w.\-가-힣]+)/))||(m=raw.match(/^@([\w.\-가-힣]+)$/)))return{type:'handle',handle:m[1]};
+  if((m=raw.match(/youtube\.com\/channel\/(UC[\w-]+)/)))return{type:'channelId',id:m[1]};
+  if((m=raw.match(/youtube\.com\/(?:c|user)\/([\w.\-]+)/)))return{type:'handle',handle:m[1]};
+  if(/^UC[\w-]{20,}$/.test(raw))return{type:'channelId',id:raw};
+  return {type:'handle',handle:raw.replace(/^@/,'')};
+}
+
+/* ── YouTube Data API v3 ── */
+function ytGet(path,params,key){
+  params.key=key;
+  var qs=Object.keys(params).map(function(k){return k+'='+encodeURIComponent(params[k]);}).join('&');
+  return fetch('https://www.googleapis.com/youtube/v3/'+path+'?'+qs).then(function(r){
+    return r.json().then(function(d){
+      if(!r.ok){var em=(d&&d.error&&d.error.message)||('YouTube API 오류 ('+r.status+')');throw{message:em};}
+      return d;
+    });
+  });
+}
+function resolveChannel(inp,key){
+  if(inp.type==='channelId')return ytGet('channels',{part:'snippet,statistics,contentDetails,brandingSettings',id:inp.id},key).then(pickChan);
+  if(inp.type==='handle')return ytGet('channels',{part:'snippet,statistics,contentDetails,brandingSettings',forHandle:'@'+inp.handle},key).then(function(d){
+      if(d.items&&d.items.length)return pickChan(d);
+      // 폴백: search
+      return ytGet('search',{part:'snippet',q:inp.handle,type:'channel',maxResults:1},key).then(function(s){
+        if(!s.items||!s.items.length)throw{message:'채널을 찾지 못했어요. 핸들(@…) 또는 채널 URL을 확인해 주세요.'};
+        return ytGet('channels',{part:'snippet,statistics,contentDetails,brandingSettings',id:s.items[0].snippet.channelId},key).then(pickChan);
+      });
+  });
+  if(inp.type==='video')return ytGet('videos',{part:'snippet',id:inp.id},key).then(function(d){
+      if(!d.items||!d.items.length)throw{message:'영상을 찾지 못했어요.'};
+      return ytGet('channels',{part:'snippet,statistics,contentDetails,brandingSettings',id:d.items[0].snippet.channelId},key).then(pickChan);
+  });
+  throw{message:'입력을 해석하지 못했어요.'};
+}
+function pickChan(d){
+  if(!d.items||!d.items.length)throw{message:'채널을 찾지 못했어요. 핸들 또는 URL을 확인해 주세요.'};
+  var c=d.items[0];
+  return {
+    id:c.id, title:c.snippet.title, desc:c.snippet.description||'',
+    subs:+(c.statistics.subscriberCount||0), videos:+(c.statistics.videoCount||0), views:+(c.statistics.viewCount||0),
+    uploads:c.contentDetails.relatedPlaylists.uploads,
+    country:c.snippet.country||'', keywords:(c.brandingSettings&&c.brandingSettings.channel&&c.brandingSettings.channel.keywords)||'',
+    banner:(c.brandingSettings&&c.brandingSettings.image&&c.brandingSettings.image.bannerExternalUrl)||'',
+    handle:c.snippet.customUrl||'',
+    publishedAt:c.snippet.publishedAt||'',
+    thumb:(c.snippet.thumbnails&&(c.snippet.thumbnails.high||c.snippet.thumbnails.medium||c.snippet.thumbnails.default)||{}).url||''
+  };
+}
+function recentVideos(uploads,key){
+  return ytGet('playlistItems',{part:'contentDetails',playlistId:uploads,maxResults:25},key).then(function(d){
+    var ids=(d.items||[]).map(function(i){return i.contentDetails.videoId;}).filter(Boolean);
+    if(!ids.length)return [];
+    return ytGet('videos',{part:'snippet,statistics,contentDetails',id:ids.join(',')},key).then(function(v){
+      return (v.items||[]).map(function(it){return{
+        id:it.id, title:it.snippet.title, desc:(it.snippet.description||'').slice(0,1200),
+        tags:it.snippet.tags||[], categoryId:it.snippet.categoryId,
+        live:it.snippet.liveBroadcastContent, publishedAt:it.snippet.publishedAt,
+        duration:isoDur(it.contentDetails.duration), durationSec:isoSeconds(it.contentDetails.duration),
+        views:+(it.statistics.viewCount||0), likes:+(it.statistics.likeCount||0), comments:+(it.statistics.commentCount||0),
+        thumb:(it.snippet.thumbnails&&(it.snippet.thumbnails.medium||it.snippet.thumbnails.default)||{}).url||''
+      };});
+    });
+  });
+}
+function isoDur(d){var m=(d||'').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);if(!m)return'';var h=+(m[1]||0),mi=+(m[2]||0),s=+(m[3]||0);return (h?h+':':'')+(h?String(mi).padStart(2,'0'):mi)+':'+String(s).padStart(2,'0');}
+function isoSeconds(d){var m=(d||'').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);if(!m)return 0;return (+(m[1]||0))*3600+(+(m[2]||0))*60+(+(m[3]||0));}
+
+/* 설명란 트랙리스트(타임스탬프) 겹침 실측 — 추측 대신 규칙 근거 제공 */
+function trackSignal(vids){
+  var perVid=(vids||[]).map(function(v){
+    var set={}, lines=(v.desc||'').split(/\r?\n/);
+    lines.forEach(function(ln){
+      var m=ln.match(/\d{1,2}:\d{2}(?::\d{2})?\s*[-–—.)\]]*\s*(.+)/);
+      if(m){var t=m[1].toLowerCase().replace(/[^0-9a-z가-힣ぁ-ヿ一-鿿]+/g,' ').trim();if(t.length>2)set[t]=1;}
+    });
+    return Object.keys(set);
+  });
+  var firstSeen={}, dup={};
+  perVid.forEach(function(arr,vi){arr.forEach(function(t){if(firstSeen[t]!=null&&firstSeen[t]!==vi)dup[t]=1;if(firstSeen[t]==null)firstSeen[t]=vi;});});
+  var distinct=Object.keys(firstSeen).length, repeated=Object.keys(dup).length;
+  return {videosWithTracklist:perVid.filter(function(a){return a.length;}).length, distinctTracks:distinct, repeatedTracks:repeated, overlapRatio:distinct?+(repeated/distinct).toFixed(3):0};
+}
+
+/* ── 객관 신호 실측 (코드가 계산 → LLM에 사실로 주입; 추론 의존 최소화) ── */
+function _med(a){if(!a.length)return null;var b=a.slice().sort(function(x,y){return x-y;});var m=Math.floor(b.length/2);return b.length%2?b[m]:(b[m-1]+b[m])/2;}
+function _mean(a){return a.length?a.reduce(function(s,x){return s+x;},0)/a.length:0;}
+function _cv(a){if(a.length<2)return null;var m=_mean(a);if(!m)return null;var v=_mean(a.map(function(x){return (x-m)*(x-m);}));return +(Math.sqrt(v)/m).toFixed(3);}
+var CAT_NAMES={'1':'Film & Animation','10':'Music','15':'Pets & Animals','17':'Sports','20':'Gaming','22':'People & Blogs','23':'Comedy','24':'Entertainment','25':'News & Politics','26':'Howto & Style','27':'Education','28':'Science & Tech'};
+function computeSignals(vids){
+  var v=(vids||[]).filter(Boolean);
+  // 카테고리 분포
+  var cat={}; v.forEach(function(x){var c=String(x.categoryId||'');if(c)cat[c]=(cat[c]||0)+1;});
+  var music=cat['10']||0, withCat=Object.keys(cat).reduce(function(s,c){return s+cat[c];},0);
+  var nonMusic=Object.keys(cat).filter(function(c){return c!=='10';}).map(function(c){return (CAT_NAMES[c]||('cat'+c))+'×'+cat[c];});
+  // 라이브 신호
+  var liveRe=/(\blive\b|24\/7|실시간)/i;
+  var liveTitled=v.filter(function(x){return liveRe.test(x.title||'');}).map(function(x){return x.title;}).slice(0,4);
+  var liveBroadcast=v.filter(function(x){return x.live&&x.live!=='none';}).length;
+  var titleLiveButVod=v.filter(function(x){return liveRe.test(x.title||'')&&(!x.live||x.live==='none');}).map(function(x){return x.title;}).slice(0,3);
+  // 업로드 간격(일)
+  var ds=v.map(function(x){return x.publishedAt?+new Date(x.publishedAt):0;}).filter(Boolean).sort(function(a,b){return b-a;});
+  var gaps=[]; for(var i=0;i<ds.length-1;i++){gaps.push(+( (ds[i]-ds[i+1])/86400000 ).toFixed(2));}
+  var gapCv=_cv(gaps);
+  // 길이 분산 + 초 단위(±3초) 거의 정확 일치 클러스터 — 같은 트랙 재업로드 신호(단순 유사와 구분)
+  var durs=v.map(function(x){return x.durationSec||0;}).filter(function(s){return s>0;});
+  var durCv=_cv(durs);
+  var _longDurs=durs.filter(function(s){return s>=600;}); // 스니펫·쇼츠(<10분) 제외 — 짧은 곡 하이라이트는 길이 유사해도 다른 곡(오탐 방지). 롱폼 플리만 트랙 재업로드 판정
+  var _sd=_longDurs.slice().sort(function(a,b){return a-b;}),_cl=[],_cur=[];
+  for(var _di=0;_di<_sd.length;_di++){ if(_cur.length&&_sd[_di]-_cur[_cur.length-1]<=3){_cur.push(_sd[_di]);} else {if(_cur.length>=3)_cl.push(_cur.length);_cur=[_sd[_di]];} }
+  if(_cur.length>=3)_cl.push(_cur.length);
+  var _tightVids=_cl.reduce(function(s,n){return s+n;},0);
+  // 참여 이상치 (좋아요율·댓글율 중앙값 대비)
+  var rated=v.filter(function(x){return x.views>200&&(!x.live||x.live==='none');}).map(function(x){return {t:x.title, vw:x.views, lr:x.likes/x.views, cr:x.comments/x.views};});
+  // median은 조회 상위 50% 영상으로 계산(혼합채널·저조회 변동에 의한 왜곡 방지)
+  var _byV=rated.slice().sort(function(a,b){return b.vw-a.vw;});
+  var _stab=_byV.slice(0,Math.max(5,Math.ceil(rated.length/2)));
+  var medLr=_med(_stab.map(function(r){return r.lr;}))||0, medCr=_med(_stab.map(function(r){return r.cr;}))||0;
+  var _medVw=_med(rated.map(function(r){return r.vw;}))||0;
+  var outSet={};
+  rated.forEach(function(r){
+    if(r.vw<_medVw) return; // 저조회 영상은 좋아요·댓글 1~2개로 비율이 출렁여 불안정 → 이상치 판정에서 제외(오탐 방지)
+    // 저참여·고참여 모두 인위적 트래픽 신호로 본다(보수적: 애니한 기준 재현, 우리가 높게 나오지 않도록)
+    if(medLr>0&&(r.lr>medLr*3.5||r.lr<medLr*0.2)) outSet[r.t]='좋아요율 '+(r.lr*100).toFixed(2)+'%';
+    if(medCr>0&&(r.cr>medCr*4||r.cr<medCr*0.15)) outSet[r.t]=(outSet[r.t]?outSet[r.t]+', ':'')+'댓글율 '+(r.cr*100).toFixed(3)+'%';
+  });
+  var outliers=Object.keys(outSet).map(function(t){return t+' ('+outSet[t]+')';}).slice(0,3);
+  // 라이선스 — AI 고지(mention)와 실제 증빙(proof) 분리: 고지만으론 증빙 아님
+  var aiToolRe=/(suno|udio|ai\s*music|ai[- ]?generated|ai로 ?(제작|생성)|인공지능|ai 음악)/i;
+  var proofRe=/(license\s*id|라이선스\s*(id|번호)|이용약관|terms of (use|service)|\bpro plan\b|유료\s*플랜|commercial\s*(use|licens)|상업[^\n]{0,6}(이용|라이선스)|royalty[- ]?free|https?:\/\/\S*(suno|udio|licens|terms))/i;
+  var aiVids=v.filter(function(x){return aiToolRe.test(x.desc||'')||aiToolRe.test(x.title||'');}).length;
+  var proofVids=v.filter(function(x){return proofRe.test(x.desc||'');}).length;
+  // 사칭·키워드 낚시 (보수적·정보용)
+  var cloneRe=/(ai\s*cover|ai\s*커버|voice\s*clon|딥페이크|deep\s*fake|ai가\s*부른|ai\s*[a-z][a-z]+\s*(sings|cover|version))/i;
+  var clones=v.filter(function(x){return cloneRe.test(x.title||'')||cloneRe.test((x.tags||[]).join(' '));}).map(function(x){return x.title;}).slice(0,3);
+  var FAMOUS=['taylor swift','billie eilish','the weeknd','drake','ariana grande','ed sheeran','bruno mars','dua lipa','olivia rodrigo','sabrina carpenter','bts','blackpink','newjeans','뉴진스','아이유','iu','sza','chris brown','usher','partynextdoor','kehlani','summer walker','brent faiyaz','bryson tiller','6lack','daniel caesar','giveon','frank ocean','h.e.r','jhene aiko','khalid','beyonce','rihanna','justin bieber','post malone','travis scott','kendrick lamar','j. cole','doja cat','jorja smith','snoh aalegra','kali uchis','tyler the creator','sabrina carpenter'];
+  var fam=v.filter(function(x){var t=(x.title||'').toLowerCase();return FAMOUS.some(function(a){return t.indexOf(a)>=0;});}).map(function(x){return x.title;}).slice(0,3);
+  return {
+    categoryBreakdown:{ musicVideos:music, totalWithCategory:withCat, allMusic:withCat>0&&music===withCat, nonMusic:nonMusic },
+    liveSignal:{ titlesClaimingLive:liveTitled, videosWithLiveBroadcast:liveBroadcast, titleClaimsLiveButVOD:titleLiveButVod },
+    uploadCadence:{ analyzedUploads:ds.length, medianGapDays:_med(gaps), maxGapDays:gaps.length?Math.max.apply(null,gaps):null, regularityCv:gapCv, regular:(gapCv!=null&&gapCv<0.6) },
+    durationVariation:{ count:durs.length, medianSec:_med(durs), coefficientOfVariation:durCv, nearIdentical:durCv!=null&&durCv<0.1, tightClusters:_cl.length, tightClusterVideos:_tightVids },
+    engagement:{ medianLikeRatePct:+( (medLr*100).toFixed(3) ), medianCommentRatePct:+( (medCr*100).toFixed(4) ), anomalies:outliers },
+    licenseEvidence:{ mentionsAITool:aiVids>0, aiToolVideos:aiVids, providesProof:proofVids>0, proofVideos:proofVids },
+    impersonation:{ aiVoiceCloneVideos:clones.length, aiVoiceCloneSamples:clones, famousArtistInTitle:fam.length, famousArtistSamples:fam }
+  };
+}
+
+/* ── 성장·가치 실측 (외부 벤치마크식 지표의 데이터 기반) ── */
+function computeGrowth(ch,vids){
+  var now=Date.now();
+  var v30=(vids||[]).filter(function(v){return v.publishedAt&&(now-new Date(v.publishedAt).getTime())<=30*86400000;});
+  var views30=v30.reduce(function(s,v){return s+(+v.views||0);},0);
+  var viewsPerSub=(ch&&ch.subs>0)?+((ch.views||0)/ch.subs).toFixed(1):null;
+  var vv=(vids||[]).map(function(x){return +x.views||0;}).sort(function(a,b){return a-b;});
+  var medV=vv.length?vv[Math.floor(vv.length/2)]:0;
+  var ageDays=null;
+  try{ if(ch&&ch.publishedAt) ageDays=Math.max(1,Math.round((now-new Date(ch.publishedAt).getTime())/86400000)); }catch(e){}
+  // 니치 RPM 보수 추정(수면·BGM 롱폼 플리 기준) — 결과에는 반드시 '추정' 라벨로 표기
+  var rpmLo=0.4, rpmHi=1.5;
+  return { uploads30:v30.length, views30:views30, viewsPerSub:viewsPerSub, medianViews:medV, channelAgeDays:ageDays,
+    estMonthlyRevenueUsd:[+(views30*rpmLo/1000).toFixed(2), +(views30*rpmHi/1000).toFixed(2)],
+    rpmAssumptionUsd:[rpmLo,rpmHi] };
+}
+
+/* ── Gemini 채점 ── */
+var RUBRIC=[
+ "당신은 유튜브 AI 음악·플레이리스트 채널의 정책 리스크를 평가하는 전문 분석가입니다. 친절하되 전문적이고 정중한 어조로, 데이터와 정책 근거에 기반해 서술하세요. 가벼운 농담·과한 이모지·반말은 피합니다.",
+ "총 100점 만점에서 5개 영역의 위반만 감점합니다. 위반이 없으면 만점입니다. 2025-07 YouTube 정책(repetitious→inauthentic content, AI 음악 양산 정조준)을 반영합니다. AI 음악 창작 자체는 위반이 아니며, 시각·장르·길이의 일관성은 정체성(강점)으로 봅니다.",
+ "[영역1 Inauthentic Content 35점] 오직 음악(트랙) 반복으로 판정. 감점: 대량 양산형 템플릿(시각+음악 거의 동일 양산) -15 / 저퀄리티 단순 반복(한 영상 내 짧은 클립 무의미 무한 루프; 1이미지+1시간 음악은 정상) -10 / 트랙 반복(같은·거의 동일 곡 구성이 여러 영상 반복; 제목·썸네일 유사만으론 적용 안 함) -10. 단, 메타데이터(제목·설명·태그·길이)만으로는 실제 트랙 반복을 단정할 수 없다. 입력 데이터의 trackSignal.overlapRatio가 0.3 미만이면 트랙 반복(Low Variation)은 반드시 '정상'으로 판정한다. '의심'·'가능성'만으로는 절대 감점하지 않으며, 설명란에 동일 곡명이 실제로 중복되는 명백한 증거가 있거나 durationVariation.tightClusterVideos가 3편 이상(영상 길이가 초 단위 ±3초로 거의 정확히 일치하는 묶음 = 같은 트랙을 썸네일·제목만 바꿔 재업로드한 강한 신호)일 때 트랙 반복 -10을 적용한다(분 단위로 비슷한 정상 길이 유사와는 구분). 설명란 트랙리스트가 영상마다 다르거나 명백한 반복 증거가 없으면 영역1의 세 항목은 모두 '정상'(35/35)으로 판정한다. 시각·제목·장르·길이의 일관성은 감점 사유가 아니다.",
+ "[영역2 Reused Content 20점] 자기 채널 트랙 재사용(올린 음악을 썸네일·제목만 바꿔 재업로드; 새 곡은 정상) -10 / 큐레이션 복제(타 채널 곡 구성·순서 90%+ 차용) -10. 입력 trackSignal.overlapRatio가 0.3 미만이면 자기 채널 트랙 재사용은 '정상'으로 판정한다. 단 durationVariation.tightClusterVideos가 3편 이상(초 단위 ±3초 거의 정확 일치 묶음)이거나, 2개 이상 영상의 설명란 트랙리스트(곡명 목록)가 거의 동일하면 같은 음악을 재업로드한 신호이므로 -10을 적용한다. 이때 영역1 트랙 반복과 영역2 자기 채널 트랙 재사용은 반드시 함께 감점한다(한쪽만 -10 하고 다른 쪽을 정상 처리하는 불일치 금지). 큐레이션 복제는 타 채널과 동일 곡 순서라는 명백한 증거가 없으면 '정상'으로 둔다. '의심'만으로는 감점하지 않는다.",
+ "[영역3 메타데이터·정체성 기만 20점] 가짜 실시간(라이브 기록 없이 LIVE·실시간 표기) -10 / 키워드 낚시·사칭(미수록 유명 아티스트·최신곡 남발) -5 / 카테고리 오설정 -5. 가짜 실시간 판정: 제목에 LIVE·24/7·실시간 표기가 있어도 그것만으로는 감점하지 않는다(앰비언트·로파이 채널의 24/7 라이브는 정상적 포맷이다). 해당 영상의 liveBroadcastContent가 'live'·'upcoming'이거나 채널에 실제 라이브 방송 기록이 있으면 반드시 '정상'으로 판정한다. 일반 VOD인데 현재 실시간 방송 중인 것처럼 속이는 명백한 패턴 증거가 있을 때만 -10을 적용하며 '의심'·'가능성'만으로는 절대 감점하지 않는다. 카테고리 오설정 판정: 채널 핵심이 음악·플레이리스트(제목·태그·설명에 music·ambient·celtic·ASMR·playlist 등 음악성이 뚜렷)인데 영상 categoryId가 Music(10)이 아니면(예: People & Blogs(22)·Entertainment(24)·Education(27)) Content ID 음원 매칭 회피로 오인될 수 있으므로 -5를 적용한다. 음악이 부차적인 순수 브이로그·강의가 명백할 때만 예외로 정상 처리한다.",
+ "[영역4 AI 라이선스 및 실존 인물 보호 15점] 실존 인물 모방(실존 아티스트 목소리·얼굴 AI 모방 배포, 또는 유명 기존곡을 AI로 커버·모방) -10 / 상업 라이선스 미증빙 -5. 유명 기존곡(J-Pop·K-Pop·팝 차트 히트곡, 예: 'うっせぇわ'·'ベテルギウス')을 AI로 커버·모방한 정황(트랙리스트·제목에 유명 기존 곡명 나열 + AI 제작 명시, 정식 'AI 커버' 고지·원작자 동의 없음)이면 impersonation.famousArtistInTitle이 0이어도 원작자 실존 인물 모방으로 -10을 적용한다. 상업 라이선스 미증빙은 영상 설명란에 Suno/Udio 유료 플랜·라이선스 증빙(약관 링크·라이선스 ID·플랜 명시 등)이 실제로 보이지 않으면 반드시 -5를 적용한다. 이것은 '증거의 부재'라는 사실 판정이므로 트랙 반복의 '의심 금지' 규칙과 무관한 예외다. 단 자가진단 license가 'paid'이고 설명란에도 증빙이 있으면 정상으로 본다. AI 음악임을 고지한 것만으로는 상업 라이선스 증빙이 아니다.",
+ "[영역5 시각·청취 기만 및 비정상 트래픽 10점] 썸네일·음악 부조화 -5 / 인위적 트래픽 징후(일부 영상만 조회 대비 댓글·좋아요 비정상) -5.",
+ "자가진단 입력이 있으면 반영: Content ID 분쟁 누적 시 보수적 평가, 무료 플랜 수익화는 상업 라이선스 미증빙 위험, 설명란 라이선스 명시 여부.",
+ "입력 objectiveSignals는 코드가 메타데이터로 직접 계산한 객관 신호다(추론 아님). 관련 항목은 이 신호를 최우선 근거로 삼는다: categoryBreakdown.allMusic이 false면 nonMusic 목록을 근거로 카테고리 오설정을 판단하고, true면 카테고리 오설정은 반드시 정상. liveSignal.videosWithLiveBroadcast>0이면 실제 라이브 채널이므로 가짜 실시간 정상이고, titleClaimsLiveButVOD가 비어 있어도 정상. titleClaimsLiveButVOD에 항목이 있어도 완료된 라이브의 VOD일 수 있으므로 '의심'만으로 감점하지 말고 명백한 기만 패턴이 있을 때만 -10. durationVariation은 정보용일 뿐이다 — 영상 길이가 비슷하다(nearIdentical=true)는 것만으로는 대량 양산형 템플릿으로 절대 감점하지 않는다(앰비언트·플레이리스트는 긴 길이가 유사한 게 정상=정체성·강점). 양산 템플릿 감점은 시각+음악이 거의 동일하게 찍어내는 명백한 경우에 한하며 길이 일관성은 사유가 아니다. 다만 durationVariation.tightClusters는 초 단위(±3초) 거의 정확히 일치하는 영상 묶음 수로 단순 유사와 다르다 — tightClusterVideos가 3편 이상이면 같은 트랙 재업로드의 객관 신호이므로 영역1 트랙 반복·영역2 자기 재사용의 감점 근거로 삼는다(설명란 트랙리스트가 영상마다 명백히 다르면 정상). 나아가 같은 길이 클러스터 영상들의 제목이 볼륨번호·아티스트명만 바뀌고 거의 동일하면 대량 양산형 템플릿(영역1 -15)도 함께 적용한다. engagement.anomalies가 비어 있으면 인위적 트래픽은 정상. licenseEvidence.providesProof=false면 상업 라이선스 미증빙 -5의 객관 근거다(mentionsAITool=true여도 AI 고지만으론 증빙이 아니므로 -5 유지). providesProof=true면 정상. impersonation.aiVoiceCloneVideos>0이면 영역4 실존 인물 모방을 검토하라(가상 캐릭터·자작곡은 위반 아님; 실존 아티스트 목소리·얼굴 AI 모방이 명백할 때만 -10). impersonation.famousArtistInTitle>0이면 영역3 키워드 낚시·사칭의 단서로 보되, '~st풍'·'inspired by'·합법 커버 등 정당한 참조이거나 채널 콘텐츠와 일관되면 정상으로 둔다('의심'만으로 감점 금지). 각 item 객체에 evidence 필드를 반드시 채운다: 위 신호처럼 데이터로 확정되면 '확정', 메타데이터 해석에 의한 추론이면 '추정'.",
+ "각 항목은 정상(감점 0)이면 verdict='정상' delta=0, 위반이면 verdict='감점' delta=음수. 영역 점수=만점+해당 영역 delta 합(최소 0). 총점=5개 영역 합.",
+ "추가로 성장 관점 10가지 피드백(썸네일 클릭률/제목 키워드 SEO/설명란 트랙리스트/첫 인상 후크/시리즈 구조화/업로드 일관성/시청자 참여/채널 정체성/다국어 글로벌/수익화 정책 안전)을 각각 grade(잘함|보통|개선 필요)·summary·advice로 제공합니다.",
+ "각 피드백의 advice는 반드시 (1) 검증된 유튜브 성장 원칙을 근거로 들고 (2) 이 채널의 실제 캐릭터·소재·제목을 인용한 '구체적 실행 예시'를 한 가지 이상 제시한다. 일반론(예: '키워드를 추가하세요')만 쓰지 말고 바로 적용 가능한 예시 문장을 보여줄 것. 활용 원칙 사전 — 썸네일: 골든아워·블루아워(시간대 빛 설계), 1인칭(POV) 몰입, '시각의 안식'(부드러운 색감·심플) / 제목: 수요 키워드+고유 감성, '결핍 해소·상황 해결'을 직관적으로 / 트랙리스트: 휴먼 터치(스팸봇이 아닌 색깔 있는 크리에이터), 타임스탬프 '00:00 - 곡명'(AI라 곡명이 없으면 장면별 가상 곡명 부여) / 첫30초: 첫 10초가 이탈률을 결정, 가사 없음·일정한 박자로 심박수 동기화, 맥락 중심 오디오 경험 / 시리즈: 단 한 명의 청취자를 구체적으로 상상하고 청취 골든타임·청취 장소를 설계 / 업로드: 롱폼 최소 주 1회·2주 이상 공백 금지(꾸준함) / 참여: '공간화'(내 채널에 오면 ○○가 된다)와 스토리·분위기에 연결된 댓글 유도 질문 / 정체성: '공명'(왜 내 음악을 들으러 왔을까)에 답하는 한 줄 슬로건 / 다국어: 글로벌 감성+목적성 키워드(study·sleep)와 감성 키워드 병기 / 수익화: '유튜브 지뢰밭' 회피(상업 라이선스 증빙·음악은 Music(10) 카테고리·메타데이터 낚시 금지). advice는 2~4문장으로 따뜻하되 전문적인 코칭 톤으로 쓴다.",
+ "피드백 10개 등급 기준: 모범적이면 '잘함', 무난하나 개선 여지가 있으면 '보통', 정책·성장에 실질적 약점이면 '개선 필요'. 동일 데이터에는 항상 일관된 등급을 부여합니다.",
+ "aiMusicStyle의 genres·moods·instruments는 모두 소문자 영문 태그로 작성합니다(예: lofi hip hop, chillhop, jazz hiphop, funky hiphop, rnb hiphop, mellow, cozy, energetic, drums, bass, saxophone, piano, synth).",
+ "whyItWorks: 이 채널이 많은 조회·구독을 얻는 '성공 요인'을 3~5개 도출합니다. 각 factor(시청자를 끌어모으는 요인 한 줄)와 basis(구체 근거)를 채웁니다. basis는 ① 구독 대비 총조회 배수·중앙 조회수·좋아요율·업로드 빈도 같은 입력 메트릭이나 ② 제목 패턴·니치 독점·시각 일관성·시리즈 구조·검색 키워드 같은 콘텐츠 전략을 근거로 '왜 시청자가 모이는가'를 설명합니다. 막연한 칭찬이 아니라 다른 사람이 재현할 수 있는 분석이어야 하며, 구독 대비 조회가 비정상적으로 높은 채널이라면 그 이유(예: 탐색·추천 알고리즘 적합, 특정 키워드 검색 독점, 외부 유입)를 가설로 제시합니다.",
+ "마지막으로 이 채널에 가장 중요한 개선 제안(suggestions)을 정확히 5개, 각각 한국어 한 문장으로 제시합니다(반드시 5개 채울 것).",
+ "추가로 externalBenchmark를 산출합니다. 이것은 외부 분석 사이트(Social Blade·NoxInfluencer)의 평가 축을 소형·신규 채널에서도 작동하도록 API 실측(입력 growthValue·objectiveSignals)으로 재현한 것이며, 수치 추정에는 반드시 '추정'임이 드러나는 표현을 씁니다. grade = S|A|B|C|D 한 글자 — 절대 규모가 아니라 '채널 개설 후 경과 시간(growthValue.channelAgeDays) 대비 속도'로 평가합니다(예: 개설 한 달 안에 구독 1천 돌파·구독당 조회 5배 이상이면 A 이상, 업로드가 규칙적이고 참여 이상치가 없으면 가산). gradeReason = 등급 근거 한 문장(실측 수치 인용). noxStyle = 5축 각각 1~5 정수: growth(개설 대비 구독·조회 증가 속도), publish(uploadCadence 규칙성·최근 30일 업로드), quality(메타데이터 완성도·시리즈 구조·8개국어 등), credibility(참여 이상치 없음·자연 유입 신호), engagement(좋아요·댓글율을 니치 평균과 비교) + overall(5축 평균, 소수 1자리). monetization: estMonthlyRevenueUsd = growthValue.estMonthlyRevenueUsd 범위를 '약 $X~$Y (추정)' 형태로, estCpmUsd = 채널 국가·니치의 광고주 CPM(광고 1,000회 노출당 광고주 지불액) 추정 범위 문자열 — 크리에이터 RPM과 전혀 다른 값이며 growthValue.rpmAssumptionUsd를 복사하지 말 것(음악·수면 니치 KR·글로벌 광고주 CPM은 통상 $8~$30 수준에서 니치·시즌에 따라 추정), sponsorTrack = 스폰서십·제휴가 가능해지는 다음 조건 한 문장(예: 구독 5천·월 조회 10만 도달 시 수면 앱·매트리스 브랜드 제휴 가능). rankHint = 같은 니치(예: 수면·BGM 플레이리스트) 안에서 이 채널의 상대 위치 가설 한 문장.",
+ "반드시 아래 JSON 스키마로만, 코드블록 없이 순수 JSON으로 응답하세요."
+].join('\n');
+var SCHEMA='{"totalScore":number,"summary":string,"aiMusicStyle":{"genres":[string],"moods":[string],"instruments":[string],"tempo":string,"vocal":string,"desc":string,"sunoPrompt":string},"videoStyle":{"primary":string,"tags":[string],"desc":string},"areas":[{"name":string,"max":number,"score":number,"items":[{"name":string,"verdict":string,"delta":number,"note":string,"evidence":string}]}],"feedback":[{"title":string,"en":string,"grade":string,"summary":string,"advice":string}],"whyItWorks":[{"factor":string,"basis":string}],"suggestions":[string],"externalBenchmark":{"grade":string,"gradeReason":string,"noxStyle":{"growth":number,"publish":number,"quality":number,"credibility":number,"engagement":number,"overall":number},"monetization":{"estMonthlyRevenueUsd":string,"estCpmUsd":string,"sponsorTrack":string},"rankHint":string}}';
+/* 크리에이티브 분해 — 별도 호출(썸네일 이미지 입력, 작은 스키마) */
+var CREATIVE_SYS=[
+ "당신은 유튜브 음악·플레이리스트 채널의 크리에이티브·브랜딩을 분해하는 전문 분석가입니다. 친절하되 전문적인 어조로 한국어로 작성합니다.",
+ "메시지에 첨부된 이미지는 이 채널 최근 영상의 썸네일입니다. 실제로 보고 분석하세요.",
+ "thumbnail.palette = 썸네일에서 반복되는 대표 색 3~5개를 #RRGGBB hex로. thumbnail.subject = 반복 등장하는 캐릭터·마스코트·소재(예: 햄스터). thumbnail.style = 타이포·구도·일러스트 스타일 요약. thumbnail.note = 썸네일 일관성·강점.",
+ "keywordClusters = 제목에서 공통 주제별로 묶은 키워드 그룹(theme + keywords 배열). genreSubtypes = 제목·태그 기반 세부 장르 목록(예: Funky Hiphop, Jazz Hiphop). videoComposition = 영상 구성 추정(인트로 모션·정지 이미지·오디오 스펙트럼 등; 썸네일·설명 기반 추정이면 문장에 '추정' 표기). benchmark = 흡수 포인트 3~5개. 각 항목은 strength(이 채널의 재현 가능한 구체적 강점 — 비주얼·제목·니치·구성·일관성 등 무엇을 잘하는지)와 apply(그 강점을 내 채널에 바로 적용하는 실행 방법 한 문장)로 구성한다. 막연한 칭찬이 아니라 따라 할 수 있는 행동으로 쓴다.",
+ "반드시 아래 JSON 스키마로만, 코드블록 없이 순수 JSON으로 응답하세요."
+].join('\n');
+var CREATIVE_SCHEMA='{"thumbnail":{"palette":[string],"subject":string,"style":string,"note":string},"keywordClusters":[{"theme":string,"keywords":[string]}],"genreSubtypes":[string],"videoComposition":string,"benchmark":[{"strength":string,"apply":string}]}';
+/* 구조화 출력 스키마 (유효 JSON 보장 — 간헐적 파싱 실패 제거) */
+var S=function(t){return {type:t};}, ARR=function(it){return {type:'ARRAY',items:it};}, STR={type:'STRING'}, NUM={type:'NUMBER'};
+function OBJ(props){return {type:'OBJECT',properties:props,required:Object.keys(props)};}
+var RISK_RSCHEMA=OBJ({
+  totalScore:NUM, summary:STR,
+  aiMusicStyle:OBJ({genres:ARR(STR),moods:ARR(STR),instruments:ARR(STR),tempo:STR,vocal:STR,desc:STR,sunoPrompt:STR}),
+  videoStyle:OBJ({primary:STR,tags:ARR(STR),desc:STR}),
+  areas:ARR(OBJ({name:STR,max:NUM,score:NUM,items:ARR(OBJ({name:STR,verdict:STR,delta:NUM,note:STR,evidence:STR}))})),
+  feedback:ARR(OBJ({title:STR,en:STR,grade:STR,summary:STR,advice:STR})),
+  whyItWorks:ARR(OBJ({factor:STR,basis:STR})),
+  suggestions:ARR(STR),
+  externalBenchmark:OBJ({grade:STR,gradeReason:STR,
+    noxStyle:OBJ({growth:NUM,publish:NUM,quality:NUM,credibility:NUM,engagement:NUM,overall:NUM}),
+    monetization:OBJ({estMonthlyRevenueUsd:STR,estCpmUsd:STR,sponsorTrack:STR}),
+    rankHint:STR})
+});
+var CREATIVE_RSCHEMA=OBJ({
+  thumbnail:OBJ({palette:ARR(STR),subject:STR,style:STR,note:STR}),
+  keywordClusters:ARR(OBJ({theme:STR,keywords:ARR(STR)})),
+  genreSubtypes:ARR(STR), videoComposition:STR, benchmark:ARR(OBJ({strength:STR,apply:STR}))
+});
+// 주의: areas는 정확히 5개(이름·max는 루브릭 영역 순서대로 35/20/20/15/10), verdict는 "정상" 또는 "감점", feedback는 정확히 10개, suggestions는 정확히 5개.
+function buildUserPrompt(ch,vids,adv){
+  var payload={channel:{title:ch.title,description:ch.desc,subscribers:ch.subs,videoCount:ch.videos,totalViews:ch.views,country:ch.country,keywords:ch.keywords},
+    recentVideos:vids.map(function(v){return{title:v.title,description:v.desc,tags:v.tags,categoryId:v.categoryId,live:v.live,duration:v.duration,views:v.views,likes:v.likes,comments:v.comments,publishedAt:v.publishedAt};}),
+    trackSignal:trackSignal(vids),
+    objectiveSignals:computeSignals(vids),
+    growthValue:computeGrowth(ch,vids),
+    selfDiagnosis:adv};
+  return '다음 채널 데이터를 평가 기준에 따라 분석하고 JSON 스키마로만 응답하세요.\n\n[스키마]\n'+SCHEMA+'\n\n[채널 데이터]\n'+JSON.stringify(payload);
+}
+function buildCreativePrompt(ch,vids){
+  var payload={channel:{title:ch.title,description:ch.desc,keywords:ch.keywords},
+    recentVideos:vids.slice(0,12).map(function(v){return{title:v.title,tags:v.tags,duration:v.duration};})};
+  return '이 채널의 크리에이티브를 분해해 JSON 스키마로만 응답하세요. 첨부 이미지는 최근 영상 썸네일입니다.\n\n[스키마]\n'+CREATIVE_SCHEMA+'\n\n[채널 데이터]\n'+JSON.stringify(payload);
+}
+/* 썸네일 N장 → Gemini inline image parts (CORS OK: i.ytimg.com) */
+function fetchThumbParts(vids,n){
+  var picks=(vids||[]).filter(function(v){return v.thumb;}).slice(0,n||4);
+  return Promise.all(picks.map(function(v){
+    return fetch(v.thumb).then(function(r){return r.ok?r.blob():null;}).then(function(b){
+      if(!b)return null;
+      return new Promise(function(res){var fr=new FileReader();fr.onload=function(){var s=String(fr.result);var i=s.indexOf(',');res({inline_data:{mime_type:b.type||'image/jpeg',data:s.slice(i+1)}});};fr.onerror=function(){res(null);};fr.readAsDataURL(b);});
+    }).catch(function(){return null;});
+  })).then(function(arr){return arr.filter(Boolean);});
+}
+function callGemini(sys,userPrompt,key,imageParts,rschema){
+  var parts=(imageParts||[]).concat([{text:userPrompt}]);
+  var gc={temperature:0,topP:0.9,seed:7,maxOutputTokens:32768,responseMimeType:'application/json',thinkingConfig:{thinkingBudget:0}};
+  if(rschema)gc.responseSchema=rschema;
+  var body={system_instruction:{parts:[{text:sys}]},contents:[{role:'user',parts:parts}],generationConfig:gc};
+  return fetch('https://generativelanguage.googleapis.com/v1beta/models/'+GEMINI_MODEL+':generateContent?key='+encodeURIComponent(key),
+    {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json().then(function(d){
+      if(!r.ok){
+        var em=(d&&d.error&&d.error.message)||('Gemini 오류 ('+r.status+')');
+        if(r.status===429)em='Gemini 무료 등급의 호출 한도에 도달했어요. 1~2분 후 다시 시도해 주세요.';
+        else if(r.status===400&&/API key/i.test(em))em='Gemini API 키가 올바르지 않아요. API 등록 탭에서 키를 확인해 주세요.';
+        throw{message:em};
+      }
+      var c=d.candidates&&d.candidates[0];
+      if(!c||!c.content)throw{message:'Gemini 응답이 비어 있어요. 잠시 후 다시 시도해 주세요.'};
+      if(c.finishReason==='MAX_TOKENS')throw{message:'분석 응답이 토큰 한도로 잘렸어요. 다시 시도해 주세요.'};
+      var txt=(c.content.parts||[]).map(function(p){return p.text||'';}).join('').trim();
+      txt=txt.replace(/^```json\s*/i,'').replace(/```$/,'').trim();
+      function tryP(t){try{return JSON.parse(t);}catch(e){return null;}}
+      var clean=txt.replace(/,(\s*[}\]])/g,'$1'); // trailing comma 제거
+      var obj=tryP(txt)||tryP(clean);
+      if(!obj){var s=clean.indexOf('{'),en=clean.lastIndexOf('}');if(s>=0&&en>s)obj=tryP(clean.slice(s,en+1));}
+      if(!obj)throw{message:'분석 결과를 해석하지 못했어요. 다시 시도해 주세요.'};
+      return obj;
+    });});
+}
+
+/* ── 사용량 ── */
+function bumpUsage(yt,gem){try{var u=JSON.parse(localStorage.getItem(USE_LS)||'{}');var day=ptDay();if(u.day!==day){u={day:day,yt:0,gem:0};}u.yt+=yt;u.gem+=gem;localStorage.setItem(USE_LS,JSON.stringify(u));}catch(e){}}
+function ptDay(){var d=new Date();var utc=d.getTime()+d.getTimezoneOffset()*60000;var pt=new Date(utc-7*3600000);return pt.toISOString().slice(0,10);}
+
+/* ── 기록 ── */
+function logHistory(rec){ if(window.ToolStore){ rec.tool=rec.tool||'channel-research'; rec.shared=true; return window.ToolStore.save(rec); } try{var a=JSON.parse(localStorage.getItem(HIST_LS)||'[]');rec.id='h'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);rec.ts=new Date().toISOString();a.unshift(rec);if(a.length>500)a.length=500;localStorage.setItem(HIST_LS,JSON.stringify(a));}catch(e){}}
+var RESULTS_LS='starnauts_cr_results';
+function saveResult(input,ch,vids,data){try{var id='r'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);var a=JSON.parse(localStorage.getItem(RESULTS_LS)||'[]');a.unshift({id:id,ts:new Date().toISOString(),input:input,ch:ch,vids:vids,data:data});if(a.length>60)a.length=60;localStorage.setItem(RESULTS_LS,JSON.stringify(a));return id;}catch(e){return null;}}
+
+/* ── 렌더 ── */
+function ringSVG(score,color){var r=76,c=2*Math.PI*r,off=c*(1-score/100);
+  return '<svg width="170" height="170" viewBox="0 0 170 170"><circle cx="85" cy="85" r="'+r+'" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="12"/><circle cx="85" cy="85" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="12" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/></svg>';
+}
+function renderResult(ch,vids,d){
+  var g=gradeOf(d.totalScore);
+  var h='';
+  // 채널 헤더(배너+프로필) — 첫눈에 어떤 채널인지
+  var banUrl=ch.banner?(ch.banner.indexOf('=')>=0?ch.banner:ch.banner+'=w1280'):'';
+  var hd=ch.handle?(ch.handle.charAt(0)==='@'?ch.handle:'@'+ch.handle):'';
+  var chLink='https://www.youtube.com/'+(hd||('channel/'+ch.id));
+  h+='<section class="cr-card chan-hero" style="padding:0;overflow:hidden">'+
+     '<div class="chan-banner'+(banUrl?'':' nobg')+'"'+(banUrl?' style="background-image:url('+esc(banUrl)+')"':'')+'></div>'+
+     '<div class="chan-id">'+
+       (ch.thumb?'<img src="'+esc(ch.thumb)+'" alt="'+esc(ch.title)+'">':'')+
+       '<div class="chan-meta"><div class="cn">'+esc(ch.title)+'</div><div class="cs">'+(hd?esc(hd)+' · ':'')+'구독자 '+num(ch.subs)+'명 · 영상 '+num(ch.videos)+'개</div></div>'+
+       '<a class="chan-go" href="'+esc(chLink)+'" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-yt"/></svg> 채널 열기</a>'+
+     '</div></section>';
+  h+='<section class="cr-card"><div class="score-top"><div class="ring">'+ringSVG(d.totalScore,g.ring)+'<div class="rv"><b>'+d.totalScore+'<span>/100</span></b><i style="color:'+g.ring+'">'+esc(g.label)+'</i></div></div>'+
+     '<div class="score-info"><span class="grade-badge '+g.cls+'"><span class="dot"></span>'+esc(g.label)+'</span>'+
+     '<h2 style="margin:12px 0 4px">'+esc(ch.title)+'</h2>'+
+     '<p class="meta">구독자 '+num(ch.subs)+'명 · 영상 '+num(ch.videos)+'개 · 총 조회 '+num(ch.views)+'</p>'+
+     '<p class="summ">'+esc(d.summary)+'</p></div></div></section>';
+  // 채널 가치·성장 벤치마크 — 외부 사이트(Social Blade·Nox) 평가 축을 실측으로 재현 (소형·신규 채널 대응)
+  if(d.externalBenchmark){var eb=d.externalBenchmark,gw=d.growth||{},nx=eb.noxStyle||{},mo=eb.monetization||{};
+    var axLabel={growth:'성장 속도',publish:'발행 꾸준함',quality:'콘텐츠 품질',credibility:'시청자 신뢰',engagement:'참여율'};
+    var axes=['growth','publish','quality','credibility','engagement'];
+    var gradeCol={S:'#9b8cff',A:'#7ED4A6',B:'#6ea8ff',C:'#E7C26B',D:'#E76B6B'}[String(eb.grade||'').charAt(0)]||'#7ED4A6';
+    h+='<section class="cr-card"><h3 style="margin:0 0 2px;font-size:15px;font-weight:900;color:#fff">채널 가치·성장 벤치마크 <span style="font-size:11px;color:#7d8aa0;font-weight:700">Social Blade·Nox 평가 축의 실측 재현 · 신생 채널은 규모가 아닌 속도로 평가 · 전부 추정치</span></h3>'+
+      '<div style="display:flex;gap:16px;align-items:center;margin:10px 0;flex-wrap:wrap">'+
+      '<div style="font-size:46px;font-weight:900;line-height:1;color:'+gradeCol+'">'+esc(eb.grade||'-')+'</div>'+
+      '<div style="flex:1;min-width:220px"><div style="font-size:12.5px;color:#c7d2e2">'+esc(eb.gradeReason||'')+'</div>'+
+      (eb.rankHint?'<div style="font-size:11.5px;color:#7d8aa0;margin-top:4px">'+esc(eb.rankHint)+'</div>':'')+'</div></div>'+
+      '<div class="chips" style="margin:4px 0 10px">'+
+        '<span class="chip">최근 30일 업로드 '+(gw.uploads30!=null?gw.uploads30:'-')+'개</span>'+
+        '<span class="chip">최근 30일 신작 조회 '+num(gw.views30||0)+'</span>'+
+        '<span class="chip">구독당 조회 '+(gw.viewsPerSub!=null?gw.viewsPerSub+'배':'-')+'</span>'+
+        '<span class="chip">중앙 조회수 '+num(gw.medianViews||0)+'</span>'+
+        (gw.channelAgeDays?'<span class="chip">개설 '+gw.channelAgeDays+'일차</span>':'')+'</div>'+
+      axes.map(function(k){var s=+nx[k]||0;return '<div style="display:flex;align-items:center;gap:8px;margin:4px 0"><span style="width:86px;font-size:11.5px;color:#9fb0c5">'+axLabel[k]+'</span><div style="flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px"><i style="display:block;height:100%;width:'+Math.min(100,s/5*100)+'%;background:#6ea8ff;border-radius:3px"></i></div><span style="font-size:11px;color:#c7d2e2;width:30px;text-align:right">'+s+'/5</span></div>';}).join('')+
+      '<div style="margin:6px 0 10px;font-size:12px;color:#c7d2e2">종합 '+(nx.overall!=null?nx.overall:'-')+'/5</div>'+
+      '<div class="cv-row"><span class="cv-l">수익 추정</span><span class="cv-v">'+esc(mo.estMonthlyRevenueUsd||'-')+(gw.rpmAssumptionUsd?' <span style="color:#7d8aa0">(RPM $'+gw.rpmAssumptionUsd[0]+'~$'+gw.rpmAssumptionUsd[1]+' 가정 · 최근 30일 신작 조회 기준 하한)</span>':'')+'</span></div>'+
+      (mo.estCpmUsd?'<div class="cv-row"><span class="cv-l">광고주 CPM 추정</span><span class="cv-v">'+esc(mo.estCpmUsd)+'</span></div>':'')+
+      (mo.sponsorTrack?'<div class="cv-row"><span class="cv-l">스폰서십 트랙</span><span class="cv-v">'+esc(mo.sponsorTrack)+'</span></div>':'')+
+      '</section>';
+  }
+  // 왜 잘되나 — 성공 요인 (목적: 비정상 성공 채널 이해 + 레퍼런스 흡수)
+  if(d.whyItWorks&&d.whyItWorks.length){
+    h+='<section class="cr-card why-card"><h3 style="margin:0 0 10px">🔍 왜 잘되나 — 성공 요인</h3><div class="why-list">'+d.whyItWorks.map(function(w){return '<div class="why-item"><div class="why-f">'+esc(w.factor||'')+'</div>'+(w.basis?'<div class="why-b">'+esc(w.basis)+'</div>':'')+'</div>';}).join('')+'</div></section>';
+  }
+  // AI 음악 스타일
+  if(d.aiMusicStyle){var a=d.aiMusicStyle;
+    h+='<section class="cr-card style-card"><h3><svg aria-hidden="true" width="16" height="16" style="color:var(--blue-300)"><use href="#i-music"/></svg> 이 채널의 AI 음악 스타일</h3>'+
+       (a.desc?'<p class="sdesc">'+esc(a.desc)+'</p>':'')+
+       srow('Genres',a.genres)+srow('Moods',a.moods)+srow('Instruments',a.instruments)+
+       (a.tempo||a.vocal?'<div class="srow"><span class="sl">Tempo · Vocal</span><div class="chips">'+(a.tempo?'<span class="chip">'+esc(a.tempo)+'</span>':'')+(a.vocal?'<span class="chip">'+esc(a.vocal)+'</span>':'')+'</div></div>':'')+
+       (a.sunoPrompt?'<div class="suno-box"><div class="sbl">✦ SUNO AI PROMPT</div><button class="suno-copy" data-copy="'+esc(a.sunoPrompt)+'">복사</button><pre>'+esc(a.sunoPrompt)+'</pre></div>':'')+
+       '</section>';
+  }
+  // 영상 스타일
+  if(d.videoStyle){var v=d.videoStyle;
+    h+='<section class="cr-card"><h3 style="font-size:13px;color:var(--blue-300);font-weight:900;margin:0 0 4px">이 채널의 영상 스타일</h3>'+
+       '<div style="font-size:22px;font-weight:900;color:#fff">'+esc(v.primary||'')+'</div>'+
+       (v.tags&&v.tags.length?'<div class="chips" style="margin:10px 0">'+v.tags.map(function(t){return'<span class="chip">'+esc(t)+'</span>';}).join('')+'</div>':'')+
+       (v.desc?'<p class="cr-sub" style="margin-top:8px;max-width:none">'+esc(v.desc)+'</p>':'')+'</section>';
+  }
+  // 크리에이티브·벤치마크 분해 (썸네일 비전 기반)
+  if(d.creative){var cv=d.creative, t=cv.thumbnail||{};
+    h+='<h2 class="sec-h"><svg aria-hidden="true" class="ic"><use href="#i-target"/></svg>크리에이티브·벤치마크 분해</h2><section class="cr-card">';
+    if(t.palette&&t.palette.length){
+      h+='<div class="cv-row"><span class="cv-l">컬러팔레트</span><div class="cv-pal">'+t.palette.map(function(c){var hex=String(c).trim();var ok=/^#?[0-9a-fA-F]{3,8}$/.test(hex);var col=ok?(hex[0]==='#'?hex:'#'+hex):'#888';return '<span class="sw"><i style="background:'+col+'"></i>'+esc(hex)+'</span>';}).join('')+'</div></div>';
+    }
+    if(t.subject)h+='<div class="cv-row"><span class="cv-l">반복 소재</span><span class="cv-v">'+esc(t.subject)+'</span></div>';
+    if(t.style)h+='<div class="cv-row"><span class="cv-l">썸네일 스타일</span><span class="cv-v">'+esc(t.style)+'</span></div>';
+    if(t.note)h+='<div class="cv-row"><span class="cv-l">강점·일관성</span><span class="cv-v">'+esc(t.note)+'</span></div>';
+    if(cv.genreSubtypes&&cv.genreSubtypes.length)h+='<div class="cv-row"><span class="cv-l">장르 서브타입</span><div class="chips">'+cv.genreSubtypes.map(function(x){return'<span class="chip">'+esc(x)+'</span>';}).join('')+'</div></div>';
+    if(cv.keywordClusters&&cv.keywordClusters.length){
+      h+='<div class="cv-row"><span class="cv-l">키워드 클러스터</span><div class="cv-v" style="display:flex;flex-direction:column;gap:8px">'+cv.keywordClusters.map(function(kc){return '<div><b style="color:#dfe6f2;font-size:12.5px">'+esc(kc.theme)+'</b> <div class="chips" style="margin-top:5px">'+((kc.keywords||[]).map(function(k){return'<span class="chip">'+esc(k)+'</span>';}).join(''))+'</div></div>';}).join('')+'</div></div>';
+    }
+    if(cv.videoComposition)h+='<div class="cv-row"><span class="cv-l">영상 구성</span><span class="cv-v">'+esc(cv.videoComposition)+'</span></div>';
+    if(cv.benchmark&&cv.benchmark.length)h+='<div class="cv-row"><span class="cv-l">흡수 포인트</span><div class="adopt-list">'+cv.benchmark.map(function(b){var s=(typeof b==='string')?b:(b.strength||'');var ap=(b&&typeof b==='object')?(b.apply||''):'';return'<div class="adopt-item"><div class="adopt-s">✓ '+esc(s)+'</div>'+(ap?'<div class="adopt-a">→ 내 채널 적용: '+esc(ap)+'</div>':'')+'</div>';}).join('')+'</div></div>';
+    h+='</section>';
+  }
+  // 객관 신호 (데이터 실측 — 추론 아님)
+  if(d.signals){var sg=d.signals;
+    var sigRow=function(l,val,warn){return '<div class="sig-row"><span class="sig-l">'+l+'</span><span class="sig-v'+(warn?' warn':'')+'">'+val+'</span></div>';};
+    var cb=sg.categoryBreakdown||{},lv=sg.liveSignal||{},uc=sg.uploadCadence||{},dv=sg.durationVariation||{},en=sg.engagement||{},le=sg.licenseEvidence||{};
+    h+='<h2 class="sec-h"><span class="bar"></span>객관 신호 <span style="font-size:12px;font-weight:700;color:#7d8aa0;margin-left:6px">데이터 실측 · 추론 아님</span></h2><section class="cr-card sig-card">'+
+      sigRow('카테고리', cb.allMusic?'전부 Music(10) ✓':('Music '+(cb.musicVideos||0)+'/'+(cb.totalWithCategory||0)+(cb.nonMusic&&cb.nonMusic.length?' · 비음악 '+esc(cb.nonMusic.join(', ')):'')), !cb.allMusic)+
+      sigRow('실시간(LIVE)', '실제 라이브 '+(lv.videosWithLiveBroadcast||0)+'개 · 제목 LIVE표기 '+((lv.titlesClaimingLive||[]).length)+'개'+((lv.titleClaimsLiveButVOD&&lv.titleClaimsLiveButVOD.length)?(' · LIVE표기 VOD '+lv.titleClaimsLiveButVOD.length+'개(확인 필요)'):''), !!(lv.titleClaimsLiveButVOD&&lv.titleClaimsLiveButVOD.length&&!lv.videosWithLiveBroadcast))+
+      sigRow('업로드 간격', (uc.medianGapDays!=null?('중앙값 '+uc.medianGapDays+'일'):'—')+(uc.maxGapDays!=null?(' · 최대 '+Math.round(uc.maxGapDays)+'일'):'')+(uc.regularityCv!=null?(' · '+(uc.regular?'규칙적':'불규칙')+'(CV '+uc.regularityCv+')'):''), uc.maxGapDays!=null&&uc.maxGapDays>21)+
+      sigRow('영상 길이', (dv.coefficientOfVariation!=null?('변동계수 '+dv.coefficientOfVariation):'—')+(dv.tightClusterVideos?(' · 초단위 동일 '+dv.tightClusters+'묶음 '+dv.tightClusterVideos+'편'+(dv.tightClusterVideos>=3?' ⚠ 트랙 재사용 의심':'')):' · 다양함'), !!(dv.tightClusterVideos&&dv.tightClusterVideos>=3))+
+      sigRow('참여 이상치', (en.anomalies&&en.anomalies.length?esc(en.anomalies.join(' / ')):('없음 · 좋아요율 중앙값 '+(en.medianLikeRatePct||0)+'%, 댓글율 '+(en.medianCommentRatePct||0)+'%')), !!(en.anomalies&&en.anomalies.length))+
+      sigRow('라이선스', (le.mentionsAITool?'AI 고지 O':'AI 고지 X')+' · '+(le.providesProof?('상업 증빙 O('+le.proofVideos+'개)'):'상업 증빙 X'), !le.providesProof)+
+      ((sg.impersonation&&(sg.impersonation.aiVoiceCloneVideos||sg.impersonation.famousArtistInTitle))?sigRow('사칭 단서', [(sg.impersonation.aiVoiceCloneVideos?'AI 보이스클론 표기 '+sg.impersonation.aiVoiceCloneVideos+'개':''),(sg.impersonation.famousArtistInTitle?'유명 아티스트명 '+sg.impersonation.famousArtistInTitle+'개':'')].filter(Boolean).join(' · '), true):'')+
+      '</section>';
+  }
+  // 영역별 점수
+  h+='<h2 class="sec-h"><span class="bar"></span>영역별 점수</h2><div class="areas-grid">';
+  var barColors=['#E76B6B','#E7C26B','#7ED4A6','#9b8cff','#7ED4A6'];
+  (d.areas||[]).forEach(function(ar,i){
+    h+='<div class="acard"><div class="ah"><span class="an">'+esc(ar.name)+'</span><span class="as">'+ar.score+' <span>/ '+ar.max+'</span></span></div>'+
+       '<div class="abar"><i style="width:'+Math.round(ar.score/ar.max*100)+'%;background:'+(barColors[i]||'#7ED4A6')+'"></i></div>';
+    (ar.items||[]).forEach(function(it){
+      var ok=it.verdict!=='감점';
+      h+='<div class="aitem"><span class="ic"><svg aria-hidden="true"><use href="#'+(ok?'i-check':'i-xmark')+'"/></svg></span><span class="it"><span class="itn">'+esc(it.name)+(it.evidence?' <em class="ev '+(it.evidence==='확정'?'ev-hard':'ev-soft')+'">'+esc(it.evidence)+'</em>':'')+'</span><span class="itx">'+esc(it.note)+'</span></span><span class="vb '+(ok?'ok':'bad')+'">'+(ok?'정상':(it.delta||'감점'))+'</span></div>';
+    });
+    h+='</div>';
+  });
+  h+='</div>';
+  // 피드백 10
+  if(d.feedback&&d.feedback.length){
+    h+='<h2 class="sec-h"><svg aria-hidden="true" class="ic"><use href="#i-target"/></svg>전문가 쪽집게 피드백</h2><div class="fb">';
+    d.feedback.forEach(function(f,i){
+      var gc=f.grade==='잘함'?'good':(f.grade==='개선 필요'?'bad':'mid');
+      h+='<div class="fbc"><div class="fh"><span class="fno">'+String(i+1).padStart(2,'0')+'</span><span class="ft"><div class="ftn">'+esc(f.title)+'</div><div class="fte">'+esc(f.en||'')+'</div></span><span class="fg '+gc+'">'+esc(f.grade)+'</span></div>'+
+         '<p class="fsum">'+esc(f.summary)+'</p>'+(f.advice?'<p class="fadv">'+esc(f.advice)+'</p>':'')+'</div>';
+    });
+    h+='</div>';
+  }
+  // 개선 제안
+  if(d.suggestions&&d.suggestions.length){
+    h+='<section class="cr-card" style="margin-top:18px"><h3 style="font-size:16px;font-weight:900;color:#fff;margin:0 0 12px">개선 제안</h3><ol class="sugg">'+
+       d.suggestions.map(function(s){return'<li>'+esc(s)+'</li>';}).join('')+'</ol></section>';
+  }
+  // 분석 영상
+  if(vids&&vids.length){
+    h+='<h2 class="sec-h"><span class="bar"></span>분석에 사용된 최근 영상</h2><div class="vid-grid">';
+    vids.slice(0,6).forEach(function(v){
+      h+='<a class="vcard" href="https://youtu.be/'+esc(v.id)+'" target="_blank" rel="noopener"><span class="vt" style="background-image:url('+esc(v.thumb)+')"></span><span class="vb"><span class="vtt">'+esc(v.title)+'</span><span class="vm">조회 '+num(v.views)+' · '+esc(v.duration)+'</span></span></a>';
+    });
+    h+='</div>';
+  }
+  $('#crResult').innerHTML=h;
+  bindCopies();
+}
+function srow(label,arr){if(!arr||!arr.length)return'';return '<div class="srow"><span class="sl">'+label+'</span><div class="chips">'+arr.map(function(t){return'<span class="chip">'+esc(t)+'</span>';}).join('')+'</div></div>';}
+function bindCopies(){var b=$('.suno-copy');if(b){b.addEventListener('click',function(){var t=b.getAttribute('data-copy');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='복사됨';setTimeout(function(){b.textContent='복사';},1500);},function(){});});}}
+function showLoading(){$('#crResult').innerHTML='<section class="cr-card"><div class="res-loading"><div class="av"></div><h3>채널을 정밀 분석하고 있습니다</h3><p>5개 영역을 차례로 점검하는 중…</p></div></section>';}
+function showError(msg){$('#crResult').innerHTML='<section class="cr-card"><div class="res-err"><b>분석을 완료하지 못했습니다.</b><br>'+esc(msg)+'</div></section>';}
+
+/* ── 실행 ── */
+var busy=false;
+// ── 서버 캐시 (결과 자산화·토큰 절약·공유). 백엔드 없으면(GitHub Pages 등) 자동 무력화 ──
+var SRV_BASE=(location.origin&&/^https?:/.test(location.origin||''))?location.origin:'';
+function srvGetCache(chId){if(!SRV_BASE)return Promise.resolve(null);return fetch(SRV_BASE+'/api/research?channel='+encodeURIComponent(chId)).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});}
+function srvSaveCache(chId,raw,score,payload){if(!SRV_BASE)return;try{fetch(SRV_BASE+'/api/research',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({channel:chId,input:raw,score:score,data:payload})}).catch(function(){});}catch(e){}}
+function fmtTs(ts){try{var d=new Date(ts);var p=function(n){return(n<10?'0':'')+n;};return d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());}catch(e){return ''+ts;}}
+function showCacheGate(j,ch){
+  var rec=j.record||{}, ts=fmtTs(rec.ts), age=j.age_days;
+  $('#crResult').innerHTML='<section class="cr-card"><div class="res-cache"><h3>최근 리서치 기록이 있습니다</h3>'
+    +'<p><b>'+esc(ch.title||ch.id||'이 채널')+'</b> 은(는) <b>'+ts+'</b>'+(age!=null?' (약 '+age+'일 전)':'')+'에 조회한 기록이 있습니다.<br>해당 결과를 바로 보시겠습니까? <span class="muted">(다시 분석하면 API 토큰이 소모됩니다)</span></p>'
+    +'<div class="res-cache-btns"><button class="an-btn" id="cacheView">기존 결과 보기</button>'
+    +'<button class="an-btn ghost" id="cacheNew">무시하고 새로 리서치</button></div></div></section>';
+  $('#cacheView').addEventListener('click',function(){var p=rec.data;if(p&&p.ch){renderResult(p.ch,p.vids,p.d);}else{showError('저장된 결과를 불러오지 못했습니다. 새로 리서치해 주세요.');}});
+  $('#cacheNew').addEventListener('click',function(){run(true);});
+}
+function run(force){
+  if(busy)return;
+  var raw=$('#crUrl').value;
+  var inp=parseInput(raw);
+  if(!inp){showError('채널 또는 영상 URL을 입력해 주세요. 예: https://www.youtube.com/@pariswav');return;}
+  var DEF=window.__CR_DEFAULT_KEYS||{};
+  var ytKey=localStorage.getItem(YT_KEY_LS)||DEF.yt||'', gemKey=localStorage.getItem(GEM_KEY_LS)||DEF.gem||'';
+  if(!ytKey||!gemKey){
+    showError('API 키가 등록되어 있지 않습니다. 상단 "API 등록" 탭에서 YouTube Data API v3 키와 Gemini API 키를 먼저 등록해 주세요.');
+    setTimeout(function(){location.href='channel-research-api.html?from=research';},1400);
+    return;
+  }
+  var adv={contentId:$('#advContentId').value,license:$('#advLicense').value,descLicense:$('#advDesc').value};
+  busy=true;$('#crGo').disabled=true;showLoading();
+  var ch,vids,chId;
+  resolveChannel(inp,ytKey)
+    .then(function(c){
+      ch=c;chId=ch.id||ch.channelId||ch.handle||(''+raw).trim();
+      if(force)return null;                                 // [무시하고 새로] → 캐시 건너뜀
+      return srvGetCache(chId);
+    })
+    .then(function(j){
+      if(!force&&j&&j.cached&&j.age_days!=null&&j.age_days<=90){   // 3개월 이내 기록 → 확인 게이트
+        showCacheGate(j,ch);busy=false;$('#crGo').disabled=false;return Promise.reject({__gate:1});
+      }
+      return recentVideos(ch.uploads,ytKey);                // 없음/만료/force → 바로 리서치
+    })
+    .then(function(vs){vids=vs;return fetchThumbParts(vids,4);})
+    .then(function(imgParts){
+      return Promise.all([
+        callGemini(RUBRIC, buildUserPrompt(ch,vids,adv), gemKey, null, RISK_RSCHEMA),
+        callGemini(CREATIVE_SYS, buildCreativePrompt(ch,vids), gemKey, imgParts, CREATIVE_RSCHEMA).catch(function(){return null;})
+      ]);
+    })
+    .then(function(res){
+      var d=res[0], cr=res[1];
+      if(d.areas&&d.areas.length){d.totalScore=d.areas.reduce(function(s,a){return s+(+a.score||0);},0);}
+      if(cr)d.creative=cr;
+      d.signals=computeSignals(vids);
+      d.growth=computeGrowth(ch,vids);
+      renderResult(ch,vids,d);
+      bumpUsage(5,2);
+      var rid=saveResult(raw,ch,vids,d);
+      srvSaveCache(chId,raw,d.totalScore,{ch:ch,vids:vids,d:d});   // 서버 자산 저장(data/research/)
+      logHistory({tool:'channel-research',toolName:'채널 딥 리서치',provider:'Gemini',mode:gradeOf(d.totalScore).label,summary:ch.title+' · '+d.totalScore+'점 ('+gradeOf(d.totalScore).label+')',prompt:raw,resultId:rid,thumb:ch.thumb});
+    })
+    .catch(function(e){if(e&&e.__gate)return;showError((e&&e.message)||'알 수 없는 오류가 발생했어요.');})
+    .then(function(){busy=false;$('#crGo').disabled=false;});
+}
+$('#crGo').addEventListener('click',function(){run(false);});
+$('#crUrl').addEventListener('keydown',function(e){if(e.key==='Enter')run(false);});
+Array.prototype.forEach.call(document.querySelectorAll('.ex-chip'),function(c){c.addEventListener('click',function(){$('#crUrl').value=c.getAttribute('data-ex');});});
+
+/* 기록에서 재열람 (?r=id) */
+(function replay(){
+  var m=location.search.match(/[?&]r=([\w-]+)/);if(!m)return;
+  try{var a=JSON.parse(localStorage.getItem(RESULTS_LS)||'[]');var rec=a.filter(function(x){return x.id===m[1];})[0];
+    if(rec&&rec.data){$('#crUrl').value=rec.input||'';renderResult(rec.ch,rec.vids||[],rec.data);}
+  }catch(e){}
+})();
+})();
+</script>
+<script src="../home/tool-nav.js"></script>
+</body>
+</html>

@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
 <title>STARNAUTS — 플리채널 스튜디오</title>
+<meta name="description" content="유튜브 플레이리스트 채널을 기획 → 음악 → 영상 → 운영까지 하나의 흐름으로 만드는 도구 모음입니다. 기획 디렉터 노바, Suno 엔지니어 등 4개 AI 에이전트가 단계마다 함께합니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/pli-studio.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STARNAUTS — 플리채널 스튜디오">
+<meta property="og:description" content="유튜브 플레이리스트 채널을 기획 → 음악 → 영상 → 운영까지 하나의 흐름으로 만드는 도구 모음입니다. 기획 디렉터 노바, Suno 엔지니어 등 4개 AI 에이전트가 단계마다 함께합니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/pli-studio.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/site-logo.webp">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
@@ -12,7 +19,7 @@
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
 <style>
 .ps-hero{text-align:center;padding:14px 0 6px}
-.ps-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--blue-300);text-transform:uppercase}
+.ps-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:900;letter-spacing:.22em;color:var(--blue-300);text-transform:uppercase}
 .ps-hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;color:#fff;letter-spacing:-.025em;margin:14px 0 10px}
 .ps-hero p{font-size:15px;color:#9aa6bc;line-height:1.65;max-width:58ch;margin:0 auto}
 .ps-cta{display:inline-flex;gap:10px;margin-top:22px;flex-wrap:wrap;justify-content:center}
@@ -22,15 +29,15 @@
 .ps-card{position:relative;display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--glass-line);border-radius:16px;padding:20px 18px;text-decoration:none;color:inherit;backdrop-filter:blur(6px);transition:transform .18s,border-color .18s,box-shadow .18s}
 .ps-card:hover{transform:translateY(-5px);border-color:rgba(46,111,201,.5);box-shadow:0 14px 36px rgba(0,0,0,.45)}
 .ps-card:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.ps-card .step{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;color:var(--blue-300);letter-spacing:.04em;margin-bottom:13px}
+.ps-card .step{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:900;color:var(--blue-300);letter-spacing:.04em;margin-bottom:13px}
 .ps-card .step .n{width:24px;height:24px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center}
 .ps-card .ic{width:34px;height:34px;color:var(--blue-300);margin-bottom:10px}
 .ps-card .ic svg{width:34px;height:34px}
 .ps-card h3{font-size:17px;font-weight:900;color:#fff;margin:0 0 7px;letter-spacing:-.01em}
 .ps-card p{font-size:12.8px;color:#9aa6bc;line-height:1.58;margin:0 0 14px;flex:1}
-.ps-card .go{font-size:12.5px;font-weight:800;color:#fff;display:inline-flex;align-items:center;gap:5px}
+.ps-card .go{font-size:12.5px;font-weight:900;color:#fff;display:inline-flex;align-items:center;gap:5px}
 .ps-card .go svg{width:14px;height:14px}
-.ps-card .badge{position:absolute;top:16px;right:16px;font-size:10.5px;font-weight:800;color:#fff;background:rgba(46,111,201,.3);border:1px solid rgba(46,111,201,.5);border-radius:6px;padding:3px 8px}
+.ps-card .badge{position:absolute;top:16px;right:16px;font-size:10.5px;font-weight:900;color:#fff;background:rgba(46,111,201,.3);border:1px solid rgba(46,111,201,.5);border-radius:6px;padding:3px 8px}
 .ps-card .modes{display:flex;gap:5px;flex-wrap:wrap;margin:-4px 0 12px}
 .ps-card .modes span{font-size:10.5px;font-weight:700;color:#C6CEDC;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:2px 7px;border-radius:6px}
 .ps-sub{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
@@ -39,13 +46,13 @@
 .ps-link:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.05)}
 .ps-link .ic{width:24px;height:24px;color:var(--blue-300);flex-shrink:0}
 .ps-link .ic svg{width:24px;height:24px}
-.ps-link h4{margin:0 0 3px;font-size:14.5px;font-weight:800;color:#fff}
+.ps-link h4{margin:0 0 3px;font-size:14.5px;font-weight:900;color:#fff}
 .ps-link p{margin:0;font-size:12px;color:#9aa6bc;line-height:1.5}
 .ps-flow-note{font-size:12.5px;color:#7c8699;text-align:center;margin:30px auto 0;max-width:60ch;line-height:1.65}
 .ps-agents{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media(max-width:760px){.ps-agents{grid-template-columns:repeat(2,1fr)}}
 .ps-agent{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 14px}
-.ps-agent b{display:block;font-size:13px;color:#fff;font-weight:800;margin-bottom:4px}
+.ps-agent b{display:block;font-size:13px;color:#fff;font-weight:900;margin-bottom:4px}
 .ps-agent span{font-size:11.5px;color:#9aa6bc;line-height:1.5}
 </style></head>
 <body>
@@ -70,14 +77,15 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <div class="side-sub-nav">
-      <a href="playstars.html" class="cur">플리채널 스튜디오</a>
+      <a href="pli-studio.html" class="cur">플리채널 스튜디오</a>
       <a href="plichannel-planning.html">기획 노바</a>
       <a href="music-lab.html">음악 랩</a>
+      <a href="channel-research.html">채널 딥 리서치</a>
       <a href="auto-video.html">자동영상</a>
       <a href="history.html">내 기록</a>
     </div>
@@ -91,10 +99,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html">CLASS<span class="tko">강의</span></a>
       <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
@@ -103,7 +111,7 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="history.html">내 요청 기록</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
@@ -114,11 +122,11 @@
       </nav>
 
       <div class="ps-hero">
-        <span class="ps-eyebrow"><svg width="15" height="15"><use href="#i-rocket"/></svg> PLAYSTARS STUDIO</span>
+        <span class="ps-eyebrow"><svg aria-hidden="true" width="15" height="15"><use href="#i-rocket"/></svg> PLAYLIST CHANNEL STUDIO</span>
         <h1>플리채널 스튜디오</h1>
         <p>유튜브 플레이리스트(플리) 채널을 <b>기획 → 음악 → 영상 → 운영</b>까지 하나의 흐름으로 만드는 도구 모음이에요.<br>막연한 아이디어를 AI와 함께 글로벌 시장을 관통하는 채널로 깎아냅니다.</p>
         <div class="ps-cta">
-          <a class="btn btn--primary btn--lg" href="plichannel-planning.html">1단계 기획부터 시작 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+          <a class="btn btn--primary btn--lg" href="plichannel-planning.html">1단계 기획부터 시작 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a>
           <a class="btn btn--lg" href="history.html" style="border:1px solid rgba(255,255,255,.18);color:#fff">내 요청 기록</a>
         </div>
       </div>
@@ -127,32 +135,32 @@
       <div class="ps-pipe">
         <a class="ps-card" href="plichannel-planning.html">
           <span class="step"><span class="n">1</span> 기획</span>
-          <span class="ic"><svg><use href="#i-chat"/></svg></span>
+          <span class="ic"><svg aria-hidden="true"><use href="#i-chat"/></svg></span>
           <h3>플리채널 기획 디렉터 노바</h3>
           <p>6단계 대화로 타겟·컨셉·감정·사운드·비주얼을 잡고, 막연한 아이디어를 뾰족한 채널 브랜드로 만들어요.</p>
-          <span class="go">기획 열기 <svg><use href="#i-chev-r"/></svg></span>
+          <span class="go">기획 열기 <svg aria-hidden="true"><use href="#i-chev-r"/></svg></span>
         </a>
         <a class="ps-card" href="music-lab.html">
           <span class="step"><span class="n">2</span> 음악</span>
-          <span class="ic"><svg><use href="#i-music"/></svg></span>
+          <span class="ic"><svg aria-hidden="true"><use href="#i-music"/></svg></span>
           <h3>AI MUSIC LAB</h3>
           <div class="modes"><span>프로 10곡팩</span><span>퀵 1곡</span><span>BGM·앰비언트</span></div>
           <p>기획의 사운드 레시피로 Suno 가사·스타일팩을 만들어요. 보컬곡부터 가사 없는 순수 연주(BGM)까지.</p>
-          <span class="go">음악 열기 <svg><use href="#i-chev-r"/></svg></span>
+          <span class="go">음악 열기 <svg aria-hidden="true"><use href="#i-chev-r"/></svg></span>
         </a>
         <a class="ps-card" href="auto-video.html">
           <span class="step"><span class="n">3</span> 영상</span>
-          <span class="ic"><svg><use href="#i-film"/></svg></span>
+          <span class="ic"><svg aria-hidden="true"><use href="#i-film"/></svg></span>
           <h3>자동영상 스튜디오</h3>
           <p>미드저니 프롬프트로 배경을 만들고, 이미지를 움직이는 영상으로 바꿔 1~3시간 영상까지 제작해요.</p>
-          <span class="go">영상 열기 <svg><use href="#i-chev-r"/></svg></span>
+          <span class="go">영상 열기 <svg aria-hidden="true"><use href="#i-chev-r"/></svg></span>
         </a>
         <a class="ps-card" href="auto-video.html#operate">
           <span class="step"><span class="n">4</span> 운영</span>
-          <span class="ic"><svg><use href="#i-rocket"/></svg></span>
+          <span class="ic"><svg aria-hidden="true"><use href="#i-rocket"/></svg></span>
           <h3>업로드 · 운영 전략</h3>
           <p>영상 길이·업로드 주기·골든타임(목·일 밤 9~11시)까지. 채널을 꾸준히 키우는 운영 가이드.</p>
-          <span class="go">전략 보기 <svg><use href="#i-chev-r"/></svg></span>
+          <span class="go">전략 보기 <svg aria-hidden="true"><use href="#i-chev-r"/></svg></span>
         </a>
       </div>
 
@@ -161,11 +169,11 @@
       <!-- 보조 도구 -->
       <div class="ps-sub">
         <a class="ps-link" href="history.html">
-          <span class="ic"><svg><use href="#i-list"/></svg></span>
+          <span class="ic"><svg aria-hidden="true"><use href="#i-list"/></svg></span>
           <div><h4>내 요청 기록</h4><p>음악·기획에서 요청한 내역을 시간순으로 모아봐요.</p></div>
         </a>
         <a class="ps-link" href="tool.html">
-          <span class="ic"><svg><use href="#i-book"/></svg></span>
+          <span class="ic"><svg aria-hidden="true"><use href="#i-book"/></svg></span>
           <div><h4>스타너츠 도구 전체</h4><p>방송 준비·운영용 다른 도구도 함께 보기.</p></div>
         </a>
       </div>
@@ -187,16 +195,16 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img loading="lazy" src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>플리채널 스튜디오</h5><a href="plichannel-planning.html">기획 노바</a><a href="music-lab.html">AI MUSIC LAB</a><a href="auto-video.html">자동영상</a><a href="history.html">내 요청 기록</a></div>
             <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
             <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
@@ -209,6 +217,6 @@
 </div>
 
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
-</body>
+<script src="../home/shell.js?v=21"></script>
+<script src="../home/tool-nav.js"></script></body>
 </html>

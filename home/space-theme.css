@@ -70,8 +70,8 @@ body{background:var(--space-0);color:var(--tx)}
 
 .hero--earth .dotcom{font-size:clamp(40px,6vw,72px);font-weight:900;letter-spacing:-.01em;color:#fff;line-height:1}
 .hero--earth .dotcom .tld{color:#fff;font-weight:500;font-size:0.85em}
-.hero--earth .hero-tag{margin-top:12px;font-size:13.5px;font-weight:800;letter-spacing:.22em;color:var(--blue-300)}
-.hero--earth .hero-lead-title{margin:26px auto 0;max-width:34ch;font-size:clamp(22px,2.8vw,32px);font-weight:800;color:#fff;line-height:1.42;letter-spacing:-.01em;text-wrap:normal}
+.hero--earth .hero-tag{margin-top:12px;font-size:13.5px;font-weight:900;letter-spacing:.22em;color:var(--blue-300)}
+.hero--earth .hero-lead-title{margin:26px auto 0;max-width:34ch;font-size:clamp(22px,2.8vw,32px);font-weight:900;color:#fff;line-height:1.42;letter-spacing:-.01em;text-wrap:normal}
 .hero--earth .hero-lead-title .em{color:var(--blue-300)}
 .hero--earth .lead{margin:18px auto 0;max-width:46em;color:var(--tx)}
 .hero--earth .hero-actions{justify-content:center}
@@ -159,7 +159,8 @@ body{background:var(--space-0);color:var(--tx)}
 .fbar-nav a:hover{color:#fff}
 .fbar-soc{display:flex;gap:8px;margin-left:auto}
 .fbar-soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;color:#C6CEDC;transition:.15s}
+  display:flex;align-items:center;justify-content:center;color:#C6CEDC;
+  transition:background-color .15s, color .15s}
 .fbar-soc a:hover{background:var(--blue);color:#fff}
 .fbar-soc svg{width:17px;height:17px}
 .fbar-copy{flex:1 1 100%;margin:0;font-size:11.5px;color:#7c8699}
@@ -167,7 +168,8 @@ body{background:var(--space-0);color:var(--tx)}
 /* agency card social row */
 .scard-soc{display:flex;gap:8px;margin-bottom:12px}
 .scard-soc a{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;color:#C6CEDC;transition:.15s}
+  display:flex;align-items:center;justify-content:center;color:#C6CEDC;
+  transition:background-color .15s, color .15s}
 .scard-soc a:hover{background:var(--blue);color:#fff}
 .scard-soc svg{width:16px;height:16px}
 

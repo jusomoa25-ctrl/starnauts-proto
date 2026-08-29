@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../home/shell.css?v=20">
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
 <style>
-.blog-card-cat{font-size:11px;font-weight:800;color:var(--blue-300);letter-spacing:.04em}
+.blog-card-cat{font-size:11px;font-weight:900;color:var(--blue-300);letter-spacing:.04em}
 </style></head>
 <body>
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
@@ -47,7 +47,7 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
@@ -61,10 +61,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
@@ -73,90 +73,82 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="signup.html">무료로 시작</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
   <section class="section" style="padding-top:36px">
     <div class="wrap">
       <div class="sec-head"><h2 class="sec-en">JOURNAL</h2><p class="sec-ko">뉴스 · 블로그</p></div>
-      <p class="sec-lead">스트리머가 되는 데 필요한 모든 정보<br>방송 셋팅부터 트렌드까지, 스타너츠가 정리합니다</p>
+      <p class="sec-lead">AI 음원과 유튜브 채널 운영에 필요한 정보<br>곡 제작부터 유통·발행까지, 스타너츠가 정리합니다</p>
+      <p style="text-align:center;color:#9aa6bc;font-size:13px;margin:-10px 0 0">아래 주제는 <b style="color:#C6CEDC">준비 중</b>입니다. 글이 공개되는 대로 하나씩 열립니다.</p>
 
-      <div class="tabs center" id="courseTabs" role="tablist">
-        <button class="tab is-active" data-cat="all">전체</button>
-        <button class="tab" data-cat="guide">시작 가이드</button>
-        <button class="tab" data-cat="setup">방송 셋팅</button>
-        <button class="tab" data-cat="trend">트렌드</button>
-        <button class="tab" data-cat="news">소식</button>
+      <div class="tabs center" id="courseTabs" role="group" aria-label="글 카테고리">
+        <button class="tab is-active" aria-pressed="true" data-cat="all">전체</button>
+        <button class="tab" aria-pressed="false" data-cat="guide">AI 음원</button>
+        <button class="tab" aria-pressed="false" data-cat="setup">채널 운영</button>
+        <button class="tab" aria-pressed="false" data-cat="trend">도구·트렌드</button>
       </div>
 
       <div class="course-grid three" id="courseGrid">
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="guide">
-          <div class="course-thumb" style="background:linear-gradient(135deg,5E4B8B,#1E1633)"><span class="hot">인기</span><svg class="glyph"><use href="#i-bolt"/></svg></div>
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,5E4B8B,#1E1633)"><svg aria-hidden="true" class="glyph"><use href="#i-bolt"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">시작 가이드</span>
-            <h3>버튜버, 어떻게 시작하나요? 0원부터 데뷔까지</h3>
-            <div class="course-meta"><span class="tname">장비·모델·트래킹·송출 전 과정 한눈에 정리</span></div>
+            <span class="course-cat">AI 음원</span>
+            <h3>AI 음원은 왜 저작권료를 기다리면 안 되나</h3>
+            <div class="course-meta"><span class="tname">마스터권·유통·Content ID로 갈리는 수익 경로 정리</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="setup">
-          <div class="course-thumb" style="background:linear-gradient(135deg,2B6E8F,#0F2530)"><span class="hot">인기</span><svg class="glyph"><use href="#i-cam"/></svg></div>
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,2B6E8F,#0F2530)"><svg aria-hidden="true" class="glyph"><use href="#i-cam"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">방송 셋팅</span>
-            <h3>SOOP·치지직·유튜브 라이브 셋팅 완전 비교</h3>
-            <div class="course-meta"><span class="tname">플랫폼별 송출 설정·비트레이트·화면 구성 차이</span></div>
+            <span class="course-cat">AI 음원</span>
+            <h3>유통사 9개사, 실제 비용은 어디서 갈라지나</h3>
+            <div class="course-meta"><span class="tname">릴리즈 요금과 UGC·Content ID 비용을 따로 계산하는 법</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="guide">
-          <div class="course-thumb" style="background:linear-gradient(135deg,2E6FC9,#16385F)"><svg class="glyph"><use href="#i-check"/></svg></div>
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,2E6FC9,#16385F)"><svg aria-hidden="true" class="glyph"><use href="#i-check"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">시작 가이드</span>
-            <h3>첫 송출 전 반드시 확인할 체크리스트 10가지</h3>
-            <div class="course-meta"><span class="tname">장비·소리·화면·고지까지 데뷔 전 점검 목록</span></div>
+            <span class="course-cat">AI 음원</span>
+            <h3>SUNO 프롬프트를 나열이 아니라 문장으로 쓰는 이유</h3>
+            <div class="course-meta"><span class="tname">Identity·Mood·Instruments·Performance·Production 5단계</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="setup">
-          <div class="course-thumb" style="background:linear-gradient(135deg,33547E,#142238)"><svg class="glyph"><use href="#i-video"/></svg></div>
+        <article class="course" data-cat="setup">
+          <div class="course-thumb" style="background:linear-gradient(135deg,33547E,#142238)"><svg aria-hidden="true" class="glyph"><use href="#i-video"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">방송 셋팅</span>
-            <h3>OBS 장면 전환과 알림 위젯 설정하기</h3>
-            <div class="course-meta"><span class="tname">초보도 따라 하는 OBS 기본 셋업 가이드</span></div>
+            <span class="course-cat">채널 운영</span>
+            <h3>3시간 영상, 배치보다 정규화가 먼저다</h3>
+            <div class="course-meta"><span class="tname">loudnorm 일괄 정규화를 편집 전에 끝내야 하는 이유</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="trend">
-          <div class="course-thumb" style="background:linear-gradient(135deg,1C4B86,#0E1116)"><span class="hot">주간</span><svg class="glyph"><use href="#i-trend"/></svg></div>
+        <article class="course" data-cat="trend">
+          <div class="course-thumb" style="background:linear-gradient(135deg,1C4B86,#0E1116)"><svg aria-hidden="true" class="glyph"><use href="#i-trend"/></svg></div>
           <div class="course-body">
             <span class="course-cat">트렌드</span>
             <h3>이번 주 떠오르는 콘텐츠 키워드 리포트</h3>
             <div class="course-meta"><span class="tname">플랫폼별 급상승 포맷·키워드 주간 정리</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="guide">
-          <div class="course-thumb" style="background:linear-gradient(135deg,4C86D8,#1C4B86)"><svg class="glyph"><use href="#i-mic"/></svg></div>
+        <article class="course" data-cat="guide">
+          <div class="course-thumb" style="background:linear-gradient(135deg,4C86D8,#1C4B86)"><svg aria-hidden="true" class="glyph"><use href="#i-mic"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">시작 가이드</span>
-            <h3>보컬·댄스 스트리머가 되려면 무엇부터?</h3>
-            <div class="course-meta"><span class="tname">노래·춤 방송을 준비하는 단계별 로드맵</span></div>
+            <span class="course-cat">AI 음원</span>
+            <h3>곡 세트를 균질하게 뽑고, 무엇을 버릴까</h3>
+            <div class="course-meta"><span class="tname">작법 렌즈 배정과 10점 척도 평가 게이트 운영법</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="setup">
-          <div class="course-thumb" style="background:linear-gradient(135deg,37475E,#121821)"><svg class="glyph"><use href="#i-cam"/></svg></div>
+        <article class="course" data-cat="setup">
+          <div class="course-thumb" style="background:linear-gradient(135deg,37475E,#121821)"><svg aria-hidden="true" class="glyph"><use href="#i-cam"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">방송 셋팅</span>
-            <h3>예산 30만원 / 100만원 방송 장비 추천</h3>
-            <div class="course-meta"><span class="tname">예산대별 카메라·마이크·조명 조합 가이드</span></div>
+            <span class="course-cat">채널 운영</span>
+            <h3>8개 언어 메타를 한 번에 붙이는 법</h3>
+            <div class="course-meta"><span class="tname">localizations 표준 운영과 언어별 제목 규격</span></div>
           </div>
         </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="news">
-          <div class="course-thumb" style="background:linear-gradient(135deg,245AA8,#141A24)"><span class="hot">공지</span><svg class="glyph"><use href="#i-rocket"/></svg></div>
-          <div class="course-body">
-            <span class="course-cat">소식</span>
-            <h3>스타너츠 데뷔 부트캠프 9기 모집 시작</h3>
-            <div class="course-meta"><span class="tname">4주 만에 첫 송출 — 기수 한정 모집 안내</span></div>
-          </div>
-        </article>
-        <article class="course" onclick="location.href='post.html'" style="cursor:pointer" data-cat="trend">
-          <div class="course-thumb" style="background:linear-gradient(135deg,3A5C8F,#141A24)"><svg class="glyph"><use href="#i-music"/></svg></div>
+        <article class="course" data-cat="trend">
+          <div class="course-thumb" style="background:linear-gradient(135deg,3A5C8F,#141A24)"><svg aria-hidden="true" class="glyph"><use href="#i-music"/></svg></div>
           <div class="course-body">
             <span class="course-cat">트렌드</span>
             <h3>AI 음원으로 만드는 나만의 채널 BGM</h3>
@@ -165,7 +157,7 @@
         </article>
       </div>
 
-      <div class="center-cta"><a class="btn btn--ghost" href="signup.html">새 글 알림 받기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+      <div class="center-cta"><a class="btn btn--ghost" href="signup.html">새 글 알림 받기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
     </div>
   </section>
 
@@ -176,16 +168,16 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img loading="lazy" src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
             <div class="fcolx"><h5>회사</h5><a href="about.html">소개</a><a href="about.html#careers">채용</a><a href="partnership.html">파트너십</a><a href="blog.html">블로그</a></div>
             <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
@@ -199,6 +191,6 @@
 </div>
 
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
+<script src="../home/shell.js?v=21"></script>
 </body>
 </html>

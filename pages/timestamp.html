@@ -1,0 +1,100 @@
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+<meta name="theme-color" content="#0D1117"><!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>타임스탬프 생성기 · STARNAUTS</title>
+<meta name="description" content="음원 파일을 순서대로 올리면 0:00부터 각 곡 길이를 누적해 유튜브 설명란에 그대로 붙여 넣을 트랙 타임스탬프를 자동으로 만들어 줍니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/timestamp.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="타임스탬프 생성기 · STARNAUTS">
+<meta property="og:description" content="음원 파일을 순서대로 올리면 0:00부터 각 곡 길이를 누적해 유튜브 설명란에 그대로 붙여 넣을 트랙 타임스탬프를 자동으로 만들어 줍니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/timestamp.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/tool-thumbs/timestamp.png">
+<link rel="stylesheet" href="../home/home.css"><link rel="stylesheet" href="../home/space-theme.css?v=17"><link rel="stylesheet" href="../home/shell.css?v=20"><link rel="stylesheet" href="../home/tweaks.css?v=14"><style>
+:root{--bg:#0d1117;--card:#161b22;--blue:#4d7cff;--ink:#e6edf3;--ink2:#9aa6bc;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:34px 18px 90px}
+.kicker{font-size:12px;color:var(--blue);font-weight:800;letter-spacing:.08em}
+h1{font-size:24px;margin:6px 0 4px}
+.sub{color:var(--ink2);font-size:14px;margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:34px 16px;text-align:center;color:var(--ink2);cursor:pointer;transition:.15s;font-size:14px}
+.drop:hover,.drop.over{border-color:var(--blue);color:var(--ink);background:rgba(77,124,255,.06)}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn:hover{background:#3d6bef}
+.btn.ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}
+.row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:6px;font-size:14px}
+.row .ts{color:var(--blue);font-weight:800;font-variant-numeric:tabular-nums;min-width:54px}
+.row .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .du{color:var(--ink2);font-size:12px}
+.tools{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.out{background:#0a0e14;border:1px solid var(--line);border-radius:10px;padding:14px;font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;white-space:pre-wrap;color:var(--ink);margin-top:12px;min-height:60px}
+.hint{font-size:12px;color:var(--ink2);margin-top:8px;line-height:1.6}
+.headrow{display:flex;justify-content:space-between;align-items:center}
+</style></head>
+<body><aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav" aria-label="주요 메뉴">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav"></div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub"><a href="blog.html">뉴스</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a><p class="side-copy">(c) 2026 STARNAUTS</p></div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+<div class="main" id="main" tabindex="-1"><div class="wrap">
+<div class="kicker"><svg aria-hidden="true" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="vertical-align:-1px;margin-right:4px"><path d="M12 2l2.6 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.4z"/></svg>TIMESTAMP GENERATOR</div>
+<h1>타임스탬프 생성기</h1>
+<p class="sub">음원 파일을 순서대로 올리면 유튜브 설명란용 <b>00:00 곡명</b> 타임스탬프를 자동으로 만들어 드려요. (브라우저에서 바로 처리 · 업로드 없음)</p>
+
+<div class="card">
+  <div class="drop" id="drop">🎵 음원 파일을 드래그하거나 클릭해서 선택<br><span style="font-size:12px">여러 개 OK · 올린 순서대로 배치돼요 (mp3·wav·m4a·flac·ogg)</span>
+    <input type="file" id="file" accept="audio/*" multiple hidden></div>
+  <div id="list" style="margin-top:14px"></div>
+  <div class="tools" id="tools" style="display:none">
+    <button class="btn" id="gen">타임스탬프 생성</button>
+    <button class="btn ghost" id="clear">초기화</button>
+  </div>
+</div>
+
+<div class="card" id="outcard" style="display:none">
+  <div class="headrow"><b>유튜브 설명란용 타임스탬프</b><button class="btn ghost" id="copy">복사</button></div>
+  <div class="out" id="out"></div>
+  <p class="hint">유튜브 챕터로 인식되려면 ① 첫 줄이 <b>0:00</b> ② 최소 3개 ③ 각 챕터 10초 이상이어야 합니다.</p>
+</div>
+
+<script>
+var $=function(s){return document.querySelector(s);};
+var files=[];
+function fmt(sec){sec=Math.floor(sec||0);var h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;var p=function(n){return(n<10?'0':'')+n;};return (h>0?h+':'+p(m):m)+':'+p(s);}
+function dur(file){return new Promise(function(res){var a=new Audio();a.preload='metadata';a.onloadedmetadata=function(){res(a.duration||0);};a.onerror=function(){res(0);};a.src=URL.createObjectURL(file);});}
+function clean(name){return name.replace(/\.[^.]+$/,'').replace(/^\s*\d{1,3}[\s._\-)]+/,'').trim()||name;}
+function render(){
+  var l=$('#list');
+  l.innerHTML=files.map(function(f,i){return '<div class="row"><span class="ts">'+(i+1)+'</span><span class="nm">'+clean(f.name)+'</span><span class="du">'+(f._d!=null?fmt(f._d):'…')+'</span></div>';}).join('');
+  $('#tools').style.display=files.length?'flex':'none';
+}
+function addFiles(fl){
+  var arr=[].slice.call(fl).filter(function(f){return (f.type&&f.type.indexOf('audio')>=0)||/\.(mp3|wav|m4a|flac|ogg|aac)$/i.test(f.name);});
+  Promise.all(arr.map(function(f){return dur(f).then(function(d){f._d=d;return f;});})).then(function(done){files=files.concat(done);render();});
+}
+$('#drop').addEventListener('click',function(){$('#file').click();});
+$('#file').addEventListener('change',function(e){addFiles(e.target.files);e.target.value='';});
+['dragover','dragenter'].forEach(function(ev){$('#drop').addEventListener(ev,function(e){e.preventDefault();$('#drop').classList.add('over');});});
+['dragleave'].forEach(function(ev){$('#drop').addEventListener(ev,function(e){e.preventDefault();$('#drop').classList.remove('over');});});
+$('#drop').addEventListener('drop',function(e){e.preventDefault();$('#drop').classList.remove('over');addFiles(e.dataTransfer.files);});
+$('#gen').addEventListener('click',function(){
+  var t=0;
+  var lines=files.map(function(f){var line=fmt(t)+' '+clean(f.name);t+=(f._d||0);return line;});
+  $('#out').textContent=lines.join('\n');
+  $('#outcard').style.display='block';
+  $('#outcard').scrollIntoView({behavior:'smooth'});
+});
+$('#clear').addEventListener('click',function(){files=[];render();$('#outcard').style.display='none';});
+$('#copy').addEventListener('click',function(){navigator.clipboard.writeText($('#out').textContent).then(function(){var b=$('#copy');b.textContent='복사됨';setTimeout(function(){b.textContent='복사';},1500);});});
+</script>
+</div></div><script src="../home/tool-nav.js"></script></body></html>

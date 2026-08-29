@@ -15,7 +15,7 @@
 .agency-grid .scard{display:flex;flex-direction:column}
 .agency-grid .scard-body{display:flex;flex-direction:column;flex:1;min-height:0}
 .agency-grid .who{margin-bottom:4px}
-.agency-grid .who .nm{display:block;font-size:16px;font-weight:800;color:#fff;margin-bottom:5px;line-height:1.2}
+.agency-grid .who .nm{display:block;font-size:16px;font-weight:900;color:#fff;margin-bottom:5px;line-height:1.2}
 .agency-grid .who .cat{display:block;font-size:12.5px;color:#9aa6bc;line-height:1.2}
 .agency-grid .title{font-size:13px;color:#9aa6bc;line-height:1.5;margin:4px 0 0}
 .agency-grid .card-spacer{flex:1;min-height:10px}
@@ -26,6 +26,9 @@
 .psoc-row a img{width:100%;height:100%;object-fit:cover;display:block}
 .psoc-row .nat{font-size:9.5px;font-weight:900;color:#fff;background:linear-gradient(135deg,#2E6FC9,#1C4B86)}
 .agency-grid .watch{border-radius:8px}
+/* 로스터 2개 — 4열 그리드에 좌측으로 몰리지 않게, 카드 폭은 그대로 두고 가운데 정렬 */
+.agency-grid.two{grid-template-columns:repeat(2,1fr);max-width:calc(50% - 9px);margin-left:auto;margin-right:auto}
+@media (max-width:1180px){.agency-grid.two{max-width:none}}
 </style>
 </head>
 <body>
@@ -46,7 +49,7 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
@@ -60,10 +63,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
@@ -72,7 +75,7 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="signup.html">무료로 시작</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
@@ -87,101 +90,31 @@
         <div style="background:url('../assets/space-bg.webp') center/cover;min-height:250px"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,12,20,.94) 0%,rgba(8,12,20,.62) 55%,rgba(8,12,20,.18) 100%)"></div>
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:30px 38px;max-width:660px">
-          <span style="font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--blue-300)">OFFLINE EVENT · 서울 · 7/26 (토)</span>
+          <span style="font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--blue-300)">OFFLINE EVENT · 서울 · 7/26 (토)</span>
           <h3 style="font-size:32px;font-weight:900;color:#fff;line-height:1.25;margin:10px 0 8px">엔돌핀의 버츄얼 팬미팅 &amp; 토크쇼</h3>
           <p style="font-size:14.5px;color:#C6CEDC;line-height:1.6">버츄얼 스트리밍 비하인드부터 팬과의 라이브 토크까지 — 소속 스트리머의 오프라인 행사를 스타너츠가 기획·연결합니다.</p>
-          <span style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;color:#fff">자세히 보기 <svg width="15" height="15" style="color:#fff"><use href="#i-chev-r"/></svg></span>
+          <span style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:900;color:#fff">자세히 보기 <svg aria-hidden="true" width="15" height="15" style="color:#fff"><use href="#i-chev-r"/></svg></span>
         </div>
       </a>
 
       <!-- 소속 스트리머 로스터 -->
       <div class="sec-head"><h2 class="sec-en" style="font-size:30px">ROSTER</h2><p class="sec-ko">소속 스트리머</p></div>
       <p class="sec-lead" style="font-size:15px">국적 · 방송 플랫폼 · SNS — 프로필에서 한눈에 확인하세요</p>
-      <div class="agency-grid">
+      <div class="agency-grid two">
         <div class="scard" onclick="location.href='endolphin.html'" style="cursor:pointer">
-          <div class="scard-top" style="padding:0;overflow:hidden"><img src="../assets/banner-endorphin.webp" alt="엔돌핀" style="width:100%;height:100%;object-fit:cover;object-position:100% 28%"></div>
+          <div class="scard-top" style="padding:0;overflow:hidden"><img width="1440" height="540" src="../assets/banner-endorphin.webp" alt="엔돌핀" style="width:100%;height:100%;object-fit:cover;object-position:100% 28%"></div>
           <div class="scard-body">
             <div class="who"><span class="ava" style="background:#B85C9E">엔</span><span><span class="nm">엔돌핀</span><span class="cat">스타너츠 파트너 · 강사</span></span></div>
             <p class="title">2022 아프리카TV BJ대상 · 게임·노래·버츄얼·여행 등 다양한 콘텐츠</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="SOOP"><img src="../assets/platform/soop.png" alt="SOOP"></a><a href="#" aria-label="Instagram"><img src="../assets/platform/instagram.png" alt="Instagram"></a><a href="#" aria-label="네이버 카페"><img src="../assets/platform/navercafe.png" alt="네이버 카페"></a></div><button class="watch" onclick="event.stopPropagation();location.href='endolphin.html'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
+            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="SOOP"><img width="512" height="512" src="../assets/platform/soop.png" alt="SOOP"></a><a href="#" aria-label="Instagram"><img width="512" height="512" src="../assets/platform/instagram.png" alt="Instagram"></a><a href="#" aria-label="네이버 카페"><img width="512" height="512" src="../assets/platform/navercafe.png" alt="네이버 카페"></a></div><button class="watch" onclick="event.stopPropagation();location.href='endolphin.html'">프로필 · 섭외 보기 <svg aria-hidden="true" width="15" height="15"><use href="#i-arrow-out"/></svg></button>
           </div>
         </div>
         <div class="scard" onclick="location.href='streamer-shinjae.html'" style="cursor:pointer">
-          <div class="scard-top" style="padding:0;overflow:hidden"><img src="../assets/banner-shinjae.webp" alt="신재" style="width:100%;height:100%;object-fit:cover;object-position:100% 28%"></div>
+          <div class="scard-top" style="padding:0;overflow:hidden"><img width="1440" height="540" src="../assets/banner-shinjae.webp" alt="신재" style="width:100%;height:100%;object-fit:cover;object-position:100% 28%"></div>
           <div class="scard-body">
             <div class="who"><span class="ava" style="background:#3A5C8F">신</span><span><span class="nm">신재</span><span class="cat">보컬·음원·사주</span></span></div>
             <p class="title">보컬 레슨 · 음원 제작 · 사주 레슨까지 — 다재다능 현직 스트리머</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="YouTube"><img src="../assets/platform/youtube.png" alt="YouTube"></a><a href="#" aria-label="SOOP"><img src="../assets/platform/soop.png" alt="SOOP"></a><a href="#" aria-label="Instagram"><img src="../assets/platform/instagram.png" alt="Instagram"></a><a href="#" aria-label="Threads"><img src="../assets/platform/threads.png" alt="Threads"></a></div><button class="watch" onclick="event.stopPropagation();location.href='streamer-shinjae.html'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#5B7BB0,#245AA8)"><span class="glyph">댄스</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#4C86D8">하</span><span><span class="nm">하늘</span><span class="cat">댄스 · 스트리머</span></span></div>
-            <p class="title">숏폼 댄스 챌린지 안무가 — 한·태 콜라보 다수</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">TH</span><a href="#" aria-label="YouTube"><img src="../assets/platform/youtube.png" alt="YouTube"></a><a href="#" aria-label="Twitch"><img src="../assets/platform/twitch.png" alt="Twitch"></a></div><button class="watch" onclick="location.href='#'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#245AA8,#141A24)"><span class="glyph">음악</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#245AA8">도</span><span><span class="nm">도윤</span><span class="cat">음악 · 스트리머</span></span></div>
-            <p class="title">AI 음원 사운드 PD — 시그니처 BGM 제작 강의</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="치지직"><img src="../assets/platform/chzzk.png" alt="치지직"></a><a href="#" aria-label="YouTube"><img src="../assets/platform/youtube.png" alt="YouTube"></a></div><button class="watch" onclick="location.href='#'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#3B4A60,#161C26)"><span class="glyph">토크</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#3B4A60">미</span><span><span class="nm">미르</span><span class="cat">토크 · 스트리머</span></span></div>
-            <p class="title">야간 고민 상담 토크 — 고정 시청자 커뮤니티 운영</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="판다"><img src="../assets/platform/panda.png" alt="판다"></a><a href="#" aria-label="SOOP"><img src="../assets/platform/soop.png" alt="SOOP"></a></div><button class="watch" onclick="location.href='#'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#46618C,#1A2433)"><span class="glyph">아트</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#46618C">유</span><span><span class="nm">유나</span><span class="cat">아트 · 스트리머</span></span></div>
-            <p class="title">시청자 캐릭터 라이브 드로잉 — 한·일 양국 방송</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">JP</span><a href="#" aria-label="Twitch"><img src="../assets/platform/twitch.png" alt="Twitch"></a><a href="#" aria-label="YouTube"><img src="../assets/platform/youtube.png" alt="YouTube"></a></div><button class="watch" onclick="location.href='#'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#33547E,#142238)"><span class="glyph">스포츠</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#33547E">준</span><span><span class="nm">준호</span><span class="cat">스포츠 · 스트리머</span></span></div>
-            <p class="title">홈트 라이브 챌린지 — 4주 완주 프로그램 운영</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="SOOP"><img src="../assets/platform/soop.png" alt="SOOP"></a><a href="#" aria-label="치지직"><img src="../assets/platform/chzzk.png" alt="치지직"></a></div><button class="watch" onclick="location.href='#'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#2A3F61,#10161F)"><span class="glyph">쿠킹</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#2A3F61">소</span><span><span class="nm">소민</span><span class="cat">쿠킹 · 스트리머</span></span></div>
-            <p class="title">자취 요리 라이브 — 베트남·한국 가정식 레시피</p>
-            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">VN</span><a href="#" aria-label="YouTube"><img src="../assets/platform/youtube.png" alt="YouTube"></a></div><button class="watch" onclick="location.href='#'">프로필 · 섭외 보기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 보컬 클래스 이벤트 (하단 배치) -->
-      <div class="bootcamp" style="margin-top:44px">
-        <div class="bootcamp-l">
-          <span class="tag">오프라인 이벤트 · 방콕</span>
-          <h3>세아의 보컬 클래스 in 방콕<br>해외 수요를 찾아가는 첫 오프라인 레슨</h3>
-          <p>한국에서 보컬 레슨을 진행하는 소속 스트리머 세아가 태국 현지 수요에 맞춰 오프라인 클래스를 엽니다. 스타너츠는 이런 행사·강의를 기획하고, 섭외 문의를 연결합니다.</p>
-          <div class="bootcamp-feat">
-            <div class="it"><b>7/18~19</b>방콕 2일 클래스</div>
-            <div class="it"><b>30명</b>현장 정원</div>
-            <div class="it"><b>D-36</b>모집 마감</div>
-          </div>
-          <a class="btn btn--primary" href="mailto:booking@starnauts.com">행사·강의 섭외 문의 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
-        </div>
-        <div class="bootcamp-r">
-          <div class="bc-badge">
-            <span class="bc-k">EVENT</span>
-            <span class="bc-d">방콕</span>
-            <span class="bc-s">참가 모집중</span>
+            <div class="card-spacer"></div><div class="psoc-row"><span class="nat">KR</span><a href="#" aria-label="YouTube"><img width="512" height="512" src="../assets/platform/youtube.png" alt="YouTube"></a><a href="#" aria-label="SOOP"><img width="512" height="512" src="../assets/platform/soop.png" alt="SOOP"></a><a href="#" aria-label="Instagram"><img width="512" height="512" src="../assets/platform/instagram.png" alt="Instagram"></a><a href="#" aria-label="Threads"><img width="512" height="512" src="../assets/platform/threads.png" alt="Threads"></a></div><button class="watch" onclick="event.stopPropagation();location.href='streamer-shinjae.html'">프로필 · 섭외 보기 <svg aria-hidden="true" width="15" height="15"><use href="#i-arrow-out"/></svg></button>
           </div>
         </div>
       </div>
@@ -193,18 +126,18 @@
             <h3 class="section-title" style="font-size:26px">방송은 당신이, 나머지는 스타너츠가</h3>
             <p class="section-sub">소속 스트리머에게는 성장에 필요한 모든 지원이 제공됩니다. 콘텐츠에만 집중하세요.</p>
             <ul class="feat">
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>콜라보·광고·행사 섭외 매칭 — 제안 검토와 협상 대행</li>
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>채널 성장 컨설팅 — 시청 데이터 기반 콘텐츠 전략</li>
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>정산·계약 관리 — 강의 수익 70% 정산과 계약 검토</li>
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>강의·도구 전 과정 무제한 이용</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>콜라보·광고·행사 섭외 매칭 — 제안 검토와 협상 대행</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>채널 성장 컨설팅 — 시청 데이터 기반 콘텐츠 전략</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>정산·계약 관리 — 강의 수익 70% 정산과 계약 검토</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>강의·도구 전 과정 무제한 이용</li>
             </ul>
-            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--primary btn--lg" href="#">에이전시 지원하기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--primary btn--lg" href="#">에이전시 지원하기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a>
             <a class="btn btn--ghost btn--lg" href="mailto:booking@starnauts.com">행사·강의 섭외 문의</a></div>
           </div>
           <div class="bootcamp-r" style="display:flex;align-items:center;justify-content:center">
             <div class="bc-badge">
               <span class="bc-k">소속 스트리머</span>
-              <span class="bc-d">23명</span>
+              <span class="bc-d">2명</span>
               <span class="bc-s">상시 모집</span>
             </div>
           </div>
@@ -216,13 +149,13 @@
         <div class="bootcamp-l">
           <span class="tag">상시 모집</span>
           <h3>에이전시 합류 절차<br>지원부터 온보딩까지 2주</h3>
-          <p>구독자 수보다 꾸준함과 성장 의지를 봅니다. 데뷔 전 지망생도 부트캠프 연계 트랙으로 지원할 수 있습니다.</p>
+          <p>구독자 수보다 꾸준함과 성장 의지를 봅니다. 아직 채널을 시작하기 전이어도 지원할 수 있습니다.</p>
           <div class="bootcamp-feat">
             <div class="it"><b>1단계</b>서류 지원</div>
             <div class="it"><b>2단계</b>채널 리뷰·인터뷰</div>
             <div class="it"><b>3단계</b>계약·온보딩</div>
           </div>
-          <a class="btn btn--primary" href="#">지원서 작성하기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+          <a class="btn btn--primary" href="#">지원서 작성하기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a>
         </div>
         <div class="bootcamp-r">
           <div class="bc-badge">
@@ -241,11 +174,11 @@
             <h3 class="section-title" style="font-size:26px">프로필 페이지는 스트리머가 직접 만듭니다</h3>
             <p class="section-sub">프로필, 진행 강의, 이벤트 일정 — 스타너츠가 임의로 만드는 것이 아니라, 각자 본인 계정 대시보드에서 설정한 내용이 그대로 노출됩니다.</p>
             <ul class="feat">
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>프로필·국적·플랫폼·SNS 링크 직접 편집</li>
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>강의 등록 + 스타 가격 설정 (수익 70% 정산)</li>
-              <li><span class="ic"><svg><use href="#i-check"/></svg></span>이벤트·행사 일정 등록 → 즉시 노출</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>프로필·국적·플랫폼·SNS 링크 직접 편집</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>강의 등록 + 스타 가격 설정 (수익 70% 정산)</li>
+              <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>이벤트·행사 일정 등록 → 즉시 노출</li>
             </ul>
-            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--primary" href="dashboard.html">대시보드 시안 보기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--primary" href="dashboard.html">대시보드 시안 보기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a>
             <a class="btn btn--ghost" href="endolphin.html">예시 프로필 페이지</a></div>
           </div>
           <div class="bootcamp-r" style="display:flex;align-items:center;justify-content:center">
@@ -265,16 +198,16 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img loading="lazy" src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
             <div class="fcolx"><h5>회사</h5><a href="about.html">소개</a><a href="about.html#careers">채용</a><a href="partnership.html">파트너십</a><a href="blog.html">블로그</a></div>
             <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
@@ -288,7 +221,7 @@
 </div>
 
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
+<script src="../home/shell.js?v=21"></script>
 <script src="../home/home.js"></script>
 </body>
 </html>

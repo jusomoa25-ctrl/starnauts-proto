@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
-<title>STARNAUTS.com — Streaming Skill Training System</title>
+<title>STARNAUTS.com — AI 음원·채널 운영 강의와 제작 도구</title>
+<meta name="description" content="유튜브 채널과 AI 음원을 직접 운영하며 쌓은 기록으로 만든 4과목 27강, 그리고 음원 프롬프트 생성·채널 리서치·자동 업로드까지 제작 도구를 한곳에. 도구는 회원 누구나 무료로 쓸 수 있습니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/Starnauts%20Home.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STARNAUTS.com — AI 음원·채널 운영 강의와 제작 도구">
+<meta property="og:description" content="유튜브 채널과 AI 음원을 직접 운영하며 쌓은 기록으로 만든 4과목 27강, 그리고 음원 프롬프트 생성·채널 리서치·자동 업로드까지 제작 도구를 한곳에. 도구는 회원 누구나 무료로 쓸 수 있습니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/Starnauts%20Home.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/site-logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -32,7 +39,6 @@
   <symbol id="i-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
-  <symbol id="i-arrow-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
   <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
   <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
@@ -43,10 +49,10 @@
 <!-- ===== SIDEBAR (fixed) ===== -->
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="#home" aria-label="STARNAUTS 홈"><img src="assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav" id="sideNav">
+  <nav class="side-nav" id="sideNav" aria-label="주요 메뉴">
     <a href="#home" data-sec="home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="#class" data-sec="class"><span class="en">CLASS</span><span class="ko">강의</span></a>
-    <a href="#tool" data-sec="tool"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <a href="pages/tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <a href="#content" data-sec="content"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
     <a href="#agency" data-sec="agency"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
   </nav>
@@ -66,7 +72,7 @@
   <!-- top bar: navigates to separate pages -->
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="Starnauts Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="pages/class.html">CLASS<span class="tko">강의</span></a>
       <a href="pages/tool.html">TOOL<span class="tko">도구</span></a>
@@ -75,21 +81,21 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="pages/signup.html">무료로 시작</a>
-      <a class="power" href="pages/login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="pages/login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
   <!-- ===== HERO ===== -->
-  <section class="hero hero--earth" id="home">
+  <section class="hero hero--earth" id="home" tabindex="-1">
     <div class="wrap hero-inner">
       <div class="earth-globe" aria-hidden="true"><img src="assets/earth.webp" alt="" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover" width="3543" height="3543"></div>
       <h1 class="dotcom">STARNAUTS<span class="tld">.com</span></h1>
-      <p class="hero-tag">GLOBAL · STREAMING SKILL TRAINING SYSTEM</p>
-      <h2 class="hero-lead-title">평범했던 우리가, <span class="em">별</span>이 되기까지<br>스트리머의 <span class="em">첫 송출</span>부터 방송 스킬까지</h2>
-      <p class="lead">촬영·방송 셋팅·보컬·댄스·음원 제작·편집부터 사주·마술·뷰티 같은 지식·재능 강의까지 — 스트리머에게 필요한 모든 것을 전 세계 현직 스트리머의 실전 커리큘럼으로 제공합니다.</p>
+      <p class="hero-tag">GLOBAL · AI MUSIC CHANNEL BUILD SYSTEM</p>
+      <h2 class="hero-lead-title">직접 <span class="em">돌려본 것</span>만 가르칩니다<br>AI 음원 제작부터 <span class="em">채널 운영</span>까지</h2>
+      <p class="lead">SUNO 음원 제작, 유통·Content ID 수익 구조, 플레이리스트 채널 유입 진단, 3시간 영상 파이프라인 — 우리가 직접 운영하며 남긴 기록을 4과목 27강으로 묶었습니다. 같은 과정에서 만들어 지금도 돌리고 있는 제작 도구 11종은 회원 누구나 무료입니다.</p>
       <div class="hero-actions">
-        <a class="btn btn--primary btn--lg" href="#class">무료로 시작하기</a>
-        <a class="btn btn--ghost-dark btn--lg" href="#class">강의 둘러보기</a>
+        <a class="btn btn--primary btn--lg" href="#class">강의 둘러보기</a>
+        <a class="btn btn--ghost-dark btn--lg" href="pages/tool.html">도구 무료로 쓰기</a>
       </div>
     </div>
   </section>
@@ -99,104 +105,68 @@
     <div class="wrap">
       <div class="sec-head"><h2 class="sec-en">CLASS</h2><p class="sec-ko">강의</p></div>
       <div class="class-stats">
-        <div class="cs"><b>1,121명</b><span>누적 수강생</span></div>
-        <div class="cs"><b>38명</b><span>소속 강사</span></div>
-        <div class="cs"><b>4.9점</b><span>평균 만족도</span></div>
+        <div class="cs" data-stat-item style="display:none"><b data-stat="curriculum_courses" data-stat-suffix="과목"></b><span>강의 라인업</span></div>
+        <div class="cs" data-stat-item style="display:none"><b data-stat="curriculum_lessons" data-stat-suffix="강"></b><span>총 회차</span></div>
+        <div class="cs" data-stat-item style="display:none"><b data-stat="curriculum_hours"></b><span>총 강의 시간</span></div>
+        <div class="cs" data-stat-item style="display:none"><b data-stat="students_total" data-stat-suffix="명"></b><span>누적 수강생</span></div>
+        <div class="cs" data-stat-item style="display:none"><b data-stat="instructors_total" data-stat-suffix="명"></b><span>소속 강사</span></div>
+        <div class="cs" data-stat-item style="display:none"><b data-stat="satisfaction_avg" data-stat-suffix="점"></b><span>평균 만족도</span></div>
       </div>
-      <p class="sec-lead">전·현업 스트리머의 생생한 강의<br>심혈을 기울여 만든 <b>커리큘럼</b>부터 <b>1:1 예약 강의 시스템</b>까지</p>
+      <p class="sec-lead">우리가 직접 집행하고 측정한 것만 담은 강의<br><b>4과목 27강</b>, 총 <b>14시간 30분</b>의 커리큘럼</p>
       <p class="star-note">모든 강의는 <b>스타(STAR)</b>로 결제 · <b>$1 충전 = 1 스타</b> · 스타는 강사에게 정산됩니다</p>
 
-      <div class="tabs center" id="courseTabs" role="tablist" aria-label="강의 카테고리">
-        <button class="tab is-active" role="tab" aria-selected="true" data-cat="all">전체</button>
-        <button class="tab" role="tab" aria-selected="false" data-cat="broadcast">방송 입문</button>
-        <button class="tab" role="tab" aria-selected="false" data-cat="vocal">보컬·댄스</button>
-        <button class="tab" role="tab" aria-selected="false" data-cat="video">영상·편집</button>
-        <button class="tab" role="tab" aria-selected="false" data-cat="ai">AI·음원</button>
+      <div class="tabs center" id="courseTabs" role="group" aria-label="강의 카테고리">
+        <button class="tab is-active" aria-pressed="true" data-cat="all">전체</button>
+        <button class="tab" aria-pressed="false" data-cat="music">AI 음원</button>
+        <button class="tab" aria-pressed="false" data-cat="channel">채널 운영</button>
       </div>
 
-      <div class="course-grid" id="courseGrid">
-        <article class="course" data-cat="broadcast">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#1C4B86)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-cam"/></svg><span class="lvl">입문</span></div>
+      <div class="course-grid two" id="courseGrid">
+        <article class="course" data-cat="music">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#3A5C8F,#141A24)"><svg aria-hidden="true" class="glyph"><use href="#i-music"/></svg><span class="lvl">입문</span></div>
           <div class="course-body">
-            <span class="course-cat">방송 입문</span>
-            <h3>처음부터 끝까지: 첫 송출 완벽 가이드</h3>
-            <div class="course-meta"><span class="tutor-ava" style="background:#2E6FC9">레</span><span class="tname">김레오 · 현업 7년차</span><span class="rate"><b>★</b> 4.9 <span style="color:var(--muted-2);font-weight:600">(213)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="free">무료</span></span><span class="enroll">수강하기 →</span></div>
+            <span class="course-cat">C1 · AI 음원</span>
+            <h3>AI 음원 수익 구조 해부: 마스터권·유통사·Content ID</h3>
+            <div class="course-meta"><span class="tname">7강 · 회당 25~35분</span><span class="rate">총 3시간 30분</span></div>
+            <div class="course-foot"><span class="course-price"><span class="punit">가격 준비중</span></span><span class="enroll"><a href="pages/course-detail.html?course=c1" style="color:inherit">커리큘럼 보기 →</a></span></div>
           </div>
         </article>
-        <article class="course" data-cat="vocal">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#2E6FC9)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-mic"/></svg><span class="lvl">중급</span></div>
+        <article class="course" data-cat="music">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2F4F7E,#10141B)"><svg aria-hidden="true" class="glyph"><use href="#i-music"/></svg><span class="lvl">중급</span></div>
           <div class="course-body">
-            <span class="course-cat">보컬</span>
-            <h3>라이브 보컬 트레이닝: 떨지 않는 목소리</h3>
-            <div class="course-meta"><span class="tutor-ava" style="background:#3A5C8F">세</span><span class="tname">박세아 · 보컬 디렉터</span><span class="rate"><b>★</b> 4.8 <span style="color:var(--muted-2);font-weight:600">(167)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>99 <span class="punit">스타</span></span><span class="enroll">수강하기 →</span></div>
+            <span class="course-cat">C2 · AI 음원</span>
+            <h3>SUNO 프로덕션: 프롬프트 5단계 공식과 30곡 세트 제작</h3>
+            <div class="course-meta"><span class="tname">8강 · 회당 30~40분</span><span class="rate">총 4시간 30분</span></div>
+            <div class="course-foot"><span class="course-price"><span class="punit">가격 준비중</span></span><span class="enroll"><a href="pages/course-detail.html?course=c2" style="color:inherit">커리큘럼 보기 →</a></span></div>
           </div>
         </article>
-        <article class="course" data-cat="vocal">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#5B7BB0,#245AA8)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-bolt"/></svg><span class="lvl">입문</span></div>
+        <article class="course" data-cat="channel">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><svg aria-hidden="true" class="glyph"><use href="#i-trend"/></svg><span class="lvl">중급</span></div>
           <div class="course-body">
-            <span class="course-cat">댄스</span>
-            <h3>숏폼 댄스 챌린지 마스터</h3>
-            <div class="course-meta"><span class="tutor-ava" style="background:#4C86D8">하</span><span class="tname">정하늘 · 안무가</span><span class="rate"><b>★</b> 4.9 <span style="color:var(--muted-2);font-weight:600">(204)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>69 <span class="punit">스타</span></span><span class="enroll">수강하기 →</span></div>
+            <span class="course-cat">C3 · 채널 운영</span>
+            <h3>플레이리스트 채널의 진짜 지표: 유입 구조 진단과 광고 판정</h3>
+            <div class="course-meta"><span class="tname">6강 · 회당 30~40분</span><span class="rate">총 3시간 30분</span></div>
+            <div class="course-foot"><span class="course-price"><span class="punit">가격 준비중</span></span><span class="enroll"><a href="pages/course-detail.html?course=c3" style="color:inherit">커리큘럼 보기 →</a></span></div>
           </div>
         </article>
-        <article class="course" data-cat="video">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#2A3342,#0E1116)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-video"/></svg><span class="lvl">중급</span></div>
+        <article class="course" data-cat="channel">
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2A3342,#0E1116)"><svg aria-hidden="true" class="glyph"><use href="#i-video"/></svg><span class="lvl">중급</span></div>
           <div class="course-body">
-            <span class="course-cat">영상·편집</span>
-            <h3>시청자를 붙잡는 편집 문법</h3>
-            <div class="course-meta"><span class="tutor-ava" style="background:#2A3342">준</span><span class="tname">오준 · 편집 8년차</span><span class="rate"><b>★</b> 4.7 <span style="color:var(--muted-2);font-weight:600">(98)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>89 <span class="punit">스타</span></span><span class="enroll">수강하기 →</span></div>
-          </div>
-        </article>
-        <article class="course" data-cat="ai">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#3A5C8F,#141A24)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-music"/></svg><span class="lvl">입문</span></div>
-          <div class="course-body">
-            <span class="course-cat">AI·음원</span>
-            <h3>Suno로 만드는 나만의 시그니처 BGM</h3>
-            <div class="course-meta"><span class="tutor-ava" style="background:#245AA8">도</span><span class="tname">한도윤 · 사운드 PD</span><span class="rate"><b>★</b> 4.9 <span style="color:var(--muted-2);font-weight:600">(312)</span></span></div>
-            <div class="course-foot"><span class="course-price"><span class="pstar">★</span>59 <span class="punit">스타</span></span><span class="enroll">수강하기 →</span></div>
-          </div>
-        </article>
-        <article class="course" data-cat="broadcast">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#1C4B86,#0E1116)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-trend"/></svg><span class="lvl">중급</span></div>
-          <div class="course-body">
-            <span class="course-cat">방송 입문</span>
-            <h3>구독자 0 → 1,000 채널 성장 로드맵</h3>
-            <div class="course-meta"><span class="tutor-ava" style="background:#2E6FC9">레</span><span class="tname">김레오 · 현업 7년차</span><span class="rate"><b>★</b> 4.8 <span style="color:var(--muted-2);font-weight:600">(145)</span></span></div>
-            <div class="course-foot"><span class="course-price"><s>129 스타</s><span class="pstar">★</span>99 <span class="punit">스타</span></span><span class="enroll">수강하기 →</span></div>
+            <span class="course-cat">C4 · 채널 운영</span>
+            <h3>3시간 영상 출하 파이프라인: 마스터링·CapCut·8개국어·API 업로드</h3>
+            <div class="course-meta"><span class="tname">6강 · 회당 25~40분</span><span class="rate">총 3시간</span></div>
+            <div class="course-foot"><span class="course-price"><span class="punit">가격 준비중</span></span><span class="enroll"><a href="pages/course-detail.html?course=c4" style="color:inherit">커리큘럼 보기 →</a></span></div>
           </div>
         </article>
       </div>
 
       <div class="statline">
-        <div class="s"><div class="n">1,121명</div><div class="l">누적 수강생</div></div>
-        <div class="s"><div class="n">3,521회</div><div class="l">강의 누적 수료</div></div>
-        <div class="s"><div class="n">97%</div><div class="l">강의 추가 수강률</div></div>
-        <a class="btn btn--ghost" href="pages/class.html" style="white-space:nowrap">전체 강의 보러가기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
-      </div>
-
-      <div class="bootcamp">
-        <div class="bootcamp-l">
-          <span class="tag">4주 집중 · 9기 모집중</span>
-          <h3>스타너츠 데뷔 부트캠프<br>4주 만에 첫 송출까지</h3>
-          <p>장비 세팅부터 첫 라이브 송출, 콘텐츠 기획까지. 주 3회 라이브 세션으로 4주 만에 데뷔를 확실하게 끝내는 집중 트랙입니다.</p>
-          <div class="bootcamp-feat">
-            <div class="it"><b>4주</b>주차별 커리큘럼</div>
-            <div class="it"><b>주3회</b>라이브 세션</div>
-            <div class="it"><b>320명</b>누적 수료</div>
-          </div>
-          <a class="btn btn--primary" href="pages/bootcamp.html">부트캠프 신청하기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
-        </div>
-        <div class="bootcamp-r">
-          <div class="bc-badge">
-            <span class="bc-k">9기 모집중</span>
-            <span class="bc-d">D-7</span>
-            <span class="bc-s">잔여 8석</span>
-          </div>
-        </div>
+        <div class="s" data-stat-item style="display:none"><div class="n" data-stat="suno_reference_db" data-stat-suffix="건"></div><div class="l">SUNO 레퍼런스 곡 DB</div></div>
+        <div class="s" data-stat-item style="display:none"><div class="n" data-stat="suno_manuals" data-stat-suffix="편"></div><div class="l">SUNO 실전 매뉴얼</div></div>
+        <div class="s" data-stat-item style="display:none"><div class="n" data-stat="distributor_compare" data-stat-suffix="개사"></div><div class="l">유통사 실비용 비교</div></div>
+        <div class="s" data-stat-item style="display:none"><div class="n" data-stat="completions_total" data-stat-suffix="회"></div><div class="l">강의 누적 수료</div></div>
+        <div class="s" data-stat-item style="display:none"><div class="n" data-stat="repeat_rate" data-stat-suffix="%"></div><div class="l">강의 추가 수강률</div></div>
+        <a class="btn btn--ghost" href="pages/class.html" style="white-space:nowrap">전체 강의 보러가기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a>
       </div>
     </div>
   </section>
@@ -205,24 +175,24 @@
   <section class="section" id="tool">
     <div class="wrap">
       <div class="sec-head"><h2 class="sec-en">TOOL</h2><p class="sec-ko">도구</p></div>
-      <p class="sec-lead">스타너츠가 직접 만든 다양한 실전 도구<br>방송 준비부터 운영까지, 도구로 더 빠르게</p>
+      <p class="sec-lead">우리가 채널을 돌리려고 만들어 지금도 쓰는 도구<br>강의만 파는 곳이 아닙니다 — <b>도구 11종</b>을 그대로 공개합니다</p>
       <div class="tool-panel">
       <div class="tool-grid">
         <div class="tool-copy">
-          <h3 class="section-title" style="font-size:26px">방송에 바로 쓰는 실전 도구 모음</h3>
-          <p class="section-sub">Suno 프롬프트 생성기부터 주간 콘텐츠 트렌드 리포트, 썸네일·제목 추천까지. 스타너츠가 직접 만든 도구가 계속 추가됩니다.</p>
+          <h3 class="section-title" style="font-size:26px">채널 운영에 바로 쓰는 실전 도구 모음</h3>
+          <p class="section-sub">SUNO 프롬프트 생성기, 유튜브 채널 딥 리서치, 플레이리스트 메이커, 캡컷 자동 편집까지. 우리 채널을 돌리려고 만든 도구를 그대로 열어 두고 계속 추가합니다.</p>
           <ul class="feat">
-            <li><span class="ic"><svg><use href="#i-check"/></svg></span>AI 음원 프롬프트 생성기 (오른쪽 미리보기)</li>
-            <li><span class="ic"><svg><use href="#i-check"/></svg></span>주간 콘텐츠 트렌드·키워드 리포트</li>
-            <li><span class="ic"><svg><use href="#i-check"/></svg></span>썸네일·제목 추천 등 도구 지속 추가</li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>AI 음원 프롬프트 생성기 (오른쪽 미리보기)</li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>유튜브 채널 딥 리서치 · 플레이리스트 메이커</li>
+            <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span>타임스탬프·메타데이터·캡컷 자동 편집 등 11종</li>
           </ul>
-          <a class="btn btn--primary btn--lg" href="#">도구 바로가기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a>
+          <a class="btn btn--primary btn--lg" href="pages/tool.html">도구 바로가기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a>
         </div>
         <div class="suno">
           <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">prompt-generator</span><span class="live-tool">● 실시간 미리보기</span></div>
           <div class="suno-body">
-            <div class="suno-field"><label>장르</label>
-              <div class="chiprow" data-group="genre">
+            <div class="suno-field"><label id="lblGenre">장르</label>
+              <div class="chiprow" data-group="genre" role="group" aria-labelledby="lblGenre">
                 <button class="chip on" data-val="Lo-fi">Lo-fi</button>
                 <button class="chip" data-val="K-Pop">K-Pop</button>
                 <button class="chip" data-val="EDM">EDM</button>
@@ -230,19 +200,19 @@
                 <button class="chip" data-val="Hip-hop">Hip-hop</button>
               </div>
             </div>
-            <div class="suno-field"><label>무드</label>
-              <div class="chiprow" data-group="mood">
+            <div class="suno-field"><label id="lblMood">무드</label>
+              <div class="chiprow" data-group="mood" role="group" aria-labelledby="lblMood">
                 <button class="chip on" data-val="dreamy">몽환적인</button>
                 <button class="chip" data-val="energetic">신나는</button>
                 <button class="chip" data-val="calm">차분한</button>
                 <button class="chip" data-val="epic">웅장한</button>
               </div>
             </div>
-            <div class="suno-field"><label>BPM · <span id="bpmVal" style="color:var(--blue)">90</span></label>
-              <input type="range" id="bpm" min="60" max="160" value="90" step="5" style="width:100%;accent-color:var(--blue)"></div>
-            <div class="suno-field" style="margin-bottom:18px"><label>방송 분위기 키워드 (선택)</label>
-              <input type="text" id="kw" placeholder="예: 새벽 감성, 게임 인트로, 따뜻한 토크"></div>
-            <div class="suno-out"><span class="olabel">Generated prompt</span><button class="copy" id="copyBtn">복사</button><div class="otext" id="promptOut"></div></div>
+            <div class="suno-field"><label for="bpm">BPM · <span id="bpmVal" style="color:var(--blue-300)">90</span></label>
+              <input type="range" id="bpm" aria-label="BPM" min="60" max="160" value="90" step="5" style="width:100%;accent-color:var(--blue)"></div>
+            <div class="suno-field" style="margin-bottom:18px"><label for="kw">곡 분위기 키워드 (선택)</label>
+              <input type="text" id="kw" placeholder="예: 새벽 감성, 카페 BGM, 빗소리"></div>
+            <div class="suno-out"><span class="olabel">Generated prompt</span><button class="copy" id="copyBtn" aria-live="polite">복사</button><div class="otext" id="promptOut" aria-live="polite"></div></div>
           </div>
         </div>
       </div>
@@ -254,34 +224,31 @@
   <section class="section" id="content">
     <div class="wrap">
       <div class="sec-head"><h2 class="sec-en">CONTENT</h2><p class="sec-ko">콘텐츠</p></div>
-      <p class="sec-lead">스타너츠의 강사·수강생이 만든 다양한 콘텐츠<br>강의를 기반으로 제작된 콘텐츠를 만나보세요</p>
+      <p class="sec-lead">강의에 쓰인 실제 작업을 그대로 담은 콘텐츠<br>기획부터 제작·발행까지의 과정을 영상으로 만나보세요</p>
       <div class="course-grid three">
         <article class="course">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#16385F)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-play"/></svg></div>
+          <div class="course-thumb" style="background:linear-gradient(135deg,#2E6FC9,#16385F)"><span class="hot">HOT</span><svg aria-hidden="true" class="glyph"><use href="#i-play"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">브이로그</span>
-            <h3>데뷔 첫 방송 비하인드 — 레오의 송출 도전기</h3>
-            <div class="course-meta"><span class="tname">조회수 12,400</span><span class="rate" style="color:var(--muted-2);font-weight:600">3일 전</span></div>
+            <span class="course-cat">작업 기록</span>
+            <h3>3시간 플레이리스트 영상, 편집 전 과정</h3>
           </div>
         </article>
         <article class="course">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-mic"/></svg></div>
+          <div class="course-thumb" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><span class="hot">HOT</span><svg aria-hidden="true" class="glyph"><use href="#i-mic"/></svg></div>
           <div class="course-body">
-            <span class="course-cat">하이라이트</span>
-            <h3>보컬 트레이닝 3개월, 목소리 변화 모음</h3>
-            <div class="course-meta"><span class="tname">조회수 8,920</span><span class="rate" style="color:var(--muted-2);font-weight:600">1주 전</span></div>
+            <span class="course-cat">작업 기록</span>
+            <h3>한 컨셉으로 곡 세트를 균질하게 뽑는 과정</h3>
           </div>
         </article>
         <article class="course">
-          <div class="course-thumb" style="background:linear-gradient(135deg,#3A5C8F,#141A24)"><span class="hot">HOT</span><svg class="glyph"><use href="#i-music"/></svg></div>
+          <div class="course-thumb" style="background:linear-gradient(135deg,#3A5C8F,#141A24)"><span class="hot">HOT</span><svg aria-hidden="true" class="glyph"><use href="#i-music"/></svg></div>
           <div class="course-body">
             <span class="course-cat">플레이리스트</span>
             <h3>Suno로 만든 채널 시그니처 BGM 모음</h3>
-            <div class="course-meta"><span class="tname">조회수 21,300</span><span class="rate" style="color:var(--muted-2);font-weight:600">2주 전</span></div>
           </div>
         </article>
       </div>
-      <div class="center-cta"><a class="btn btn--ghost" href="#">콘텐츠 보러가기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+      <div class="center-cta"><a class="btn btn--ghost" href="#">콘텐츠 보러가기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
     </div>
   </section>
 
@@ -289,68 +256,11 @@
   <section class="section" id="agency">
     <div class="wrap">
       <div class="sec-head"><h2 class="sec-en">AGENCY</h2><p class="sec-ko">에이전시</p></div>
-      <p class="sec-lead">지금 <b style="color:var(--live)">LIVE</b> 중인 소속 스트리머<br>시청자에서 지망생으로 — 먼저 별이 된 사람들을 만나보세요</p>
-      <div class="agency-grid">
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#2E6FC9,#16385F)"><span class="badge-live"><span class="pulse"></span>LIVE</span><span class="glyph">게임</span><span class="viewers"><svg width="13" height="13"><use href="#i-eye"/></svg> 1,240</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#2E6FC9">레</span><span><span class="nm">레오</span><span class="cat">게임 · 스트리머</span></span></div>
-            <p class="title">신작 RPG 최초 공개 플레이 — 첫 보스 레이드 도전</p>
-            <div class="scard-soc"><a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a><a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a></div><button class="watch">이 방송 보러가기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#4C86D8,#1C4B86)"><span class="badge-live"><span class="pulse"></span>LIVE</span><span class="glyph">보컬</span><span class="viewers"><svg width="13" height="13"><use href="#i-eye"/></svg> 870</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#3A5C8F">세</span><span><span class="nm">세아</span><span class="cat">보컬 · 스트리머</span></span></div>
-            <p class="title">밤 감성 어쿠스틱 라이브 — 신청곡 받아요</p>
-            <div class="scard-soc"><a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a><a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a></div><button class="watch">이 방송 보러가기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#5B7BB0,#245AA8)"><span class="badge-live"><span class="pulse"></span>LIVE</span><span class="glyph">댄스</span><span class="viewers"><svg width="13" height="13"><use href="#i-eye"/></svg> 2,100</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#4C86D8">하</span><span><span class="nm">하늘</span><span class="cat">댄스 · 스트리머</span></span></div>
-            <p class="title">신곡 커버 댄스 챌린지 — 같이 춰요!</p>
-            <div class="scard-soc"><a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a><a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a></div><button class="watch">이 방송 보러가기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-        <div class="scard">
-          <div class="scard-top" style="background:linear-gradient(135deg,#245AA8,#141A24)"><span class="badge-live"><span class="pulse"></span>LIVE</span><span class="glyph">음악</span><span class="viewers"><svg width="13" height="13"><use href="#i-eye"/></svg> 1,560</span></div>
-          <div class="scard-body">
-            <div class="who"><span class="ava" style="background:#245AA8">도</span><span><span class="nm">도윤</span><span class="cat">음악 · 스트리머</span></span></div>
-            <p class="title">AI로 만든 신곡 첫 공개 — 라이브 셋업</p>
-            <div class="scard-soc"><a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a><a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a></div><button class="watch">이 방송 보러가기 <svg width="15" height="15"><use href="#i-arrow-out"/></svg></button>
-          </div>
-        </div>
-      </div>
-      <div class="center-cta"><a class="btn btn--ghost" href="#">스트리머 보러가기 <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+      <p class="sec-lead">스타너츠와 함께하는 소속 크리에이터<br>채널과 활동은 에이전시 페이지에서 만나보세요</p>
+      <div class="center-cta"><a class="btn btn--ghost" href="pages/agency.html">에이전시 보러가기 <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section" id="review">
-    <div class="wrap">
-      <div class="review-panel">
-      <div class="sec-head tquote-head"><h2 class="sec-en">평범했던 우리가, 별이 되기까지</h2><p class="sec-ko">스타너츠와 함께한 시청자들의 이야기</p></div>
-      <div class="tslider">
-        <div class="tviewport">
-          <div class="ttrack" id="tTrack">
-            <div class="tslide"><div class="tcard"><div class="stars">★★★★★</div><blockquote>“장비도 없던 제가 <span class="mk">4주 만에 첫 송출</span>을 했어요. 멘토님이 매주 방송을 같이 봐주신 게 정말 컸습니다.”</blockquote><div class="tperson"><span class="ava" style="background:#2E6FC9">김</span><span><span class="nm">김O준</span><span class="role">게임 스트리머 · 데뷔 6개월차</span></span></div></div></div>
-            <div class="tslide"><div class="tcard"><div class="stars">★★★★★</div><blockquote>“보컬 강의를 듣고 라이브에서 더 이상 떨지 않아요. <span class="mk">고정 시청자가 3배</span> 늘었습니다.”</blockquote><div class="tperson"><span class="ava" style="background:#3A5C8F">박</span><span><span class="nm">박O아</span><span class="role">보컬 스트리머 · 데뷔 1년차</span></span></div></div></div>
-            <div class="tslide"><div class="tcard"><div class="stars">★★★★★</div><blockquote>“Suno 프롬프트 생성기로 만든 BGM이 <span class="mk">제 채널 시그니처</span>가 됐어요. 저작권 걱정도 없고요.”</blockquote><div class="tperson"><span class="ava" style="background:#245AA8">한</span><span><span class="nm">한O윤</span><span class="role">음악 스트리머 · 데뷔 8개월차</span></span></div></div></div>
-            <div class="tslide"><div class="tcard"><div class="stars">★★★★★</div><blockquote>“혼자였으면 포기했을 거예요. 매니지먼트가 붙으니 <span class="mk">콜라보와 광고</span>까지 들어옵니다.”</blockquote><div class="tperson"><span class="ava" style="background:#4C86D8">정</span><span><span class="nm">정O늘</span><span class="role">댄스 스트리머 · 데뷔 1년 4개월차</span></span></div></div></div>
-          </div>
-        </div>
-        <div class="tnav">
-          <button class="cbtn" id="tPrev" aria-label="이전 후기"><svg width="20" height="20"><use href="#i-chev-l"/></svg></button>
-          <div class="tdots" id="tDots"></div>
-          <button class="cbtn" id="tNext" aria-label="다음 후기"><svg width="20" height="20"><use href="#i-chev-r"/></svg></button>
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -359,16 +269,16 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="#home"><img src="assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="#home"><img loading="lazy" src="assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>서비스</h5><a href="#class">강의</a><a href="#tool">도구</a><a href="#content">콘텐츠</a><a href="#agency">에이전시</a></div>
             <div class="fcolx"><h5>회사</h5><a href="pages/about.html">소개</a><a href="pages/about.html#careers">채용</a><a href="pages/partnership.html">파트너십</a><a href="pages/blog.html">블로그</a></div>
             <div class="fcolx"><h5>지원</h5><a href="pages/contact.html">고객센터</a><a href="pages/faq.html">자주 묻는 질문</a><a href="pages/terms.html">이용약관</a><a href="pages/privacy.html">개인정보처리방침</a></div>
@@ -382,9 +292,10 @@
 
 </div>
 
+<script src="home/site-stats.js?v=1"></script>
 <script src="home/space.js"></script>
 <script src="home/home.js"></script>
-<script src="home/shell.js"></script>
+<script src="home/shell.js?v=21"></script>
 <script src="home/earth.js?v=3"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
-<title>STARNAUTS — 구독자 0 → 1,000 채널 성장 로드맵</title>
+<title>STARNAUTS — 강의 상세</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
@@ -42,7 +42,7 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html" class="active"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
@@ -56,10 +56,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html" class="active">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
@@ -68,69 +68,54 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="signup.html">무료로 시작</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
   <section class="section" style="padding-top:36px">
     <div class="wrap">
-      <a href="class.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:22px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 강의 목록으로</a>
+      <a href="class.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:22px"><svg aria-hidden="true" width="15" height="15"><use href="#i-chev-l"/></svg> 강의 목록으로</a>
 
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
-        <span style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(46,111,201,.25);color:var(--blue-300);font-weight:800">콘텐츠 스킬</span>
-        <span style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(255,255,255,.08);color:#C6CEDC;font-weight:700">중급</span>
+        <span id="cdCat" style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(46,111,201,.25);color:var(--blue-300);font-weight:900"></span>
+        <span id="cdLevel" style="font-size:11px;padding:4px 10px;border-radius:7px;background:rgba(255,255,255,.08);color:#C6CEDC;font-weight:700"></span>
       </div>
-      <h1 style="font-size:32px;font-weight:900;line-height:1.3">구독자 0 → 1,000 채널 성장 로드맵</h1>
-      <p style="margin-top:8px;color:#9aa6bc;font-size:14px">김레오 · 현업 7년차 &nbsp;·&nbsp; <b style="color:#fff">★ 4.8</b> (145) &nbsp;·&nbsp; 수강생 1,034명 &nbsp;·&nbsp; 마지막 업데이트 6/9</p>
+      <h1 id="cdTitle" style="font-size:32px;font-weight:900;line-height:1.3"></h1>
+      <p id="cdLead" style="margin-top:10px;color:#9aa6bc;font-size:14.5px;line-height:1.65;max-width:760px"></p>
 
       <div class="cd-grid" style="margin-top:26px">
-        <!-- 좌: 플레이어 + 커리큘럼 -->
+        <!-- 좌: 대표 이미지 + 커리큘럼 -->
         <div>
           <div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#1C4B86,#0E1116);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08)">
-            <svg width="68" height="68" style="color:#fff;opacity:.92"><use href="#i-play"/></svg>
-            <span style="position:absolute;left:14px;bottom:12px;font-size:12px;color:#9aa6bc">1회차 오리엔테이션 — 무료 미리보기</span>
+            <svg aria-hidden="true" width="68" height="68" style="color:#fff;opacity:.92"><use href="#i-play"/></svg>
+            <span style="position:absolute;left:14px;bottom:12px;font-size:12px;color:#9aa6bc">강의 영상 준비 중</span>
           </div>
 
           <div class="suno" style="margin-top:22px">
-            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">curriculum</span><span class="live-tool">8회차 · 주 1회 업데이트</span></div>
+            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">curriculum</span><span class="live-tool" id="cdCount"></span></div>
             <div class="suno-body">
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">1회차</span><span style="flex:1">오리엔테이션 — 성장이 멈추는 진짜 이유</span><div class="cd-prog"><i style="width:100%"></i></div><span class="cd-pill cd-free">무료</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">2회차</span><span style="flex:1">채널 포지셔닝: 누구에게 무엇을 줄 것인가</span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">구매 후 시청</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">3회차</span><span style="flex:1">썸네일·제목 실험 설계</span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">구매 후 시청</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">4회차</span><span style="flex:1">알고리즘과 업로드 루틴 <span style="color:#5BC98A;font-size:11px;font-weight:700">— 6/21 (일) 라이브</span></span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">스케줄</span></div>
-              <div class="cd-row"><span style="color:var(--blue);font-weight:700">5~8회차</span><span style="flex:1">커뮤니티 빌딩 · 수익화 · 번아웃 관리 · 1,000 이후</span><div class="cd-prog"><i style="width:0"></i></div><span class="cd-pill cd-lock">순차 공개</span></div>
-              <p style="margin-top:12px;font-size:12px;color:#9aa6bc">매 회차 종료 후 <b style="color:#C6CEDC">정리 노트</b>(강사 작성 + AI 보조 제작)가 계정으로 지급됩니다.</p>
+              <div id="cdRows"></div>
+              <p style="margin-top:12px;font-size:12px;color:#9aa6bc">회차 구성은 커리큘럼 초안 기준이며, 제작 과정에서 조정될 수 있습니다.</p>
             </div>
           </div>
         </div>
 
-        <!-- 우: 구매 박스 + 강사 -->
+        <!-- 우: 수강 안내 + 실측 근거 -->
         <div>
           <div class="suno">
-            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">purchase</span></div>
+            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">enrollment</span></div>
             <div class="suno-body">
-              <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:900;color:#fff">★ 99</span><span style="color:#9aa6bc;font-size:13px">스타 ($99)</span><s style="color:#7c8699;font-size:13px">129</s></div>
-              <p style="font-size:12px;color:#9aa6bc;margin:6px 0 14px">강의 구매 — 한 번 구매로 영구 시청</p>
-              <a class="btn btn--primary btn--lg" href="checkout.html" style="width:100%;justify-content:center;display:flex">스타로 구매하기</a>
-              <a class="btn btn--ghost" href="watch.html" style="width:100%;justify-content:center;display:flex;margin-top:14px">1회차 무료로 보기</a>
-              <ul class="feat" style="margin-top:16px;font-size:13px">
-                <li><span class="ic"><svg><use href="#i-check"/></svg></span>전 회차 영구 시청 + 업데이트 회차 포함</li>
-                <li><span class="ic"><svg><use href="#i-check"/></svg></span>스케줄 라이브 세션 입장 (다음: 6/21 일 20:00)</li>
-                <li><span class="ic"><svg><use href="#i-check"/></svg></span>회차별 정리 노트 지급</li>
-                <li><span class="ic"><svg><use href="#i-check"/></svg></span>수익의 70%는 강사에게 정산됩니다</li>
-              </ul>
+              <div style="font-size:22px;font-weight:900;color:#fff">개설 준비 중</div>
+              <p style="font-size:12px;color:#9aa6bc;margin:6px 0 14px">수강 신청과 가격은 아직 공개 전입니다.</p>
+              <div style="width:100%;text-align:center;padding:12px 0;border-radius:7px;border:1px dashed rgba(255,255,255,.18);color:#9aa6bc;font-size:13.5px;font-weight:700">신청 준비 중</div>
+              <ul class="feat" id="cdFeat" style="margin-top:16px;font-size:13px"></ul>
             </div>
           </div>
 
           <div class="suno" style="margin-top:16px">
-            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">instructor</span></div>
-            <div class="suno-body" style="display:flex;align-items:center;gap:14px">
-              <span style="width:52px;height:52px;border-radius:16px;background:#2E6FC9;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;flex-shrink:0">레</span>
-              <div style="flex:1">
-                <b style="color:#fff;font-size:15px">김레오</b>
-                <p style="font-size:12.5px;color:#9aa6bc;margin-top:3px">게임·토크 현업 7년차 · 강의 3종 · 수강생 2,418명</p>
-              </div>
-              <a href="endolphin.html" style="font-size:12.5px;color:var(--blue);font-weight:700;white-space:nowrap">프로필 →</a>
+            <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">evidence</span><span class="live-tool">실측 근거</span></div>
+            <div class="suno-body">
+              <p id="cdBasis" style="font-size:13px;color:#C6CEDC;line-height:1.65;margin:0"></p>
             </div>
           </div>
         </div>
@@ -148,6 +133,134 @@
 </div>
 
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
+<script src="../home/shell.js?v=21"></script>
+<script>
+/* 과목 상세 — ?course=c1~c4 로 분기. 잘못된 값이면 c1로 폴백. */
+(function(){
+  var COURSES = {
+    c1: {
+      cat:'C1 · AI 음원', level:'입문',
+      title:'AI 음원 수익 구조 해부: 마스터권·유통사·Content ID',
+      lead:'AI 음원은 저작권 신탁 경로에서 빠집니다. 그런데도 돈이 도는 경로가 셋 있고, 그 셋의 비용 구조는 유통사마다 크게 갈립니다. 결과를 약속하는 과목이 아니라 비용과 절차를 정확히 아는 과목입니다.',
+      hours:'7강 · 회당 25~35분 · 총 약 3시간 30분',
+      target:'SUNO로 곡은 만들 줄 알지만 유통 이후 경로가 막힌 사람',
+      prereq:'SUNO 유료 플랜 사용 경험, 유튜브 채널 1개. 음악 이론·제작 지식 불필요',
+      basis:'유통사 9개사 비교표, 우리 UM 실결제 영수 기준 티어 정정, LAZE UGC팩의 실제 클레임 발생·수락 기록, 학습방 실사용 로그 교차 검증.',
+      sessions:[
+        ['저작권료를 기다리면 0원이다','수익 분배 구조를 플랫폼·마스터권·저작·실연으로 분해합니다. AI 곡이 신탁에서 빠지는 구조와 KOMCA 2026-08-03 개정(인간 실질 창작 기여 필수)까지. 작곡가가 아니라 제작자로 자기 정의를 바꾸는 회차입니다.'],
+        ['유통사 9곳 실비용 비교','UM·DistroKid·Too Lost·RouteNote·ONCE의 요금 구조와 릴리즈 상한을 나란히 놓습니다. 100% AI 곡을 아예 받지 않는 곳과 월 상한을 두는 곳을 구분합니다.'],
+        ['유튜브 수익화 비용은 따로 계산해야 한다','같은 앨범에 UGC 번들 방식과 곡당 과금 방식이 어떻게 갈리는지. 비용 차이가 가장 크게 벌어지는 지점과 우리 실결제 사례를 공개합니다.'],
+        ['Content ID 등록 실습','유통 live 확인, UGC팩 구매, 등록, 자사 채널 자기 클레임 발생, 클레임 수락까지 순서대로. 발매 완료 전 영상 업로드가 수익 미인식으로 이어지는 함정을 포함합니다.'],
+        ['잘못 알려진 것들 팩트체크','AI 오디오가 Content ID에서 제외된다는 주장의 검증. 유통사가 AI 곡을 지운다는 사례의 실제 조건(단기 대량 업로드와 트래픽 급증의 조합)을 구분합니다.'],
+        ['국내 발매는 왜 막히나','KOMCA 입장에서 출발해 어느 유통사를 쓰든 100% AI 곡의 국내 스토어 발매가 구조적으로 막히는 이유. 반려 사례와 수수료·정산 기간 실측을 봅니다.'],
+        ['상황별 선택 공식 + 분산 원칙','유튜브 주력, 스토어 주력, 아티스트 다수 세 가지로 나눈 선택 공식. 우리 하이브리드 결론과 그 근거, 유통사 한 곳 몰빵을 금지하는 이유.']
+      ]
+    },
+    c2: {
+      cat:'C2 · AI 음원', level:'중급',
+      title:'SUNO 프로덕션: 프롬프트 5단계 공식과 30곡 세트 제작',
+      lead:'한 곡 잘 뽑는 법이 아닙니다. 컨셉 하나로 24~30곡을 균질하게 뽑고, 그중 무엇을 버릴지 판정하는 절차를 다룹니다.',
+      hours:'8강 · 회당 30~40분 · 총 약 4시간 30분',
+      target:'SUNO를 몇 달 썼는데 결과가 매번 복불복인 사람, 곡 물량이 병목인 채널 운영자',
+      prereq:'SUNO Pro 이상 구독, 영어 프롬프트 읽기. 작곡·DAW 지식 불필요',
+      basis:'실전 매뉴얼 12편(총 1,321줄)과 레퍼런스 곡 DB 1,062건. 6~7회차는 이 방식으로 실제 뽑아 발행한 세트의 평가 점수 기록에서 나옵니다.',
+      sessions:[
+        ['태그는 명령이 아니라 확률이다','스타일과 메타태그는 확정 명령이 아니라 확률적 유도라는 대전제. 한 번에 하나만 바꿔 테스트하는 규칙과, 커뮤니티 정보를 신뢰도 등급으로 나눠 다루는 법.'],
+        ['프롬프트 5단계 공식','Identity → Mood → Instruments(악기와 연주 동사) → Performance → Production. 키워드 나열이 아니라 서술 문장으로 써야 하는 이유.'],
+        ['900자 상한과 압축','Style 프롬프트는 공백 포함 900자가 절대 상한입니다. 초과 시 잘려나간 실제 사고를 근거로, 압축 순서와 버리는 우선순위를 정합니다.'],
+        ['전형성 우선: 양산형 탈출 3단계','장르성이 신선함보다 우선한다는 원칙, Song Description 4요소, 생성 후 4대 체크, 2단계 디스카운트 법칙.'],
+        ['7대 에러 실전 디버깅','무인트로 실패, 간주 보컬 소멸, Extend 붕괴, 가사 씹힘, 성별 반전, 유령 보컬. 증상에서 원인으로 가는 IF-THEN 자가진단표.'],
+        ['30곡 세트를 균질하게 뽑는 법','작법 렌즈 8종(훅 진입·화자·구조·시제)과 렌즈 중복 배정 금지, 분산 병렬 작사, 결합 검수 6항목.'],
+        ['곡 판정: 무엇을 버리나','10점 척도 평가 게이트를 실제로 운영하는 법. 채택 상한을 두고 남는 곡을 풀에 남겨두는 이유.'],
+        ['오래 살아남는 채널: 생존 8원칙','유사성 판정과 대량 업로드 필터링을 피하는 규칙. 2026-07-16 유튜브 수익화 정책 개정에서 reused content 조항이 AI 오디오를 명시 포함하게 된 변화까지.']
+      ]
+    },
+    c3: {
+      cat:'C3 · 채널 운영', level:'중급',
+      title:'플레이리스트 채널의 진짜 지표: 유입 구조 진단과 광고 판정',
+      lead:'구독자가 늘어도 채널은 멈춰 있을 수 있습니다. 광고를 끄면 유입이 멈추는 구조였다는 걸 데이터로 확인한 기록과, 그 진단법을 그대로 다룹니다. 수익을 만드는 법이 아니라 지표를 읽는 법입니다.',
+      hours:'6강 · 회당 30~40분 · 총 약 3시간 30분',
+      target:'플레이리스트·BGM 채널을 운영 중인데 무엇이 되고 있는지 모르겠는 사람',
+      prereq:'운영 중인 유튜브 채널(발행 3편 이상), Analytics 화면 진입. 광고 집행 경험은 4회차부터 필요',
+      basis:'전 회차가 YouTube Analytics API 원측정(28일 구간)과 실제 광고비 집행 기록에서 나옵니다. 성과가 나지 않아 중단한 캠페인도 그대로 공개합니다.',
+      sessions:[
+        ['구독자 수는 지표가 아니다','구독 규모가 큰 채널과 거의 없는 채널의 유입 구조를 나란히 놓고 대조합니다. 알고리즘이 실제로 새 시청자에게 소개한 비중이 어디까지인지 확인합니다.'],
+        ['트래픽 소스를 광고와 자연으로 갈라 읽기','광고 유입과 추천 유입의 시청 비율 격차. 자사 채널 경유 유입을 알고리즘 발견으로 오독하면 안 되는 이유.'],
+        ['징검다리 비율: 외부 70 : 내부 30','채널별 외부·내부 유입 비율 대조. 규모가 없는 채널이 오히려 건강했던 사실과 그 해석, 자매 채널 순환을 신규 유입에서 분리하는 계산법.'],
+        ['광고의 역할을 다시 정의한다','광고 유입 시청시간은 YPP 요건에 산입되지 않습니다. 광고 목적을 구독자 선확보로 분리하고, 게재면·타겟팅·학습 구간 운영 규칙을 정합니다.'],
+        ['후속·구독 비율로 판정하기','두 지역 캠페인의 실집행 대조. 구독당 단가가 더 싸도 후속 시청이 따라오지 않으면 중단하는 판정 기준을 세웁니다.'],
+        ['지역 차익거래 세팅과 키워드 양방향 순환','저CPM 지역과 언어 고정 구조의 설계 의도. 광고에서 검증된 검색어를 오가닉 메타에 역이식하는 순환과 검색 테마 실사용 목록.']
+      ]
+    },
+    c4: {
+      cat:'C4 · 채널 운영', level:'중급',
+      title:'3시간 영상 출하 파이프라인: 마스터링·CapCut·8개국어·API 업로드',
+      lead:'곡 30개를 3시간짜리 영상 하나로 만들어 8개 언어 메타를 붙여 예약 발행하기까지, 실제로 병목이 걸리는 전 구간을 순서대로 따라갑니다.',
+      hours:'6강 · 회당 25~40분 · 총 약 3시간',
+      target:'곡은 있는데 영상 제작에서 막혀 발행이 밀리는 사람, 채널을 2개 이상 굴리려는 사람',
+      prereq:'CapCut 기본 조작, 파일 경로·명령줄 입력(Node.js 스크립트 1개 실행), 유튜브 채널 소유',
+      basis:'자동 업로드 도구는 E2E 검증을 마쳤고 매뉴얼 페이지가 있습니다. 5회차의 제약은 전부 우리 채널에서 실제로 막혔던 사례입니다.',
+      sessions:[
+        ['배치 전에 정규화부터','loudnorm 일괄 정규화(수면 -18 LUFS / 일반 -16 LUFS)를 CapCut 배치 전에 끝내야 하는 이유. 이 순서를 어겨 작업을 되돌린 사고 이력을 그대로 공개합니다.'],
+        ['3시간 타임라인 조립','곡별 타이틀 텍스트 배치까지가 한 세트라는 규칙. 30곡 규모 실작업 기준 소요 시간과 진행 순서.'],
+        ['곡 간 편차가 정책 방어선이다','2026-07-16 정책 개정에서 reused content가 AI 오디오를 명시 포함했습니다. 한 컨셉 30곡이 근사 중복으로 읽히지 않게 하는 두 방어선을 세웁니다.'],
+        ['8개국어 메타를 한 번에','localizations 표준 운영. 채널 설명 확정본 구조, 언어별 제목 규격, 최하단 공통 소개 블록.'],
+        ['API 업로드·예약 자동화','OAuth와 YouTube Data API로 업로드·예약하기. 썸네일 용량 제한, 하루 업로드 한도, 전화 인증 전 썸네일 403 등 실제로 부딪힌 제약을 함께 다룹니다.'],
+        ['발행 후 잔여 작업 체크리스트','AI 공개 토글, 리믹스 설정, 핀 댓글, 엔드스크린, 자막. API로 안 되고 Studio 수동으로만 되는 항목을 구분합니다.']
+      ]
+    }
+  };
+
+  var slug = new URLSearchParams(location.search).get('course');
+  slug = (slug && COURSES[slug.toLowerCase()]) ? slug.toLowerCase() : 'c1';
+  var c = COURSES[slug];
+
+  function set(id, text){ var el = document.getElementById(id); if(el) el.textContent = text; }
+
+  document.title = 'STARNAUTS — ' + c.title;
+  set('cdCat', c.cat);
+  set('cdLevel', c.level);
+  set('cdTitle', c.title);
+  set('cdLead', c.lead);
+  set('cdCount', c.sessions.length + '회차');
+  set('cdBasis', c.basis);
+
+  var rows = document.getElementById('cdRows');
+  c.sessions.forEach(function(s, i){
+    var row = document.createElement('div');
+    row.className = 'cd-row';
+    row.style.alignItems = 'flex-start';
+
+    var num = document.createElement('span');
+    num.style.cssText = 'color:var(--blue);font-weight:700;white-space:nowrap';
+    num.textContent = (i + 1) + '회차';
+
+    var body = document.createElement('span');
+    body.style.flex = '1';
+    var t = document.createElement('b');
+    t.style.cssText = 'color:#fff;font-weight:700;display:block';
+    t.textContent = s[0];
+    var d = document.createElement('span');
+    d.style.cssText = 'color:#9aa6bc;font-size:12.5px;line-height:1.6;display:block;margin-top:4px';
+    d.textContent = s[1];
+    body.appendChild(t); body.appendChild(d);
+
+    row.appendChild(num); row.appendChild(body);
+    rows.appendChild(row);
+  });
+
+  var feat = document.getElementById('cdFeat');
+  [['분량', c.hours], ['대상', c.target], ['선행 지식', c.prereq]].forEach(function(pair){
+    var li = document.createElement('li');
+    var ic = document.createElement('span');
+    ic.className = 'ic';
+    ic.innerHTML = '<svg aria-hidden="true"><use href="#i-check"/></svg>';
+    var tx = document.createElement('span');
+    tx.textContent = pair[0] + ': ' + pair[1];
+    li.appendChild(ic); li.appendChild(tx);
+    feat.appendChild(li);
+  });
+})();
+</script>
 </body>
 </html>

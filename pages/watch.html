@@ -18,7 +18,7 @@
 .player .pbtn:hover{transform:scale(1.06);background:var(--blue)}
 .player .pbtn svg{width:30px;height:30px;color:#fff;margin-left:4px}
 .player .plabel{position:absolute;left:16px;bottom:14px;font-size:12px;color:#9aa6bc}
-.player .live-now{position:absolute;left:14px;top:14px;font-size:11px;font-weight:800;color:#fff;background:rgba(217,76,71,.9);padding:4px 10px;border-radius:7px;display:none;align-items:center;gap:6px}
+.player .live-now{position:absolute;left:14px;top:14px;font-size:11px;font-weight:900;color:#fff;background:rgba(217,76,71,.9);padding:4px 10px;border-radius:7px;display:none;align-items:center;gap:6px}
 .player.is-live .live-now{display:inline-flex}
 .player.is-live .pbtn{display:none}
 .sched{position:sticky;top:80px}
@@ -32,9 +32,9 @@
 .ep-todo .ep-ico{background:rgba(255,255,255,.08);color:#9aa6bc}
 .ep-live .ep-ico{background:rgba(240,160,32,.2);color:#F0C36A}
 .ep-main{flex:1;min-width:0}
-.ep-t{font-size:13px;color:#fff;font-weight:600;line-height:1.35}
+.ep-t{font-size:13px;color:#fff;font-weight:700;line-height:1.35}
 .ep-m{font-size:11.5px;color:#9aa6bc;margin-top:2px}
-.ep-badge{font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.ep-badge{font-size:10px;font-weight:900;padding:3px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
 .bg-done{background:rgba(46,158,91,.18);color:#5BC98A}
 .bg-todo{background:rgba(255,255,255,.1);color:#9aa6bc}
 .bg-live{background:rgba(240,160,32,.18);color:#F0C36A}
@@ -75,7 +75,7 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html" class="active"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
@@ -89,10 +89,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html" class="active">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
@@ -101,26 +101,26 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="signup.html">무료로 시작</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
   <section class="section" style="padding-top:36px">
     <div class="wrap">
-      <a href="mypage.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:18px"><svg width="15" height="15"><use href="#i-chev-l"/></svg> 마이페이지</a>
+      <a href="mypage.html" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#9aa6bc;margin-bottom:18px"><svg aria-hidden="true" width="15" height="15"><use href="#i-chev-l"/></svg> 마이페이지</a>
 
       <div class="watch-col">
         <!-- 가운데: 플레이어 -->
         <div>
           <div class="player" id="player">
             <span class="live-now"><span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block"></span> LIVE</span>
-            <div class="pbtn"><svg><use href="#i-play"/></svg></div>
+            <div class="pbtn"><svg aria-hidden="true"><use href="#i-play"/></svg></div>
             <span class="plabel" id="pLabel">다시보기 재생</span>
           </div>
 
           <div style="margin-top:18px">
             <h1 id="vTitle" style="font-size:22px;font-weight:900;line-height:1.35">첫 송출 가이드 라이브 Q&amp;A</h1>
-            <p id="vMeta" style="margin-top:6px;color:#9aa6bc;font-size:13.5px">김레오 · 6/14 (일) 21:00 · 다시보기</p>
+            <p id="vMeta" style="margin-top:6px;color:#9aa6bc;font-size:13.5px">6/14 (일) 21:00 · 다시보기</p>
 
             <div class="tool-panel" style="margin-top:18px;padding:16px 18px">
               <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
@@ -129,7 +129,7 @@
                   <div class="prog"><i id="progBar" style="width:33%"></i></div>
                   <div id="progTxt" style="font-size:12px;color:#9aa6bc;margin-top:6px">6개 회차 중 2개 수강 완료</div>
                 </div>
-                <a class="btn btn--ghost" href="#" id="noteBtn"><svg width="15" height="15" style="margin-right:5px"><use href="#i-check"/></svg> 정리 노트</a>
+                <a class="btn btn--ghost" href="#" id="noteBtn"><svg aria-hidden="true" width="15" height="15" style="margin-right:5px"><use href="#i-check"/></svg> 정리 노트</a>
               </div>
             </div>
           </div>
@@ -140,29 +140,29 @@
           <div class="suno">
             <div class="suno-bar"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">my-schedule</span><span class="live-tool">내 강의 스케줄</span></div>
             <div class="suno-body" style="padding:8px">
-            <div class="ep ep-done" data-vtitle="보컬 트레이닝 1·2회차" data-vmeta="박세아 · 다시보기" data-live="0" onclick="playEp(this)">
-              <span class="ep-ico"><svg><use href="#i-check"/></svg></span>
-              <div class="ep-main"><div class="ep-t">보컬 트레이닝 1·2회차</div><div class="ep-m">박세아 · 다시보기</div></div>
+            <div class="ep ep-done" data-vtitle="보컬 트레이닝 1·2회차" data-vmeta="다시보기" data-live="0" onclick="playEp(this)">
+              <span class="ep-ico"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+              <div class="ep-main"><div class="ep-t">보컬 트레이닝 1·2회차</div><div class="ep-m">다시보기</div></div>
               <span class="ep-badge bg-done">수강완료</span>
             </div>
-            <div class="ep ep-done" data-vtitle="라이브 보컬 트레이닝 3회차" data-vmeta="박세아 · 6/13 (토) 20:00 · 다시보기" data-live="0" onclick="playEp(this)">
-              <span class="ep-ico"><svg><use href="#i-check"/></svg></span>
-              <div class="ep-main"><div class="ep-t">라이브 보컬 트레이닝 3회차</div><div class="ep-m">박세아 · 6/13 (토) 20:00</div></div>
+            <div class="ep ep-done" data-vtitle="라이브 보컬 트레이닝 3회차" data-vmeta="6/13 (토) 20:00 · 다시보기" data-live="0" onclick="playEp(this)">
+              <span class="ep-ico"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+              <div class="ep-main"><div class="ep-t">라이브 보컬 트레이닝 3회차</div><div class="ep-m">6/13 (토) 20:00</div></div>
               <span class="ep-badge bg-done">수강완료</span>
             </div>
-            <div class="ep ep-todo" data-vtitle="첫 송출 가이드 라이브 Q&amp;A" data-vmeta="김레오 · 6/14 (일) 21:00 · 다시보기" data-live="0" onclick="playEp(this)">
-              <span class="ep-ico"><svg><use href="#i-play"/></svg></span>
-              <div class="ep-main"><div class="ep-t">첫 송출 가이드 라이브 Q&amp;A</div><div class="ep-m">김레오 · 6/14 (일) 21:00</div></div>
+            <div class="ep ep-todo" data-vtitle="첫 송출 가이드 라이브 Q&amp;A" data-vmeta="6/14 (일) 21:00 · 다시보기" data-live="0" onclick="playEp(this)">
+              <span class="ep-ico"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+              <div class="ep-main"><div class="ep-t">첫 송출 가이드 라이브 Q&amp;A</div><div class="ep-m">6/14 (일) 21:00</div></div>
               <span class="ep-badge bg-todo">미수강</span>
             </div>
-            <div class="ep ep-live" data-vtitle="숏폼 댄스 챌린지 5회차" data-vmeta="정하늘 · 6/16 (화) 20:00 · 라이브 진행 중" data-live="1" onclick="playEp(this)">
-              <span class="ep-ico"><svg><use href="#i-cam"/></svg></span>
-              <div class="ep-main"><div class="ep-t">숏폼 댄스 챌린지 5회차</div><div class="ep-m">정하늘 · 6/16 (화) 20:00</div></div>
+            <div class="ep ep-live" data-vtitle="숏폼 댄스 챌린지 5회차" data-vmeta="6/16 (화) 20:00 · 라이브 진행 중" data-live="1" onclick="playEp(this)">
+              <span class="ep-ico"><svg aria-hidden="true"><use href="#i-cam"/></svg></span>
+              <div class="ep-main"><div class="ep-t">숏폼 댄스 챌린지 5회차</div><div class="ep-m">6/16 (화) 20:00</div></div>
               <span class="ep-badge bg-live">라이브 예정</span>
             </div>
-            <div class="ep ep-live" data-vtitle="Suno 시그니처 BGM 워크숍" data-vmeta="한도윤 · 6/18 (목) 21:00 · 라이브 진행 중" data-live="1" onclick="playEp(this)">
-              <span class="ep-ico"><svg><use href="#i-cam"/></svg></span>
-              <div class="ep-main"><div class="ep-t">Suno 시그니처 BGM 워크숍</div><div class="ep-m">한도윤 · 6/18 (목) 21:00</div></div>
+            <div class="ep ep-live" data-vtitle="Suno 시그니처 BGM 워크숍" data-vmeta="6/18 (목) 21:00 · 라이브 진행 중" data-live="1" onclick="playEp(this)">
+              <span class="ep-ico"><svg aria-hidden="true"><use href="#i-cam"/></svg></span>
+              <div class="ep-main"><div class="ep-t">Suno 시그니처 BGM 워크숍</div><div class="ep-m">6/18 (목) 21:00</div></div>
               <span class="ep-badge bg-live">라이브 예정</span>
             </div>
             </div>
@@ -207,22 +207,22 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img loading="lazy" src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
             <div class="fcolx"><h5>회사</h5><a href="about.html">소개</a><a href="about.html#careers">채용</a><a href="partnership.html">파트너십</a><a href="blog.html">블로그</a></div>
             <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
           </nav>
         </div>
-        <p style="font-size:12px;color:#9aa6bc;margin:0 0 6px">Language — 한국어 · <a href="../en.html" style="color:#C6CEDC">English</a> · 日本語 · 中文 · ไทย · Tiếng Việt <span style="color:#7c8699">(다국어 지원 준비 중)</span></p>
+        <p style="font-size:12px;color:#9aa6bc;margin:0 0 6px">Language — 한국어 · <a href="../en.html" style="color:#C6CEDC">English</a>日本語 · 中文 · ไทย · Tiếng Việt <span style="color:#7c8699">(다국어 지원 준비 중)</span></p>
         <p class="fbar-copy">© 2026 STARNAUTS. All rights reserved.</p>
       </div>
     </div>
@@ -230,6 +230,6 @@
 </div>
 
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
+<script src="../home/shell.js?v=21"></script>
 </body>
 </html>

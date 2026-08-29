@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
 <title>STARNAUTS — AI MUSIC LAB</title>
+<meta name="description" content="장르·무드·악기·구조를 고르면 Suno용 가사와 스타일팩 프롬프트가 실시간으로 조립됩니다. 구간별 창법 메타태그와 곡 구조 프리셋을 지원하고, 키 없이도 프롬프트를 복사해 쓸 수 있습니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/music-lab.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STARNAUTS — AI MUSIC LAB">
+<meta property="og:description" content="장르·무드·악기·구조를 고르면 Suno용 가사와 스타일팩 프롬프트가 실시간으로 조립됩니다. 구간별 창법 메타태그와 곡 구조 프리셋을 지원하고, 키 없이도 프롬프트를 복사해 쓸 수 있습니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/music-lab.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/tool-thumbs/music-lab.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
@@ -15,7 +22,7 @@
 .lab{max-width:1180px;margin:0 auto;padding:0 18px 260px}
 @media(max-width:560px){.lab{padding-bottom:340px}}
 .lab-head{text-align:center;padding:34px 0 8px}
-.lab-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.22em;color:var(--blue-300);text-transform:uppercase}
+.lab-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:900;letter-spacing:.22em;color:var(--blue-300);text-transform:uppercase}
 .lab-eyebrow svg{width:15px;height:15px}
 .lab-title{font-size:clamp(26px,5vw,38px);font-weight:900;color:#fff;margin:12px 0 8px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:11px}
 .lab-title svg{width:30px;height:30px;color:var(--blue-300)}
@@ -30,9 +37,9 @@
 .lab-banner .bi{flex-shrink:0;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(46,111,201,.14);color:var(--blue-300)}
 .lab-banner.ok .bi{background:rgba(126,212,166,.16);color:#7ED4A6}
 .lab-banner .bi svg{width:20px;height:20px}
-.lab-banner h4{margin:0 0 3px;font-size:13.5px;font-weight:800;color:#fff}
+.lab-banner h4{margin:0 0 3px;font-size:13.5px;font-weight:900;color:#fff}
 .lab-banner p{margin:0 0 9px;font-size:12.5px;color:#9aa6bc;line-height:1.55}
-.lab-banner .blink{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--blue-300);background:none;border:1px solid rgba(127,169,224,.4);border-radius:8px;padding:6px 11px;cursor:pointer;font-family:inherit}
+.lab-banner .blink{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:900;color:var(--blue-300);background:none;border:1px solid rgba(127,169,224,.4);border-radius:8px;padding:6px 11px;cursor:pointer;font-family:inherit}
 .lab-banner .blink:hover{background:rgba(46,111,201,.14);color:#fff}
 .lab-banner .blink svg{width:13px;height:13px;flex-shrink:0}
 /* API 키 입력 */
@@ -41,14 +48,14 @@
 .keyrow{display:flex;gap:8px}
 .keyrow input{flex:1;padding:9px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#fff;font-size:13px;font-family:inherit}
 .keyrow input::placeholder{color:#6b7689}
-.keyrow .saveb{border:0;background:var(--blue);color:#fff;border-radius:9px;padding:0 15px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+.keyrow .saveb{border:0;background:var(--blue);color:#fff;border-radius:9px;padding:0 15px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit}
 .keyrow .saveb:hover{background:var(--blue-700)}
 .keyhint{margin:7px 0 0;font-size:11px;color:#6b7689}
 .keyhint a{color:var(--blue-300)}
 
 /* 프리셋 칩 바 */
 .presets{margin:6px 0 4px}
-.presets-l{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#C6CEDC;margin-bottom:10px}
+.presets-l{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:900;color:#C6CEDC;margin-bottom:10px}
 .presets-l svg{width:15px;height:15px;color:var(--blue-300);flex-shrink:0}
 .preset-row{display:flex;flex-wrap:wrap;gap:7px}
 .preset{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(127,169,224,.32);background:rgba(46,111,201,.08);color:#C6CEDC;border-radius:20px;padding:7px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
@@ -60,19 +67,19 @@
 .lab-step-h .num{width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .lab-step-h h3{margin:0;font-size:16px;font-weight:900;color:#fff}
 .lab-step-h.opt h3 .opt-tag{font-size:11px;font-weight:700;color:#9aa6bc;margin-left:6px}
-.lab-step-h .v-tag{margin-left:auto;font-size:11px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border:1px solid rgba(46,111,201,.3);border-radius:7px;padding:3px 9px;letter-spacing:.02em}
+.lab-step-h .v-tag{margin-left:auto;font-size:11px;font-weight:900;color:var(--blue-300);background:rgba(46,111,201,.16);border:1px solid rgba(46,111,201,.3);border-radius:7px;padding:3px 9px;letter-spacing:.02em}
 
 /* 폼 필드 */
 .fld{margin-bottom:24px}
-.fld-l{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:#fff;margin-bottom:10px}
+.fld-l{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:900;color:#fff;margin-bottom:10px}
 .fld-l svg{width:17px;height:17px;color:var(--blue-300);flex-shrink:0}
 .fld-l .multi{font-size:10.5px;font-weight:700;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:5px;padding:2px 6px;letter-spacing:.02em;margin-left:auto}
-.fld-l .new-tag{font-size:10px;font-weight:800;color:#7ED4A6;background:rgba(126,212,166,.14);border-radius:5px;padding:2px 6px;letter-spacing:.04em}
+.fld-l .new-tag{font-size:10px;font-weight:900;color:#7ED4A6;background:rgba(126,212,166,.14);border-radius:5px;padding:2px 6px;letter-spacing:.04em}
 .fld-sub{font-size:12px;color:#9aa6bc;margin:-4px 0 10px;line-height:1.5}
 
 /* 칩 */
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.mchip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#C6CEDC;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
+.mchip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#C6CEDC;border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms,color 140ms}
 .mchip:hover{border-color:var(--blue-300);color:#fff}
 .mchip[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.16);color:#fff}
 .mchip.hidden{display:none}
@@ -82,7 +89,7 @@
 
 /* 장르·보컬 서브그룹 박스 */
 .gcat{border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:13px 14px;margin-bottom:10px;background:rgba(255,255,255,.015)}
-.gcat-h{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#C6CEDC;margin-bottom:10px}
+.gcat-h{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:900;color:#C6CEDC;margin-bottom:10px}
 .gcat-h svg{width:15px;height:15px;color:var(--blue-300);flex-shrink:0}
 
 /* 길이 */
@@ -93,7 +100,7 @@
 .len span{font-size:11px;color:#9aa6bc}
 .len:hover{border-color:var(--blue-300)}
 .len[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.14)}
-.len .rec{font-size:9.5px;font-weight:800;color:var(--blue-300)}
+.len .rec{font-size:9.5px;font-weight:900;color:var(--blue-300)}
 
 /* 구조 프리셋 라디오 */
 .struct-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:4px}
@@ -101,7 +108,7 @@
 .struct{text-align:left;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.02);border-radius:12px;padding:12px 14px;cursor:pointer;font-family:inherit;transition:border-color 140ms,background 140ms}
 .struct:hover{border-color:var(--blue-300)}
 .struct[aria-pressed="true"]{border-color:var(--blue);background:rgba(46,111,201,.12)}
-.struct b{display:block;font-size:13px;font-weight:800;color:#fff;margin-bottom:3px}
+.struct b{display:block;font-size:13px;font-weight:900;color:#fff;margin-bottom:3px}
 .struct span{font-size:11px;color:#9aa6bc;line-height:1.45}
 .len-note{margin-top:10px;font-size:12px;color:#9aa6bc;line-height:1.6;background:rgba(46,111,201,.07);border:1px solid rgba(46,111,201,.18);border-radius:10px;padding:11px 13px}
 .len-note b{color:#C6CEDC}
@@ -111,7 +118,7 @@
 .cadd input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;font-size:13px;font-family:inherit}
 .cadd input::placeholder{color:#6b7689}
 .cadd input:focus-visible,.fld textarea:focus-visible,.cadd .addb:focus-visible,.keyrow input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.cadd .addb{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:0 14px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.cadd .addb{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:0 14px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit;white-space:nowrap}
 .cadd .addb:hover{background:rgba(46,111,201,.14);color:#fff}
 .cadd .addb svg{width:13px;height:13px;flex-shrink:0}
 
@@ -123,7 +130,7 @@
 
 /* 고급 슬라이더 (접이식) */
 .adv{border:1px solid rgba(255,255,255,.1);border-radius:13px;background:rgba(255,255,255,.015);overflow:hidden}
-.adv-toggle{width:100%;display:flex;align-items:center;gap:9px;background:none;border:0;color:#fff;font-family:inherit;font-size:13.5px;font-weight:800;padding:14px 15px;cursor:pointer;text-align:left}
+.adv-toggle{width:100%;display:flex;align-items:center;gap:9px;background:none;border:0;color:#fff;font-family:inherit;font-size:13.5px;font-weight:900;padding:14px 15px;cursor:pointer;text-align:left}
 .adv-toggle svg.ai{width:17px;height:17px;color:var(--blue-300);flex-shrink:0}
 .adv-toggle .chev{width:15px;height:15px;color:#9aa6bc;margin-left:auto;transition:transform 160ms}
 .adv[open] .adv-toggle .chev{transform:rotate(90deg)}
@@ -142,7 +149,7 @@
 
 /* 생성 모드 토글 (프로/퀵) */
 .mode-bar{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:24px 0 4px}
-.mode-l{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#C6CEDC;flex-shrink:0}
+.mode-l{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:900;color:#C6CEDC;flex-shrink:0}
 .mode-l svg{width:16px;height:16px;color:var(--blue-300)}
 .mode-seg{display:inline-flex;border:1px solid rgba(255,255,255,.14);border-radius:11px;overflow:hidden;flex-wrap:wrap}
 .mode-seg button{border:0;background:none;color:#9aa6bc;font-family:inherit;cursor:pointer;text-align:left;padding:9px 16px;display:flex;flex-direction:column;gap:1px;line-height:1.3;transition:background 140ms,color 140ms}
@@ -167,13 +174,13 @@
 .eng .et{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:900;color:#fff;margin-bottom:6px}
 .eng .et svg{width:18px;height:18px;color:var(--blue-300);flex-shrink:0}
 .eng p{margin:0 0 9px;font-size:12px;color:#9aa6bc;line-height:1.55}
-.eng .req{font-size:11px;font-weight:800;color:var(--blue-300);display:inline-flex;align-items:center;gap:5px}
+.eng .req{font-size:11px;font-weight:900;color:var(--blue-300);display:inline-flex;align-items:center;gap:5px}
 .eng .req svg{width:13px;height:13px;flex-shrink:0}
 .eng .req.free{color:#7ED4A6}
 .eng-hint{font-size:12px;color:#9aa6bc;margin:0 0 13px}
 
 .divider{height:1px;background:rgba(255,255,255,.08);margin:34px 0}
-.skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--blue);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;font-weight:800}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--blue);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;font-weight:900}
 .skip-link:focus{left:0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
@@ -185,7 +192,7 @@
 .provrow .provb .ok-dot{width:6px;height:6px;border-radius:50%;background:#7ED4A6;flex-shrink:0;display:none}
 .provrow .provb.has-key .ok-dot{display:inline-block}
 .provrow .provb:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
-.provlbl{font-size:11.5px;font-weight:800;color:#9aa6bc;margin:8px 0 4px;display:block}
+.provlbl{font-size:11.5px;font-weight:900;color:#9aa6bc;margin:8px 0 4px;display:block}
 
 /* ── 하단 고정 도크 (#dock) ────────────────────────────── */
 #dock{position:fixed;left:var(--side-w);right:0;bottom:0;z-index:100;background:rgba(8,13,24,.92);border-top:1px solid rgba(127,169,224,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
@@ -193,9 +200,9 @@
 
 /* (A) 프롬프트 영역 (접이식) */
 .dock-prompt{border-bottom:1px solid rgba(255,255,255,.07)}
-.dock-prompt-h{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;color:#fff;font-family:inherit;font-size:12.5px;font-weight:800;padding:10px 0 8px;cursor:pointer;text-align:left}
+.dock-prompt-h{display:flex;align-items:center;gap:9px;width:100%;background:none;border:0;color:#fff;font-family:inherit;font-size:12.5px;font-weight:900;padding:10px 0 8px;cursor:pointer;text-align:left}
 .dock-prompt-h svg.lead{width:15px;height:15px;color:var(--blue-300);flex-shrink:0}
-.dock-prompt-h .pv-tag{font-size:10px;font-weight:800;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:6px;padding:2px 7px;letter-spacing:.04em}
+.dock-prompt-h .pv-tag{font-size:10px;font-weight:900;color:var(--blue-300);background:rgba(46,111,201,.16);border-radius:6px;padding:2px 7px;letter-spacing:.04em}
 .dock-prompt-h .chev{width:14px;height:14px;color:#9aa6bc;margin-left:auto;transition:transform 160ms}
 .dock-prompt-h[aria-expanded="true"] .chev{transform:rotate(90deg)}
 .dock-prompt-body{display:none;padding-bottom:9px}
@@ -212,14 +219,14 @@
 .dock-sum{display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex:1;min-width:0}
 .sb-pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#C6CEDC;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 11px}
 .sb-pill.warn{color:#E7C26B;border-color:rgba(231,194,107,.35);background:rgba(231,194,107,.08)}
-.sb-pill .k{color:#7d8aa0;font-weight:600}
+.sb-pill .k{color:#7d8aa0;font-weight:700}
 .sb-pill.empty{color:#7d8aa0;background:none;border-style:dashed}
-.dock-top{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.16);background:none;color:#C6CEDC;border-radius:9px;padding:6px 11px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.dock-top{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.16);background:none;color:#C6CEDC;border-radius:9px;padding:6px 11px;font-size:11.5px;font-weight:900;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
 .dock-top:hover{border-color:var(--blue-300);color:#fff}
 .dock-top svg{width:13px;height:13px}
 .dock-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
 .dock-target{display:flex;align-items:center;gap:6px}
-.dock-target-l{font-size:11px;font-weight:800;color:#7d8aa0;white-space:nowrap}
+.dock-target-l{font-size:11px;font-weight:900;color:#7d8aa0;white-space:nowrap}
 .dock-tgrp{display:inline-flex;border:1px solid rgba(255,255,255,.14);border-radius:9px;overflow:hidden}
 .dock-tgrp button{position:relative;border:0;background:none;color:#9aa6bc;font-family:inherit;font-size:11.5px;font-weight:700;padding:7px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
 .dock-tgrp button[aria-pressed="true"]{background:var(--blue);color:#fff}
@@ -227,7 +234,7 @@
 .dock-tgrp button .ok-dot{width:5px;height:5px;border-radius:50%;background:#7ED4A6;display:none}
 .dock-tgrp button.has-key .ok-dot{display:inline-block}
 .dock-tgrp button[aria-pressed="true"].has-key .ok-dot{background:#fff}
-.pv-copy-lg{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.pv-copy-lg{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:9px 14px;font-size:12px;font-weight:900;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
 .pv-copy-lg:hover{background:rgba(46,111,201,.16);color:#fff}
 .pv-copy-lg:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
 .pv-copy-lg svg{width:14px;height:14px;flex-shrink:0}
@@ -255,7 +262,7 @@
 .res-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .res-head .num{width:30px;height:30px;border-radius:9px;background:#7ED4A6;color:#06210f;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .res-head h3{margin:0;font-size:16px;font-weight:900;color:#fff}
-.res-head .regen{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:8px 13px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.res-head .regen{margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);border-radius:9px;padding:8px 13px;font-size:12px;font-weight:900;cursor:pointer;font-family:inherit;white-space:nowrap}
 .res-head .regen:hover{background:rgba(46,111,201,.16);color:#fff}
 .res-head .regen:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
 .res-head .regen svg{width:14px;height:14px;flex-shrink:0}
@@ -271,18 +278,18 @@
 .res-error{display:flex;gap:12px;align-items:flex-start;border:1px solid rgba(231,107,107,.35);background:rgba(231,107,107,.08);border-radius:14px;padding:16px 18px}
 .res-error .ei{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:rgba(231,107,107,.16);color:#E76B6B;display:flex;align-items:center;justify-content:center}
 .res-error .ei svg{width:18px;height:18px}
-.res-error h4{margin:0 0 4px;font-size:13.5px;font-weight:800;color:#fff}
+.res-error h4{margin:0 0 4px;font-size:13.5px;font-weight:900;color:#fff}
 .res-error p{margin:0;font-size:12.5px;color:#C6CEDC;line-height:1.55}
 
 /* 마크다운 본문 */
 .res-body{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015);border-radius:14px;padding:20px 22px}
 @media(max-width:560px){.res-body{padding:16px 15px}}
 .res-body h2{font-size:18px;font-weight:900;color:#fff;margin:22px 0 10px;letter-spacing:-.01em}
-.res-body h3{font-size:15px;font-weight:800;color:var(--blue-300);margin:20px 0 9px}
-.res-body h4{font-size:13.5px;font-weight:800;color:#C6CEDC;margin:16px 0 7px}
+.res-body h3{font-size:15px;font-weight:900;color:var(--blue-300);margin:20px 0 9px}
+.res-body h4{font-size:13.5px;font-weight:900;color:#C6CEDC;margin:16px 0 7px}
 .res-body :first-child{margin-top:0}
 .res-body p{font-size:13.5px;color:#C6CEDC;line-height:1.7;margin:0 0 11px}
-.res-body strong{color:#fff;font-weight:800}
+.res-body strong{color:#fff;font-weight:900}
 .res-body ul,.res-body ol{margin:0 0 12px;padding-left:22px}
 .res-body li{font-size:13.5px;color:#C6CEDC;line-height:1.7;margin-bottom:4px}
 .res-body code{font-family:var(--font-mono,"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace);font-size:12.5px;background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:1px 6px;color:#E4E9F2}
@@ -292,11 +299,59 @@
 .res-codewrap{position:relative;margin:0 0 14px}
 .res-codewrap pre{margin:0;background:rgba(0,0,0,.42);border:1px solid rgba(127,169,224,.2);border-radius:12px;padding:14px 16px;overflow:auto}
 .res-codewrap pre code{display:block;background:none;border:0;padding:0;font-size:12.5px;line-height:1.65;color:#E4E9F2;white-space:pre-wrap;word-break:break-word}
-.res-codecopy{position:absolute;top:9px;right:9px;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:rgba(8,13,24,.85);color:var(--blue-300);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit}
+.res-codecopy{position:absolute;top:9px;right:9px;display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(127,169,224,.4);background:rgba(8,13,24,.85);color:var(--blue-300);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:900;cursor:pointer;font-family:inherit}
 .res-codecopy:hover{background:rgba(46,111,201,.3);color:#fff}
 .res-codecopy:focus-visible{outline:2px solid var(--blue-300);outline-offset:2px}
 .res-codecopy.done{border-color:rgba(126,212,166,.5);color:#7ED4A6}
 .res-codecopy svg{width:12px;height:12px;flex-shrink:0}
+
+/* ── 구조화 결과 카드 (스타일팩 + 곡 리스트) ──────────── */
+.rc-strat{border:1px solid rgba(127,169,224,.28);background:rgba(46,111,201,.06);border-radius:13px;padding:14px 16px;margin:2px 0 6px;font-size:13px;line-height:1.65;color:#C6CEDC}
+.rc-strat b{color:#fff}
+.rc-h{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:900;color:#fff;letter-spacing:.02em;margin:22px 0 12px}
+.rc-h svg{width:16px;height:16px;color:var(--blue-300);flex-shrink:0}
+.rc-styles{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:640px){.rc-styles{grid-template-columns:1fr}}
+.rc-style{border:1.5px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);border-radius:13px;padding:13px 14px}
+.rc-style .sl{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:900;color:var(--blue-300);margin-bottom:8px}
+.rc-style .sl svg{width:14px;height:14px;flex-shrink:0}
+.rc-style pre{margin:0 0 9px;font-family:var(--font-mono,ui-monospace,Consolas,monospace);font-size:12px;line-height:1.55;color:#E4E9F2;white-space:pre-wrap;word-break:break-word;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:10px 11px;max-height:150px;overflow:auto}
+.rc-copy{border:1px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);font-family:inherit;font-size:11.5px;font-weight:900;padding:6px 11px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.rc-copy:hover{background:rgba(46,111,201,.14);color:#fff}
+.rc-copy svg{width:12px;height:12px;flex-shrink:0}
+.rc-listbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:24px 0 13px;padding:11px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+.rc-listbar .lc{font-size:13px;font-weight:900;color:#fff}
+.rc-listbar .lc b{color:var(--blue-300)}
+.rc-listbar .grow{flex:1}
+.rc-actb{border:1.5px solid rgba(255,255,255,.14);background:transparent;color:#C6CEDC;font-family:inherit;font-size:12.5px;font-weight:900;padding:8px 13px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.rc-actb:hover{border-color:var(--blue-300);color:#fff}
+.rc-actb.pri{border-color:var(--blue);background:rgba(46,111,201,.16);color:#fff}
+.rc-actb.pri:hover{background:rgba(46,111,201,.26)}
+.rc-actb:disabled{opacity:.5;cursor:not-allowed}
+.rc-actb svg{width:14px;height:14px;flex-shrink:0}
+.rc-song{border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02);border-radius:12px;margin-bottom:9px;overflow:hidden}
+.rc-song>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:13px 15px}
+.rc-song>summary::-webkit-details-marker{display:none}
+.rc-song>summary:focus-visible{outline:2px solid var(--blue-300);outline-offset:-2px}
+.rc-song .rn{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:rgba(46,111,201,.16);color:var(--blue-300);font-weight:900;font-size:12.5px;display:flex;align-items:center;justify-content:center}
+.rc-song .rt{font-size:14px;font-weight:900;color:#fff;min-width:0}
+.rc-song .ra{font-size:12px;font-weight:700;color:#8896ac;margin-left:6px}
+.rc-song .rchev{margin-left:auto;flex-shrink:0;width:15px;height:15px;color:#8896ac;transition:transform .18s}
+.rc-song[open] .rchev{transform:rotate(90deg)}
+.rc-song[open]>summary{border-bottom:1px solid rgba(255,255,255,.08)}
+.rc-body{padding:14px 15px}
+.rc-titles{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+@media(max-width:520px){.rc-titles{grid-template-columns:1fr}}
+.rc-tcard{border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 11px;display:flex;align-items:center;gap:8px}
+.rc-tcard .tl{font-size:10.5px;font-weight:900;color:#8896ac;letter-spacing:.04em}
+.rc-tcard .tv{font-size:13.5px;font-weight:900;color:#fff;word-break:break-word}
+.rc-tcard .tcopy{margin-left:auto;flex-shrink:0;border:0;background:none;color:#8896ac;cursor:pointer;padding:4px;border-radius:6px;display:inline-flex}
+.rc-tcard .tcopy:hover{color:var(--blue-300)}
+.rc-tcard .tcopy svg{width:14px;height:14px}
+.rc-revlabel{font-size:11px;font-weight:900;color:var(--blue-300);margin:12px 0 6px;letter-spacing:.02em}
+.rc-lyr{position:relative}
+.rc-lyr pre{margin:0;font-family:var(--font-mono,ui-monospace,Consolas,monospace);font-size:12.5px;line-height:1.7;color:#E4E9F2;white-space:pre-wrap;word-break:break-word;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 15px;padding-top:38px;max-height:440px;overflow:auto}
+.rc-lyr .rc-copy{position:absolute;top:9px;right:9px;background:rgba(10,16,26,.85)}
 </style>
 </head>
 <body>
@@ -339,14 +394,15 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <div class="side-sub-nav">
-      <a href="playstars.html">플리채널 스튜디오</a>
+      <a href="pli-studio.html">플리채널 스튜디오</a>
       <a href="plichannel-planning.html">기획 노바</a>
       <a href="music-lab.html" class="cur">음악 랩</a>
+      <a href="channel-research.html">채널 딥 리서치</a>
       <a href="auto-video.html">자동영상</a>
       <a href="history.html">내 기록</a>
     </div>
@@ -363,7 +419,7 @@
 <div class="main" id="main">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html">CLASS<span class="tko">강의</span></a>
       <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
@@ -372,21 +428,21 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="history.html">내 요청 기록</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
-<main id="lab-main" class="lab">
+<main id="lab-main" class="lab" tabindex="-1">
 
   <header class="lab-head">
-    <span class="lab-eyebrow"><svg><use href="#i-music"/></svg> AI MUSIC LAB</span>
-    <h1 class="lab-title"><svg><use href="#i-music"/></svg> 음악 만들기</h1>
+    <span class="lab-eyebrow"><svg aria-hidden="true"><use href="#i-music"/></svg> AI MUSIC LAB</span>
+    <h1 class="lab-title"><svg aria-hidden="true"><use href="#i-music"/></svg> 음원 프롬프트 생성</h1>
     <p class="lab-sub">옵션을 고르면 화면 하단 바에 <b>AI에게 보낼 요청 프롬프트</b>가 실시간으로 만들어져요. 언제든 복사할 수 있어요.</p>
   </header>
 
   <!-- AI 제공자 선택 + API 키 (BYOK) -->
   <div class="lab-banner" id="keyBanner">
-    <span class="bi" aria-hidden="true"><svg><use href="#i-key"/></svg></span>
+    <span class="bi" aria-hidden="true"><svg aria-hidden="true"><use href="#i-key"/></svg></span>
     <div style="flex:1">
       <h4 id="keyTitle">AI 제공자를 고르세요</h4>
       <p>키 없이도 요청 프롬프트는 만들어집니다(복사해서 직접 사용). 자동 생성을 원할 때만 키를 등록하세요. 키는 이 브라우저에만 저장되고 서버로 전송되지 않아요.</p>
@@ -396,7 +452,7 @@
         <button type="button" class="provb" data-prov="gpt" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>GPT</button>
         <button type="button" class="provb" data-prov="claude" aria-pressed="false"><span class="ok-dot" aria-hidden="true"></span>Claude</button>
       </div>
-      <button type="button" class="blink" id="keyToggle"><svg><use href="#i-chev-r"/></svg> API 키 등록 / 설정</button>
+      <button type="button" class="blink" id="keyToggle"><svg aria-hidden="true"><use href="#i-chev-r"/></svg> API 키 등록 / 설정</button>
       <a class="blink" href="history.html" style="margin-left:14px;text-decoration:none">내 요청 기록 →</a>
       <div class="keybox" id="keyBox">
         <div class="keyrow">
@@ -424,16 +480,16 @@
 
   <!-- 프리셋 8종 -->
   <div class="presets">
-    <div class="presets-l"><svg><use href="#i-spark"/></svg> 빠른 시작 프리셋 — 한 번 누르면 장르·무드·악기·구조가 한 번에 채워져요</div>
+    <div class="presets-l"><svg aria-hidden="true"><use href="#i-spark"/></svg> 빠른 시작 프리셋 — 한 번 누르면 장르·무드·악기·구조가 한 번에 채워져요</div>
     <div class="preset-row" id="presetRow" role="group" aria-label="프리셋">
-      <button type="button" class="preset" data-preset="lofi"><svg><use href="#i-disc"/></svg> Lo-fi 공부 BGM</button>
-      <button type="button" class="preset" data-preset="citypop"><svg><use href="#i-music"/></svg> 시티팝</button>
-      <button type="button" class="preset" data-preset="cinematic"><svg><use href="#i-tv"/></svg> 영화음악</button>
-      <button type="button" class="preset" data-preset="ccm"><svg><use href="#i-leaf"/></svg> CCM 발라드</button>
-      <button type="button" class="preset" data-preset="edm"><svg><use href="#i-bolt"/></svg> EDM 파티</button>
-      <button type="button" class="preset" data-preset="ambient"><svg><use href="#i-leaf"/></svg> 숙면 앰비언트</button>
-      <button type="button" class="preset" data-preset="kpop"><svg><use href="#i-star2"/></svg> K-pop 댄스</button>
-      <button type="button" class="preset" data-preset="jazz"><svg><use href="#i-piano"/></svg> 재즈 카페</button>
+      <button type="button" class="preset" data-preset="lofi"><svg aria-hidden="true"><use href="#i-disc"/></svg> Lo-fi 공부 BGM</button>
+      <button type="button" class="preset" data-preset="citypop"><svg aria-hidden="true"><use href="#i-music"/></svg> 시티팝</button>
+      <button type="button" class="preset" data-preset="cinematic"><svg aria-hidden="true"><use href="#i-tv"/></svg> 영화음악</button>
+      <button type="button" class="preset" data-preset="ccm"><svg aria-hidden="true"><use href="#i-leaf"/></svg> CCM 발라드</button>
+      <button type="button" class="preset" data-preset="edm"><svg aria-hidden="true"><use href="#i-bolt"/></svg> EDM 파티</button>
+      <button type="button" class="preset" data-preset="ambient"><svg aria-hidden="true"><use href="#i-leaf"/></svg> 숙면 앰비언트</button>
+      <button type="button" class="preset" data-preset="kpop"><svg aria-hidden="true"><use href="#i-star2"/></svg> K-pop 댄스</button>
+      <button type="button" class="preset" data-preset="jazz"><svg aria-hidden="true"><use href="#i-piano"/></svg> 재즈 카페</button>
     </div>
   </div>
 
@@ -441,121 +497,121 @@
 
   <!-- 1. 주제 / 컨셉 (맨 위) -->
   <div class="fld">
-    <label class="fld-l" for="concept"><svg><use href="#i-pen"/></svg> 주제 / 컨셉 (가사 내용)</label>
+    <label class="fld-l" for="concept"><svg aria-hidden="true"><use href="#i-pen"/></svg> 주제 / 컨셉 (가사 내용)</label>
     <textarea id="concept" placeholder="예) 첫사랑의 설렘과 떨림 / 비 오는 날 카페에서 듣고 싶은 음악 / 친구들과의 추억…"></textarea>
   </div>
 
   <!-- 2. 장르 -->
   <div class="fld" data-field="genre">
-    <span class="fld-l"><svg><use href="#i-guitar"/></svg> 장르 <span class="multi">1~2개 권장</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-guitar"/></svg> 장르 <span class="multi">1~2개 권장</span><button type="button" class="info-btn" data-info="genre" aria-label="장르 설명 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="7.3" r="1.1" fill="currentColor" stroke="none"/></svg></button></span>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-mic"/></svg> 팝 / 대중음악</div><div class="chips" role="group" aria-label="팝 대중음악">
-      <button type="button" class="mchip" aria-pressed="false" data-en="city pop">시티팝</button><button type="button" class="mchip" aria-pressed="false" data-en="k-pop">K-pop</button><button type="button" class="mchip" aria-pressed="false" data-en="pop">팝</button><button type="button" class="mchip" aria-pressed="false" data-en="indie pop">인디팝</button><button type="button" class="mchip" aria-pressed="false" data-en="dream pop">드림 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="synth-pop">신스팝</button><button type="button" class="mchip" aria-pressed="false" data-en="ballad">발라드</button><button type="button" class="mchip" aria-pressed="false" data-en="dance pop">댄스 팝</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-mic"/></svg> 팝 / 대중음악</div><div class="chips" role="group" aria-label="팝 대중음악">
+      <button type="button" class="mchip" aria-pressed="false" data-en="city pop">시티팝</button><button type="button" class="mchip" aria-pressed="false" data-en="k-pop">K-pop</button><button type="button" class="mchip" aria-pressed="false" data-en="pop">팝</button><button type="button" class="mchip" aria-pressed="false" data-en="indie pop">인디팝</button><button type="button" class="mchip" aria-pressed="false" data-en="dream pop">드림 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="synth-pop">신스팝</button><button type="button" class="mchip" aria-pressed="false" data-en="ballad">발라드</button><button type="button" class="mchip" aria-pressed="false" data-en="dance pop">댄스 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="jazz pop">재즈 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="art pop">아트 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="bedroom pop">베드룸 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="electropop">일렉트로팝</button><button type="button" class="mchip" aria-pressed="false" data-en="hyperpop">하이퍼팝</button><button type="button" class="mchip" aria-pressed="false" data-en="j-pop">J-pop</button><button type="button" class="mchip" aria-pressed="false" data-en="power pop">파워 팝</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-music"/></svg> 힙합 / R&amp;B</div><div class="chips" role="group" aria-label="힙합 R&B">
-      <button type="button" class="mchip" aria-pressed="false" data-en="hip-hop">힙합</button><button type="button" class="mchip" aria-pressed="false" data-en="r&b">R&amp;B</button><button type="button" class="mchip" aria-pressed="false" data-en="soul">소울</button><button type="button" class="mchip" aria-pressed="false" data-en="neo-soul">네오소울</button><button type="button" class="mchip" aria-pressed="false" data-en="trap">트랩</button><button type="button" class="mchip" aria-pressed="false" data-en="lo-fi hip-hop">로파이 힙합</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-music"/></svg> 힙합 / R&amp;B</div><div class="chips" role="group" aria-label="힙합 R&B">
+      <button type="button" class="mchip" aria-pressed="false" data-en="hip-hop">힙합</button><button type="button" class="mchip" aria-pressed="false" data-en="r&b">R&amp;B</button><button type="button" class="mchip" aria-pressed="false" data-en="soul">소울</button><button type="button" class="mchip" aria-pressed="false" data-en="neo-soul">네오소울</button><button type="button" class="mchip" aria-pressed="false" data-en="trap">트랩</button><button type="button" class="mchip" aria-pressed="false" data-en="lo-fi hip-hop">로파이 힙합</button><button type="button" class="mchip" aria-pressed="false" data-en="boom bap">붐뱁</button><button type="button" class="mchip" aria-pressed="false" data-en="jazz hip-hop">재즈 힙합</button><button type="button" class="mchip" aria-pressed="false" data-en="funk">펑크(Funk)</button><button type="button" class="mchip" aria-pressed="false" data-en="g-funk">G-펑크</button><button type="button" class="mchip" aria-pressed="false" data-en="alternative r&b">얼터너티브 R&amp;B</button><button type="button" class="mchip" aria-pressed="false" data-en="drill">드릴</button><button type="button" class="mchip" aria-pressed="false" data-en="afro r&b">아프로 R&amp;B</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-guitar"/></svg> 록 / 밴드</div><div class="chips" role="group" aria-label="록 밴드">
-      <button type="button" class="mchip" aria-pressed="false" data-en="rock">록</button><button type="button" class="mchip" aria-pressed="false" data-en="korean rock">K-록</button><button type="button" class="mchip" aria-pressed="false" data-en="indie rock">인디 록</button><button type="button" class="mchip" aria-pressed="false" data-en="alternative rock">얼터너티브 록</button><button type="button" class="mchip" aria-pressed="false" data-en="punk rock">펑크 록</button><button type="button" class="mchip" aria-pressed="false" data-en="folk rock">포크 록</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-guitar"/></svg> 록 / 밴드</div><div class="chips" role="group" aria-label="록 밴드">
+      <button type="button" class="mchip" aria-pressed="false" data-en="rock">록</button><button type="button" class="mchip" aria-pressed="false" data-en="korean rock">K-록</button><button type="button" class="mchip" aria-pressed="false" data-en="indie rock">인디 록</button><button type="button" class="mchip" aria-pressed="false" data-en="alternative rock">얼터너티브 록</button><button type="button" class="mchip" aria-pressed="false" data-en="punk rock">펑크 록</button><button type="button" class="mchip" aria-pressed="false" data-en="folk rock">포크 록</button><button type="button" class="mchip" aria-pressed="false" data-en="hard rock">하드 록</button><button type="button" class="mchip" aria-pressed="false" data-en="metal">메탈</button><button type="button" class="mchip" aria-pressed="false" data-en="grunge">그런지</button><button type="button" class="mchip" aria-pressed="false" data-en="shoegaze">슈게이즈</button><button type="button" class="mchip" aria-pressed="false" data-en="post-rock">포스트 록</button><button type="button" class="mchip" aria-pressed="false" data-en="emo">이모</button><button type="button" class="mchip" aria-pressed="false" data-en="math rock">매스 록</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-bolt"/></svg> 일렉트로닉 / 칠</div><div class="chips" role="group" aria-label="일렉트로닉 칠">
-      <button type="button" class="mchip" aria-pressed="false" data-en="lo-fi">로파이</button><button type="button" class="mchip" aria-pressed="false" data-en="chillwave">칠웨이브</button><button type="button" class="mchip" aria-pressed="false" data-en="chillhop">칠합</button><button type="button" class="mchip" aria-pressed="false" data-en="ambient">앰비언트</button><button type="button" class="mchip" aria-pressed="false" data-en="synthwave">신스웨이브</button><button type="button" class="mchip" aria-pressed="false" data-en="house">하우스</button><button type="button" class="mchip" aria-pressed="false" data-en="edm">EDM</button><button type="button" class="mchip" aria-pressed="false" data-en="future bass">퓨처베이스</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-bolt"/></svg> 일렉트로닉 / 칠</div><div class="chips" role="group" aria-label="일렉트로닉 칠">
+      <button type="button" class="mchip" aria-pressed="false" data-en="lo-fi">로파이</button><button type="button" class="mchip" aria-pressed="false" data-en="chillwave">칠웨이브</button><button type="button" class="mchip" aria-pressed="false" data-en="chillhop">칠합</button><button type="button" class="mchip" aria-pressed="false" data-en="ambient">앰비언트</button><button type="button" class="mchip" aria-pressed="false" data-en="synthwave">신스웨이브</button><button type="button" class="mchip" aria-pressed="false" data-en="house">하우스</button><button type="button" class="mchip" aria-pressed="false" data-en="edm">EDM</button><button type="button" class="mchip" aria-pressed="false" data-en="future bass">퓨처베이스</button><button type="button" class="mchip" aria-pressed="false" data-en="techno">테크노</button><button type="button" class="mchip" aria-pressed="false" data-en="deep house">딥 하우스</button><button type="button" class="mchip" aria-pressed="false" data-en="trance">트랜스</button><button type="button" class="mchip" aria-pressed="false" data-en="dubstep">덥스텝</button><button type="button" class="mchip" aria-pressed="false" data-en="drum and bass">드럼앤베이스</button><button type="button" class="mchip" aria-pressed="false" data-en="trip-hop">트립합</button><button type="button" class="mchip" aria-pressed="false" data-en="downtempo">다운템포</button><button type="button" class="mchip" aria-pressed="false" data-en="vaporwave">베이퍼웨이브</button><button type="button" class="mchip" aria-pressed="false" data-en="uk garage">UK 개러지</button><button type="button" class="mchip" aria-pressed="false" data-en="idm">IDM</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-guitar"/></svg> 어쿠스틱 / 포크 / 컨트리</div><div class="chips" role="group" aria-label="어쿠스틱 포크 컨트리">
-      <button type="button" class="mchip" aria-pressed="false" data-en="folk">포크</button><button type="button" class="mchip" aria-pressed="false" data-en="acoustic">어쿠스틱</button><button type="button" class="mchip" aria-pressed="false" data-en="country">컨트리</button><button type="button" class="mchip" aria-pressed="false" data-en="blues">블루스</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-guitar"/></svg> 어쿠스틱 / 포크 / 컨트리</div><div class="chips" role="group" aria-label="어쿠스틱 포크 컨트리">
+      <button type="button" class="mchip" aria-pressed="false" data-en="folk">포크</button><button type="button" class="mchip" aria-pressed="false" data-en="acoustic">어쿠스틱</button><button type="button" class="mchip" aria-pressed="false" data-en="country">컨트리</button><button type="button" class="mchip" aria-pressed="false" data-en="blues">블루스</button><button type="button" class="mchip" aria-pressed="false" data-en="singer-songwriter">싱어송라이터</button><button type="button" class="mchip" aria-pressed="false" data-en="americana">아메리카나</button><button type="button" class="mchip" aria-pressed="false" data-en="bluegrass">블루그래스</button><button type="button" class="mchip" aria-pressed="false" data-en="celtic">켈틱</button><button type="button" class="mchip" aria-pressed="false" data-en="indie folk">인디 포크</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-music"/></svg> 재즈 / 클래식 / 영화음악</div><div class="chips" role="group" aria-label="재즈 클래식 영화음악">
-      <button type="button" class="mchip" aria-pressed="false" data-en="jazz">재즈</button><button type="button" class="mchip" aria-pressed="false" data-en="swing">스윙</button><button type="button" class="mchip" aria-pressed="false" data-en="bossa nova">보사노바</button><button type="button" class="mchip" aria-pressed="false" data-en="new age">뉴에이지</button><button type="button" class="mchip" aria-pressed="false" data-en="classical crossover">클래식 크로스오버</button><button type="button" class="mchip" aria-pressed="false" data-en="cinematic orchestral">영화음악(오케스트라)</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-music"/></svg> 재즈 / 클래식 / 영화음악</div><div class="chips" role="group" aria-label="재즈 클래식 영화음악">
+      <button type="button" class="mchip" aria-pressed="false" data-en="jazz">재즈</button><button type="button" class="mchip" aria-pressed="false" data-en="swing">스윙</button><button type="button" class="mchip" aria-pressed="false" data-en="bossa nova">보사노바</button><button type="button" class="mchip" aria-pressed="false" data-en="new age">뉴에이지</button><button type="button" class="mchip" aria-pressed="false" data-en="classical crossover">클래식 크로스오버</button><button type="button" class="mchip" aria-pressed="false" data-en="cinematic orchestral">영화음악(오케스트라)</button><button type="button" class="mchip" aria-pressed="false" data-en="smooth jazz">스무스 재즈</button><button type="button" class="mchip" aria-pressed="false" data-en="jazz fusion">재즈 퓨전</button><button type="button" class="mchip" aria-pressed="false" data-en="lounge">라운지</button><button type="button" class="mchip" aria-pressed="false" data-en="classical">클래식</button><button type="button" class="mchip" aria-pressed="false" data-en="solo piano">피아노 솔로</button><button type="button" class="mchip" aria-pressed="false" data-en="neoclassical">네오클래식</button><button type="button" class="mchip" aria-pressed="false" data-en="soundtrack">사운드트랙</button><button type="button" class="mchip" aria-pressed="false" data-en="ragtime">래그타임</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-leaf"/></svg> 신앙 / 명상 / 힐링</div><div class="chips" role="group" aria-label="신앙 명상 힐링">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-leaf"/></svg> 신앙 / 명상 / 힐링</div><div class="chips" role="group" aria-label="신앙 명상 힐링">
       <button type="button" class="mchip" aria-pressed="false" data-en="contemporary christian">CCM / 찬양</button><button type="button" class="mchip" aria-pressed="false" data-en="gospel">가스펠</button><button type="button" class="mchip" aria-pressed="false" data-en="meditation healing">명상 / 치유</button><button type="button" class="mchip" aria-pressed="false" data-en="singing bowl meditation">싱잉볼 명상</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-music"/></svg> 합창 / 전통 / 기타</div><div class="chips" role="group" aria-label="합창 전통 기타">
-      <button type="button" class="mchip" aria-pressed="false" data-en="choral">합창 / 중창</button><button type="button" class="mchip" aria-pressed="false" data-en="trot">트로트</button><button type="button" class="mchip" aria-pressed="false" data-en="korean traditional crossover">국악 크로스오버</button><button type="button" class="mchip" aria-pressed="false" data-en="disco">디스코</button><button type="button" class="mchip" aria-pressed="false" data-en="reggae">레게</button><button type="button" class="mchip" aria-pressed="false" data-en="latin">라틴</button><button type="button" class="mchip" aria-pressed="false" data-en="easy listening">이지리스닝</button>
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-music"/></svg> 합창 / 전통 / 기타</div><div class="chips" role="group" aria-label="합창 전통 기타">
+      <button type="button" class="mchip" aria-pressed="false" data-en="choral">합창 / 중창</button><button type="button" class="mchip" aria-pressed="false" data-en="trot">트로트</button><button type="button" class="mchip" aria-pressed="false" data-en="korean traditional crossover">국악 크로스오버</button><button type="button" class="mchip" aria-pressed="false" data-en="disco">디스코</button><button type="button" class="mchip" aria-pressed="false" data-en="reggae">레게</button><button type="button" class="mchip" aria-pressed="false" data-en="latin">라틴</button><button type="button" class="mchip" aria-pressed="false" data-en="easy listening">이지리스닝</button><button type="button" class="mchip" aria-pressed="false" data-en="funk soul">펑크/소울</button><button type="button" class="mchip" aria-pressed="false" data-en="latin pop">라틴 팝</button><button type="button" class="mchip" aria-pressed="false" data-en="reggaeton">레게톤</button><button type="button" class="mchip" aria-pressed="false" data-en="afrobeat">아프로비트</button><button type="button" class="mchip" aria-pressed="false" data-en="samba">삼바</button><button type="button" class="mchip" aria-pressed="false" data-en="salsa">살사</button><button type="button" class="mchip" aria-pressed="false" data-en="flamenco">플라멩코</button><button type="button" class="mchip" aria-pressed="false" data-en="ska">스카</button><button type="button" class="mchip" aria-pressed="false" data-en="world fusion">월드 퓨전</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-star2"/></svg> 어린이 / 특수</div><div class="chips" role="group" aria-label="어린이 특수">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-star2"/></svg> 어린이 / 특수</div><div class="chips" role="group" aria-label="어린이 특수">
       <button type="button" class="mchip" aria-pressed="false" data-en="lullaby">자장가</button><button type="button" class="mchip" aria-pressed="false" data-en="children's song">동요</button><button type="button" class="mchip" aria-pressed="false" data-en="christmas carol">캐롤</button>
     </div></div>
 
-    <div class="cadd"><label class="sr-only" for="g-custom">장르 직접 입력</label><input id="g-custom" type="text" placeholder="직접 입력 (예: 시티팝, 트로트) — 쉼표로 여러 개"><button type="button" class="addb" data-add="genre"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="g-custom">장르 직접 입력</label><input id="g-custom" type="text" placeholder="직접 입력 (예: 시티팝, 트로트) — 쉼표로 여러 개"><button type="button" class="addb" data-add="genre"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 3. 시대감 / 스타일 -->
   <div class="fld" data-field="era">
-    <span class="fld-l"><svg><use href="#i-cal"/></svg> 시대감 / 스타일</span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-cal"/></svg> 시대감 / 스타일</span>
     <div class="chips" role="group" aria-label="시대감 선택">
       <button type="button" class="mchip" aria-pressed="true" data-en="" data-single="era">현대 (2020s)</button><button type="button" class="mchip" aria-pressed="false" data-en="2010s style" data-single="era">2010s</button><button type="button" class="mchip" aria-pressed="false" data-en="2000s style" data-single="era">2000s</button><button type="button" class="mchip" aria-pressed="false" data-en="90s retro" data-single="era">90s 레트로</button><button type="button" class="mchip" aria-pressed="false" data-en="80s retro" data-single="era">80s 레트로</button><button type="button" class="mchip" aria-pressed="false" data-en="70s vintage" data-single="era">70s 빈티지</button><button type="button" class="mchip" aria-pressed="false" data-en="" data-single="era">시대 무관</button><button type="button" class="mchip" aria-pressed="false" data-en="futuristic" data-single="era">미래적</button>
     </div>
-    <div class="cadd"><label class="sr-only" for="era-custom">시대감 직접 입력</label><input id="era-custom" type="text" placeholder="직접 입력 (예: 시티팝 감성, 90s K-pop)"><button type="button" class="addb" data-add="era"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="era-custom">시대감 직접 입력</label><input id="era-custom" type="text" placeholder="직접 입력 (예: 시티팝 감성, 90s K-pop)"><button type="button" class="addb" data-add="era"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 4. 분위기 / 무드 -->
   <div class="fld" data-field="mood">
-    <span class="fld-l"><svg><use href="#i-heart"/></svg> 분위기 / 무드 <span class="multi">1~2개 권장</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-heart"/></svg> 분위기 / 무드 <span class="multi">1~2개 권장</span><button type="button" class="info-btn" data-info="mood" aria-label="무드 설명 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="7.3" r="1.1" fill="currentColor" stroke="none"/></svg></button></span>
     <div class="chips" role="group" aria-label="무드 선택" id="moodChips">
-      <button type="button" class="mchip" aria-pressed="false" data-en="calm">잔잔한</button><button type="button" class="mchip" aria-pressed="false" data-en="deeply sad">깊은 슬픔</button><button type="button" class="mchip" aria-pressed="false" data-en="warm comforting">따스한 위로</button><button type="button" class="mchip" aria-pressed="false" data-en="explosive energy">에너지 폭발</button><button type="button" class="mchip" aria-pressed="false" data-en="romantic">로맨틱한</button><button type="button" class="mchip" aria-pressed="false" data-en="epic">웅장한 대서사시</button><button type="button" class="mchip" aria-pressed="false" data-en="dreamy">몽환적인</button><button type="button" class="mchip" aria-pressed="false" data-en="nostalgic">향수를 자극하는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="fluttering">설레는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="lonely">쓸쓸한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="hopeful">희망찬</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="mysterious">신비로운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="groovy">그루비한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="tense">긴장감 있는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="free-spirited">자유로운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="poignant">애절한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="meditative">명상적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="festive">축제 분위기</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="melancholic dawn">우울한 새벽</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="reverent graceful">경건하고 은혜로운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="serene peaceful">순수한 평화</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="cozy">포근한 구름</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="shimmering">일렁이는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="cosmic">우주 같은</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="dark intense">다크하고 강렬</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="refreshing breezy">시원한 바람</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="driving powerful">강력한 드라이브</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="defiant">도전적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="cute">귀여운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="quirky">엉뚱한</button>
-      <button type="button" class="morebtn" id="moodMore"><svg><use href="#i-plus"/></svg> 더보기 (22개)</button>
+      <button type="button" class="mchip" aria-pressed="false" data-en="calm">잔잔한</button><button type="button" class="mchip" aria-pressed="false" data-en="deeply sad">깊은 슬픔</button><button type="button" class="mchip" aria-pressed="false" data-en="warm comforting">따스한 위로</button><button type="button" class="mchip" aria-pressed="false" data-en="explosive energy">에너지 폭발</button><button type="button" class="mchip" aria-pressed="false" data-en="romantic">로맨틱한</button><button type="button" class="mchip" aria-pressed="false" data-en="epic">웅장한 대서사시</button><button type="button" class="mchip" aria-pressed="false" data-en="dreamy">몽환적인</button><button type="button" class="mchip" aria-pressed="false" data-en="nostalgic">향수를 자극하는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="fluttering">설레는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="lonely">쓸쓸한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="hopeful">희망찬</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="mysterious">신비로운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="groovy">그루비한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="tense">긴장감 있는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="free-spirited">자유로운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="poignant">애절한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="meditative">명상적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="festive">축제 분위기</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="melancholic dawn">우울한 새벽</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="reverent graceful">경건하고 은혜로운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="serene peaceful">순수한 평화</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="cozy">포근한 구름</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="shimmering">일렁이는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="cosmic">우주 같은</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="dark intense">다크하고 강렬</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="refreshing breezy">시원한 바람</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="driving powerful">강력한 드라이브</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="defiant">도전적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="cute">귀여운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="quirky">엉뚱한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="bittersweet">씁쓸달콤한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="euphoric">황홀한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="triumphant">승리감 넘치는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="playful">장난스러운</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="sensual">관능적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="majestic">장엄한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="eerie">으스스한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="uplifting">고양되는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="aggressive">공격적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="whimsical">엉뚱발랄한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="hypnotic">최면적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="tropical">트로피컬한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="sultry">나른하고 관능적인</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="anthemic">떼창 같은</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="gritty">거칠고 투박한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="tender">애틋한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="bouncy">통통 튀는</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="suspenseful">긴박한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="wistful">아련한</button><button type="button" class="mchip hidden" aria-pressed="false" data-en="bold confident">당당하고 자신감 있는</button>
+      <button type="button" class="morebtn" id="moodMore"><svg aria-hidden="true"><use href="#i-plus"/></svg> 더보기 (42개)</button>
     </div>
-    <div class="cadd"><label class="sr-only" for="mood-custom">무드 직접 입력</label><input id="mood-custom" type="text" placeholder="직접 입력 (예: 비 오는 새벽 감성) — 쉼표로 여러 개"><button type="button" class="addb" data-add="mood"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="mood-custom">무드 직접 입력</label><input id="mood-custom" type="text" placeholder="직접 입력 (예: 비 오는 새벽 감성) — 쉼표로 여러 개"><button type="button" class="addb" data-add="mood"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 5. 템포 / BPM -->
   <div class="fld" data-field="tempo">
-    <span class="fld-l"><svg><use href="#i-bolt"/></svg> 템포 / BPM</span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-bolt"/></svg> 템포 / BPM</span>
     <div class="chips" role="group" aria-label="템포 선택">
       <button type="button" class="mchip" aria-pressed="false" data-en="very slow" data-bpm="60" data-single="tempo">아주 느린 (50-70 BPM)</button><button type="button" class="mchip" aria-pressed="false" data-en="slow" data-bpm="80" data-single="tempo">느린 (70-90 BPM)</button><button type="button" class="mchip" aria-pressed="true" data-en="mid-tempo" data-bpm="100" data-single="tempo">중간 (90-110 BPM)</button><button type="button" class="mchip" aria-pressed="false" data-en="upbeat" data-bpm="120" data-single="tempo">업비트 (110-130 BPM)</button><button type="button" class="mchip" aria-pressed="false" data-en="fast" data-bpm="140" data-single="tempo">빠른 (130-150 BPM)</button><button type="button" class="mchip" aria-pressed="false" data-en="very fast" data-bpm="160" data-single="tempo">매우 빠른 (150+ BPM)</button>
     </div>
-    <div class="cadd"><label class="sr-only" for="bpm-custom">템포 직접 입력</label><input id="bpm-custom" type="text" placeholder="직접 입력 (예: 125 BPM, 점진적 가속)"><button type="button" class="addb" data-add="tempo"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="bpm-custom">템포 직접 입력</label><input id="bpm-custom" type="text" placeholder="직접 입력 (예: 125 BPM, 점진적 가속)"><button type="button" class="addb" data-add="tempo"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 6. 주요 악기 -->
   <div class="fld" data-field="inst">
-    <span class="fld-l"><svg><use href="#i-piano"/></svg> 주요 악기 <span class="multi">2~3개 권장</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-piano"/></svg> 주요 악기 <span class="multi">2~3개 권장</span><button type="button" class="info-btn" data-info="inst" aria-label="악기 설명 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="7.3" r="1.1" fill="currentColor" stroke="none"/></svg></button></span>
     <div class="chips" role="group" aria-label="악기 선택">
-      <button type="button" class="mchip" aria-pressed="false" data-en="grand piano">그랜드 피아노</button><button type="button" class="mchip" aria-pressed="false" data-en="acoustic guitar">어쿠스틱 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="electric guitar">일렉 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="music box">오르골</button><button type="button" class="mchip" aria-pressed="false" data-en="saxophone">색소폰</button><button type="button" class="mchip" aria-pressed="false" data-en="violin">바이올린</button><button type="button" class="mchip" aria-pressed="false" data-en="cello">첼로</button><button type="button" class="mchip" aria-pressed="false" data-en="singing bowls">싱잉볼</button><button type="button" class="mchip" aria-pressed="false" data-en="synthesizer">신디사이저</button><button type="button" class="mchip" aria-pressed="false" data-en="bass guitar">베이스 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="acoustic drums">어쿠스틱 드럼</button><button type="button" class="mchip" aria-pressed="false" data-en="808 bass">808 베이스 / 트랩 드럼</button><button type="button" class="mchip" aria-pressed="false" data-en="ukulele">우쿨렐레</button><button type="button" class="mchip" aria-pressed="false" data-en="harp">하프</button><button type="button" class="mchip" aria-pressed="false" data-en="flute">플루트</button><button type="button" class="mchip" aria-pressed="false" data-en="trumpet">트럼펫</button><button type="button" class="mchip" aria-pressed="false" data-en="orchestral strings">오케스트라 스트링</button><button type="button" class="mchip" aria-pressed="false" data-en="rhodes electric piano">로즈 일렉 피아노</button><button type="button" class="mchip" aria-pressed="false" data-en="synth pads">신스 패드</button><button type="button" class="mchip" aria-pressed="false" data-en="cajon percussion">카혼 / 퍼커션</button>
+      <button type="button" class="mchip" aria-pressed="false" data-en="grand piano">그랜드 피아노</button><button type="button" class="mchip" aria-pressed="false" data-en="acoustic guitar">어쿠스틱 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="electric guitar">일렉 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="music box">오르골</button><button type="button" class="mchip" aria-pressed="false" data-en="saxophone">색소폰</button><button type="button" class="mchip" aria-pressed="false" data-en="violin">바이올린</button><button type="button" class="mchip" aria-pressed="false" data-en="cello">첼로</button><button type="button" class="mchip" aria-pressed="false" data-en="singing bowls">싱잉볼</button><button type="button" class="mchip" aria-pressed="false" data-en="synthesizer">신디사이저</button><button type="button" class="mchip" aria-pressed="false" data-en="bass guitar">베이스 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="acoustic drums">어쿠스틱 드럼</button><button type="button" class="mchip" aria-pressed="false" data-en="808 bass">808 베이스 / 트랩 드럼</button><button type="button" class="mchip" aria-pressed="false" data-en="ukulele">우쿨렐레</button><button type="button" class="mchip" aria-pressed="false" data-en="harp">하프</button><button type="button" class="mchip" aria-pressed="false" data-en="flute">플루트</button><button type="button" class="mchip" aria-pressed="false" data-en="trumpet">트럼펫</button><button type="button" class="mchip" aria-pressed="false" data-en="orchestral strings">오케스트라 스트링</button><button type="button" class="mchip" aria-pressed="false" data-en="rhodes electric piano">로즈 일렉 피아노</button><button type="button" class="mchip" aria-pressed="false" data-en="synth pads">신스 패드</button><button type="button" class="mchip" aria-pressed="false" data-en="hammond organ">하몬드 오르간</button><button type="button" class="mchip" aria-pressed="false" data-en="pipe organ">파이프 오르간</button><button type="button" class="mchip" aria-pressed="false" data-en="harmonica">하모니카</button><button type="button" class="mchip" aria-pressed="false" data-en="banjo">밴조</button><button type="button" class="mchip" aria-pressed="false" data-en="mandolin">만돌린</button><button type="button" class="mchip" aria-pressed="false" data-en="accordion">아코디언</button><button type="button" class="mchip" aria-pressed="false" data-en="clarinet">클라리넷</button><button type="button" class="mchip" aria-pressed="false" data-en="oboe">오보에</button><button type="button" class="mchip" aria-pressed="false" data-en="french horn">프렌치 호른</button><button type="button" class="mchip" aria-pressed="false" data-en="trombone">트롬본</button><button type="button" class="mchip" aria-pressed="false" data-en="upright bass">콘트라베이스</button><button type="button" class="mchip" aria-pressed="false" data-en="vibraphone">비브라폰</button><button type="button" class="mchip" aria-pressed="false" data-en="marimba">마림바</button><button type="button" class="mchip" aria-pressed="false" data-en="kalimba">칼림바</button><button type="button" class="mchip" aria-pressed="false" data-en="glockenspiel">글로켄슈필</button><button type="button" class="mchip" aria-pressed="false" data-en="celesta">첼레스타</button><button type="button" class="mchip" aria-pressed="false" data-en="sitar">시타르</button><button type="button" class="mchip" aria-pressed="false" data-en="erhu">얼후</button><button type="button" class="mchip" aria-pressed="false" data-en="gayageum">가야금</button><button type="button" class="mchip" aria-pressed="false" data-en="koto">코토</button><button type="button" class="mchip" aria-pressed="false" data-en="tabla">타블라</button><button type="button" class="mchip" aria-pressed="false" data-en="congas">콩가</button><button type="button" class="mchip" aria-pressed="false" data-en="timpani">팀파니</button><button type="button" class="mchip" aria-pressed="false" data-en="brass section">브라스 섹션</button><button type="button" class="mchip" aria-pressed="false" data-en="string ensemble">스트링 앙상블</button><button type="button" class="mchip" aria-pressed="false" data-en="choir">합창단</button><button type="button" class="mchip" aria-pressed="false" data-en="fingerstyle guitar">핑거스타일 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="slide guitar">슬라이드 기타</button><button type="button" class="mchip" aria-pressed="false" data-en="theremin">테레민</button><button type="button" class="mchip" aria-pressed="false" data-en="mellotron">멜로트론</button>
     </div>
-    <div class="cadd"><label class="sr-only" for="inst-custom">악기 직접 입력</label><input id="inst-custom" type="text" placeholder="추가 요청 (예: 피아노 메인 + 스트링)"><button type="button" class="addb" data-add="inst"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="inst-custom">악기 직접 입력</label><input id="inst-custom" type="text" placeholder="추가 요청 (예: 피아노 메인 + 스트링)"><button type="button" class="addb" data-add="inst"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 7. 보컬 (음색) -->
   <div class="fld" data-field="vocal">
-    <span class="fld-l"><svg><use href="#i-mic"/></svg> 보컬 음색</span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-mic"/></svg> 보컬 음색<button type="button" class="info-btn" data-info="vocal" aria-label="보컬 설명 보기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="7.3" r="1.1" fill="currentColor" stroke="none"/></svg></button></span>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-mic"/></svg> 여성 보컬</div><div class="chips" role="group" aria-label="여성 보컬">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-mic"/></svg> 여성 보컬</div><div class="chips" role="group" aria-label="여성 보컬">
       <button type="button" class="mchip" aria-pressed="false" data-en="clear bright female vocals">맑고 깨끗한 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="ethereal female vocals">에테리얼 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="emotional female vocals">감성적인 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="powerful female vocals">파워풀한 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="husky female vocals">허스키한 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="bright girlish vocals">청량한 소녀</button><button type="button" class="mchip" aria-pressed="false" data-en="whispery female vocals">속삭이는 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="jazzy female vocals">재지한 여성</button><button type="button" class="mchip" aria-pressed="false" data-en="operatic female vocals">오페라틱 여성</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-mic"/></svg> 남성 보컬</div><div class="chips" role="group" aria-label="남성 보컬">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-mic"/></svg> 남성 보컬</div><div class="chips" role="group" aria-label="남성 보컬">
       <button type="button" class="mchip" aria-pressed="false" data-en="smooth male vocals">부드러운 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="sweet tenor male vocals">감미로운 미성 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="husky male vocals">허스키한 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="powerful male vocals">파워풀한 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="passionate male vocals">열정적인 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="deep low male vocals">깊고 낮은 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="boyish vocals">소년</button><button type="button" class="mchip" aria-pressed="false" data-en="jazzy male vocals">재지한 남성</button><button type="button" class="mchip" aria-pressed="false" data-en="operatic male vocals">오페라틱 남성</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-headset"/></svg> 랩</div><div class="chips" role="group" aria-label="랩">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-headset"/></svg> 랩</div><div class="chips" role="group" aria-label="랩">
       <button type="button" class="mchip" aria-pressed="false" data-en="male rap">랩 (남성)</button><button type="button" class="mchip" aria-pressed="false" data-en="female rap">랩 (여성)</button><button type="button" class="mchip" aria-pressed="false" data-en="melodic rap">멜로딕 랩</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-music"/></svg> 합창 / 그룹</div><div class="chips" role="group" aria-label="합창 그룹">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-music"/></svg> 합창 / 그룹</div><div class="chips" role="group" aria-label="합창 그룹">
       <button type="button" class="mchip" aria-pressed="false" data-en="children's choir">어린이 합창단</button><button type="button" class="mchip" aria-pressed="false" data-en="mixed adult choir">어른 혼성 합창단</button><button type="button" class="mchip" aria-pressed="false" data-en="male-female duet">남녀 듀엣</button><button type="button" class="mchip" aria-pressed="false" data-en="male-female chorus">남녀 코러스</button><button type="button" class="mchip" aria-pressed="false" data-en="gospel choir">가스펠 합창단</button>
     </div></div>
 
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-spark"/></svg> 특수 / 효과</div><div class="chips" role="group" aria-label="특수 효과">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-spark"/></svg> 특수 / 효과</div><div class="chips" role="group" aria-label="특수 효과">
       <button type="button" class="mchip" aria-pressed="false" data-en="vocoder auto-tuned vocals">보코더 / 오토튠</button><button type="button" class="mchip" aria-pressed="false" data-en="half-whispered vocals">반속삭임</button><button type="button" class="mchip" aria-pressed="false" data-en="humming scat vocals">허밍 / 스캣</button><button type="button" class="mchip" aria-pressed="false" data-en="instrumental">가사 없는 연주곡</button>
     </div></div>
 
-    <div class="cadd"><label class="sr-only" for="vocal-custom">보컬 직접 입력</label><input id="vocal-custom" type="text" placeholder="직접 입력 (예: 청아한 미성)"><button type="button" class="addb" data-add="vocal"><svg><use href="#i-plus"/></svg> 추가</button></div>
-    <p class="tip"><svg><use href="#i-info"/></svg> 실명 가수는 Suno가 직접 인식하지 못하고 필터에 걸릴 수 있어요. 가수 이름 대신 그 가수의 <b>음색·창법 특징</b>(예: 맑고 청아한 여성 보컬, 허스키한 미성)으로 적어주시는 걸 권장합니다.</p>
+    <div class="cadd"><label class="sr-only" for="vocal-custom">보컬 직접 입력</label><input id="vocal-custom" type="text" placeholder="직접 입력 (예: 청아한 미성)"><button type="button" class="addb" data-add="vocal"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
+    <p class="tip"><svg aria-hidden="true"><use href="#i-info"/></svg> 실명 가수는 Suno가 직접 인식하지 못하고 필터에 걸릴 수 있어요. 가수 이름 대신 그 가수의 <b>음색·창법 특징</b>(예: 맑고 청아한 여성 보컬, 허스키한 미성)으로 적어주시는 걸 권장합니다.</p>
   </div>
 
   <!-- 8. 보컬 디렉션 (신설) -->
   <div class="fld" data-field="vdir">
-    <span class="fld-l"><svg><use href="#i-headset"/></svg> 보컬 디렉션 <span class="new-tag">신설</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-headset"/></svg> 보컬 디렉션 <span class="new-tag">신설</span></span>
     <p class="fld-sub">특정 구간의 창법을 지정해요. Lyrics 안에 <code>[Belting]</code>처럼 메타태그로 들어가 표현이 또렷해집니다.</p>
     <div class="chips" role="group" aria-label="보컬 디렉션 선택">
       <button type="button" class="mchip" aria-pressed="false" data-en="belting" data-tag="[Belting]">벨팅</button><button type="button" class="mchip" aria-pressed="false" data-en="falsetto" data-tag="[Falsetto]">팔세토</button><button type="button" class="mchip" aria-pressed="false" data-en="whisper" data-tag="[Whisper]">속삭임</button><button type="button" class="mchip" aria-pressed="false" data-en="ad-lib" data-tag="[Ad-lib]">애드리브</button><button type="button" class="mchip" aria-pressed="false" data-en="high harmony" data-tag="[Harmony: High]">하이 하모니</button><button type="button" class="mchip" aria-pressed="false" data-en="backing vocals" data-tag="[Backing Vocals]">백킹 보컬</button><button type="button" class="mchip" aria-pressed="false" data-en="melismatic" data-tag="[Melismatic]">멜리스마</button><button type="button" class="mchip" aria-pressed="false" data-en="raspy" data-tag="[Raspy]">래스피</button><button type="button" class="mchip" aria-pressed="false" data-en="humming" data-tag="[Humming]">허밍</button><button type="button" class="mchip" aria-pressed="false" data-en="gospel choir" data-tag="[Choir: Gospel]">가스펠 합창</button>
@@ -564,56 +620,57 @@
 
   <!-- 9. 언어 -->
   <div class="fld" data-field="lang">
-    <span class="fld-l"><svg><use href="#i-globe"/></svg> 언어</span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-globe"/></svg> 언어</span>
     <div class="chips" role="group" aria-label="언어 선택">
       <button type="button" class="mchip" aria-pressed="true" data-en="" data-ko="1" data-single="lang">한국어</button><button type="button" class="mchip" aria-pressed="false" data-en="English lyrics" data-single="lang">English</button><button type="button" class="mchip" aria-pressed="false" data-en="Japanese lyrics" data-single="lang">日本語</button><button type="button" class="mchip" aria-pressed="false" data-en="Chinese lyrics" data-single="lang">中文</button><button type="button" class="mchip" aria-pressed="false" data-en="Spanish lyrics" data-single="lang">Español</button><button type="button" class="mchip" aria-pressed="false" data-en="French lyrics" data-single="lang">Français</button><button type="button" class="mchip" aria-pressed="false" data-en="Korean and English mixed lyrics" data-single="lang">한+영 혼합</button>
     </div>
-    <div class="cadd"><label class="sr-only" for="lang-custom">언어 직접 입력</label><input id="lang-custom" type="text" placeholder="직접 입력 (예: Italiano)"><button type="button" class="addb" data-add="lang"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="lang-custom">언어 직접 입력</label><input id="lang-custom" type="text" placeholder="직접 입력 (예: Italiano)"><button type="button" class="addb" data-add="lang"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 10. 프로덕션 / 믹스 (신설) -->
   <div class="fld" data-field="prod">
-    <span class="fld-l"><svg><use href="#i-sliders"/></svg> 프로덕션 / 믹스 <span class="new-tag">신설</span> <span class="multi">1~2개 권장</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-sliders"/></svg> 프로덕션 / 믹스 <span class="new-tag">신설</span> <span class="multi">1~2개 권장</span></span>
     <p class="fld-sub">곡의 질감과 공간감을 결정해요. 같은 장르라도 분위기가 확 달라집니다.</p>
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-disc"/></svg> 질감</div><div class="chips" role="group" aria-label="질감">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-disc"/></svg> 질감</div><div class="chips" role="group" aria-label="질감">
       <button type="button" class="mchip" aria-pressed="false" data-en="lo-fi">로파이 (lo-fi)</button><button type="button" class="mchip" aria-pressed="false" data-en="analog warmth">아날로그</button><button type="button" class="mchip" aria-pressed="false" data-en="vinyl crackle">바이닐 크래클</button><button type="button" class="mchip" aria-pressed="false" data-en="polished production">폴리시드 (깔끔)</button><button type="button" class="mchip" aria-pressed="false" data-en="raw production">로우 (날것)</button>
     </div></div>
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-spark"/></svg> 공간감</div><div class="chips" role="group" aria-label="공간감">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-spark"/></svg> 공간감</div><div class="chips" role="group" aria-label="공간감">
       <button type="button" class="mchip" aria-pressed="false" data-en="reverb-heavy">리버브 풍부</button><button type="button" class="mchip" aria-pressed="false" data-en="dry mix">드라이</button><button type="button" class="mchip" aria-pressed="false" data-en="wide stereo">와이드 스테레오</button><button type="button" class="mchip" aria-pressed="false" data-en="intimate close-mic">인티메이트</button>
     </div></div>
-    <div class="gcat"><div class="gcat-h"><svg><use href="#i-engine"/></svg> 마감</div><div class="chips" role="group" aria-label="마감">
+    <div class="gcat"><div class="gcat-h"><svg aria-hidden="true"><use href="#i-engine"/></svg> 마감</div><div class="chips" role="group" aria-label="마감">
       <button type="button" class="mchip" aria-pressed="false" data-en="auto-tuned">오토튠</button><button type="button" class="mchip" aria-pressed="false" data-en="minimal processing">미니멀 프로세싱</button><button type="button" class="mchip" aria-pressed="false" data-en="compressed punchy">컴프레스드</button>
     </div></div>
   </div>
 
   <!-- 11. 곡 구조 (길이 + 프리셋, 승격) -->
   <div class="fld" data-field="struct">
-    <span class="fld-l"><svg><use href="#i-layers"/></svg> 곡 구조 <span class="multi">길이 + 프리셋</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-layers"/></svg> 곡 구조 <span class="multi">길이 + 프리셋</span></span>
     <div class="len-row" role="group" aria-label="곡 길이 선택">
       <button type="button" class="len" aria-pressed="false" data-single="len"><b>2:00</b><span>짧게</span></button><button type="button" class="len" aria-pressed="false" data-single="len"><b>2:30</b><span>컴팩트</span></button><button type="button" class="len" aria-pressed="false" data-single="len"><b>3:00</b><span>표준</span></button><button type="button" class="len" aria-pressed="true" data-single="len"><b>3:30</b><span class="rec">추천</span></button><button type="button" class="len" aria-pressed="false" data-single="len"><b>4:00</b><span>길게</span></button>
     </div>
     <div class="struct-row" role="group" aria-label="구조 프리셋 선택" id="structRow">
-      <button type="button" class="struct" aria-pressed="true" data-struct="pop"><b>표준 팝</b><span>Intro · Verse · Pre-Chorus · Chorus · Verse · Chorus · Outro · End</span></button>
+      <button type="button" class="struct" aria-pressed="true" data-struct="pop"><b>팝 심플</b><span>Intro · Verse · Pre-Chorus · Chorus · Verse · Chorus · Outro · End</span></button>
+      <button type="button" class="struct" aria-pressed="false" data-struct="pop_full"><b>팝 노멀</b><span>Intro · Verse · Pre-Chorus · Chorus · Verse · Chorus · Bridge · Chorus · Outro · End</span></button>
       <button type="button" class="struct" aria-pressed="false" data-struct="sns"><b>짧은 SNS</b><span>Intro · Verse · Hook · End — 쇼츠·릴스용</span></button>
       <button type="button" class="struct" aria-pressed="false" data-struct="edm"><b>드롭형 EDM</b><span>Intro · Build · Drop · Breakdown · Build · Drop · Outro · End</span></button>
       <button type="button" class="struct" aria-pressed="false" data-struct="ambient"><b>미니멀 명상</b><span>Intro · Ambient Pad · Interlude · Outro · End</span></button>
     </div>
-    <p class="len-note" id="structNote"><b>표준 팝 구조</b> — Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → Outro · 각 섹션 4줄 · <b>[End]</b> 태그 자동 부착(꼬리 잘림 방지).</p>
+    <p class="len-note" id="structNote"><b>팝 심플 구조</b> — Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → Outro · 각 섹션 4줄 · 섹션마다 <b>[ ]</b> 디렉션 명시 · <b>[End]</b> 자동 부착(꼬리 잘림 방지).</p>
   </div>
 
   <!-- 12. 제외 Exclude (신설) -->
   <div class="fld" data-field="exclude">
-    <span class="fld-l"><svg><use href="#i-ban"/></svg> 제외 (Exclude) <span class="new-tag">신설</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-ban"/></svg> 제외 (Exclude) <span class="new-tag">신설</span></span>
     <p class="fld-sub">빼고 싶은 요소를 고르세요. Style 박스에 "no drums"를 넣으면 불안정 → <b>별도 Exclude 필드</b>로 안전하게 전달됩니다.</p>
     <div class="chips" role="group" aria-label="제외 선택">
       <button type="button" class="mchip" aria-pressed="false" data-en="no autotune">오토튠 빼기</button><button type="button" class="mchip" aria-pressed="false" data-en="no drums">드럼 없이</button><button type="button" class="mchip" aria-pressed="false" data-en="no synths">신스 빼기</button><button type="button" class="mchip" aria-pressed="false" data-en="no heavy reverb">과한 리버브 빼기</button><button type="button" class="mchip" aria-pressed="false" data-en="no electric guitar">일렉 기타 빼기</button>
     </div>
-    <div class="cadd"><label class="sr-only" for="exc-custom">제외 직접 입력</label><input id="exc-custom" type="text" placeholder="직접 입력 (예: no brass) — 'no ~' 형식"><button type="button" class="addb" data-add="exclude"><svg><use href="#i-plus"/></svg> 추가</button></div>
+    <div class="cadd"><label class="sr-only" for="exc-custom">제외 직접 입력</label><input id="exc-custom" type="text" placeholder="직접 입력 (예: no brass) — 'no ~' 형식"><button type="button" class="addb" data-add="exclude"><svg aria-hidden="true"><use href="#i-plus"/></svg> 추가</button></div>
   </div>
 
   <!-- 13. 사용 용도 -->
   <div class="fld" data-field="use">
-    <span class="fld-l"><svg><use href="#i-target"/></svg> 사용 용도 / 시청 상황 <span class="multi">여러 개 OK</span></span>
+    <span class="fld-l"><svg aria-hidden="true"><use href="#i-target"/></svg> 사용 용도 / 시청 상황 <span class="multi">여러 개 OK</span></span>
     <div class="chips" role="group" aria-label="사용 용도 선택">
       <button type="button" class="mchip" aria-pressed="false">유튜브 브이로그 BGM</button><button type="button" class="mchip" aria-pressed="false">게임 방송 배경음</button><button type="button" class="mchip" aria-pressed="false">공부·집중향상</button><button type="button" class="mchip" aria-pressed="false">운동·피트니스</button><button type="button" class="mchip" aria-pressed="false">숙면·명상</button><button type="button" class="mchip" aria-pressed="false">카페 분위기</button><button type="button" class="mchip" aria-pressed="false">감성 쇼츠·틱톡</button><button type="button" class="mchip" aria-pressed="false">교회 예배·묵상</button><button type="button" class="mchip" aria-pressed="false">광고 / 홍보 영상</button><button type="button" class="mchip" aria-pressed="false">웨딩 / 기념일</button><button type="button" class="mchip" aria-pressed="false">여행 영상</button><button type="button" class="mchip" aria-pressed="false">늦은 밤 드라이브</button><button type="button" class="mchip" aria-pressed="false">파티</button><button type="button" class="mchip" aria-pressed="false">비 오는 날</button><button type="button" class="mchip" aria-pressed="false">데이트</button>
     </div>
@@ -622,7 +679,7 @@
   <!-- 14. 고급 슬라이더 (신설 · 접이식) -->
   <div class="fld" data-field="adv">
     <details class="adv">
-      <summary class="adv-toggle"><svg class="ai"><use href="#i-sliders"/></svg> 고급 슬라이더 <span class="new-tag">신설</span> <svg class="chev"><use href="#i-chev-r"/></svg></summary>
+      <summary class="adv-toggle"><svg aria-hidden="true" class="ai"><use href="#i-sliders"/></svg> 고급 슬라이더 <span class="new-tag">신설</span> <svg aria-hidden="true" class="chev"><use href="#i-chev-r"/></svg></summary>
       <div class="adv-body">
         <div class="slider-fld">
           <div class="slider-l"><label for="weirdSlider">Weirdness — 실험성</label><span class="val" id="weirdVal">50</span></div>
@@ -648,15 +705,15 @@
   <div class="lab-step-h opt"><span class="num" aria-hidden="true">2</span><h3>풀 노래 엔진 <span class="opt-tag">선택</span></h3><span class="v-tag">Suno V5.5</span></div>
   <p class="eng-hint">가사를 만든 뒤, 각 노래 옆 버튼으로 진짜 음악 파일까지 만들 수 있어요.</p>
   <div class="eng-row" role="group" aria-label="음악 엔진 선택">
-    <button type="button" class="eng" aria-pressed="false" data-single="eng"><span class="et"><svg><use href="#i-music"/></svg> Suno API</span><p>진짜 Suno V5.5 모델로 풀 노래(3~4분, 보컬 포함). 한국어 보컬 최강.</p><span class="req"><svg><use href="#i-key"/></svg> kie.ai 키 필요</span></button>
-    <button type="button" class="eng" aria-pressed="false" data-single="eng"><span class="et"><svg><use href="#i-engine"/></svg> Lyria 3 Pro</span><p>Google 최신 음악 AI. Gemini 키 그대로 사용.</p><span class="req"><svg><use href="#i-key"/></svg> Gemini 빌링 활성화 필요</span></button>
-    <button type="button" class="eng" aria-pressed="true" data-single="eng"><span class="et"><svg><use href="#i-copy"/></svg> 사용 안 함</span><p>가사·스타일만 만들고 Suno 웹에 직접 붙여넣기.</p><span class="req free"><svg><use href="#i-check"/></svg> 100% 무료</span></button>
+    <button type="button" class="eng" aria-pressed="false" data-single="eng"><span class="et"><svg aria-hidden="true"><use href="#i-music"/></svg> Suno API</span><p>진짜 Suno V5.5 모델로 풀 노래(3~4분, 보컬 포함). 한국어 보컬 최강.</p><span class="req"><svg aria-hidden="true"><use href="#i-key"/></svg> kie.ai 키 필요</span></button>
+    <button type="button" class="eng" aria-pressed="false" data-single="eng"><span class="et"><svg aria-hidden="true"><use href="#i-engine"/></svg> Lyria 3 Pro</span><p>Google 최신 음악 AI. Gemini 키 그대로 사용.</p><span class="req"><svg aria-hidden="true"><use href="#i-key"/></svg> Gemini 빌링 활성화 필요</span></button>
+    <button type="button" class="eng" aria-pressed="true" data-single="eng"><span class="et"><svg aria-hidden="true"><use href="#i-copy"/></svg> 사용 안 함</span><p>가사·스타일만 만들고 Suno 웹에 직접 붙여넣기.</p><span class="req free"><svg aria-hidden="true"><use href="#i-check"/></svg> 100% 무료</span></button>
   </div>
 
   <!-- ── 결과 화면 (Suno 사운드 엔지니어 출력) ───────────── -->
   <section class="lab-result" id="labResult" hidden aria-labelledby="resTitle">
     <div class="res-head">
-      <span class="num" aria-hidden="true"><svg width="16" height="16"><use href="#i-music"/></svg></span>
+      <span class="num" aria-hidden="true"><svg aria-hidden="true" width="16" height="16"><use href="#i-music"/></svg></span>
       <h3 id="resTitle">생성 결과 — 10곡 가사 + Suno 스타일팩</h3>
       <button type="button" class="regen" id="resRegen"><svg aria-hidden="true"><use href="#i-refresh"/></svg> 재생성</button>
     </div>
@@ -705,6 +762,7 @@
   </div>
 </div>
 
+<script src="../home/cr-keys.js?v=1"></script>
 <script>
 (function(){
 'use strict';
@@ -780,12 +838,14 @@ function pickedSingle(field){
 /* ── 구조 프리셋 → Lyrics 시퀀스 ─────────────────────── */
 var STRUCTS={
   pop:['[Intro]','[Verse]','[Pre-Chorus]','[Chorus]','[Verse]','[Chorus]','[Outro]','[End]'],
+  pop_full:['[Intro]','[Verse]','[Pre-Chorus]','[Chorus]','[Verse]','[Chorus]','[Bridge]','[Chorus]','[Outro]','[End]'],
   sns:['[Intro]','[Verse]','[Hook]','[End]'],
   edm:['[Intro]','[Build]','[Drop]','[Breakdown]','[Build]','[Drop]','[Outro]','[End]'],
   ambient:['[Intro]','[Ambient Pad]','[Interlude]','[Outro]','[End]']
 };
 var STRUCT_NOTES={
-  pop:'<b>표준 팝 구조</b> — Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → Outro · 각 섹션 4줄 · <b>[End]</b> 자동 부착.',
+  pop:'<b>팝 심플 구조</b> — Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → Outro · 각 섹션 4줄 · 섹션마다 <b>[ ]</b> 디렉션 명시 · <b>[End]</b> 자동.',
+  pop_full:'<b>팝 노멀 구조</b> — Intro → Verse → Pre-Chorus → Chorus → Verse → Chorus → <b>Bridge → Chorus</b> → Outro · 브릿지로 후반 고조 · 섹션마다 <b>[ ]</b> 디렉션 명시 · <b>[End]</b> 자동.',
   sns:'<b>짧은 SNS 구조</b> — Intro → Verse → Hook → End · 쇼츠·릴스 15~30초 훅 중심. <b>[End]</b> 자동.',
   edm:'<b>드롭형 EDM 구조</b> — Build → Drop 2회 반복 + Breakdown · 클럽/파티용. <b>[End]</b> 자동.',
   ambient:'<b>미니멀 명상 구조</b> — Ambient Pad 중심, 가사 최소 · 숙면/명상용. <b>[End]</b> 자동.'
@@ -922,6 +982,7 @@ function buildPrompt(){
   if(prod.length) lines.push('[프로덕션] '+prod.join(', '));
 
   lines.push('[곡 구조] '+structLabel()+' ('+structSeqSentence()+')');
+  lines.push('[구조 지시] 위 순서를 그대로 따르고, 모든 섹션을 영문 대괄호 태그로 출력하되 섹션마다 연주·보컬 디렉션을 대괄호 안에 명시하라. 예: [Intro] (4 bars, piano only), [Verse: warm intimate male vocal], [Pre-Chorus: building tension], [Chorus: powerful layered harmonies], [Bridge: stripped-back, emotional], [Outro] (fade out). 빈 태그 금지.');
 
   var excludes=picked('exclude');
   if(excludes.length) lines.push('[제외할 것] '+excludes.join(', '));
@@ -1039,7 +1100,14 @@ $$('.preset[data-preset]').forEach(function(b){
 
 /* ── 제공자별 API 키 (BYOK · localStorage) ────────────── */
 var box=$('#keyBox'), banner=$('#keyBanner'), title=$('#keyTitle');
-function hasKey(){ return !!localStorage.getItem(provider().key); }
+// 등록 키(BYOK) 우선, 없으면 cr-keys.js 기본 키(Gemini만). gpt/claude는 BYOK 전용.
+function effKey(p){
+  p=p||provider();
+  var k=localStorage.getItem(p.key)||'';
+  if(!k && p===PROVIDERS.gemini && window.__CR_DEFAULT_KEYS) k=window.__CR_DEFAULT_KEYS.gem||'';
+  return k;
+}
+function hasKey(){ return !!effKey(provider()); }
 function refreshKey(){
   var p=provider();
   if(hasKey()){ banner.classList.add('ok'); title.textContent=p.name+' API 연결됨 — 가사 자동 생성 준비 완료'; }
@@ -1103,6 +1171,15 @@ $$('#modeSeg button[data-mode]').forEach(function(b){
     t.setAttribute('aria-expanded', open?'false':'true');
     body.classList.toggle('open',!open);
   });
+})();
+
+/* ── 도크 높이만큼 본문 하단 패딩 동기화 (fixed 도크가 맨 아래 카드 가림 방지) ── */
+(function(){
+  var dock=$('#dock'), main=$('#lab-main');
+  if(!dock||!main||!window.ResizeObserver)return; // 미지원 시 CSS 260px 폴백
+  var sync=function(){ main.style.paddingBottom=(dock.offsetHeight+36)+'px'; };
+  new ResizeObserver(sync).observe(dock);
+  sync();
 })();
 $('#keyToggle').addEventListener('click',function(){ box.classList.toggle('show'); $('#gkey').value=localStorage.getItem(provider().key)||''; });
 $('#keySave').addEventListener('click',function(){ var v=$('#gkey').value.trim(); if(v){localStorage.setItem(provider().key,v);}else{localStorage.removeItem(provider().key);} box.classList.remove('show'); refreshKey(); refreshKeyDots(); });
@@ -1267,7 +1344,7 @@ function activeSystem(){
 }
 
 /* ── Gemini 실호출 (plichannel-planning 패턴 차용) ────── */
-var GEMINI_MODEL='gemini-2.0-flash';
+var GEMINI_MODEL='gemini-2.5-flash'; // 10곡 풀 가사 출력엔 2.0-flash(8192 상한) 부족 → 2.5-flash(65536)
 function geminiEndpoint(key){
   return 'https://generativelanguage.googleapis.com/v1beta/models/'+GEMINI_MODEL+':generateContent?key='+encodeURIComponent(key);
 }
@@ -1280,12 +1357,12 @@ function parseGeminiError(status,data){
 }
 // 성공 시 model 텍스트 반환, 실패 시 throw {message}. userPrompt = 옵션 프롬프트(user 메시지)
 function callGemini(userPrompt){
-  var key=localStorage.getItem(PROVIDERS.gemini.key);
+  var key=effKey(PROVIDERS.gemini);
   if(!key) return Promise.reject({message:'Gemini 키가 없어요. 먼저 키를 등록해 주세요.'});
   var body={
     system_instruction:{ parts:[{ text:activeSystem() }] },
     contents:[{ role:'user', parts:[{ text:userPrompt }] }],
-    generationConfig:{ temperature:0.9, topP:0.95, maxOutputTokens:8192 }
+    generationConfig:{ temperature:0.9, topP:0.95, maxOutputTokens:32768 }
   };
   return fetch(geminiEndpoint(key),{
     method:'POST',
@@ -1327,7 +1404,7 @@ function httpErr(status){
 function callOpenAI(system,userPrompt){
   var key=localStorage.getItem(PROVIDERS.gpt.key);
   if(!key) return Promise.reject({message:'GPT 키가 없어요. 먼저 키를 등록해 주세요.'});
-  var body={ model:OPENAI_MODEL, temperature:0.9, max_tokens:8192,
+  var body={ model:OPENAI_MODEL, temperature:0.9, max_tokens:16384,
     messages:[{role:'system',content:system},{role:'user',content:userPrompt}] };
   return fetch('https://api.openai.com/v1/chat/completions',{
     method:'POST',
@@ -1345,7 +1422,7 @@ function callOpenAI(system,userPrompt){
 function callAnthropic(system,userPrompt){
   var key=localStorage.getItem(PROVIDERS.claude.key);
   if(!key) return Promise.reject({message:'Claude 키가 없어요. 먼저 키를 등록해 주세요.'});
-  var body={ model:ANTHROPIC_MODEL, max_tokens:8192, system:system,
+  var body={ model:ANTHROPIC_MODEL, max_tokens:32000, system:system,
     messages:[{role:'user',content:userPrompt}] };
   return fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
@@ -1430,7 +1507,7 @@ function renderLoading(){
 }
 function renderError(msg){
   showResult(); resRegen.disabled=false;
-  resultContent.innerHTML='<div class="res-error"><span class="ei" aria-hidden="true"><svg><use href="#i-info"/></svg></span><div><h4>생성에 실패했어요</h4><p>'+escHtml(msg||'알 수 없는 오류가 발생했어요.')+'</p></div></div>';
+  resultContent.innerHTML='<div class="res-error"><span class="ei" aria-hidden="true"><svg aria-hidden="true"><use href="#i-info"/></svg></span><div><h4>생성에 실패했어요</h4><p>'+escHtml(msg||'알 수 없는 오류가 발생했어요.')+'</p></div></div>';
 }
 function bindCodeCopies(){
   $$('#resContent .res-codecopy').forEach(function(b){
@@ -1451,18 +1528,175 @@ function renderResult(md){
   bindCodeCopies();
 }
 
-/* ── 요청 기록 (localStorage · history.html에서 조회) ─── */
+/* ── 구조화 결과 (Gemini JSON 스키마 → 카드) · 프로 모드 ─── */
+// Gemini v1beta responseSchema: 타입 enum은 대문자(OBJECT/ARRAY/STRING)
+var PRO_SCHEMA={
+  type:'OBJECT',
+  properties:{
+    globalStrategy:{type:'STRING'},
+    styles:{type:'ARRAY',items:{type:'OBJECT',properties:{label:{type:'STRING'},prompt:{type:'STRING'}},required:['label','prompt']}},
+    songs:{type:'ARRAY',items:{type:'OBJECT',properties:{titleMain:{type:'STRING'},titleAlt:{type:'STRING'},lyrics:{type:'STRING'}},required:['titleMain','titleAlt','lyrics']}}
+  },
+  required:['styles','songs']
+};
+var STRUCT_CONTRACT=[
+  '── 출력 형식 지시 (매우 중요) ──',
+  '위 규칙을 모두 지키되, 결과는 반드시 제공된 JSON 스키마로만 출력하라(JSON 외 텍스트 금지).',
+  '- globalStrategy: 이 10곡 팩의 전략 요약 3~4문장(한국어).',
+  '- styles: 정확히 4개. label 이름·순서 고정 = "보컬 강조형", "분위기 강조형", "사운드·악기 강조형", "시네마틱 강조형".',
+  '  각 prompt = Suno "Style" 칸에 그대로 붙여넣을 영문 스타일 프롬프트(강조점에 맞게 디스크립터 구성 + 엔지니어링 태그).',
+  '- songs: 정확히 10개. 각 titleMain / titleAlt = 서로 다른 곡 제목 2안(영문).',
+  '  lyrics = Suno "Lyrics" 칸용. 선택한 곡 구조를 따르는 영문 대괄호 섹션 태그 + 실제 완전한 풀 가사. 섹션마다 [ ] 디렉션 명시, 약어·생략 금지.',
+  '  ★길이 필수: 목표 3분30초. 짧으면 안 됨 → 각 Verse 최소 4줄 + 반드시 [Bridge] → [Final Chorus] → 확장 [Outro](Double Length Outro)를 포함해 충분히 길게. 2절 이후 Bridge·Chorus·Outro가 빠지면 반드시 추가.'
+].join('\n');
+
+function callGeminiStructured(userPrompt, avoidTitles){
+  var key=effKey(PROVIDERS.gemini);
+  if(!key) return Promise.reject({message:'Gemini 키가 없어요. 먼저 키를 등록해 주세요.'});
+  var sys=activeSystem()+'\n\n'+STRUCT_CONTRACT;
+  var up=userPrompt+(avoidTitles&&avoidTitles.length?('\n\n[중복 금지] 다음 제목·주제는 이미 사용됨 — 완전히 다른 제목과 주제로 새로 작성: '+avoidTitles.join(', ')):'');
+  var body={
+    system_instruction:{parts:[{text:sys}]},
+    contents:[{role:'user',parts:[{text:up}]}],
+    generationConfig:{temperature:0.9,topP:0.95,maxOutputTokens:65536,responseMimeType:'application/json',responseSchema:PRO_SCHEMA}
+  };
+  return fetch(geminiEndpoint(key),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(res){
+      return res.json().catch(function(){return {};}).then(function(data){
+        if(!res.ok) throw {message:parseGeminiError(res.status,data)};
+        var cand=data&&data.candidates&&data.candidates[0];
+        var parts=(cand&&cand.content&&cand.content.parts)||[];
+        var txt=parts.map(function(p){return p.text||'';}).join('').trim();
+        if(!txt) throw {message:'빈 응답을 받았어요. 다시 시도해 주세요.'};
+        var obj; try{ obj=JSON.parse(txt); }catch(e){ throw {message:'구조화 응답 파싱 실패', raw:txt}; }
+        if(!obj||!obj.songs||!obj.songs.length) throw {message:'곡 데이터가 비어 있어요. 다시 시도해 주세요.', raw:txt};
+        return obj;
+      });
+    }, function(){ throw {message:'네트워크 오류예요. 인터넷 연결을 확인하고 다시 시도해 주세요.'}; });
+}
+
+var lastPack=null;
+function packTitles(){ return lastPack?lastPack.songs.map(function(s){return s.titleMain;}):[]; }
+function cardsToText(p){
+  if(!p) return '';
+  var out=[];
+  if(p.globalStrategy) out.push('[Global Strategy]\n'+p.globalStrategy+'\n');
+  (p.styles||[]).forEach(function(s){ out.push('['+s.label+']\n'+s.prompt+'\n'); });
+  (p.songs||[]).forEach(function(s,i){ out.push('=== '+(i+1)+'. '+s.titleMain+' / '+s.titleAlt+' ===\n'+s.lyrics+'\n'); });
+  return out.join('\n');
+}
+function pad2(n){ return n<10?'0'+n:''+n; }
+function renderCards(data, append){
+  showResult(); resRegen.disabled=false;
+  if(append && lastPack){ lastPack.songs=lastPack.songs.concat(data.songs||[]); }
+  else { lastPack={globalStrategy:data.globalStrategy||'', styles:data.styles||[], songs:data.songs||[]}; }
+  var d=lastPack, h=[];
+  if(d.globalStrategy) h.push('<div class="rc-strat">'+renderInline(escHtml(d.globalStrategy))+'</div>');
+  if(d.styles.length){
+    h.push('<div class="rc-h"><svg aria-hidden="true"><use href="#i-sliders"/></svg> Suno 스타일팩 — 4종 강조 (Style 칸용)</div>');
+    h.push('<div class="rc-styles">'+d.styles.map(function(s,i){
+      return '<div class="rc-style"><div class="sl"><svg aria-hidden="true"><use href="#i-music"/></svg>'+escHtml(s.label||'스타일')+'</div>'+
+        '<pre>'+escHtml(s.prompt||'')+'</pre>'+
+        '<button type="button" class="rc-copy" data-cp="style" data-i="'+i+'"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button></div>';
+    }).join('')+'</div>');
+  }
+  h.push('<div class="rc-listbar"><span class="lc"><b>'+d.songs.length+'</b> 노래 리스트</span><span class="grow"></span>'+
+    '<button type="button" class="rc-actb" id="rcMeta"><svg aria-hidden="true"><use href="#i-copy"/></svg> 메타데이터 저장</button>'+
+    '<button type="button" class="rc-actb pri" id="rcMore"><svg aria-hidden="true"><use href="#i-refresh"/></svg> 10곡 더 만들기</button></div>');
+  h.push(d.songs.map(function(s,idx){
+    var no=idx+1;
+    return '<details class="rc-song"><summary><span class="rn">'+pad2(no)+'</span>'+
+      '<span class="rt">'+escHtml(s.titleMain||('곡 '+no))+(s.titleAlt?'<span class="ra">또는 '+escHtml(s.titleAlt)+'</span>':'')+'</span>'+
+      '<svg class="rchev" aria-hidden="true"><use href="#i-chev-r"/></svg></summary>'+
+      '<div class="rc-body">'+
+        '<div class="rc-titles">'+
+          '<div class="rc-tcard"><span><span class="tl">메인</span><br><span class="tv">'+escHtml(s.titleMain||'')+'</span></span><button type="button" class="tcopy" data-cp="main" data-i="'+idx+'" aria-label="메인 제목 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg></button></div>'+
+          '<div class="rc-tcard"><span><span class="tl">대체</span><br><span class="tv">'+escHtml(s.titleAlt||'')+'</span></span><button type="button" class="tcopy" data-cp="alt" data-i="'+idx+'" aria-label="대체 제목 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg></button></div>'+
+        '</div>'+
+        (s.lyricsReview?'<div class="rc-revlabel">영문 병기 (검토용)</div><div class="rc-lyr"><button type="button" class="rc-copy" data-cp="rev" data-i="'+idx+'"><svg aria-hidden="true"><use href="#i-copy"/></svg> 병기 복사</button><pre>'+escHtml(s.lyricsReview)+'</pre></div>':'')+
+        '<div class="rc-revlabel">가사 (디렉션 포함 · Suno 복사용)</div>'+
+        '<div class="rc-lyr"><button type="button" class="rc-copy" data-cp="lyr" data-i="'+idx+'"><svg aria-hidden="true"><use href="#i-copy"/></svg> 가사 복사</button><pre>'+escHtml(s.lyrics||'')+'</pre></div>'+
+      '</div></details>';
+  }).join(''));
+  resultContent.innerHTML=h.join('');
+  try{ window.__lastPack=lastPack; }catch(e){}
+}
+function cpValue(cp,i){
+  var s=lastPack&&lastPack.songs[i], st=lastPack&&lastPack.styles[i];
+  if(cp==='style') return st?st.prompt:'';
+  if(cp==='main') return s?s.titleMain:'';
+  if(cp==='alt') return s?s.titleAlt:'';
+  if(cp==='lyr') return s?s.lyrics:'';
+  if(cp==='rev') return s?s.lyricsReview:'';
+  return '';
+}
+function flashBtn(b,txt){
+  if(b.getAttribute('data-o')==null) b.setAttribute('data-o', b.innerHTML);
+  b.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg>'+(txt!=null?' '+txt:(/\S/.test(b.textContent)?' 복사됨':''));
+  clearTimeout(b._ft); b._ft=setTimeout(function(){ b.innerHTML=b.getAttribute('data-o'); },1400);
+}
+function moreSongs(btn){
+  if(generating) return;
+  var userPrompt=$('#pvPrompt').value||'';
+  generating=true; btn.disabled=true; var ob=btn.innerHTML;
+  btn.innerHTML='<svg aria-hidden="true"><use href="#i-music"/></svg> 생성 중…';
+  callGeminiStructured(userPrompt, packTitles()).then(function(data){
+    renderCards(data, true); // 무상태 재생성 → 이어붙이기 (품질 유지)
+    logHistory({tool:'music-lab',toolName:'AI MUSIC LAB',provider:'Gemini',mode:'프로 10곡팩(+추가)',summary:genSummary(),prompt:userPrompt,result:cardsToText(lastPack)});
+    generating=false;
+  }).catch(function(e){
+    generating=false; btn.disabled=false;
+    btn.innerHTML='<svg aria-hidden="true"><use href="#i-info"/></svg> 실패 — 다시';
+    setTimeout(function(){ if(btn.isConnected) btn.innerHTML=ob; },2400);
+  });
+}
+function saveMeta(btn){
+  if(!lastPack||!lastPack.songs.length) return;
+  var base=(lastPack.styles[0]&&lastPack.styles[0].prompt)||'';
+  var songs=lastPack.songs.map(function(s){ return {title:s.titleMain, altTitle:s.titleAlt, style:base, lyrics:s.lyrics}; });
+  var ok=false; try{ localStorage.setItem('starnauts_songs', JSON.stringify(songs)); ok=true; }catch(e){}
+  flashBtn(btn, ok?'저장됨 → 자동영상에서 사용':'저장 실패');
+}
+// 카드 내부 클릭 위임 (복사 · 10곡 더 · 메타 저장) — 리렌더돼도 유지
+resultContent.addEventListener('click',function(e){
+  var cp=e.target.closest('[data-cp]');
+  if(cp){ copyText(cpValue(cp.getAttribute('data-cp'), +cp.getAttribute('data-i')||0), function(){ flashBtn(cp); }); return; }
+  var more=e.target.closest('#rcMore'); if(more){ moreSongs(more); return; }
+  var meta=e.target.closest('#rcMeta'); if(meta){ saveMeta(meta); return; }
+});
+
+/* ── 요청·결과 기록 (localStorage · history.html에서 조회) ─── */
+var HIST_K='starnauts_tool_history';
+function histRead(){ try{ var a=JSON.parse(localStorage.getItem(HIST_K)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+// 용량 초과 시 가장 오래된 result부터 비우고 재시도 → 그래도 안 되면 개수 축소 (데이터 손실 최소화)
+function histWrite(arr){
+  for(var guard=0; guard<60; guard++){
+    try{ localStorage.setItem(HIST_K, JSON.stringify(arr)); return true; }
+    catch(e){
+      var stripped=false;
+      for(var i=arr.length-1;i>=0;i--){ if(arr[i] && arr[i].result){ delete arr[i].result; stripped=true; break; } }
+      if(!stripped){ if(arr.length>1) arr.pop(); else return false; }
+    }
+  }
+  return false;
+}
 function logHistory(rec){
-  try{
-    var k='starnauts_tool_history';
-    var arr=JSON.parse(localStorage.getItem(k)||'[]');
-    if(!Array.isArray(arr)) arr=[];
-    rec.id='h'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
-    rec.ts=new Date().toISOString();
-    arr.unshift(rec);
-    if(arr.length>500) arr.length=500;
-    localStorage.setItem(k,JSON.stringify(arr));
-  }catch(e){}
+  // ToolStore 있으면 계정별 저장 + 로컬폴더 백업 (가사=비공개=내 계정만)
+  if(window.ToolStore){ rec.tool=rec.tool||'music-lab'; rec.shared=false; rec.owner=window.ToolStore.account(); return window.ToolStore.save(rec); }
+  var arr=histRead();
+  rec.id='h'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
+  rec.ts=new Date().toISOString();
+  arr.unshift(rec);
+  if(arr.length>500) arr.length=500;
+  histWrite(arr);
+  return rec.id;
+}
+function updateHistory(id,patch){
+  if(!id) return;
+  if(window.ToolStore){ window.ToolStore.update(id,patch); return; }
+  var arr=histRead();
+  for(var i=0;i<arr.length;i++){ if(arr[i].id===id){ for(var kk in patch) arr[i][kk]=patch[kk]; break; } }
+  histWrite(arr);
 }
 function genSummary(){
   var g=summaryText('genre'), m=summaryText('mood'), i=summaryText('inst');
@@ -1483,7 +1717,7 @@ function runGenerate(){
   var p=provider();
   var userPrompt=$('#pvPrompt').value||'';
   var btn=$('#genBtn'), orig=btn.innerHTML;
-  logHistory({tool:'music-lab',toolName:'AI MUSIC LAB',provider:p.name,mode:(currentMode==='quick'?'퀵 1곡':(currentMode==='ambient'?'BGM·앰비언트':'프로 10곡팩')),summary:genSummary(),prompt:userPrompt});
+  var hid=logHistory({tool:'music-lab',toolName:'AI MUSIC LAB',provider:p.name,mode:(currentMode==='quick'?'퀵 1곡':(currentMode==='ambient'?'BGM·앰비언트':'프로 10곡팩')),summary:genSummary(),prompt:userPrompt});
 
   // Gemini + 키 있음 → 실호출
   if(p.live && hasKey()){
@@ -1491,14 +1725,23 @@ function runGenerate(){
     btn.disabled=true;
     btn.innerHTML='<svg aria-hidden="true"><use href="#i-music"/></svg> 생성 중…';
     renderLoading(); scrollToResult();
+    var done=function(){ generating=false; btn.disabled=false; btn.innerHTML=orig; scrollToResult(); };
+    var fail=function(e){ renderError((e&&e.message)||'알 수 없는 오류가 발생했어요.'); generating=false; btn.disabled=false; btn.innerHTML=orig; };
+    // Gemini + 프로 10곡팩 → JSON 구조화 카드 (실패 시 원문 텍스트 폴백)
+    if(currentProvider==='gemini' && currentMode==='pro'){
+      callGeminiStructured(userPrompt, null).then(function(data){
+        renderCards(data,false); updateHistory(hid,{result:cardsToText(lastPack)}); done();
+      }).catch(function(e){
+        if(e&&e.raw){ renderResult(e.raw); updateHistory(hid,{result:e.raw}); done(); }
+        else fail(e);
+      });
+      return;
+    }
     callLLM(userPrompt).then(function(txt){
       renderResult(txt);
-      generating=false; btn.disabled=false; btn.innerHTML=orig;
-      scrollToResult();
-    }).catch(function(e){
-      renderError((e&&e.message)||'알 수 없는 오류가 발생했어요.');
-      generating=false; btn.disabled=false; btn.innerHTML=orig;
-    });
+      updateHistory(hid,{result:txt}); // 생성 결과 저장 → 새로고침 후에도 기록에서 재열람
+      done();
+    }).catch(fail);
     return;
   }
 
@@ -1551,7 +1794,75 @@ applyModeUI();
 update();
 })();
 </script>
+<!-- 용어 설명(글로서리) -->
+<style>
+.info-btn{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(127,169,224,.4);background:none;color:var(--blue-300);cursor:pointer;flex-shrink:0;padding:0;transition:border-color .14s,color .14s,background .14s}
+.info-btn:hover{border-color:var(--blue);color:#fff;background:rgba(46,111,201,.18)}
+.info-btn svg{width:13px;height:13px}
+.fld-l .multi+.info-btn{margin-left:8px}
+.gl-ov{position:fixed;inset:0;background:rgba(5,8,15,.74);z-index:300;display:none;align-items:flex-start;justify-content:center;padding:44px 16px;overflow:auto}
+.gl-ov.open{display:flex}
+.gl-card{background:#0d1421;border:1px solid rgba(127,169,224,.22);border-radius:18px;max-width:700px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.gl-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0d1421;border-radius:18px 18px 0 0}
+.gl-head h3{font-size:17px;font-weight:900;color:#fff;margin:0}
+.gl-head .cnt{font-size:12px;color:#7d8aa0;font-weight:700;margin-left:8px}
+.gl-x{background:none;border:0;color:#9aa6bc;font-size:24px;cursor:pointer;line-height:1;padding:2px 6px}
+.gl-x:hover{color:#fff}
+.gl-body{padding:6px 22px 22px;max-height:66vh;overflow:auto}
+.gl-item{padding:11px 0;border-top:1px solid rgba(255,255,255,.06)}
+.gl-item:first-child{border-top:0}
+.gl-term{font-size:13.5px;font-weight:900;color:#fff}
+.gl-term .en{font-size:11px;font-weight:700;color:var(--blue-300);font-family:"Noto Sans Mono",ui-monospace,monospace;margin-left:8px}
+.gl-desc{font-size:12.5px;color:#9aa6bc;line-height:1.6;margin-top:4px}
+</style>
+<div class="gl-ov" id="glOv" role="dialog" aria-modal="true" aria-labelledby="glTitle">
+  <div class="gl-card">
+    <div class="gl-head"><h3 id="glTitle">용어 설명<span class="cnt" id="glCnt"></span></h3><button class="gl-x" id="glX" aria-label="닫기">×</button></div>
+    <div class="gl-body" id="glBody"></div>
+  </div>
+</div>
+<script>
+(function(){'use strict';
+var SECT={genre:'장르',mood:'분위기 / 무드',inst:'주요 악기',vocal:'보컬 음색'};
+var DESC={
+/* 장르 */
+'city pop':'80년대 일본 도시 감성의 세련된 팝. 부드러운 신스·펑키 베이스·야경 무드.','k-pop':'한국 아이돌 팝. 화려한 훅과 다채로운 구성, 강한 비트.','pop':'따라 부르기 쉬운 멜로디 중심의 주류 대중음악.','indie pop':'독립 제작 감성의 아기자기하고 개성 있는 팝.','dream pop':'몽환적 리버브와 흐릿한 기타·보컬로 꿈결 같은 분위기.','synth-pop':'신디사이저가 주도하는 복고풍 전자 팝.','ballad':'감정을 담아 천천히 부르는 서정적인 곡.','dance pop':'클럽·파티에 어울리는 댄서블한 팝.','jazz pop':'재즈의 화성·즉흥성을 팝에 녹인 세련된 스타일.','art pop':'실험적·예술적 시도가 강한 팝.','bedroom pop':'방에서 혼자 만든 듯 로파이하고 친밀한 팝.','electropop':'전자음 비중이 큰 팝.','hyperpop':'과장된 신스와 피치 보컬의 극단적 디지털 팝.','j-pop':'일본 대중가요. 밝고 드라마틱한 멜로디.','power pop':'강렬한 기타 훅의 경쾌한 록 팝.',
+'hip-hop':'비트 위에 랩을 얹는 장르. 리듬과 가사 중심.','r&b':'소울·펑크 뿌리의 부드러운 보컬 중심 음악.','soul':'가스펠에서 온 감정 충만한 보컬 음악.','neo-soul':'재지하고 그루비한 질감의 현대적 소울.','trap':'묵직한 808 베이스·하이햇 롤이 특징인 힙합.','lo-fi hip-hop':'잡음 섞인 차분한 비트. 공부·휴식용.','boom bap':'90년대 정통 힙합 드럼 사운드.','jazz hip-hop':'재즈 샘플을 얹은 힙합.','funk':'강한 그루브와 베이스가 춤추게 하는 음악.','g-funk':'신스 휘파람과 느긋한 그루브의 서부 힙합.','alternative r&b':'실험적·몽환적인 현대 R&B.','drill':'어둡고 공격적인 분위기의 힙합 하위 장르.','afro r&b':'아프리카 리듬을 입힌 R&B.',
+'rock':'일렉 기타·드럼 중심의 강렬한 밴드 음악.','korean rock':'한국식 록 사운드.','indie rock':'독립 밴드 감성의 록.','alternative rock':'주류를 벗어난 대안적 록.','punk rock':'빠르고 거친 저항적 록.','folk rock':'포크의 서정에 록을 더한 장르.','hard rock':'묵직하고 강한 기타 리프의 록.','metal':'디스토션 강한 헤비한 록.','grunge':'90년대 거칠고 우울한 얼터너티브 록.','shoegaze':'벽처럼 쌓인 기타 노이즈와 몽환 보컬.','post-rock':'가사 없이 점층적으로 고조되는 기악 록.','emo':'감정을 격하게 토로하는 록.','math rock':'복잡한 박자·변박의 실험적 록.',
+'lo-fi':'의도적으로 거친 질감의 차분한 음악.','chillwave':'복고 신스의 나른한 일렉트로닉.','chillhop':'로파이 힙합의 편안한 비트.','ambient':'멜로디보다 분위기·공간감 중심의 배경 음악.','synthwave':'80년대 영화풍 복고 신스.','house':'4박 비트의 댄스 일렉트로닉.','edm':'클럽용 강한 빌드업·드롭의 전자댄스.','future bass':'출렁이는 신스와 감성적 드롭의 EDM.','techno':'반복적 기계 비트의 클럽 일렉트로닉.','deep house':'깊고 부드러운 베이스의 하우스.','trance':'최면적으로 고조되는 멜로딕 일렉트로닉.','dubstep':'묵직하게 흔들리는 베이스 드롭.','drum and bass':'빠른 브레이크비트와 깊은 베이스.','trip-hop':'느린 비트의 몽환적 일렉트로닉.','downtempo':'느긋한 템포의 차분한 전자음악.','vaporwave':'옛 광고·뮤작을 변형한 복고 몽환 장르.','uk garage':'통통 튀는 변박 비트의 영국 댄스.','idm':'지적·실험적 전자음악.',
+'folk':'어쿠스틱 기반의 소박한 이야기 음악.','acoustic':'전자 효과 없이 생악기 위주.','country':'미국 시골 정서의 기타·바이올린 음악.','blues':'애환을 담은 12마디 블루스.','singer-songwriter':'직접 쓰고 부르는 진솔한 어쿠스틱.','americana':'포크·컨트리·블루스가 섞인 미국 뿌리음악.','bluegrass':'밴조·만돌린의 빠른 컨트리.','celtic':'아일랜드풍 전통 선율.','indie folk':'독립 감성의 포근한 포크.',
+'jazz':'즉흥연주와 스윙 리듬의 음악.','swing':'춤추기 좋은 경쾌한 빅밴드 재즈.','bossa nova':'브라질의 잔잔하고 세련된 보사노바.','new age':'명상·힐링용 잔잔한 기악.','classical crossover':'클래식과 대중음악의 결합.','cinematic orchestral':'영화 OST 같은 웅장한 오케스트라.','smooth jazz':'부드럽고 세련된 카페풍 재즈.','jazz fusion':'재즈에 록·펑크를 융합한 연주.','lounge':'라운지·바에 어울리는 분위기 음악.','classical':'관현악·실내악 등 정통 클래식.','solo piano':'피아노 한 대로 연주하는 곡.','neoclassical':'현대적 감성의 미니멀 클래식.','soundtrack':'영상에 어울리는 배경 음악.','ragtime':'경쾌한 싱코페이션의 초기 재즈 피아노.',
+'contemporary christian':'현대적 사운드의 찬양곡(CCM).','gospel':'합창과 감정이 충만한 복음성가.','meditation healing':'명상·치유용 잔잔한 사운드.','singing bowl meditation':'싱잉볼 울림 중심의 명상곡.','choral':'여러 성부의 합창.','trot':'한국 전통 대중가요 트로트.','korean traditional crossover':'국악과 현대음악의 결합.','disco':'70년대 반짝이는 댄스 음악.','reggae':'자메이카의 느긋한 오프비트 리듬.','latin':'라틴 아메리카 리듬의 음악.','easy listening':'부담 없이 듣기 좋은 배경 음악.','funk soul':'펑크와 소울이 섞인 그루비한 음악.','latin pop':'라틴 리듬의 대중 팝.','reggaeton':'뎀보우 비트의 라틴 어반.','afrobeat':'아프리카 퍼커션·브라스의 그루브.','samba':'브라질 카니발의 흥겨운 리듬.','salsa':'화려한 라틴 댄스 음악.','flamenco':'스페인 기타·박수의 정열적 음악.','ska':'오프비트의 경쾌한 자메이카 댄스.','world fusion':'여러 나라 음악을 섞은 월드뮤직.','lullaby':'아이를 재우는 자장가.',"children's song":'밝고 단순한 동요.','christmas carol':'크리스마스 분위기의 캐롤.',
+/* 무드 */
+'calm':'마음이 가라앉는 잔잔한 분위기.','deeply sad':'깊고 무거운 슬픔.','warm comforting':'따뜻하게 위로하는 느낌.','explosive energy':'폭발하듯 솟구치는 에너지.','romantic':'사랑스럽고 설레는 로맨틱함.','epic':'장대한 서사 같은 웅장함.','dreamy':'꿈결 같은 몽환적 분위기.','nostalgic':'옛 기억을 떠올리는 향수.','fluttering':'두근거리는 설렘.','lonely':'혼자 남은 듯한 쓸쓸함.','hopeful':'희망이 차오르는 느낌.','mysterious':'알 수 없는 신비로움.','groovy':'몸이 흔들리는 그루브.','tense':'팽팽한 긴장감.','free-spirited':'거침없이 자유로운.','poignant':'가슴 저미는 애절함.','meditative':'차분히 가라앉은 명상적.','festive':'들뜬 축제 분위기.','melancholic dawn':'우울하고 고요한 새벽.','reverent graceful':'경건하고 은혜로운.','serene peaceful':'맑고 순수한 평화.','cozy':'포근하고 아늑한.','shimmering':'일렁이며 반짝이는.','cosmic':'우주처럼 광활한.','dark intense':'어둡고 강렬한.','refreshing breezy':'시원한 바람 같은.','driving powerful':'힘차게 밀어붙이는.','defiant':'굴하지 않는 도전적.','cute':'깜찍하고 귀여운.','quirky':'엉뚱하고 개성 있는.','bittersweet':'기쁨과 슬픔이 섞인 씁쓸달콤.','euphoric':'황홀하게 고조되는.','triumphant':'승리의 벅참.','playful':'장난기 가득한.','sensual':'관능적이고 농밀한.','majestic':'위엄 있고 장엄한.','eerie':'으스스하고 불안한.','uplifting':'기분이 고양되는.','aggressive':'거세고 공격적인.','whimsical':'변덕스럽고 발랄한.','hypnotic':'빠져드는 최면적.','tropical':'햇살 가득한 트로피컬.','sultry':'나른하고 관능적.','anthemic':'함께 떼창하는 벅참.','gritty':'거칠고 투박한.','tender':'보드랍고 애틋한.','bouncy':'통통 튀는 경쾌함.','suspenseful':'조마조마한 긴박감.','wistful':'아련하게 그리운.','bold confident':'당당하고 자신감 넘치는.',
+/* 악기 */
+'grand piano':'풍부한 울림의 어쿠스틱 그랜드 피아노.','acoustic guitar':'통기타. 따뜻하고 자연스러운 음색.','electric guitar':'일렉트릭 기타. 록·블루스의 핵심.','music box':'오르골. 맑고 동화적인 소리.','saxophone':'재즈·발라드의 감미로운 관악.','violin':'섬세하고 표현력 높은 현악.','cello':'깊고 따뜻한 저음 현악.','singing bowls':'명상적 울림의 싱잉볼.','synthesizer':'다양한 전자 음색의 신디사이저.','bass guitar':'곡의 저음 토대가 되는 베이스.','acoustic drums':'생생한 리듬의 어쿠스틱 드럼.','808 bass':'트랩의 묵직한 808 저음.','ukulele':'밝고 경쾌한 우쿨렐레.','harp':'영롱하고 환상적인 하프.','flute':'맑고 부드러운 플루트.','trumpet':'화려하고 선명한 트럼펫.','orchestral strings':'풍성한 배경의 오케스트라 현악.','rhodes electric piano':'따뜻한 빈티지 로즈 건반.','synth pads':'넓게 깔리는 배경 신스 패드.','cajon percussion':'손으로 치는 어쿠스틱 타악.','hammond organ':'소울·가스펠의 따뜻한 하몬드 오르간.','pipe organ':'장엄한 성당 파이프 오르간.','harmonica':'블루스·포크의 구슬픈 하모니카.','banjo':'컨트리·블루그래스의 경쾌한 밴조.','mandolin':'또랑또랑한 고음의 만돌린.','accordion':'유럽풍 손풍금 아코디언.','clarinet':'부드러운 목관 클라리넷.','oboe':'애잔한 목관 오보에.','french horn':'둥글고 웅장한 프렌치 호른.','trombone':'묵직한 금관 트롬본.','upright bass':'재즈의 따뜻한 저음 콘트라베이스.','vibraphone':'몽환적인 금속 타건 비브라폰.','marimba':'따뜻한 나무 타건 마림바.','kalimba':'영롱한 엄지 피아노 칼림바.','glockenspiel':'반짝이는 종소리 글로켄슈필.','celesta':'동화적인 건반 타악 첼레스타.','sitar':'인도 전통 현악 시타르.','erhu':'중국 전통 두 줄 현악 얼후.','gayageum':'한국 전통 현악 가야금.','koto':'일본 전통 현악 코토.','tabla':'인도 손 타악 타블라.','congas':'라틴 손 타악 콩가.','timpani':'웅장한 오케스트라 큰북 팀파니.','brass section':'여러 금관의 화려한 합주.','string ensemble':'현악기들의 합주.','choir':'사람 목소리의 웅장한 합창.','fingerstyle guitar':'손가락으로 멜로디까지 연주하는 기타.','slide guitar':'미끄러지는 음색의 슬라이드 기타.','theremin':'손 없이 연주하는 신비로운 전자악기.','mellotron':'빈티지 테이프 건반 멜로트론.'
+};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function openGl(field){
+  var fld=document.querySelector('.fld[data-field="'+field+'"]');
+  if(!fld)return;
+  var seen={}, items=[];
+  Array.prototype.forEach.call(fld.querySelectorAll('.mchip[data-en]'),function(c){
+    var en=(c.getAttribute('data-en')||'').trim(), ko=c.textContent.trim();
+    if(!en||!ko||seen[en])return; seen[en]=1;
+    var d=DESC[en]||('Suno 프롬프트에 영문 "'+en+'" 으로 반영되는 스타일이에요.');
+    items.push('<div class="gl-item"><div class="gl-term">'+esc(ko)+'<span class="en">'+esc(en)+'</span></div><div class="gl-desc">'+esc(d)+'</div></div>');
+  });
+  document.getElementById('glTitle').firstChild.nodeValue=(SECT[field]||'용어')+' 설명';
+  document.getElementById('glCnt').textContent=' '+items.length+'개';
+  document.getElementById('glBody').innerHTML=items.join('');
+  document.getElementById('glOv').classList.add('open');
+}
+function closeGl(){document.getElementById('glOv').classList.remove('open');}
+Array.prototype.forEach.call(document.querySelectorAll('.info-btn[data-info]'),function(b){b.addEventListener('click',function(e){e.preventDefault();openGl(b.getAttribute('data-info'));});});
+document.getElementById('glX').addEventListener('click',closeGl);
+document.getElementById('glOv').addEventListener('click',function(e){if(e.target.id==='glOv')closeGl();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeGl();});
+})();
+</script>
+<script src="../home/tool-store.js"></script>
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
-</body>
+<script src="../home/shell.js?v=21"></script>
+<script src="../home/tool-nav.js"></script></body>
 </html>

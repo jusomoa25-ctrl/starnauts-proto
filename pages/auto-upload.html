@@ -1,10 +1,18 @@
-<!DOCTYPE html>
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a><!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
 <title>STARNAUTS — 자동 업로드</title>
+<meta name="description" content="브라우저에서 유튜브로 직접 전송하는 업로드 도구입니다. 32MB 청크 재개 업로드, 예약 공개, 썸네일 자동 압축, Gemini 다국어 localizations 등록을 한 화면에서 처리합니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-upload.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STARNAUTS — 자동 업로드">
+<meta property="og:description" content="브라우저에서 유튜브로 직접 전송하는 업로드 도구입니다. 32MB 청크 재개 업로드, 예약 공개, 썸네일 자동 압축, Gemini 다국어 localizations 등록을 한 화면에서 처리합니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-upload.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/site-logo.webp">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
@@ -14,18 +22,18 @@
 <style>
 .cr{max-width:1180px;margin:0 auto;padding:0 18px 160px;font-family:"Noto Sans KR",system-ui,sans-serif}
 .cr-head{padding:6px 0 4px}
-.cr-eyebrow{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase}
+.cr-eyebrow{font-size:12px;font-weight:900;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase}
 .cr-title{font-size:clamp(24px,4vw,34px);font-weight:900;color:#fff;margin:9px 0 8px}.cr-title b{color:var(--blue-300)}
 .cr-sub{font-size:14px;color:#9aa6bc;line-height:1.65;max-width:70ch}
 .cr-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 24px;border-bottom:1px solid rgba(255,255,255,.08)}
-.cr-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;font-size:13.5px;font-weight:800;color:#9aa6bc;cursor:pointer;border:0;background:none;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
+.cr-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;font-size:13.5px;font-weight:900;color:#9aa6bc;cursor:pointer;border:0;background:none;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
 .cr-tab:hover{color:#C6CEDC}.cr-tab.cur{color:#fff;border-bottom-color:var(--blue)}
 .pane{display:none}.pane.cur{display:block}
 .cr-card{background:rgba(17,24,37,.55);border:1px solid rgba(127,169,224,.16);border-radius:18px;padding:22px 24px;margin:0 0 18px}
 .cr-card h3{font-size:16px;font-weight:900;color:#fff;margin:0 0 14px;display:flex;align-items:center;gap:8px}
 .kfld{margin-bottom:18px}
 .kfld .kl{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
-.kfld .kl b{font-size:13.5px;color:#fff;font-weight:800}
+.kfld .kl b{font-size:13.5px;color:#fff;font-weight:900}
 .kfld .st{font-size:11.5px;font-weight:700}
 .st.on{color:#7ED4A6}.st.off{color:#7d8aa0}.st.warn{color:#E7C26B}
 .kfld input[type=text],.kfld input[type=datetime-local],.kfld textarea,.kfld select{width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:13px 14px;color:#fff;font-size:14px;font-family:"Noto Sans KR",sans-serif;outline:none}
@@ -37,7 +45,7 @@
 .kfld .kh code{font-family:"Noto Sans Mono",ui-monospace,monospace;color:#C6CEDC;background:rgba(255,255,255,.06);border-radius:4px;padding:1px 5px}
 .kfld .kh a{color:var(--blue-300)}
 .krow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
-.kbtn{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:11px 18px;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit;border:0}
+.kbtn{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:11px 18px;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;border:0}
 .kbtn.save{background:#1a1f2b;color:#fff;border:1px solid rgba(255,255,255,.16)}
 .kbtn.go{background:var(--blue);color:#fff}
 .kbtn.mini{padding:7px 12px;font-size:12px;border-radius:9px;background:rgba(255,255,255,.05);color:#C6CEDC;border:1px solid rgba(255,255,255,.14)}
@@ -47,7 +55,7 @@
 .kmsg.ok{color:#7ED4A6;display:block}.kmsg.err{color:#E76B6B;display:block}.kmsg.info{color:#9aa6bc;display:block}
 .chbadge{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1)}
 .chbadge img{width:42px;height:42px;border-radius:50%}
-.chbadge .cn{font-size:14px;font-weight:800;color:#fff}
+.chbadge .cn{font-size:14px;font-weight:900;color:#fff}
 .chbadge .cs{font-size:11.5px;color:#7d8aa0;margin-top:2px}
 .dot{width:9px;height:9px;border-radius:50%;background:#7d8aa0;flex-shrink:0}
 .dot.on{background:#7ED4A6;box-shadow:0 0 8px rgba(126,212,166,.7)}
@@ -61,7 +69,7 @@
 .prog i{display:block;height:100%;width:0;background:var(--blue);border-radius:5px;transition:width .3s}
 .plog{font-size:12px;color:#9aa6bc;font-family:"Noto Sans Mono",ui-monospace,monospace;margin-top:10px;line-height:1.7;max-height:150px;overflow-y:auto;white-space:pre-wrap}
 .tr-item{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 15px;margin-bottom:10px;background:rgba(255,255,255,.02)}
-.tr-item .tl{font-size:12px;font-weight:800;color:var(--blue-300);margin-bottom:8px}
+.tr-item .tl{font-size:12px;font-weight:900;color:var(--blue-300);margin-bottom:8px}
 .tr-item input{width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:9px 11px;color:#fff;font-size:13px;font-family:inherit;margin-bottom:8px}
 .tr-item textarea{width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:9px 11px;color:#C6CEDC;font-size:12.5px;font-family:inherit;min-height:84px;resize:vertical;line-height:1.55}
 .done-card{border:1px solid rgba(126,212,166,.35);background:rgba(126,212,166,.06);border-radius:15px;padding:18px 20px;margin-top:16px;display:none}
@@ -78,7 +86,7 @@
 .hist .h-item a{color:var(--blue-300);text-decoration:none;flex-shrink:0}
 .step{display:flex;gap:14px;padding:15px 16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
 .step .sn{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
-.step .stt{font-size:13.5px;font-weight:800;color:#fff;margin:0 0 5px}
+.step .stt{font-size:13.5px;font-weight:900;color:#fff;margin:0 0 5px}
 .step .sx{font-size:12.5px;color:#9aa6bc;line-height:1.65}
 .step .sx code{font-family:"Noto Sans Mono",ui-monospace,monospace;color:#C6CEDC;background:rgba(255,255,255,.07);border-radius:4px;padding:1px 6px}
 .gnote{font-size:12px;color:#E7C26B;background:rgba(231,194,107,.08);border:1px solid rgba(231,194,107,.22);border-radius:11px;padding:13px 15px;line-height:1.65;margin-top:6px}
@@ -88,7 +96,7 @@
 </head>
 <body>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
-<div class="main"><main class="wrap"><div class="cr">
+<div class="main"><main class="wrap" id="main" tabindex="-1"><div class="cr">
 
 <div class="cr-head">
   <div class="cr-eyebrow">AUTO UPLOAD</div>
@@ -147,7 +155,7 @@
     <h3>메타데이터</h3>
     <div class="kfld">
       <div class="kl"><b>제목</b><span class="st off" id="titleSt">0 / 100</span></div>
-      <input type="text" id="inTitle" maxlength="100" placeholder="Playlist | ...">
+      <input type="text" id="inTitle" maxlength="100" placeholder="Playlist | …">
       <div class="kh" id="titleHint">플레이리스트 채널 표준: <code>Playlist |</code> 접두사로 시작해야 합니다.</div>
     </div>
     <div class="kfld">

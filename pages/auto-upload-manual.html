@@ -1,10 +1,18 @@
-<!DOCTYPE html>
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a><!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
 <title>STARNAUTS — 자동 업로드 매뉴얼</title>
+<meta name="description" content="자동 업로드 도구의 채널 연결(OAuth 클라이언트 ID·액세스 토큰 입력), 예약 공개, 다국어 등록, 썸네일 압축까지 유튜브 발행 절차를 순서대로 정리한 사용 매뉴얼입니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-upload-manual.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STARNAUTS — 자동 업로드 매뉴얼">
+<meta property="og:description" content="자동 업로드 도구의 채널 연결(OAuth 클라이언트 ID·액세스 토큰 입력), 예약 공개, 다국어 등록, 썸네일 압축까지 유튜브 발행 절차를 순서대로 정리한 사용 매뉴얼입니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-upload-manual.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/site-logo.webp">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../home/home.css">
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
@@ -12,7 +20,7 @@
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
 <style>
 .cr{max-width:980px;margin:0 auto;padding:0 18px 160px;font-family:"Noto Sans KR",system-ui,sans-serif}
-.cr-eyebrow{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase}
+.cr-eyebrow{font-size:12px;font-weight:900;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase}
 .cr-title{font-size:clamp(24px,4vw,34px);font-weight:900;color:#fff;margin:9px 0 8px}.cr-title b{color:var(--blue-300)}
 .cr-sub{font-size:14px;color:#9aa6bc;line-height:1.65;max-width:70ch}
 .cr-card{background:rgba(17,24,37,.55);border:1px solid rgba(127,169,224,.16);border-radius:18px;padding:22px 24px;margin:18px 0}
@@ -22,7 +30,7 @@
 .cr-card>p b,.step .sx b{color:#C6CEDC}
 .step{display:flex;gap:14px;padding:15px 16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
 .step .sn{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
-.step .stt{font-size:13.5px;font-weight:800;color:#fff;margin:0 0 5px}
+.step .stt{font-size:13.5px;font-weight:900;color:#fff;margin:0 0 5px}
 .step .sx{font-size:12.5px;color:#9aa6bc;line-height:1.65}
 .step .sx code{font-family:"Noto Sans Mono",ui-monospace,monospace;color:#C6CEDC;background:rgba(255,255,255,.07);border-radius:4px;padding:1px 6px}
 .mtbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
@@ -31,13 +39,13 @@
 .mtbl td b{color:#fff}
 .gnote{font-size:12px;color:#E7C26B;background:rgba(231,194,107,.08);border:1px solid rgba(231,194,107,.22);border-radius:11px;padding:13px 15px;line-height:1.65;margin-top:10px}
 .oknote{font-size:12px;color:#7ED4A6;background:rgba(126,212,166,.07);border:1px solid rgba(126,212,166,.22);border-radius:11px;padding:13px 15px;line-height:1.65;margin-top:10px}
-.golink{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:11px 18px;font-size:13.5px;font-weight:800;background:var(--blue);color:#fff;text-decoration:none;margin-top:6px}
+.golink{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:11px 18px;font-size:13.5px;font-weight:900;background:var(--blue);color:#fff;text-decoration:none;margin-top:6px}
 .golink:hover{filter:brightness(1.12)}
 </style>
 </head>
 <body>
 <div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
-<div class="main"><main class="wrap"><div class="cr">
+<div class="main"><main class="wrap" id="main" tabindex="-1"><div class="cr">
 
 <div class="cr-eyebrow">MANUAL</div>
 <h1 class="cr-title">자동 업로드 <b>사용 매뉴얼</b></h1>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  STARNAUTS sitemap : https://jusomoa25-ctrl.github.io/starnauts-proto/
+
+  주의 1) base URL 은 서브패스(/starnauts-proto/)다.
+          커스텀 도메인(CNAME)을 붙이면 이 파일과 각 페이지 canonical 을 함께 갱신할 것.
+
+  주의 2) 아래 NOT-YET-COMMITTED 주석이 붙은 6개 URL 은 아직 git 에 커밋되지 않은 로컬 전용 파일이다.
+          이 sitemap.xml 을 커밋할 때 반드시 해당 도구 HTML 파일도 같은 커밋에 포함해야 한다.
+          그러지 않으면 색인 요청이 전부 404 로 떨어진다.
+          대상: channel-research, loop-master, playlist-maker, pli-studio, timestamp, capcut
+
+  주의 3) og:image 로 참조한 assets/tool-thumbs/ 안의 png 9개도 아직 미커밋이다. 함께 커밋할 것.
+
+  주의 4) robots.txt 는 프로젝트 사이트 서브패스에 있어 크롤러가 읽지 않는다.
+          이 sitemap 은 Search Console 에 직접 제출할 것.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/Starnauts%20Home.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/tool.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/class.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/about.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <!-- NOT-YET-COMMITTED -->
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/pli-studio.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/plichannel-planning.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/music-lab.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-video.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- NOT-YET-COMMITTED -->
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/channel-research.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- NOT-YET-COMMITTED -->
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/loop-master.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- NOT-YET-COMMITTED -->
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/playlist-maker.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/translate.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- NOT-YET-COMMITTED -->
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/timestamp.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/metadata.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/video-artwork.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- NOT-YET-COMMITTED -->
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/capcut.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-upload.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jusomoa25-ctrl.github.io/starnauts-proto/pages/auto-upload-manual.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

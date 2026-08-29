@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080F">
+<title>STARNAUTS — 유튜브 채널 딥 리서치 · 평가 가이드라인</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/home.css">
+<link rel="stylesheet" href="../home/space-theme.css?v=17">
+<link rel="stylesheet" href="../home/shell.css?v=20">
+<link rel="stylesheet" href="../home/tweaks.css?v=14">
+<style>
+.cr{max-width:1180px;margin:0 auto;padding:0 18px 140px}
+.cr-crumb{font-size:12.5px;color:#9aa6bc;margin:6px 0 14px}
+.cr-crumb a{color:#9aa6bc;text-decoration:none}
+.cr-crumb a:hover{color:#C6CEDC}
+.cr-head{padding:6px 0 4px}
+.cr-eyebrow{font-size:12px;font-weight:900;letter-spacing:.2em;color:var(--blue-300);text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.cr-eyebrow svg{width:15px;height:15px}
+.cr-title{font-size:clamp(24px,4vw,34px);font-weight:900;color:#fff;margin:9px 0 8px;letter-spacing:-.01em}
+.cr-title b{color:var(--blue-300)}
+.cr-sub{font-size:14px;color:#9aa6bc;line-height:1.65;max-width:62ch}
+/* 도구탭 */
+.cr-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 26px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:0}
+.cr-tab{display:inline-flex;align-items:center;gap:7px;padding:11px 16px;font-size:13.5px;font-weight:900;color:#9aa6bc;text-decoration:none;border:0;background:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;margin-bottom:-1px}
+.cr-tab svg{width:15px;height:15px}
+.cr-tab:hover{color:#C6CEDC}
+.cr-tab.cur{color:#fff;border-bottom-color:var(--blue)}
+.cr-tab .mini{font-size:10.5px;color:#7d8aa0;font-weight:700;margin-left:2px}
+/* 카드 */
+.cr-card{background:rgba(17,24,37,.55);border:1px solid rgba(127,169,224,.16);border-radius:18px;padding:24px 26px;margin:0 0 18px}
+.cr-card.intro{background:linear-gradient(135deg,rgba(46,111,201,.14),rgba(17,24,37,.55))}
+.cr-h2{font-size:18px;font-weight:900;color:#fff;margin:0 0 6px;display:flex;align-items:center;gap:9px}
+.cr-h2 .bar{width:4px;height:18px;border-radius:3px;background:var(--blue)}
+.cr-lead{font-size:13.5px;color:#C6CEDC;line-height:1.7;margin:0}
+.cr-note{font-size:12.5px;color:#9aa6bc;line-height:1.7}
+/* 등급표 */
+.grade-tbl{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.grade-row{display:grid;grid-template-columns:104px 78px 1fr;gap:14px;align-items:center;padding:13px 15px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08)}
+@media(max-width:620px){.grade-row{grid-template-columns:92px 1fr;}.grade-row .gr-range{grid-column:2}.grade-row .gr-desc{grid-column:1/-1}}
+.gr-badge{font-size:13px;font-weight:900;padding:6px 0;border-radius:8px;text-align:center}
+.gr-range{font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:13px;color:#C6CEDC;font-weight:700}
+.gr-desc{font-size:12.5px;color:#9aa6bc;line-height:1.6}
+.g-vsafe{background:rgba(126,212,166,.16);color:#7ED4A6}
+.g-safe{background:rgba(126,212,166,.10);color:#9ad9b8}
+.g-warn{background:rgba(231,194,107,.14);color:#E7C26B}
+.g-danger{background:rgba(231,107,107,.14);color:#E76B6B}
+.g-crit{background:rgba(231,107,107,.22);color:#ff9a9a}
+/* 영역 블록 */
+.area{margin:0 0 18px}
+.area-h{display:flex;align-items:flex-start;gap:13px;margin:0 0 4px}
+.area-no{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center}
+.area-tt{flex:1;min-width:0}
+.area-name{font-size:16px;font-weight:900;color:#fff}
+.area-pts{font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:13px;color:var(--blue-300);font-weight:700}
+.area-tag{display:inline-block;font-size:10.5px;font-weight:900;letter-spacing:.04em;padding:3px 8px;border-radius:6px;background:rgba(231,107,107,.16);color:#E76B6B;margin-left:8px;vertical-align:middle}
+.area-desc{font-size:13px;color:#C6CEDC;line-height:1.7;margin:10px 0 0}
+.subhead{font-size:12.5px;font-weight:900;margin:16px 0 8px;display:flex;align-items:center;gap:7px}
+.subhead.ok{color:#7ED4A6}
+.subhead.bad{color:#E76B6B}
+.plist{list-style:none;padding:0;margin:0 0 4px;display:flex;flex-direction:column;gap:6px}
+.plist li{font-size:12.5px;color:#9aa6bc;line-height:1.6;padding-left:16px;position:relative}
+.plist li::before{content:"";position:absolute;left:2px;top:7px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.28)}
+.plist.ok li::before{background:#7ED4A6}
+.plist.bad li::before{background:#E76B6B}
+.ded{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.ded-row{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;border-radius:12px;background:rgba(231,107,107,.05);border:1px solid rgba(231,107,107,.16)}
+.ded-d{flex-shrink:0;font-family:"Noto Sans Mono",ui-monospace,monospace;font-size:15px;font-weight:900;color:#E76B6B;min-width:42px;text-align:center}
+.ded-b{flex:1;min-width:0}
+.ded-n{font-size:13px;font-weight:900;color:#fff;margin:0 0 3px}
+.ded-x{font-size:12px;color:#9aa6bc;line-height:1.6}
+/* 자가진단 */
+.self li{margin-bottom:9px}
+.self b{color:#C6CEDC}
+.cr-foot-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;flex-wrap:wrap}
+.cr-foot-nav a{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:12px;background:var(--blue);color:#fff;text-decoration:none;font-weight:900;font-size:14px}
+.cr-foot-nav a.ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);color:#C6CEDC}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+<div id="space-bg" aria-hidden="true"><div id="space-stars"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M19 17H6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2 20 3M16 7l3 3M14 9l2 2"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5A2.7 2.7 0 0 0 2.4 7.2 28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-twitch" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h17v11l-5 5h-4l-3 3H6v-3H4zm2 2v11h3v2.5L11.5 16H17l3-3V5zM11 8h2v5h-2zm5 0h2v5h-2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7.5 21H4.5l7.5-8.6L4 3h6.5l4.5 5.6zm-1 16h1.7L8 4.6H6.2z"/></symbol>
+</svg>
+
+<aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav" aria-label="주요 메뉴">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav">
+      <a href="pli-studio.html">플리채널 스튜디오</a>
+      <a href="plichannel-planning.html">기획 노바</a>
+      <a href="music-lab.html">음악 랩</a>
+      <a href="channel-research.html" class="cur">채널 딥 리서치</a>
+      <a href="auto-video.html">자동영상</a>
+      <a href="history.html">내 기록</a>
+    </div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub">
+    <a href="blog.html">뉴스</a><a href="blog.html">블로그</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a>
+    <p class="side-copy">© 2026 STARNAUTS</p>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<div class="main" id="main" tabindex="-1">
+  <header class="topbar">
+    <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
+    <nav class="topnav" aria-label="상단 메뉴">
+      <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
+      <a href="class.html">CLASS<span class="tko">강의</span></a>
+      <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
+      <a href="content.html">CONTENT<span class="tko">콘텐츠</span></a>
+      <a href="agency.html">AGENCY<span class="tko">에이전시</span></a>
+    </nav>
+    <div class="top-right">
+      <a class="top-cta" href="signup.html">무료로 시작</a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
+    </div>
+  </header>
+
+  <main class="cr" id="cr-main">
+    <nav class="cr-crumb" aria-label="위치"><a href="../Starnauts%20Home.html">홈</a> / <a href="tool.html">도구</a> / <a href="channel-research.html">채널 딥 리서치</a> / <span style="color:#C6CEDC">평가 가이드라인</span></nav>
+    <header class="cr-head">
+      <span class="cr-eyebrow"><svg aria-hidden="true"><use href="#i-shield"/></svg> CHANNEL DEEP RESEARCH</span>
+      <h1 class="cr-title">평가 <b>가이드라인</b></h1>
+      <p class="cr-sub">총 100점 만점, 5개 영역의 위반 정도를 감점하여 산출합니다. 점수가 낮을수록 정책 위반·채널 삭제 위험이 높아집니다. 아래 기준은 분석 도구가 실제로 적용하는 채점 규칙과 동일합니다.</p>
+    </header>
+
+    <!-- 도구탭 -->
+    <nav class="cr-tabs" aria-label="딥 리서치 도구">
+      <a class="cr-tab" href="channel-research.html"><svg aria-hidden="true"><use href="#i-search"/></svg>딥 리서치</a>
+      <a class="cr-tab cur" href="channel-research-guide.html" aria-current="page"><svg aria-hidden="true"><use href="#i-book"/></svg>평가 가이드라인</a>
+      <a class="cr-tab" href="channel-research-history.html"><svg aria-hidden="true"><use href="#i-clock"/></svg>기록</a>
+      <a class="cr-tab" href="channel-research-api.html"><svg aria-hidden="true"><use href="#i-key"/></svg>API 등록</a>
+    </nav>
+
+    <!-- A. 점수 등급표 -->
+    <section class="cr-card">
+      <h2 class="cr-h2"><span class="bar"></span>점수 등급표</h2>
+      <p class="cr-note">최종 점수는 5개 영역의 감점을 합산해 산출됩니다. 등급은 채널의 정책 리스크 수준을 한눈에 보여줍니다.</p>
+      <div class="grade-tbl">
+        <div class="grade-row"><span class="gr-badge g-vsafe">매우 안전</span><span class="gr-range">90–100</span><span class="gr-desc">우등생. 가이드라인을 완벽히 준수하는 고품질 채널입니다. 현재 운영 방향을 그대로 유지하세요.</span></div>
+        <div class="grade-row"><span class="gr-badge g-safe">안전</span><span class="gr-range">70–89</span><span class="gr-desc">무난하지만 썸네일·메타데이터에 약간의 과장이 섞여 있습니다. 다듬으면 더 안정적입니다.</span></div>
+        <div class="grade-row"><span class="gr-badge g-warn">주의</span><span class="gr-range">40–69</span><span class="gr-desc">AI 고지 누락이나 반복 콘텐츠 징후가 발견됐습니다. 조금만 더 감점되면 위험 구간에 진입합니다.</span></div>
+        <div class="grade-row"><span class="gr-badge g-danger">위험</span><span class="gr-range">20–39</span><span class="gr-desc">레드카드 직전입니다. 심각한 낚시성 제목·가치 부재로 알고리즘 노출이 이미 제한됐을 수 있습니다.</span></div>
+        <div class="grade-row"><span class="gr-badge g-crit">심각</span><span class="gr-range">0–19</span><span class="gr-desc">퇴출 대상입니다. 가짜 라이브·사칭·기만이 다수 발견됐습니다. 즉시 수정하지 않으면 채널 삭제 위험이 큽니다.</span></div>
+      </div>
+    </section>
+
+    <!-- 정책 업데이트 -->
+    <section class="cr-card intro">
+      <h2 class="cr-h2"><span class="bar"></span>2025년 7월 정책 업데이트 반영</h2>
+      <p class="cr-lead">YouTube는 2025년 7월 15일부터 "repetitious content"를 "inauthentic content"로 명칭을 변경하며, AI 음악 양산 채널을 본격적으로 정조준하기 시작했습니다. 본 도구의 점수 배분도 이를 반영해 <b style="color:#fff">인증성 저하(35점)</b>를 1순위 위험으로 두고, 자기 채널 내 중복 재업로드를 별도의 <b style="color:#fff">콘텐츠 재사용(20점)</b> 영역으로 분리했습니다. 또한 AI 디스클로저는 실존 인물 모방에 한정 적용하여, 일반적인 AI 음악 창작 자체는 위반으로 보지 않습니다.</p>
+    </section>
+
+    <!-- 1 -->
+    <section class="cr-card area">
+      <div class="area-h"><span class="area-no">1</span><span class="area-tt"><span class="area-name">Inauthentic Content · 인증성 저하</span> <span class="area-pts">· 35점</span><span class="area-tag">최우선 위험</span></span></div>
+      <p class="area-desc">2025-07 정책 업데이트의 핵심으로, AI 음악 채널 단속의 1차 사유입니다. 단, 판정 기준은 오직 <b style="color:#fff">음악(트랙)의 반복</b>입니다.</p>
+      <div class="subhead ok">✦ 정상 패턴 (위반 아님 · 오히려 강점)</div>
+      <ul class="plist ok">
+        <li>비슷한 제목 시리즈 — "비 오는 날 lo-fi #1, #2, #3"</li>
+        <li>일관된 썸네일 디자인 (브랜딩)</li>
+        <li>같은 장르·무드·스타일 반복 — 채널 정체성 그 자체</li>
+        <li>동일한 인트로·아웃트로</li>
+        <li>비슷한 영상 길이 (1시간 플리 시리즈 등)</li>
+      </ul>
+      <p class="cr-note">음악 다양성이 낮은 것은 약점이 아닙니다. 시청자가 lo-fi 채널을 구독하는 이유는 "항상 lo-fi가 있을 것"이라는 신뢰 때문입니다. 일관성이 곧 정체성입니다.</p>
+      <div class="subhead bad">✦ 진짜 위반 (감점 대상)</div>
+      <ul class="plist bad">
+        <li>같은 노래(트랙)가 다른 영상에 다시 등장</li>
+        <li>영상 길이가 1–2초 이내로 정확히 일치하는 영상이 다수</li>
+        <li>설명란 트랙리스트가 거의 동일한 영상들</li>
+        <li>한 영상 안에서 짧은 클립이 무의미하게 무한 루프</li>
+      </ul>
+      <div class="ded">
+        <div class="ded-row"><span class="ded-d">−15</span><span class="ded-b"><p class="ded-n">대량 양산형 템플릿 (Mass Production)</p><p class="ded-x">시각 일관성에 더해 음악까지 거의 동일한 영상을 양산. (시각 일관성 자체는 정상 브랜딩)</p></span></div>
+        <div class="ded-row"><span class="ded-d">−10</span><span class="ded-b"><p class="ded-n">저퀄리티 단순 반복 (Low-Effort Loop)</p><p class="ded-x">한 영상 안에서 짧은 클립이 의미 없이 무한 루프. (1장 이미지 + 1시간 음악은 정상 lo-fi 형식)</p></span></div>
+        <div class="ded-row"><span class="ded-d">−10</span><span class="ded-b"><p class="ded-n">트랙 반복 (Low Variation)</p><p class="ded-x">같은 곡이나 거의 동일한 곡 구성이 여러 영상에 반복 등장. (제목·썸네일이 비슷한 것만으로는 적용하지 않음)</p></span></div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="cr-card area">
+      <div class="area-h"><span class="area-no">2</span><span class="area-tt"><span class="area-name">Reused Content · 콘텐츠 재사용</span> <span class="area-pts">· 20점</span></span></div>
+      <p class="area-desc">자기 채널 내 트랙 재사용과 타 채널 큐레이션 복제를 따로 봅니다. 핵심은 "같은 노래가 다시 등장하는가"입니다.</p>
+      <div class="ded">
+        <div class="ded-row"><span class="ded-d">−10</span><span class="ded-b"><p class="ded-n">자기 채널 트랙 재사용 (Self-Duplicate)</p><p class="ded-x">이미 올린 음악(트랙)을 썸네일·제목만 바꿔 다시 올림. (비슷한 컨셉으로 새 곡을 만드는 것은 정상)</p></span></div>
+        <div class="ded-row"><span class="ded-d">−10</span><span class="ded-b"><p class="ded-n">큐레이션 복제 (Copy-Paste Curation)</p><p class="ded-x">타 채널 AI 음악 플리의 곡 구성·순서를 90% 이상 그대로 차용.</p></span></div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="cr-card area">
+      <div class="area-h"><span class="area-no">3</span><span class="area-tt"><span class="area-name">메타데이터·정체성 기만</span> <span class="area-pts">· 20점</span></span></div>
+      <div class="ded">
+        <div class="ded-row"><span class="ded-d">−10</span><span class="ded-b"><p class="ded-n">가짜 실시간 (Fake LIVE) 위장</p><p class="ded-x">제목에 LIVE·24/7·실시간 표기가 있다는 것만으로는 감점하지 않습니다 — 앰비언트·로파이의 24/7 라이브는 정상 포맷입니다. 영상의 실시간 상태(liveBroadcastContent)나 실제 라이브 기록이 있으면 정상. 일반 VOD인데 지금 생방송 중인 것처럼 속이는 명백한 패턴이 있을 때만 감점합니다.</p></span></div>
+        <div class="ded-row"><span class="ded-d">−5</span><span class="ded-b"><p class="ded-n">키워드 낚시·사칭</p><p class="ded-x">채널과 무관한 유명 아티스트명·"최신곡" 키워드를 제목·태그에 남발해 검색을 가로채는 경우. (실제 채널 콘텐츠와 일관된 키워드는 정상)</p></span></div>
+        <div class="ded-row"><span class="ded-d">−5</span><span class="ded-b"><p class="ded-n">카테고리 오설정·우회</p><p class="ded-x">채널 핵심이 음악·플레이리스트인데 영상 카테고리가 Music(10)이 아니라 People & Blogs(22)·Entertainment(24)·Education(27) 등으로 설정. Content ID 음원 매칭 회피로 오인될 수 있습니다. (categoryId 값으로 직접 확인)</p></span></div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="cr-card area">
+      <div class="area-h"><span class="area-no">4</span><span class="area-tt"><span class="area-name">AI 라이선스 및 실존 인물 보호</span> <span class="area-pts">· 15점</span></span></div>
+      <p class="area-desc">YouTube의 AI 디스클로저 의무는 "사실적인 합성 콘텐츠"에 한정됩니다. 실존 인물·장소·사건을 진짜처럼 보이게 만든 경우에만 적용되며, 일반 AI 음악 창작은 위반이 아닙니다.</p>
+      <div class="ded">
+        <div class="ded-row"><span class="ded-d">−10</span><span class="ded-b"><p class="ded-n">실존 인물 모방 (Real Person Impersonation)</p><p class="ded-x">실존 아티스트의 목소리·얼굴·정체성을 AI로 모방해 신곡처럼 배포 (AI Voice Cloning).</p></span></div>
+        <div class="ded-row"><span class="ded-d">−5</span><span class="ded-b"><p class="ded-n">상업 라이선스 미증빙</p><p class="ded-x">Suno/Udio 등 AI 음악 도구의 유료 플랜·상업 라이선스 증빙(약관 링크·라이선스 ID·플랜 명시)이 설명란에 없으면 감점. "AI로 만들었다"는 고지만으로는 증빙이 아닙니다. 도구가 설명란을 스캔해 <b style="color:#C6CEDC">AI 고지</b>와 <b style="color:#C6CEDC">실제 상업 증빙</b>을 구분합니다.</p></span></div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="cr-card area">
+      <div class="area-h"><span class="area-no">5</span><span class="area-tt"><span class="area-name">시각·청취 기만 및 비정상 트래픽</span> <span class="area-pts">· 10점</span></span></div>
+      <div class="ded">
+        <div class="ded-row"><span class="ded-d">−5</span><span class="ded-b"><p class="ded-n">썸네일·음악 부조화 (Thumb-Music Mismatch)</p><p class="ded-x">자극적 썸네일 vs 평범한 음악, 또는 서정적 썸네일 vs 락·EDM 등 강한 음악.</p></span></div>
+        <div class="ded-row"><span class="ded-d">−5</span><span class="ded-b"><p class="ded-n">인위적 트래픽 징후</p><p class="ded-x">일부 영상만 조회수 대비 댓글·좋아요 비율이 비정상. (채널 전체 비공개·비활성화는 제외)</p></span></div>
+      </div>
+    </section>
+
+    <!-- 객관 신호 + 증거강도 -->
+    <section class="cr-card intro">
+      <h2 class="cr-h2"><span class="bar"></span>객관 신호 기반 채점 + 증거강도</h2>
+      <p class="cr-lead">이 도구는 추론에만 의존하지 않습니다. 영상 메타데이터에서 <b style="color:#fff">객관 신호</b>를 코드로 직접 계산해 채점 근거로 씁니다 — 카테고리 분포, 실시간(LIVE)·VOD위장 교차, 업로드 간격, 영상 길이 변동, 참여(좋아요·댓글) 이상치, 라이선스 고지/증빙. 결과 페이지 상단 "객관 신호" 패널에서 실측값을 그대로 확인할 수 있습니다.</p>
+      <p class="cr-note" style="margin-top:12px">각 판정 항목에는 <b style="color:var(--blue-300)">확정</b>(데이터로 입증) 또는 <b style="color:#9aa6bc">추정</b>(메타데이터 해석) 라벨이 붙어, 어떤 감점이 사실에 근거하고 어떤 것이 추론인지 투명하게 보여줍니다. 같은 채널은 같은 결과가 나오도록 고정 시드로 채점합니다.</p>
+    </section>
+
+    <!-- 자가진단 -->
+    <section class="cr-card">
+      <h2 class="cr-h2"><span class="bar"></span>자가진단으로 보완하는 영역</h2>
+      <p class="cr-note">아래 항목은 YouTube API로 직접 확인하기 어려워, 분석 페이지의 <b style="color:#C6CEDC">고급 자가진단</b>에서 입력받습니다. 입력하면 점수 정확도가 올라가며, 특히 Content ID 분쟁 이력은 채널 신뢰도 등급에 직접 영향을 줍니다.</p>
+      <ul class="plist self" style="margin-top:14px">
+        <li><b>Content ID 분쟁 이력</b> — 분쟁이 누적되면 위험 등급을 한 단계 보수적으로 평가합니다.</li>
+        <li><b>Suno/Udio 상업 라이선스</b> — 무료 플랜으로 수익화 시 핵심 위험. 분쟁이 발생하면 가장 먼저 검토되는 항목입니다.</li>
+        <li><b>설명란 라이선스 명시</b> — 매 영상에 라이선스 증빙(플랜·약관 링크)을 적어두면 분쟁 시 강력한 방어 자료가 됩니다.</li>
+      </ul>
+    </section>
+
+    <div class="cr-foot-nav">
+      <a class="ghost" href="channel-research.html"><svg aria-hidden="true" width="15" height="15"><use href="#i-chev-l"/></svg> 딥 리서치로 분석하기</a>
+      <a href="channel-research-api.html">API 등록하기 <svg aria-hidden="true" width="15" height="15"><use href="#i-chev-r"/></svg></a>
+    </div>
+  </main>
+</div>
+
+<script src="../home/space.js"></script>
+<script src="../home/shell.js?v=21"></script>
+<script src="../home/tool-nav.js"></script></body>
+</html>

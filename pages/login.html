@@ -61,7 +61,7 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html"><span class="en">TOOL</span><span class="ko">도구</span></a>
@@ -78,7 +78,7 @@
 <div class="main">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html">CLASS<span class="tko">강의</span></a>
       <a href="tool.html">TOOL<span class="tko">도구</span></a>
@@ -87,16 +87,16 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="signup.html">무료로 시작</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
-  <section class="section" id="main" style="padding-top:36px">
+  <section class="section" id="main" style="padding-top:36px" tabindex="-1">
     <div class="wrap">
       <div class="auth-wrap">
         <div class="sec-head" style="margin-bottom:6px"><h1 class="sec-en" style="font-size:30px">LOGIN</h1><p class="sec-ko">로그인</p></div>
         <p style="text-align:center;color:#9aa6bc;font-size:13.5px;margin-bottom:26px">다시 오신 것을 환영합니다.</p>
-        <form onsubmit="location.href='mypage.html';return false">
+        <form onsubmit="try{var e=document.getElementById('loginEmail').value.trim();localStorage.setItem('starnauts_user_email', e||'guest@starnauts.com');}catch(x){} location.href='mypage.html';return false">
           <div class="fld"><label for="loginEmail">이메일</label><input id="loginEmail" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="you@example.com"></div>
           <div class="fld"><label for="loginPassword">비밀번호</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호"></div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;font-size:12.5px">
@@ -106,7 +106,7 @@
           <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;display:flex">로그인</button>
         </form>
         <div class="divider-or">또는</div>
-        <button class="soc-btn"><svg width="17" height="17"><use href="#i-yt"/></svg> Google로 로그인</button>
+        <button class="soc-btn"><svg aria-hidden="true" width="17" height="17"><use href="#i-yt"/></svg> Google로 로그인</button>
         <p style="text-align:center;font-size:13px;color:#9aa6bc;margin-top:20px">계정이 없으신가요? <a href="signup.html" style="color:var(--blue);font-weight:700">무료로 시작하기</a></p>
       </div>
     </div>
@@ -117,16 +117,16 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img loading="lazy" src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
             <div class="fcolx"><h5>회사</h5><a href="about.html">소개</a><a href="about.html#careers">채용</a><a href="partnership.html">파트너십</a><a href="blog.html">블로그</a></div>
             <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
@@ -140,6 +140,6 @@
 </div>
 
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
+<script src="../home/shell.js?v=21"></script>
 </body>
 </html>

@@ -55,8 +55,8 @@
     const cards=$$('.course',grid);
     const tabsList=$$('.tab',wrap);
     function activate(t){
-      tabsList.forEach(x=>{ x.classList.remove('is-active'); x.setAttribute('aria-selected','false'); });
-      t.classList.add('is-active'); t.setAttribute('aria-selected','true');
+      tabsList.forEach(x=>{ x.classList.remove('is-active'); x.setAttribute('aria-pressed','false'); });
+      t.classList.add('is-active'); t.setAttribute('aria-pressed','true');
       const cat=t.dataset.cat;
       cards.forEach(c=>{
         const show = cat==='all' || c.dataset.cat===cat;

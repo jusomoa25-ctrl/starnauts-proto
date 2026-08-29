@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../home/space-theme.css?v=17">
 <link rel="stylesheet" href="../home/shell.css?v=20">
 <link rel="stylesheet" href="../home/tweaks.css?v=14">
+<script src="../home/cr-shared.js?v=6"></script>
 <style>
 .hist-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
 .hist-toolbar .grow{flex:1}
@@ -22,14 +23,15 @@
 .hbtn:hover{border-color:rgba(255,255,255,.32);color:#fff}
 .hbtn svg{width:15px;height:15px}
 .hbtn.danger:hover{border-color:#c8556a;color:#e98ea0}
-.hist-day{font-size:13px;font-weight:800;color:#9aa6bc;letter-spacing:.02em;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.hist-day{font-size:13px;font-weight:900;color:#9aa6bc;letter-spacing:.02em;margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
 .hist-item{background:var(--glass);border:1px solid var(--glass-line);border-radius:16px;padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(6px)}
 .hi-head{display:flex;align-items:center;gap:10px}
-.hi-badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:#fff;padding:5px 11px;border-radius:9px;background:rgba(58,92,143,.35)}
+.hi-badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:900;color:#fff;padding:5px 11px;border-radius:9px;background:rgba(58,92,143,.35)}
 .hi-badge svg{width:15px;height:15px}
 .hi-badge.tm-plan{background:rgba(91,71,168,.35)}
 .hi-badge.tm-music{background:rgba(58,92,143,.35)}
-.hi-time{font-size:12.5px;color:#9aa6bc;font-weight:600}
+.hi-badge.tm-research{background:rgba(46,111,201,.35)}
+.hi-time{font-size:12.5px;color:#9aa6bc;font-weight:700}
 .hi-del{margin-left:auto;border:none;background:transparent;color:#7c8699;cursor:pointer;padding:6px;border-radius:8px;display:inline-flex}
 .hi-del:hover{color:#e98ea0;background:rgba(200,85,106,.12)}
 .hi-del svg{width:17px;height:17px}
@@ -49,7 +51,7 @@
 .hi-copy:hover{border-color:var(--blue);color:#fff}
 .hi-copy svg{width:13px;height:13px}
 .hist-empty{text-align:center;padding:64px 20px;color:#9aa6bc}
-.hist-empty h3{font-size:18px;color:#E4E9F2;font-weight:800;margin:0 0 8px}
+.hist-empty h3{font-size:18px;color:#E4E9F2;font-weight:900;margin:0 0 8px}
 .hist-empty p{font-size:14px;margin:0 0 22px}
 .hist-empty .links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .hnote{font-size:12.5px;color:#7c8699;line-height:1.6;margin-top:18px;padding:13px 15px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px}
@@ -63,6 +65,7 @@
   <symbol id="i-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1L3 20l1-5.3A8.5 8.5 0 1 1 21 11.5z"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2M6 7l1 13a1.5 1.5 0 0 0 1.5 1.4h7A1.5 1.5 0 0 0 17 20l1-13"/></symbol>
@@ -75,14 +78,15 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
     <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
     <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
     <div class="side-sub-nav">
-      <a href="playstars.html">플리채널 스튜디오</a>
+      <a href="pli-studio.html">플리채널 스튜디오</a>
       <a href="plichannel-planning.html">기획 노바</a>
       <a href="music-lab.html">음악 랩</a>
+      <a href="channel-research.html">채널 딥 리서치</a>
       <a href="auto-video.html">자동영상</a>
       <a href="history.html" class="cur">내 기록</a>
     </div>
@@ -96,10 +100,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="메뉴"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="../Starnauts%20Home.html">STARNAUTS<span class="tko">스타너츠</span></a>
       <a href="class.html">CLASS<span class="tko">강의</span></a>
       <a href="tool.html" class="active">TOOL<span class="tko">도구</span></a>
@@ -108,7 +112,7 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="mypage.html">마이페이지</a>
-      <a class="power" href="login.html" aria-label="로그인"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="login.html" aria-label="로그인"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
@@ -124,6 +128,7 @@
         <button type="button" class="hchip" data-filter="all" aria-pressed="true">전체</button>
         <button type="button" class="hchip" data-filter="music-lab" aria-pressed="false">음원</button>
         <button type="button" class="hchip" data-filter="plichannel" aria-pressed="false">기획</button>
+        <button type="button" class="hchip" data-filter="channel-research" aria-pressed="false">채널 분석</button>
         <span class="grow"></span>
         <span class="hcount" id="histCount">0건</span>
         <button type="button" class="hbtn" id="histExport"><svg aria-hidden="true"><use href="#i-dl"/></svg> 내보내기</button>
@@ -141,16 +146,16 @@
       <div class="wrap fbar">
         <div class="fbar-main">
           <div class="fbar-brand-col">
-            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>STREAMING SKILL TRAINING SYSTEM</i></span></a>
-            <p class="fbar-desc">평범한 일반인이 스트리머가 되어, 언젠가 우주에서 방송하는 날까지 함께하는 교육·매니지먼트 플랫폼입니다.</p>
+            <a class="fbar-brand" href="../Starnauts%20Home.html#home"><img loading="lazy" src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"><span><b>STARNAUTS</b><i>AI MUSIC CHANNEL BUILD SYSTEM</i></span></a>
+            <p class="fbar-desc">AI 음원과 유튜브 채널을 직접 운영하며 남긴 기록으로 강의를 만들고, 그 과정에서 쓰는 제작 도구를 함께 공개합니다.</p>
             <div class="fbar-soc">
-              <a href="#" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
-              <a href="#" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-              <a href="#" aria-label="Twitch"><svg><use href="#i-twitch"/></svg></a>
-              <a href="#" aria-label="X"><svg><use href="#i-x"/></svg></a>
+              <a href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+              <a href="#" aria-label="Twitch"><svg aria-hidden="true"><use href="#i-twitch"/></svg></a>
+              <a href="#" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
             </div>
           </div>
-          <nav class="fbar-cols">
+          <nav class="fbar-cols" aria-label="푸터 메뉴">
             <div class="fcolx"><h5>서비스</h5><a href="class.html">강의</a><a href="tool.html">도구</a><a href="content.html">콘텐츠</a><a href="agency.html">에이전시</a></div>
             <div class="fcolx"><h5>도구</h5><a href="music-lab.html">AI MUSIC LAB</a><a href="plichannel-planning.html">플리채널 기획</a><a href="auto-video.html">자동영상</a><a href="history.html">내 요청 기록</a></div>
             <div class="fcolx"><h5>지원</h5><a href="contact.html">고객센터</a><a href="faq.html">자주 묻는 질문</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보처리방침</a></div>
@@ -162,16 +167,18 @@
   </footer>
 </div>
 
+<script src="../home/tool-store.js"></script>
 <script>
 (function(){
+  var TS=window.ToolStore;
   var KEY='starnauts_tool_history';
   var $=function(s,r){return (r||document).querySelector(s);};
   var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
-  var TOOLMETA={ 'music-lab':{icon:'i-music',cls:'tm-music'}, 'plichannel':{icon:'i-chat',cls:'tm-plan'} };
+  var TOOLMETA={ 'music-lab':{icon:'i-music',cls:'tm-music'}, 'plichannel':{icon:'i-chat',cls:'tm-plan'}, 'channel-research':{icon:'i-search',cls:'tm-research'} };
   var curFilter='all';
 
-  function load(){ try{ var a=JSON.parse(localStorage.getItem(KEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
-  function save(a){ try{ localStorage.setItem(KEY, JSON.stringify(a)); }catch(e){} }
+  // 현재 계정에게 보이는 기록(공유=channel-research + 내 계정 기록). TS 없으면 로컬 폴백.
+  function load(){ return TS ? TS.visible() : (function(){ try{ var a=JSON.parse(localStorage.getItem(KEY)||'[]'); return Array.isArray(a)?a:[]; }catch(e){ return []; } })(); }
   function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function pad(n){ return n<10?'0'+n:''+n; }
   function fmtDay(d){ return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'; }
@@ -189,6 +196,7 @@
     var d=new Date(r.ts);
     return '<article class="hist-item" data-id="'+esc(r.id)+'">'+
       '<div class="hi-head">'+
+        (r.thumb?'<img src="'+esc(r.thumb)+'" alt="" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(127,169,224,.3)">':'')+
         '<span class="hi-badge '+meta.cls+'"><svg aria-hidden="true"><use href="#'+meta.icon+'"/></svg>'+esc(r.toolName||r.tool)+'</span>'+
         '<span class="hi-time">'+esc(fmtTime(d))+'</span>'+
         '<button type="button" class="hi-del" data-del="'+esc(r.id)+'" aria-label="이 기록 삭제"><svg aria-hidden="true"><use href="#i-trash"/></svg></button>'+
@@ -198,6 +206,10 @@
         (r.mode?'<span class="hi-chip">'+esc(r.mode)+'</span>':'')+
       '</div>'+
       '<p class="hi-summary">'+esc(r.summary||'(요약 없음)')+'</p>'+
+      (r.tool==='channel-research'&&r.resultId?'<a class="hi-view" href="channel-research.html?r='+esc(r.resultId)+'" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--blue-300);text-decoration:none;border:1px solid rgba(127,169,224,.34);border-radius:8px;padding:6px 11px;margin-top:4px">결과 다시 보기 →</a>':'')+
+      (r.result?'<details class="hi-prompt"><summary>생성 결과 보기 (가사 · 스타일)</summary>'+
+        '<div class="hi-prompt-body"><button type="button" class="hi-copy" aria-label="결과 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button><pre>'+esc(r.result)+'</pre></div>'+
+      '</details>':'')+
       (r.prompt?'<details class="hi-prompt"><summary>요청 프롬프트 보기</summary>'+
         '<div class="hi-prompt-body"><button type="button" class="hi-copy" aria-label="프롬프트 복사"><svg aria-hidden="true"><use href="#i-copy"/></svg> 복사</button><pre>'+esc(r.prompt)+'</pre></div>'+
       '</details>':'')+
@@ -227,7 +239,7 @@
   // 이벤트 위임: 삭제 / 복사
   $('#histList').addEventListener('click',function(e){
     var del=e.target.closest('[data-del]');
-    if(del){ var id=del.getAttribute('data-del'); save(load().filter(function(r){return r.id!==id;})); render(); return; }
+    if(del){ var id=del.getAttribute('data-del'); if(TS)TS.remove(id); render(); return; }
     var cp=e.target.closest('.hi-copy');
     if(cp){ var pre=cp.parentNode.querySelector('pre'); copyText(pre?pre.textContent:'',function(){
       var o=cp.innerHTML; cp.innerHTML='<svg aria-hidden="true"><use href="#i-check"/></svg> 복사됨';
@@ -244,23 +256,55 @@
   });
   // 전체 삭제
   $('#histClear').addEventListener('click',function(){
-    if(!load().length) return;
-    if(window.confirm('내 요청 기록을 모두 삭제할까요? 되돌릴 수 없습니다.')){ localStorage.removeItem(KEY); render(); }
+    var vis=load(); if(!vis.length) return;
+    if(window.confirm('현재 보이는 기록을 모두 삭제할까요? 되돌릴 수 없습니다.')){ if(TS){ vis.forEach(function(r){TS.remove(r.id);}); } render(); }
   });
-  // 내보내기 (JSON 다운로드)
+  // 내보내기 (전체 기록 JSON 백업)
   $('#histExport').addEventListener('click',function(){
-    var data=load(); if(!data.length){ return; }
-    var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    var data=TS?TS.all():load(); if(!data.length){ return; }
+    var blob=new Blob([TS?TS.exportJSON():JSON.stringify(data,null,2)],{type:'application/json'});
     var url=URL.createObjectURL(blob);
     var a=document.createElement('a'); a.href=url; a.download='starnauts-requests.json';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(url); },1000);
   });
 
+  // ── 계정 전환 + 로컬 폴더 백업 + 가져오기 컨트롤 ──
+  (function initControls(){
+    if(!TS) return;
+    var host=$('#histList'); if(!host||!host.parentNode) return;
+    var bar=document.createElement('div');
+    bar.style.cssText='display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px;font-size:13px';
+    bar.innerHTML=
+      '<span style="opacity:.65">계정</span>'+
+      '<select id="tsAcc" style="background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:5px 8px;font-family:inherit"></select>'+
+      '<button id="tsAccNew" class="hchip" type="button" style="cursor:pointer">+ 계정</button>'+
+      '<span style="flex:1;min-width:8px"></span>'+
+      '<button id="tsFolder" class="hchip" type="button" style="cursor:pointer">로컬 폴더 백업</button>'+
+      '<button id="tsImport" class="hchip" type="button" style="cursor:pointer">가져오기</button>'+
+      '<input id="tsFile" type="file" accept="application/json" hidden>';
+    host.parentNode.insertBefore(bar, host);
+    function fillAcc(){ $('#tsAcc').innerHTML=TS.accounts().map(function(a){return '<option'+(a===TS.account()?' selected':'')+'>'+esc(a)+'</option>';}).join(''); }
+    fillAcc();
+    $('#tsAcc').addEventListener('change',function(){ TS.setAccount(this.value); render(); });
+    $('#tsAccNew').addEventListener('click',function(){ var n=window.prompt('새 계정 이름 (이 계정의 가사·기록만 따로 보입니다. 채널리서치는 항상 전체 공유):',''); if(n&&n.trim()){ TS.setAccount(n.trim()); fillAcc(); render(); } });
+    function updFolder(){ var b=$('#tsFolder'); if(!b)return; if(!TS.supportsFS()){ b.textContent='폴더 백업 미지원(Chrome/Edge)'; b.disabled=true; return; } b.textContent= TS.folderReady()? ('백업 ON: '+(TS.folderName()||'')) : (TS.folderName()? '폴더 권한 재허용' : '로컬 폴더 백업 켜기'); }
+    TS.restoreFolder(function(){ updFolder(); });
+    $('#tsFolder').addEventListener('click',function(){
+      if(TS.folderReady()){ alert('이미 켜져 있습니다. 폴더: '+(TS.folderName()||'')); return; }
+      Promise.resolve(TS.folderName()? TS.reauth() : TS.enableFolder())
+        .then(function(){ updFolder(); alert('이제 생성물이 로컬 폴더에 자동 저장됩니다 (브라우저 데이터를 지워도 보존). 공유 기록=shared/, 계정 기록=accounts/계정명/'); })
+        .catch(function(e){ if(e) alert((e&&e.message)||'폴더 백업 설정이 취소됐습니다.'); });
+    });
+    $('#tsImport').addEventListener('click',function(){ $('#tsFile').click(); });
+    $('#tsFile').addEventListener('change',function(){ var f=this.files[0]; if(!f)return; var rd=new FileReader(); rd.onload=function(){ var n=TS.importJSON(rd.result); alert(n+'건 복원됐습니다.'); render(); }; rd.readAsText(f); this.value=''; });
+  })();
+
   render();
 })();
 </script>
 <script src="../home/space.js"></script>
-<script src="../home/shell.js"></script>
-</body>
+<script src="../home/shell.js?v=21"></script>
+<script src="../home/cr-shared.js?v=6"></script>
+<script src="../home/tool-nav.js"></script></body>
 </html>

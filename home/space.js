@@ -10,8 +10,10 @@
     const d=document.createElement('div'); d.id='space-stars'; bg.appendChild(d); return d;
   })();
 
-  /* dense twinkling starfield */
+  /* dense twinkling starfield — skipped where the field is hidden
+     (shell.css hides it: the background photo already has stars) */
   (function(){
+    if(getComputedStyle(field).display === 'none') return;
     const n = 200; let html='';
     for(let i=0;i<n;i++){
       const x=(Math.random()*100).toFixed(2), y=(Math.random()*100).toFixed(2);

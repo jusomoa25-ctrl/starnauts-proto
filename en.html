@@ -4,12 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080F">
-<title>STARNAUTS.com — Streaming Skill Training System</title>
+<title>STARNAUTS.com — AI Music Channel Build System</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="home/home.css">
 <link rel="stylesheet" href="home/space-theme.css?v=17">
 <link rel="stylesheet" href="home/shell.css?v=20">
 <link rel="stylesheet" href="home/tweaks.css?v=14">
+<style>
+/* home.css의 .feat 규칙이 .tool-copy 하위로 스코프돼 이 페이지에 적용되지 않는다.
+   svg에 크기가 없어 치환 요소 기본값 300x150으로 깨지므로 디스코프해 재선언.
+   course-detail.html:21~24와 동일 패턴. */
+.feat{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+.feat li{display:flex;gap:9px;align-items:flex-start;color:#C6CEDC;line-height:1.45}
+.feat .ic{width:20px;height:20px;border-radius:5px;background:rgba(46,111,201,.18);color:var(--blue-300);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feat .ic svg{width:13px;height:13px}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">본문으로 건너뛰기</a>
@@ -23,7 +32,7 @@
 
 <aside class="sidebar" id="sidebar">
   <a class="side-logo" href="en.html"><img src="assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
-  <nav class="side-nav">
+  <nav class="side-nav" aria-label="주요 메뉴">
     <a href="en.html" class="active"><span class="en">STARNAUTS</span><span class="ko">English</span></a>
     <a href="pages/class.html"><span class="en">CLASS</span><span class="ko">Classes</span></a>
     <a href="pages/tool.html"><span class="en">TOOL</span><span class="ko">Tools</span></a>
@@ -37,10 +46,10 @@
 </aside>
 <div class="sb-scrim" id="sbScrim"></div>
 
-<div class="main" id="main">
+<div class="main" id="main" tabindex="-1">
   <header class="topbar">
     <button class="side-toggle" id="sideToggle" aria-label="menu"><span></span></button>
-    <nav class="topnav">
+    <nav class="topnav" aria-label="상단 메뉴">
       <a href="en.html" class="active">STARNAUTS<span class="tko">English</span></a>
       <a href="pages/class.html">CLASS<span class="tko">Classes</span></a>
       <a href="pages/tool.html">TOOL<span class="tko">Tools</span></a>
@@ -49,7 +58,7 @@
     </nav>
     <div class="top-right">
       <a class="top-cta" href="#">Start free</a>
-      <a class="power" href="#" aria-label="login"><svg><use href="#i-power"/></svg></a>
+      <a class="power" href="#" aria-label="login"><svg aria-hidden="true"><use href="#i-power"/></svg></a>
     </div>
   </header>
 
@@ -57,27 +66,27 @@
     <div class="wrap hero-inner">
       <div class="earth-globe" aria-hidden="true"><img src="assets/earth.webp" alt="" style="width:100%;height:100%;object-fit:cover" width="3543" height="3543"></div>
       <h1 class="dotcom">STARNAUTS<span class="tld">.com</span></h1>
-      <p class="hero-tag">GLOBAL · STREAMING SKILL TRAINING SYSTEM</p>
-      <h2 class="hero-lead-title">From ordinary to a <span class="em">star</span> —<br>your <span class="em">first stream</span> to every skill after</h2>
-      <p class="lead">Camera setup, vocals, dance, editing, AI music — plus talent classes like tarot, magic and beauty. Real courses by working streamers from around the world, paid in STAR ($1 = 1 STAR), with 70% going straight to instructors.</p>
+      <p class="hero-tag">GLOBAL · AI MUSIC CHANNEL BUILD SYSTEM</p>
+      <h2 class="hero-lead-title">We only teach what we <span class="em">actually run</span> —<br>AI music production to <span class="em">channel operations</span></h2>
+      <p class="lead">SUNO production, distribution and Content ID economics, playlist channel traffic diagnostics, and the 3-hour video pipeline — 4 courses and 27 lessons built from our own operating records. The 11 production tools we built along the way are free for every member.</p>
       <div class="hero-actions">
         <a class="btn btn--primary btn--lg" href="pages/class.html">Browse classes</a>
-        <a class="btn btn--ghost-dark btn--lg" href="pages/agency.html">Meet our streamers</a>
+        <a class="btn btn--ghost-dark btn--lg" href="pages/tool.html">Use the tools free</a>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="sec-head"><h2 class="sec-en">WHY STARNAUTS</h2><p class="sec-ko">Built for streamers, by streamers</p></div>
+      <div class="sec-head"><h2 class="sec-en">WHY STARNAUTS</h2><p class="sec-ko">Built from records, not theory</p></div>
       <div class="tool-panel" style="margin-top:26px">
         <ul class="feat" style="max-width:680px;margin:0 auto">
-          <li><span class="ic"><svg><use href="#i-check"/></svg></span><b>Learn from working streamers</b> — courses on broadcast setup (SOOP · CHZZK · YouTube Live · Twitch), vocals, editing, VTuber rigging and more</li>
-          <li><span class="ic"><svg><use href="#i-check"/></svg></span><b>Sell your own classes</b> — register an unlisted YouTube link, set your price, keep 70%. Cash out via PayPal or crypto</li>
-          <li><span class="ic"><svg><use href="#i-check"/></svg></span><b>Buy once or subscribe</b> — lifetime access per course, or subscribe to continuously updated content</li>
-          <li><span class="ic"><svg><use href="#i-check"/></svg></span><b>Global by design</b> — Korean, English, Japanese, Chinese, Thai and Vietnamese support coming</li>
+          <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>Courses from real operating records</b> — distributor cost comparison across 9 services, Content ID registration, channel traffic diagnostics, video shipping pipeline</li>
+          <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>11 free production tools</b> — SUNO prompt generator, YouTube channel deep research, playlist maker, CapCut automation and more, free for every member</li>
+          <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>Sell your own classes</b> — register an unlisted YouTube link, set your price, keep 70%. Cash out via PayPal or crypto</li>
+          <li><span class="ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>Global by design</b> — Korean, English, Japanese, Chinese, Thai and Vietnamese support coming</li>
         </ul>
-        <div class="center-cta" style="margin-top:24px"><a class="btn btn--primary btn--lg" href="pages/class.html">Start free <svg width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
+        <div class="center-cta" style="margin-top:24px"><a class="btn btn--primary btn--lg" href="pages/tool.html">Use the tools free <svg aria-hidden="true" width="16" height="16"><use href="#i-chev-r"/></svg></a></div>
       </div>
       <p style="text-align:center;font-size:12.5px;color:#9aa6bc;margin-top:18px">English page sample — full localization in progress. <a href="Starnauts%20Home.html" style="color:var(--blue)">한국어로 보기 →</a></p>
     </div>
@@ -94,7 +103,7 @@
 </div>
 
 <script src="home/space.js"></script>
-<script src="home/shell.js"></script>
+<script src="home/shell.js?v=21"></script>
 <script src="home/earth.js?v=3"></script>
 </body>
 </html>

@@ -1,0 +1,143 @@
+
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+<meta name="theme-color" content="#0D1117"><!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>캡컷으로 보내기 · STARNAUTS</title>
+<meta name="description" content="음원과 이미지, SRT 자막을 선택하면 캡컷 데스크톱에서 바로 열리는 편집 프로젝트를 자동 생성합니다. Chrome·Edge 브라우저에서 동작하는 베타 도구입니다.">
+<link rel="canonical" href="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/capcut.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="캡컷으로 보내기 · STARNAUTS">
+<meta property="og:description" content="음원과 이미지, SRT 자막을 선택하면 캡컷 데스크톱에서 바로 열리는 편집 프로젝트를 자동 생성합니다. Chrome·Edge 브라우저에서 동작하는 베타 도구입니다.">
+<meta property="og:url" content="https://jusomoa25-ctrl.github.io/starnauts-proto/pages/capcut.html">
+<meta property="og:image" content="https://jusomoa25-ctrl.github.io/starnauts-proto/assets/tool-thumbs/capcut.png">
+<link rel="stylesheet" href="../home/home.css"><link rel="stylesheet" href="../home/space-theme.css?v=17"><link rel="stylesheet" href="../home/shell.css?v=20"><link rel="stylesheet" href="../home/tweaks.css?v=14"><style>
+:root{--bg:#0d1117;--card:#161b22;--blue:#4d7cff;--ink:#e6edf3;--ink2:#9aa6bc;--line:rgba(255,255,255,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',system-ui,-apple-system,sans-serif;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:34px 18px 90px}
+.kicker{font-size:12px;color:var(--blue);font-weight:800;letter-spacing:.08em}
+h1{font-size:24px;margin:6px 0 4px}.sub{color:var(--ink2);font-size:14px;margin:0 0 24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+.btn:hover{background:#3d6bef}.btn:disabled{opacity:.5}
+.lbl{display:block;font-size:13px;color:var(--ink2);margin:14px 0 6px;font-weight:700}
+input[type=file]{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:8px;padding:9px 12px;color:var(--ink2);font-family:inherit;font-size:13px}
+input[type=text]{width:100%;background:#0a0e14;border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--ink);font-family:inherit;font-size:14px}
+input:focus{outline:none;border-color:var(--blue)}
+.seg-os{display:flex;gap:8px}
+.osbtn{flex:1;padding:11px;border:1.5px solid var(--line);border-radius:9px;background:#0a0e14;color:var(--ink2);cursor:pointer;font-weight:700;font-family:inherit;font-size:14px}
+.osbtn.on{border-color:var(--blue);color:var(--ink);background:rgba(77,124,255,.07)}
+.pathbox{background:#0a0e14;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,monospace;font-size:12px;color:var(--ink2);word-break:break-all}
+.warn{background:rgba(255,180,60,.07);border:1px solid rgba(255,180,60,.22);border-radius:8px;padding:11px 13px;font-size:12.5px;color:#e8c98a;margin-top:12px;line-height:1.55}
+.tools{display:flex;gap:8px;margin-top:14px}.hint{font-size:12px;color:var(--ink2);margin-top:8px;line-height:1.55}
+b{font-size:15px}
+</style></head>
+<body><aside class="sidebar" id="sidebar">
+  <a class="side-logo" href="../Starnauts%20Home.html#home"><img src="../assets/site-logo.webp" alt="STARNAUTS" width="299" height="300"></a>
+  <nav class="side-nav" aria-label="주요 메뉴">
+    <a href="../Starnauts%20Home.html#home"><span class="en">STARNAUTS</span><span class="ko">스타너츠</span></a>
+    <a href="class.html"><span class="en">CLASS</span><span class="ko">강의</span></a>
+    <a href="tool.html" class="active"><span class="en">TOOL</span><span class="ko">도구</span></a>
+    <div class="side-sub-nav"></div>
+    <a href="content.html"><span class="en">CONTENT</span><span class="ko">콘텐츠</span></a>
+    <a href="agency.html"><span class="en">AGENCY</span><span class="ko">에이전시</span></a>
+  </nav>
+  <div class="side-sub"><a href="blog.html">뉴스</a><a href="contact.html">문의하기</a><a href="terms.html">이용약관</a><p class="side-copy">(c) 2026 STARNAUTS</p></div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+<div class="main" id="main" tabindex="-1"><div class="wrap">
+<div class="kicker"><svg aria-hidden="true" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="vertical-align:-1px;margin-right:4px"><path d="M12 2l2.6 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.4z"/></svg>EXPORT TO CAPCUT</div>
+<h1>캡컷으로 보내기</h1>
+<p class="sub">음원 + 이미지 + 자막(SRT)을 선택하면 캡컷 데스크톱에서 바로 편집 가능한 프로젝트를 자동 생성해요. <b>Chrome·Edge</b>에서만 동작(폴더 쓰기 권한).</p>
+
+<div class="card">
+  <b>1. 파일 선택</b>
+  <label class="lbl">🎵 음원 (MP3 등)</label><input type="file" id="audio" accept="audio/*">
+  <label class="lbl">🖼 배경 이미지 (필수 — 없으면 캡컷 편집 불가)</label><input type="file" id="image" accept="image/*">
+  <label class="lbl">💬 자막 SRT (선택 — 「번역+SRT」 도구 결과 파일)</label><input type="file" id="srt" accept=".srt,.txt">
+</div>
+
+<div class="card">
+  <b>2. 프로젝트 설정</b>
+  <label class="lbl">프로젝트 이름</label><input type="text" id="proj" placeholder="예) 정점의지배자_뮤비">
+  <label class="lbl">내 컴퓨터 (OS)</label>
+  <div class="seg-os"><button class="osbtn" data-os="win">🪟 Windows</button><button class="osbtn" data-os="mac">🍎 Mac</button></div>
+  <label class="lbl">컴퓨터 사용자 이름 (계정 폴더명)</label><input type="text" id="user" placeholder="예) PC">
+  <label class="lbl">캡컷 드래프트 경로 (자동)</label><div class="pathbox" id="path">—</div>
+</div>
+
+<div class="card">
+  <b>3. 캡컷 프로젝트 생성</b>
+  <p class="hint">버튼을 누르면 폴더 선택창이 떠요. 캡컷 드래프트 폴더(<b>com.lveditor.draft</b>)를 선택하세요.<br>📍 Windows: 폴더창 주소칸에 <code>%LocalAppData%\CapCut\User Data\Projects\com.lveditor.draft</code> 입력 후 이동</p>
+  <div class="tools"><button class="btn" id="go">📤 폴더 선택하고 캡컷 프로젝트 만들기</button></div>
+  <div class="hint" id="status"></div>
+  <div class="warn">⚠️ <b>1차 버전</b>입니다. 캡컷을 껐다 켜서 음원·이미지·자막 배치가 맞는지 확인해 주세요. 어긋나면 알려주시면 포맷을 보정합니다.</div>
+</div>
+
+<script>
+var $=function(s){return document.querySelector(s);};
+var TPL=null,META=null,os='win';
+Promise.all([fetch('../assets/capcut-template.json').then(function(r){return r.json();}),fetch('../assets/capcut-meta-template.json').then(function(r){return r.json();})])
+  .then(function(a){TPL=a[0];META=a[1];}).catch(function(){$('#status').textContent='템플릿 로드 실패 — server.py로 열었는지 확인하세요.';});
+function uid(){return (window.crypto&&crypto.randomUUID?crypto.randomUUID():'X'+Date.now()+Math.random().toString(16).slice(2)).toUpperCase();}
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function basePath(){var u=$('#user').value||'<사용자>';return os==='mac'?('/Users/'+u+'/Movies/CapCut/User Data/Projects/com.lveditor.draft'):('C:/Users/'+u+'/AppData/Local/CapCut/User Data/Projects/com.lveditor.draft');}
+function refresh(){$('#path').textContent=basePath()+'/'+($('#proj').value||'<프로젝트>');}
+Array.prototype.forEach.call(document.querySelectorAll('.osbtn'),function(b){b.onclick=function(){os=b.dataset.os;Array.prototype.forEach.call(document.querySelectorAll('.osbtn'),function(x){x.classList.remove('on');});b.classList.add('on');refresh();};});
+document.querySelector('[data-os=win]').classList.add('on');
+$('#user').oninput=refresh;$('#proj').oninput=refresh;refresh();
+function srtUs(t){var m=(t||'').trim().match(/(\d+):(\d+):(\d+)[,.](\d+)/);return m?(((+m[1])*3600+(+m[2])*60+(+m[3]))*1000000+(+m[4])*1000):0;}
+function parseSRT(txt){return txt.replace(/\r/g,'').split(/\n\n+/).map(function(b){var L=b.split('\n').filter(function(x){return x.trim();});var tl=-1;for(var i=0;i<L.length;i++){if(L[i].indexOf('-->')>=0){tl=i;break;}}if(tl<0)return null;var p=L[tl].split('-->');return {start:srtUs(p[0]),dur:Math.max(srtUs(p[1])-srtUs(p[0]),500000),text:L.slice(tl+1).join('\n')};}).filter(Boolean);}
+function audioDur(f){return new Promise(function(res){var a=new Audio();a.onloadedmetadata=function(){res(Math.round((a.duration||180)*1000000));};a.onerror=function(){res(180000000);};a.src=URL.createObjectURL(f);});}
+
+$('#go').onclick=function(){build().catch(function(e){$('#status').textContent='실패: '+(e.message||e);});};
+async function build(){
+  if(!TPL){$('#status').textContent='템플릿 로딩 중 — 잠시 후 다시 눌러주세요.';return;}
+  var aF=$('#audio').files[0],iF=$('#image').files[0],sF=$('#srt').files[0];
+  if(!aF||!iF){$('#status').textContent='음원과 배경 이미지는 필수입니다.';return;}
+  if(!window.showDirectoryPicker){$('#status').textContent='Chrome 또는 Edge에서 열어주세요(폴더 쓰기 미지원 브라우저).';return;}
+  if(!$('#user').value){$('#status').textContent='컴퓨터 사용자 이름을 입력해 주세요(경로 기록에 필요).';return;}
+  var proj=($('#proj').value||'starnauts_project').trim(),base=basePath();
+  $('#status').textContent='음원 길이 측정 중…';
+  var durUs=await audioDur(aF);
+  var d=clone(TPL);d.id=uid();d.duration=durUs;
+  var am=d.materials.audios[0];am.path=base+'/'+proj+'/'+aF.name;am.name=aF.name;am.duration=durUs;
+  var at=d.tracks.filter(function(t){return t.type==='audio';})[0];
+  at.segments[0].source_timerange.duration=durUs;at.segments[0].target_timerange.duration=durUs;
+  var vm=d.materials.videos[0];vm.path=base+'/'+proj+'/'+iF.name;vm.material_name=iF.name;
+  var vt=d.tracks.filter(function(t){return t.type==='video'&&t.segments.length;})[0];
+  vt.segments[0].source_timerange.duration=durUs;vt.segments[0].target_timerange.duration=durUs;
+  var tt=d.tracks.filter(function(t){return t.type==='text';})[0];
+  if(sF&&tt){
+    var srtSegs=parseSRT(await sF.text());
+    var tplSeg=clone(tt.segments[0]),tplMat=clone(d.materials.texts[0]);
+    tt.segments=[];d.materials.texts=[];
+    srtSegs.forEach(function(s,i){
+      var mid=uid(),mat=clone(tplMat);mat.id=mid;
+      mat.content=JSON.stringify({text:s.text,styles:[{fill:{content:{render_type:'solid',solid:{color:[1,1,1]}}},size:8,range:[0,s.text.length]}]});
+      var seg=clone(tplSeg);seg.id=uid();seg.material_id=mid;seg.target_timerange={start:s.start,duration:s.dur};seg.render_index=14000+i;seg.extra_material_refs=[];
+      d.materials.texts.push(mat);tt.segments.push(seg);
+    });
+  } else if(tt){tt.segments=[];d.materials.texts=[];}
+  var meta=clone(META);try{meta.draft_name=proj;meta.tm_duration=durUs;meta.draft_id=d.id;}catch(e){}
+  $('#status').textContent='폴더 선택창에서 com.lveditor.draft 폴더를 선택하세요…';
+  var dir=await window.showDirectoryPicker({mode:'readwrite'});
+  var pdir=await dir.getDirectoryHandle(proj,{create:true});
+  async function put(name,blob){var fh=await pdir.getFileHandle(name,{create:true});var w=await fh.createWritable();await w.write(blob);await w.close();}
+  // 템플릿의 <...> 플레이스홀더를 실제 경로·파일명으로 치환(JSON 문자열로 안전하게 이스케이프)
+  var udRoot=base.replace(/\/Projects\/com\.lveditor\.draft$/,'');
+  function esc(s){return JSON.stringify(String(s)).slice(1,-1);}
+  function fill(o){return JSON.stringify(o)
+    .split('<CAPCUT_DRAFT_DIR>').join(esc(base))
+    .split('<CAPCUT_USER_DATA>').join(esc(udRoot))
+    .split('<DRAFT_NAME>').join(esc(proj))
+    .split('<AUDIO_FILE>').join(esc(aF.name))
+    .split('<IMAGE_FILE>').join(esc(iF.name))
+    .split('<SUBTITLE_FILE>').join(esc(sF?sF.name:''));}
+  await put(aF.name,aF);await put(iF.name,iF);
+  await put('draft_content.json',new Blob([fill(d)]));
+  await put('draft_meta_info.json',new Blob([fill(meta)]));
+  $('#status').textContent='✓ 완료! 캡컷을 껐다 켜면 "'+proj+'" 프로젝트가 보입니다. (안 보이면 캡컷 재시작)';
+}
+</script>
+</div></div><script src="../home/tool-nav.js"></script></body></html>
