@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 const LEAD_DIR  = __DIR__ . '/../leads';
 const LEAD_FILE = LEAD_DIR . '/leads.ndjson';
-const LEAD_TO   = 'help@starnauts.com';
+const LEAD_TO   = 'starnauts2025@gmail.com';
 const LEAD_FROM = 'no-reply@starnauts.com';
 
 header('Content-Type: application/json; charset=utf-8');

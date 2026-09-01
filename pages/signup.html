@@ -108,7 +108,7 @@
         <p style="text-align:center;color:#9aa6bc;font-size:13.5px;line-height:1.8;margin-bottom:26px">계정 가입은 아직 열지 않았습니다.<br>강의가 열릴 때 알려드릴 이메일만 받습니다. 다른 용도로는 쓰지 않습니다.</p>
 
         <!-- 저장되지 않던 가짜 가입 폼을 실제 이메일 수집으로 교체했다 (2026-09-01).
-             받는 곳은 /lead.php → help@starnauts.com. 방송 플랫폼·비밀번호·국적 등
+             받는 곳은 /lead.php → starnauts2025@gmail.com. 방송 플랫폼·비밀번호·국적 등
              지금 쓸 데가 없는 항목은 받지 않는다. -->
         <form id="leadForm" novalidate>
           <div class="fld"><label for="suEmail">이메일</label><input id="suEmail" name="email" type="email" required autocomplete="email" spellcheck="false" placeholder="you@example.com"></div>
@@ -140,7 +140,7 @@
         .then(function(r){ return r.json().catch(function(){ return {ok:false}; }); })
         .then(function(d){
           if(d && d.ok){ form.reset(); say('신청됐습니다. 강의가 열리면 이 주소로 알려드릴게요.', true); }
-          else { btn.disabled=false; say((d && d.error) || '지금은 접수가 되지 않습니다. help@starnauts.com 으로 메일 주세요.', false); }
+          else { btn.disabled=false; say((d && d.error) || '지금은 접수가 되지 않습니다. starnauts2025@gmail.com 으로 메일 주세요.', false); }
         })
         .catch(function(){ btn.disabled=false; say('네트워크가 불안정합니다. 잠시 뒤 다시 시도해주세요.', false); });
     });
