@@ -9,11 +9,12 @@
  * 그래서 리드는 파일에 먼저 남기고, 메일은 실패해도 접수를 성공으로 친다.
  * 파일은 남았는데 성공을 안 돌려주면 같은 사람이 계속 다시 넣는다.
  *
- * leads/ 는 .htaccess 가 403 으로 막고 git 에도 올리지 않는다.
+ * 저장 위치는 웹루트 한 칸 위다. 정적 배포가 웹루트를 통째로 덮어쓰기 때문에
+ * 안에 두면 배포할 때마다 모아둔 리드가 날아간다. 겸사겸사 웹으로도 안 열린다.
  */
 declare(strict_types=1);
 
-const LEAD_DIR  = __DIR__ . '/leads';
+const LEAD_DIR  = __DIR__ . '/../leads';
 const LEAD_FILE = LEAD_DIR . '/leads.ndjson';
 const LEAD_TO   = 'help@starnauts.com';
 const LEAD_FROM = 'no-reply@starnauts.com';

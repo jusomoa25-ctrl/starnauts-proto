@@ -11,7 +11,8 @@ DirectoryIndex index.html
 
 RewriteEngine On
 
-# 수집한 리드는 개인정보다. 웹에서 직접 열리지 않게 막는다 (lead.php 만 쓴다).
+# 수집한 리드는 개인정보다. 실제 저장 위치는 웹루트 밖이라 여기로는 안 열리지만,
+# 경로 가정이 어긋나 웹루트 안에 떨어지는 경우까지 막아둔다. 읽는 건 lead.php 뿐.
 RewriteRule ^leads(/|$) - [F,L]
 
 # 1) 옛 홈 → /

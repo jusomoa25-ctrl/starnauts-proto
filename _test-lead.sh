@@ -31,16 +31,16 @@ Bcc: x@y.com' http://127.0.0.1:8099/lead.php)"
 check "봇 덫은 조용히 200"        200 "$(code -X POST -d 'email=a@b.com&website=spam' http://127.0.0.1:8099/lead.php)"
 check "메일이 안 나가도 접수는 성공" 200 "$(code -X POST -d 'email=test@example.com' http://127.0.0.1:8099/lead.php)"
 
-if grep -q '"email":"test@example.com"' leads/leads.ndjson 2>/dev/null; then
+if grep -q '"email":"test@example.com"' ../leads/leads.ndjson 2>/dev/null; then
   echo "ok   리드가 파일에 남는다"
 else
   echo "FAIL 리드가 파일에 남지 않았다"; fails=1
 fi
-if grep -q '"email":"a@b.com"' leads/leads.ndjson 2>/dev/null; then
+if grep -q '"email":"a@b.com"' ../leads/leads.ndjson 2>/dev/null; then
   echo "FAIL 봇 덫에 걸린 값이 파일에 들어갔다"; fails=1
 else
   echo "ok   봇 덫 값은 저장되지 않는다"
 fi
-rm -rf leads
+rm -rf ../leads
 
 [ "$fails" = 0 ] && echo "--- 통과" || { echo "--- 실패"; exit 1; }
