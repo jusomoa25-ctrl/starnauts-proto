@@ -11,6 +11,9 @@ DirectoryIndex index.html
 
 RewriteEngine On
 
+# 수집한 리드는 개인정보다. 웹에서 직접 열리지 않게 막는다 (lead.php 만 쓴다).
+RewriteRule ^leads(/|$) - [F,L]
+
 # 1) 옛 홈 → /
 RewriteCond %{THE_REQUEST} \s/+Starnauts(%20|\+|\s)Home\.html[\s?] [NC]
 RewriteRule ^ / [R=301,L]
@@ -30,6 +33,14 @@ RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ /$1.html [L]
 
 ErrorDocument 404 /404.html
+
+# 보안 헤더. preload 는 넣지 않는다 — 등록하면 되돌리기 어렵다.
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
 
 # 정적 자원 캐시. HTML 은 짧게 둬서 수정이 바로 반영되게 한다.
 <IfModule mod_expires.c>

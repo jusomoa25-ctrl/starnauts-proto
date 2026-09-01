@@ -66,5 +66,5 @@
     }
     requestAnimationFrame(frame);
   };
-  img.src='assets/earth-equirect.png?v=5';
+  img.src='assets/earth-equirect.webp?v=6';
 })();
